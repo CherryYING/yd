@@ -1,0 +1,150 @@
+<extend name="RBAC:base" />
+<block name="content-title">
+<h4>订单详情</h4>
+ <a href="{tp#:U('order_list')}" style="margin:5px 10px;" class="btn align-right">返回列表</a>
+</block>
+<block name="content">
+<div class="tab-content default-tab" id="tab1">
+    <form id="form" method="post" action="{tp#:U('order_edit',array('id'=>$data['id']))}">
+        <fieldset>
+        <legend>订单信息</legend>
+        <p>
+        <a class="button btn-state" href='javascript:' order_status='2'>发 货</a>
+        <a class="button btn-state" href='javascript:' order_status='3'>签 收</a>
+        </p>
+        
+        <p>
+        快递公司：<input required name="express_name" class="text-input small-input" placeholder="快递公司"/>
+        </p>
+        <p>
+        快递单号：<input required name="express_no" class="text-input small-input" placeholder="快递单号"/>
+        </p>
+        <p>
+        快递电话：<input required name="express_tel" class="text-input small-input" placeholder="快递电话"/>
+        </p>
+        
+        <p>
+            订单ID：【{tp#$data.id}】
+        </p>
+        <p>
+            下单用户：【{tp#$data['user_id']}】&nbsp;
+            <a title="查看下单用户" target="_blank" href="{tp#:U('Wxusers/edit',array('id'=>$data['order_user']['id']))}">查看</a>
+        </p>
+        <p>
+            订单编号：【{tp#$data.out_trade_no}】
+        </p>
+        <p>
+            订单状态：{tp#$data.order_status|order_status}
+        </p>
+
+        <p>
+            订单金额：【<font color="red">{tp#$data.total_fee} （积分）</font>】
+        </p>
+        
+        <p>
+            下单时间：【{tp#$data.order_time|date='Y-m-d H:i:s',###}】
+        </p>
+       
+       <legend>商品信息</legend>
+        <volist name="goods" id="item">
+            <hr/>
+            <p>
+                商品名称：【{tp#$item.goods_name}】| 单价：【{tp#$item.goods_price}】| 数量：【{tp#$item.goods_nums}】
+                <a class="align-right" href="{tp#:U('Jifen/edit',array('id'=>$item['goods_id']))}" target="_blank" title="查看商品">查看</a>
+                <span class='clear'></span>
+            </p>
+        </volist>
+            <hr/>
+       <legend>收货人信息</legend>
+        <p>
+            姓名：【{tp#$data.consignee}】
+        </p>
+        <p>
+            手机：【{tp#$data.mobile}】
+        </p>
+        <p>
+            地址：【{tp#$data.province}-{tp#$data.city}-{tp#$data.district}-{tp#$data.address}】
+        </p>
+      <div class="clear"></div>
+      </fieldset>
+    </form>
+</div>
+<!--kindeditor-->
+<link rel="stylesheet" href="/plugins/kindeditor/themes/default/default.css" />
+<script charset="utf-8" src="/plugins/kindeditor/kindeditor-min.js"></script>
+<script charset="utf-8" src="/plugins/kindeditor/lang/zh_CN.js"></script>
+<!--kindeditor-->
+<script>
+$(function(){
+	$(".btn-state").click(function(){
+		var post_data={order_status:$(this).attr('order_status')};
+		post_data.express_no=$("input[name='express_no']").val();
+		post_data.express_tel=$("input[name='express_tel']").val();
+		/*if(post_data.express_no==''||typeof(post_data.express_no)==undefined){
+			$("input[name='express_no']").focus();
+			alert('请填写快递发货单号');
+			return false;
+		}
+		if(post_data.express_tel==''||typeof(post_data.express_tel)==undefined){
+			$("input[name='express_tel']").focus();
+			alert('请填写快递电话');
+			return false;
+		}*/
+		$.post("{tp#:U('Jifen/order_status',array('id'=>$data['id']))}",post_data,function(data){
+			alert('操作成功');
+			location.reload();
+		});
+	});
+});
+	KindEditor.ready(function(K) {
+		//初始化编辑器
+		var editor1 = K.create('textarea[name="content"]', {
+			cssPath : '/plugins/kindeditor/plugins/code/prettify.css',
+			uploadJson : '/plugins/kindeditor/php/upload_json.php',
+			fileManagerJson : '/plugins/kindeditor/php/file_manager_json.php',
+			allowFileManager : true,
+			afterCreate : function() {}
+		});
+	});
+	/*$(function() {
+		var editor = KindEditor.create('textarea[name="content"]');
+	});*/
+	//单图上传
+	KindEditor.ready(function(K) {
+		var editor = K.editor({
+			allowFileManager : true
+		});
+		K('#image1').click(function() {
+			editor.loadPlugin('image', function() {
+				editor.plugin.imageDialog({
+					imageUrl : K('#url1').val(),
+					clickFn : function(url, title, width, height, border, align) {
+						K('#url1').val(url);
+						editor.hideDialog();
+					}
+				});
+			});
+		});
+	});
+	//批量上传图片
+	KindEditor.ready(function(K) {
+		var editor = K.editor({
+			allowFileManager : true
+		});
+		K('#J_selectImage').click(function() {
+			editor.loadPlugin('multiimage', function() {
+				editor.plugin.multiImageDialog({
+					clickFn : function(urlList) {
+						var div = K('#J_imageView');
+						div.html('');
+						K.each(urlList, function(i, data) {
+							div.append('<img src="' + data.url + '">');
+						});
+						editor.hideDialog();
+					}
+				});
+			});
+		});
+	});
+</script>
+</block>

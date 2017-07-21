@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{tp#$webinfo.web_name}</title>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/dist/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/dist/css/bootstrap-theme.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="__PUBLIC__/js/jquery.1-7-1.js"></script>
+</head>
+
+<body class="page bg">
+    <header class="navbar po-re">
+        <div class="navbar-icon">
+            <a href="{tp#:U('index')}">
+                <span class="glyphicon glyphicon-chevron-left">返回</span>
+			</a>
+		</div>
+   </header>
+   <div class="cj-filter text-center clearfix"> 
+		<div class="col-xs-6 " onClick="javascript:location.href='{tp#:U('shop_config')}'">店铺信息设置</div>
+		<div class="col-xs-6 active">商品管理</div>
+	</div>
+	<volist name="list" id="item">  
+	<div class="media cj-list order-checkbox order-radio mt10"  data-toggle="buttons">
+		<a class="pull-left thumbnail" href="{tp#:U('Index/product',array('id'=>$item['id']))}">
+			<img class="media-object" src="{tp#$item.spic|get_thumb}">
+		</a>
+		<div class="media-body">
+			<a href="{tp#:U('Index/product',array('id'=>$item['id']))}">
+				<h4 class="media-heading">{tp#$item.name|mb_substr=###,0,30,'utf-8'}</h4>
+<!--				<p class="f999999 mb5">颜色：金色 功率：1.5匹</p>
+				<p class="f999999 mb5">数量：X2</p>-->
+				<div class="comm-text-pricce" ><span  class="f14 fcff0000">售价：<i><em>￥{tp#$item.price}</em></i></span>
+              
+				</div> 
+                <div class="comm-text-pricce" ><span  class="f14 ">店主分佣：<i><em>￥{tp#$item.shopuongjin}</em></i></span>
+              
+				</div>
+			</a>
+		</div>
+        <p style="clear:both"></p>
+		<p class="bd-top">
+        <if condition="!in_array($item['id'],$my_list)">
+        <a goods_id="{tp#$item.id}" class="btn btn-default bran right btn-kuang-blue btn-tui">推荐商品</a>
+        <else/>
+        <a goods_id="{tp#$item.id}" class="btn btn-default bran right btn-kuang-red btn-cancel">取消推荐</a>
+        </if>
+        </p>
+	</div>
+	</volist>
+<if condition="strlen($page) gt 1"><p id="page">{tp#$page}</p></if>
+<include file="Public:footbar2"/>
+</body>
+<script>
+$(function(){
+	$(".btn-tui").click(function(){
+		$.post("{tp#:U('Ajax/goods_tui')}",{'goods_id':$(this).attr('goods_id')},function(data){
+			alert('推荐成功');
+			location.reload();
+		});
+	});
+	$(".btn-cancel").click(function(){
+		$.post("{tp#:U('Ajax/goods_cancel')}",{'goods_id':$(this).attr('goods_id')},function(data){
+			alert('取消推荐成功');
+			location.reload();
+		});
+	});
+});
+</script>
+</html>

@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="format-detection" content="telephone=no">
+<title>收货地址-{tp#$webinfo['web_name']}</title>
+<meta name="keywords" content="{tp#$webinfo['web_key']}">
+<meta name="description" content="{tp#$webinfo['web_descrip']}">
+
+<meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-touch-fullscreen" content="yes">
+<!-- <meta name="full-screen" content="yes"> -->
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="address=no">
+<link rel="icon" href="__PUBLIC__/images/logo.jpg" type="image/x-icon">
+<link rel="apple-touch-icon-precomposed" href="__PUBLIC__/images/favicon.png">
+<link rel="apple-touch-startup-image" href="__PUBLIC__/images/apple-touch-startup.png" media="(device-height:568px)">
+<link rel="stylesheet" href="__PUBLIC__/css/style.css">
+<link rel="stylesheet" href="__PUBLIC__/css/icomoon.css">
+<script type="text/javascript" src="__PUBLIC__/js/jq.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/jquery.urlparam.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/alert.js"></script>
+
+<style type="text/css">
+
+#windowcenter {
+	width:290px;
+	position:fixed;
+	display:none;
+	bottom:30px;
+	left:50%;
+	 z-index:9999;
+	margin-left:-145px;
+	padding:2px;
+	border-radius:3px;
+	-webkit-border-radius:3px;
+	-moz-border-radius:3px;
+	background-color: #ffffff;
+	-webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	-moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	-o-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	font:14px/1.5 Microsoft YaHei,Helvitica,Verdana,Arial,san-serif;
+}
+.window .title {
+	background-color: #2BB2A3;
+	line-height: 26px;
+  padding: 5px 5px 5px 10px;
+	color:#ffffff;
+	text-shadow:0px 1px 1px #14544D;
+	font-size:16px;
+	border-radius:3px 3px 0 0;
+	-webkit-border-radius:0.5em 0.5em 0 0;
+	-moz-border-radius:0.5em 0.5em 0 0;
+	
+}
+.window .content {
+	/*min-height:100px;*/
+	overflow:auto;
+	padding:10px;
+	background: linear-gradient(#FBFBFB, #EEEEEE) repeat scroll 0 0 #FFF9DF;
+    color: #222222;
+    text-shadow: 0 1px 0 #FFFFFF;
+	border-radius: 0 0 0.6em 0.6em;
+	-webkit-border-radius: 0 0 0.6em 0.6em;
+	-moz-border-radius: 0 0 0.6em 0.6em;
+}
+.window #txt {
+	min-height:30px;font-size:16px; line-height:22px;
+}
+.window #windowclosebutton {
+	margin-top:10px;
+}
+.window .btn {
+	height:40px;
+	line-height:40px;
+}
+input::-moz-placeholder, textarea::-moz-placeholder { color: #999;}
+.flex{
+	display:box;
+	display:-moz-box;
+	display:-webkit-box;
+}
+.window .title .close {
+	float:right;
+	background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACTSURBVEhL7dNtCoAgDAZgb60nsGN1tPLVCVNHmg76kQ8E1mwv+GG27cestQ4PvTZ69SFocBGpWa8+zHt/Up+IN+MhgLlUmnIE1CpBQB2COZibfpnXhHFaIZkYph0SOeeK/QJ8o7KOek84fkCWSBtfL+Ny2MPpCkPFMH6PWEhWhKncIyEk69VfiUuVhqJefds+YcwNbEwxGqGIFWYAAAAASUVORK5CYII=");
+	width:26px;
+	height:26px;
+	display:block;	
+}
+.confirm-box{
+    position: fixed;
+    top:50%;
+    left:50%;
+    padding:0px 15px;
+    width:220px;
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+    box-sizing:border-box;
+    background-color: rgba(0, 0, 0, 0.8);
+    color:#FFFFFF;
+    border-radius: 2px;
+    margin-left: -110px;
+    margin-top:-55px;
+    z-index:1000001;
+}
+.confirm-box .confirm-box-txt{
+    text-align: center;
+    margin:20px auto;
+}
+.confirm-box .confirm-box-btns{
+    width:190px;
+    padding-bottom:10px;
+    text-align: center;
+}
+.confirm-box .confirm-box-btns a{
+    background-color: #FFFFFF;
+    display:inline-block;
+    border-radius: 2px;
+    margin:5px;
+    text-align: center;
+    width:80px;
+    height:30px;
+    line-height: 30px;
+    color:#444444;
+}
+.confirm-mash{
+    position: fixed;
+    left:0px;
+    top:0px;
+    right:0px;
+    bottom:0px;
+    background-color: rgba(255,255,255,0.3);
+    z-index:1000000;
+}
+</style>
+</head><body><div class="window" id="windowcenter">
+	<div id="title" class="title"><span class="close" id="alertclose"></span><span class="tit_txt">消息提醒</span></div>
+	<div class="content">
+	 <div id="txt"></div>
+	 <input type="button" value="确定" id="windowclosebutton" name="确定" class="btn btn-block">	
+	</div>
+</div>
+
+<script type="text/javascript" src="__PUBLIC__/js/tips.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/geo.js"></script>
+
+
+
+<div class="header">
+	<a href="javascript:void(0);" onclick="previous();" class="topnav topnav-left"><i class="icon-arrow-left2"></i></a>
+	<a href="javascript:void(0);" entry="dropdown" class="topnav topnav-right"><i class="icon-list"></i></a>
+	<div id="nav-dropdown" class="nav-dropdown">
+		<include file="Public:nav_dropdown"/>
+	</div>
+	<span class="header_toptitle">收货地址</span>
+	<div class="clear"></div>
+</div>
+<script type="text/javascript">
+var previous = function()
+{
+	if (typeof (navigator.app) !== "undefined")
+	{
+		navigator.app.backHistory();
+	}
+	else
+	{
+		window.history.back();
+	}
+}
+
+$(function()
+{
+	$('.topnav[entry=dropdown]').click(function()
+	{
+		$('#nav-dropdown').slideToggle();
+	});
+	document.onclick=function(e)
+	{
+		var e=e?e:window.event;
+		var tar = e.srcElement||e.target;
+		if($(tar).attr('id') != "nav-dropdown" && $(tar).parents('#nav-dropdown').size() == 0 && (!$(tar).hasClass('topnav') || $(tar).attr('entry') != "dropdown") && $(tar).parents('.topnav[entry=dropdown]').size() == 0)
+		{
+			$('#nav-dropdown').slideUp();
+		}
+	}
+	$("input[type='checkbox'],input[type='radio']").live('click', function()
+	{
+		setbg()
+	});
+	setbg();
+
+	//设置label背景
+	function setbg()
+	{
+		$(":checkbox").parent("label").removeClass('on');
+		$(":checkbox[checked]").parent("label").addClass('on');
+		$(":radio").parent("label").removeClass('on');
+		$(":radio[checked]").parent("label").addClass('on');
+	}
+});
+</script>
+<div class="order-type-header">
+    <div class="order-type">
+    <a href="{tp#:U('address_add')}" class="curr">新增</a>
+    </div>
+</div>
+<volist name="list" id="item">
+<dl class="order-dl order15-dl">
+<dt><p>
+<!--地址编号：{tp#$item['id']}-->
+</p></dt>
+<dd class="dealcard dd-padding" data-href="{tp#:U('address_edit',array('id'=>$item['id']))}">
+    <div class="dealcard-block">
+        <p class="two-title-name">收货人：{tp#$item['consignee']}</p>
+        <p class="two-title-name">联系电话：{tp#$item['mobile']}</p>
+        <p class="two-title-name">收货地址：{tp#$item['province']}-{tp#$item['city']}-{tp#$item['district']}-{tp#$item['address']}</p>
+    </div>
+    <div class="dealcard-block-right-b">
+        <a class="goods-comment-btn" data-flag="1" href="{tp#:U('address_edit',array('id'=>$item['id']))}">编辑</a>
+        <a href="javascript:;" data-flag="1" class="goods-comment-btn" onclick="if(confirm('确定删除')){addr_del({tp#$item['id']})}">删除</a>
+    </div>
+</dd>
+</dl>
+</volist>
+<p id="page">{tp#$page}</p>
+<script type="text/javascript">
+
+function addr_del(addr_id)
+{
+    $.ajax(
+    {
+        url: "{tp#:U('Ajax/address_del')}",
+        type: 'POST',
+        dataType: 'text',
+        data:
+        {
+            id:addr_id,
+        },
+        beforeSend:function()
+        {
+            if(addr_id <= 0)
+            {
+                show_tips('参数错误','warn');
+                return false;
+            }
+        },
+        success:function(err)
+        {
+            if(err == 1)
+            {
+                show_tips('删除成功');
+				location.reload();
+            }
+        }
+    });
+}
+
+$(function()
+{
+    $("[entry='received']").click(function()
+    {
+        obj = $(this);
+        order_id = obj.attr('data-orderid');
+        if(confirm('确认收货？'))
+        {
+            if(order_id > 0)
+            {
+                $.ajax(
+                {
+                    url: 'http://www.jiudingvip.com/3g/user.php?act=received',
+                    data:
+                    {
+                        order_id:order_id,
+                        mid :9
+                    },
+                    type:'POST',
+                    dataType: 'json',
+                    beforeSend:function()
+                    {
+                        show_tips('处理中...','load');
+                    },
+                    success:function(json)
+                    {
+                        if(json.error == 0)
+                        {
+                            show_tips('操作成功','happy');
+                            obj.attr('data-orderid',0);
+                            obj.parent('weak').before('<small>已收货</small>');
+                            obj.parent('weak').remove();
+                        }
+                        else
+                        {
+                            show_tips(json.msg,'sad');
+                        }
+                    }
+                });
+            }
+            else
+            {
+                show_tips('操作失败','sad');
+            }
+        }
+        return false;
+    });
+    //删除订单
+    $("[entry='delete']").click(function()
+    {
+        obj = $(this);
+        order_id = obj.attr('data-orderid');
+        if(confirm('确认删除？'))
+        {
+            if(order_id > 0)
+            {
+                $.ajax(
+                {
+                    url: 'http://www.jiudingvip.com/3g/user.php?act=delete',
+                    data:
+                    {
+                        order_id:order_id,
+                        mid :9
+                    },
+                    type:'POST',
+                    dataType: 'json',
+                    beforeSend:function()
+                    {
+                        show_tips('处理中...','load');
+                    },
+                    success:function(json)
+                    {
+                        if(json.error == 0)
+                        {
+                            show_tips('删除成功','happy');
+                            obj.parents('dd').prev('dt').fadeOut();
+                            obj.parents('dd').fadeOut();
+                        }
+                        else
+                        {
+                            show_tips(json.msg,'sad');
+                        }
+                    }
+                });
+            }
+            else
+            {
+                show_tips('操作失败','sad');
+            }
+        }
+        return false;
+    });
+    $(".dealcard").click(function(e)
+    {
+        var e=e?e:window.event;
+        var tar = e.srcElement||e.target;
+        if($(tar).attr('data-flag') != '1')
+        {
+            var url = $(this).attr('data-href');
+            window.location.href = url;
+            return false;
+        }
+    });
+})
+</script>
+<footer class="footer">
+	<div class="footer-copyright">
+	    <div class="hr"></div>
+	    <span class="footer-copyright-text">{tp#$webinfo.copyright}</span>
+	</div>
+</footer>
+
+</body>
+
+</html>

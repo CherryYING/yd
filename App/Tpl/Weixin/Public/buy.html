@@ -1,0 +1,158 @@
+
+<style>select{width:100% !important;height:40px;}</style>
+
+<div class="bg_fff comment mt25" style="display:none">
+	<footer>
+    配送至：
+    <span class="pull-right" id="store-div" style="display:none">库存数量：<span id="store-nums"></span></span>
+    <!--<br/>　
+	<select id="province">
+        <option value="">-请选择-</option>
+    </select>
+   	<br/>　
+    <select id="city">
+        <option value="">-请选择-</option>
+    </select>
+    <br/>　
+    <select id="district">
+        <option value="">-请选择-</option>
+    </select>-->
+    <table width="100%" height="140">
+    <tr>
+        <td>
+        <select id="province">
+            <option value="">-请选择-</option>
+        </select>
+        </td>
+    </tr>
+    <tr>
+        <td>
+        <select id="city">
+            <option value="">-请选择-</option>
+        </select>
+        </td>
+    </tr>
+    <tr>
+        <td>
+        <select id="district">
+            <option value="">-请选择-</option>
+        </select>
+        </td>
+    </tr>
+    </table>
+    </footer>
+</div>
+
+<div class="bg_fff comment mt25">
+<footer>
+<div>
+<div class="col-xs-5">
+  <button class="btn btn-lg btn_blue width_auto" id="btn-buy-now" goods_id="{tp#$info.id}" goods_price="{tp#$info.price}">立刻购买</button>
+</div>
+<div class="col-xs-5 pull-right">
+  <button class="btn btn-lg btn_blue2 width_auto" id="btn-add-cart" goods_id="{tp#$info.id}" goods_price="{tp#$info.price}">加入购物车</button>
+</div>
+</div>
+</footer>
+</div>
+
+<include file="Public:footbar"/>
+
+
+<script src="__PUBLIC__/js/jquery.1-7-1.js"></script>
+<script src="__PUBLIC__/js/common.js"></script>
+<script>
+$(function(){
+	var store_nums=0;
+	var addr_data={};
+
+	$("#district").change(function(){
+		
+		addr_data.province=$("#province").val();
+		addr_data.city=$("#city").val();
+		addr_data.district=$("#district").val();	
+		addr_data.goods_id="{tp#$info.id}";
+		addr_data.goods_code="{tp#$info.goods_code}";
+		
+		$("#btn-buy-now").attr('disabled',false);
+		$("#btn-add-cart").attr('disabled',false);
+		
+		
+		$.post("{tp#:U('Ajax/query_store_nums')}",addr_data,function(json){
+			if(json.errcode==1){		//无货
+				//$("#btn-buy-now").attr('disabled',true);
+				//$("#btn-add-cart").attr('disabled',true);
+				//$("#store-nums").html('<font color="red">无货</font>');
+				//alert(json.msg);
+			}else{
+				if(parseInt(json.store_nums)>0){		//有货
+					store_nums=json.store_nums;			//库存数量
+					$("#store-nums").text(store_nums);
+					alert(json.msg);	
+				}else{				//无货
+					//$("#btn-buy-now").attr('disabled',true);
+					//$("#btn-add-cart").attr('disabled',true);
+					//$("#store-nums").html('<font color="red">无货</font>');
+					//alert(json.msg);
+				}
+			}
+			//$("#store-div").show();
+			//console.log(json);
+		},'json');
+	});
+	
+	//添加购物车
+	$("#btn-add-cart").click(function(){
+		addr_data.province=$("#province").val();
+		addr_data.city=$("#city").val();
+		addr_data.district=$("#district").val();
+		
+		/*if(addr_data.district==''){
+			alert('请选择配送地区！');
+			return false;
+		}*/
+		/*if(parseInt(store_nums)<=0){
+			alert('该地区库存不足');
+			return false;	
+		}*/
+		
+		/*alert(store_nums);
+		return false;*/
+		
+		var post_data={};
+		post_data.goods_id=$(this).attr('goods_id');
+		post_data.goods_price=$(this).attr('goods_price');
+		post_data.goods_nums=1;	
+		$.post("{tp#:U('Ajax/addcart')}",post_data,function(data){
+			alert('添加购物车成功！');	
+		});
+		
+	});
+	//立即购买
+	$("#btn-buy-now").click(function(){
+		addr_data.province=$("#province").val();
+		addr_data.city=$("#city").val();
+		addr_data.district=$("#district").val();
+		
+		/*alert(store_nums);
+		return false;*/
+		
+		/*if(addr_data.district==''){
+			alert('请选择配送地区！');
+			return false;
+		}*/
+		/*if(parseInt(store_nums)<=0){
+			alert('该地区库存不足');
+			return false;	
+		}*/
+		var post_data={};
+		post_data.goods_id=$(this).attr('goods_id');
+		post_data.goods_price=$(this).attr('goods_price');
+		post_data.goods_nums=1;	
+		$.post("{tp#:U('Ajax/addcart')}",post_data,function(data){
+			location.href="{tp#:U('Index/cart')}";	
+		});
+		
+	});
+});
+</script>

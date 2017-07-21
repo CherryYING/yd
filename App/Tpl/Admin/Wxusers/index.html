@@ -1,0 +1,200 @@
+<extend name="RBAC:base" />
+<block name="content-title">
+<h4>会员列表</h4> 
+<!--<a style="float:right;margin:10px;" href="{tp#:U('add')}" class="btn">添加</a> -->
+</block>
+<block name="content">
+          <div class="tab-content default-tab" id="tab1">
+           <p class="well">二维码有问题删除二维码，在微信端重新获取即可</p>
+           <p class="well">
+                搜索：
+                <select name="key">
+                	<option value="nickname"  <eq name="Think.get.key" value="nickname">selected</eq>>昵称</option> 
+                    <option value="id" <eq name="Think.get.key" value="id">selected</eq>>会员ID</option>  
+                    <option value="mobile" <eq name="Think.get.key" value="mobile">selected</eq>>联系电话</option>    
+                    <option value="username" <eq name="Think.get.key" value="username">selected</eq>>账户名</option>
+                </select>
+                <input value="{tp#$Think.get.val}" name="val" type="text" class="text-input bg-gray small-input" placeholder="关键字"/>
+                &nbsp;&nbsp;
+                注册时间：
+                <input value="{tp#$Think.get.begin_time}" name="begin_time" type="text" class="text-input bg-gray small-input" placeholder="起始时间" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/> ~
+                <input value="{tp#$Think.get.end_time}" name="end_time" type="text" class="text-input bg-gray small-input" placeholder="截止时间" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>
+                <input id='btn-so' type="button" value="搜索" class="button"/>
+               
+                &nbsp;&nbsp;&nbsp;
+                <a href="{tp#:U('index',array('role_id'=>1))}" class="btn <eq name='Think.get.role_id' value='1'>btn-success</eq>" >普通会员</a>
+                &nbsp;&nbsp;&nbsp;
+                <a href="{tp#:U('index',array('role'=>'agent'))}" class="btn <eq name='Think.get.role' value='agent'>btn-success</eq>">代理会员</a>
+                 &nbsp;&nbsp;&nbsp;
+                 |
+                 &nbsp;&nbsp;&nbsp;
+                 <a href="{tp#:U('index',array('status'=>'1'))}" class="btn <eq name='Think.get.status' value='1'>btn-</eq>">正常账号</a>
+                 &nbsp;&nbsp;&nbsp;
+                 
+                  <a href="{tp#:U('index',array('status'=>'2'))}" class="btn <eq name='Think.get.status' value='2'>btn-danger</eq>">禁用账户</a>
+                 &nbsp;&nbsp;&nbsp;
+                 
+                <a  href="{tp#:U('index',array('p'=>I('get.p',1)))}">查看全部</a>
+            </p>
+            <table width='100%'>
+              <thead>
+                <tr>
+                   <th>UID</th>
+                   <th>头像</th>
+                   <th>二维码</th>
+                   <th width="50">昵称</th>
+                   <th>会员类型</th>
+                   <th>资金账户（A）</th>
+                   <th>资金账户（B）</th>
+                   <!--<th>积分账户</th>-->
+                   <th>云金币</th>
+                   <th>销售业绩（A）</th>
+                   <th>销售业绩（B）</th>
+                   <th>注册时间</th>
+                   <th>用户关系</th>
+                   <th>账号状态</th>
+                   <th>操作</th>
+                </tr>
+              </thead>
+
+              <tbody>
+              	<tr>
+                <td colspan="14" style="text-align:center;background:#F00;color:#FFF">红色背景的用户，账户异常，已被禁用</td>
+                </tr>
+                <volist name="list" id="v">
+                    <tr <eq name="v['status']" value='2'>style="background:#FADEDB"</eq>>
+                      <td>【{tp#$v.id}】</td>	
+                      <td>
+                      <neq name="v.headimgurl" value="">
+                      <php>
+                      $picurl=base64_encode($v['headimgurl']);
+                      </php>
+                      <a rel="modal" title="查看原图" href="{tp#:U('Index/show_img',array('picurl'=>$picurl))}" target="_blank">
+                      <img src="{tp#$v.headimgurl}" class='thumb' onerror="this.src='__PUBLIC__/Images/no-img.png'">
+                      </a>
+                      <p><a class="sbtn btn-danger" href="{tp#:U('del_headimg',array('id'=>$v['id']))}" rel="modal">删除<a></p>
+                      </neq>
+                      </td>
+                      
+                      <td>
+                      <php>
+                      $picurl=base64_encode($v['qrcard']);
+                      </php>
+                      <a rel="modal" title="查看原图" href="{tp#:U('Index/show_img',array('picurl'=>$picurl))}" target="_blank">
+                      <img src="{tp#$v['qrcard']}" class='thumb' onerror="this.src='__PUBLIC__/Images/no-img.png'">
+                      </a>
+                      <p><a class="sbtn btn-danger" href="{tp#:U('del_qrcard',array('id'=>$v['id']))}" rel="modal">删除<a></p>
+                      </td>
+                      
+                      <td width='100'>
+                      <a title="{tp#$v.nickname}" href="{tp#:U('edit',array('id'=>$v['id']))}" target="_blank">{tp#$v.nickname|default='暂无'}
+                      </a>
+                      </td>
+					  <td>
+                      <switch name="v.role_id">
+                      	<case value="1">普通会员</case>
+                        <case value="2"><font color='green'>市级代理</font></case>
+                        <case value="3"><font color='blue'>省级代理</font></case>
+                        <case value="4"><font color='red'>全国代理</font></case>
+                      </switch>
+                      </td>
+                      <td>
+                      <a style="color:red" title="查看" href="{tp#:U('Money/index',array('money_type'=>'a','uid'=>$v['id']))}" target="_blank">
+                      {tp#$v['money_a']} 元
+                      </a>
+                      </td>
+                      <td>
+                      <a style="color:red" title="查看" href="{tp#:U('Money/index',array('money_type'=>'b','uid'=>$v['id']))}" target="_blank">
+                      {tp#$v['money']} 元
+                      </a>
+                      </td>
+                      <!--<td>{tp#$v['jifen']+$v['jifen_dongjie']} 积分</td>-->
+                      <td>
+                      <a style="color:red" title="查看" href="{tp#:U('Money/money_cloud_list',array('uid'=>$v['id']))}" target="_blank">
+                      {tp#$v['money_cloud']}
+                      </a>
+                      </td>
+                      
+                      <td>
+                      <a title="查看" href="{tp#:U('Money/sell_money_list',array('money_type'=>'a','uid'=>$v['id']))}" target="_blank">
+                      {tp#$v['total_sell_money_a']} 元
+                      </a>
+                      </td>
+                      
+                      <td>
+                       <a title="查看" href="{tp#:U('Money/sell_money_list',array('money_type'=>'b','uid'=>$v['id']))}" target="_blank">
+                      {tp#$v['total_sell_money_b']} 元
+                      </a>
+                      </td>
+                      
+                      <td>
+                      <eq name="v.posttime" value='0'>
+                      暂无
+                      <else/>{tp#$v.posttime|date='y/m/d H:i',###}
+                      </eq>
+                      </td>
+                      <td>({tp#$v.son_count}) <a href="{tp#:U('user_relation',array('id'=>$v['id']))}">查看</a></td> 	
+                      <td>
+                      	<eq name="v['status']" value='1'>
+                         <a class="sbtn" title="点击禁用" href="{tp#:U('user_status',array('id'=>$v['id']))}">正常</a>
+                        </eq>
+                        
+                        <eq name="v['status']" value='2'>
+                         <a class="sbtn btn-danger" href="{tp#:U('user_status',array('id'=>$v['id']))}" title="点击恢复正常">禁用</a>
+                        </eq>
+                      </td>
+                      <td>
+                       <a title="查看编辑用户信息" target="_blank" class='sbtn' href="{tp#:U('edit',array('id'=>$v['id'],'p'=>I('get.p',1)))}">编辑</a>
+                         <neq name="v.username" value="">
+                         <a class='sbtn' href="{tp#:U('pwd',array('id'=>$v['id']))}">修改密码</a>
+                         </neq>
+                         <a title="删除"  class='sbtn btn-danger confirm' href="{tp#:U('del',array('id'=>$v['id']))}">删除</a>
+                      </td>
+                    </tr>
+                </volist>
+              </tbody>
+
+             
+            </table>
+            <div class="pagination">
+              {tp#$show}
+            </div>
+            <div class="clear"></div>
+          </div> <!-- End #tab1 -->          
+<script>
+$(function(){
+	$(document).keyup(function(event){
+		if(event.keyCode==13){
+			$("#btn-so").click();
+		}
+	});
+	$("#btn-so").click(function(){
+		  var key=$("select[name='key'] option:selected").val();
+		  var val=$("input[name='val']").val();
+		  var begin_time=$("input[name='begin_time']").val();
+		  var end_time=$("input[name='end_time']").val();
+		  
+		  var param='';
+		  
+		  if(key!=''&&val!=''){
+			 param+="&key="+key+'&val='+val;
+		  }
+		  
+		  if(begin_time!=''){
+			   param+='&begin_time='+begin_time;
+		  }
+		  
+		  if(end_time!=''){
+			   param+='&end_time='+end_time;
+		  }
+		  
+		  if(param==''){
+			  //alert('请输入关键字！')
+			  artDialog({content:'请输入搜索条件！', style:'alert', lock:false}, function(){});
+		  }else{
+			  location.href="{tp#:U('index')}"+param;
+		  }
+	});
+});
+</script>          
+</block>  

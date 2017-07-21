@@ -1,0 +1,150 @@
+<extend name="RBAC:base" />
+<block name="jq">
+
+<script type="text/javascript" src="__PUBLIC__/Js/jquery.min.js"></script>
+<!--<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>-->
+
+</block>
+<block name="content-title">
+<h3>新增导航</h3>  
+<a href="{tp#:U('index')}" class='btn align-right' style="margin:5px 10px;">返回</a>
+</block>
+<block name="content">
+<div class="tab-content default-tab" id="tab1">
+ 	<div class="notification success png_bg" id="dmsg">
+        <a href="#" class="close">
+        <img src="__PUBLIC__/Images/icons/cross_grey_small.png" alt="close" /></a>
+        <div>
+            <font style="font-weight:700">站外链接格式（http://www.baidu.com）;务必要加上http://</font>
+        </div>
+    </div>
+<!--kindeditor-->
+<link rel="stylesheet" href="/plugins/kindeditor/themes/default/default.css" />
+<script charset="utf-8" src="/plugins/kindeditor/kindeditor-min.js"></script>
+<script charset="utf-8" src="/plugins/kindeditor/lang/zh_CN.js"></script>
+<!--kindeditor-->
+
+<!--uploadify-->
+<script src="/plugins/uploadify/jquery.uploadify.min.js" type="text/javascript"></script>
+<link href="/plugins/uploadify/uploadify.css" rel="stylesheet" type="text/css" >
+<!--uploadify-->
+<style type="text/css">
+.btn-del{background-color:#C00;padding:5px;color:white;border-radius:3px;border:0;cursor:pointer}
+</style>
+		
+<form method="post" action="{tp#:U('add')}" enctype="multipart/form-data">
+    <fieldset>
+    <p>
+        标　　题：
+        	<input required="required" type="text" name="title"  class="text-input small-input" placeholder="标题" /> 
+    </p>
+    <p>
+    图　　标：
+    <input readonly name="spic" type="text" id="url1" value="{tp#$nrs.spic}" class="text-input small-input"/> 
+    <input type="button" id="image1" value="选择图片" class="button"/>
+    </p>
+   <!-- <p>
+        父级导航：
+        	<select name="fup">
+            <option value="0">-顶级导航-</option>
+            <volist name="navlist" id="item">
+            <option value="{tp#$item.id}">{tp#$item.title}</option>
+            </volist>
+            </select>
+    </p>-->
+    
+    <p>
+        链接地址：
+        	<input id="url" name="url"  class="text-input medium-input" placeholder="链接地址" />
+           	系统链接
+        	<select class="chooseurl" name="url2">
+            <option value="">-请选择-</option>
+            <volist name="url" id="item">
+            <option value="{tp#$item.url}">{tp#$item.title}</option>
+            </volist>
+            </select>
+            
+             系统文章
+        	<select class="chooseurl" name="url3">
+            <option value="">-请选择-</option>
+            <volist name="cms_list" id="item">
+            
+            <option value="" disabled="disabled">【{tp#$item.name}】</option>
+            
+            <volist name="item.art" id="val">
+            <option value="{tp#$val.url}">&nbsp;&nbsp;&nbsp;|-{tp#$val.title}</option>
+            </volist>
+            
+            </volist>
+            </select>
+    </p>
+	<p>
+        排　　序：
+        	<input type="text" name="list"  class="text-input small-input number"  placeholder='显示排序'/> 
+    </p>   
+	<p>
+		<input type="submit" value="  提 交  " class="button">
+	</p>
+    </fieldset>
+	<div class="clear"></div>
+</form>
+
+</div>
+<script>
+$(function(){
+	$(".chooseurl").click(function(){
+		$("#url").val($(this).val());
+	});
+});
+
+	KindEditor.ready(function(K) {
+		//初始化编辑器
+		var editor1 = K.create('textarea[name="content"]', {
+			cssPath : '/plugins/kindeditor/plugins/code/prettify.css',
+			uploadJson : '/plugins/kindeditor/php/upload_json.php',
+			fileManagerJson : '/plugins/kindeditor/php/file_manager_json.php',
+			allowFileManager : true,
+			afterCreate : function() {}
+		});
+	});
+	/*$(function() {
+		var editor = KindEditor.create('textarea[name="content"]');
+	});*/
+	//单图上传
+	KindEditor.ready(function(K) {
+		var editor = K.editor({
+			allowFileManager : true
+		});
+		K('#image1').click(function() {
+			editor.loadPlugin('image', function() {
+				editor.plugin.imageDialog({
+					imageUrl : K('#url1').val(),
+					clickFn : function(url, title, width, height, border, align) {
+						K('#url1').val(url);
+						editor.hideDialog();
+					}
+				});
+			});
+		});
+	});
+	//批量上传图片
+	KindEditor.ready(function(K) {
+		var editor = K.editor({
+			allowFileManager : true
+		});
+		K('#J_selectImage').click(function() {
+			editor.loadPlugin('multiimage', function() {
+				editor.plugin.multiImageDialog({
+					clickFn : function(urlList) {
+						var div = K('#J_imageView');
+						div.html('');
+						K.each(urlList, function(i, data) {
+							div.append('<img src="' + data.url + '">');
+						});
+						editor.hideDialog();
+					}
+				});
+			});
+		});
+	});
+</script></block>

@@ -1,0 +1,54 @@
+<extend name="RBAC:base" />
+<block name="content-title">
+<h4>后台登陆日志</h4>  
+</block>
+<block name="content">
+          <div class="tab-content default-tab" id="tab1">
+            <div class="notification png_bg" id="dmsg" style="display:none;">
+              <a href="#" class="close"><img src="__PUBLIC__/Images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
+              <div>
+                msg.
+              </div>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                   <th>ID</th>
+                   <th>账户名</th>
+                   <th>操作内容</th>
+                   <th>操作时间</th>
+                   <th>客户端IP</th>
+<!--                   <th>操作</th>-->
+                </tr>
+              </thead>
+
+              <tbody>
+                <volist name="list" id="item">
+                    <tr>
+                      <td>【{tp#$item.id}】</td>
+                      <td>{tp#$item.username}</td>
+                      <td>{tp#$item.descript}</td>
+                      <td>{tp#$item.posttime|date='Y-m-d H:i:s',###}</td>
+                      <td>{tp#$item.ip|default='---'}</td>
+<!--                      <td>
+                        <a class="btn btn-danger" href="{tp#:U('del',array('id'=>$v['id']))}" onClick="return confirm('确定要删除?')" >删除</a> 
+                      </td>-->
+                    </tr>
+                </volist>
+              </tbody>
+
+              <tfoot>
+                <tr>
+                  <td colspan="5">
+                    <div class="bulk-actions align-left">
+                    </div>
+                    <div class="pagination">
+                      {tp#$show}
+                    </div>
+                    <div class="clear"></div>
+                  </td>
+                </tr>
+              </tfoot>              
+            </table>
+          </div> <!-- End #tab1 -->  
+</block>  

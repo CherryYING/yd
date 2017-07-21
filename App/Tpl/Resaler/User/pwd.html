@@ -1,0 +1,28 @@
+<extend name="Index:base" />
+<block name="content-title">
+<h4>修改密码</h4> 
+<!--<a class="btn align-right" style="margin:5px 10px;" href="{tp#:U('index')}">返回</a> -->
+</block>
+<block name="content">
+<div class="tab-content default-tab" id="tab1">
+            <form method="post" action="{tp#:U('User/pwd_update')}">
+             	<p>
+                     登录账号：【{tp#$resaler_info.username}】
+                     <!--<span class="input-notification success png_bg">Successful message</span>-->
+                </p>
+                <p>
+                    密　　码：<input required="required"  type="text" name="password"  class="text-input small-input" placeholder="登录密码"/> 
+                    <!--<span class="input-notification error png_bg">Error message</span>-->
+                </p>
+                <p>
+                  <input type="submit" value="提 交" class="button">
+                </p>
+              <div class="clear"></div>
+            </form>
+</div>
+<script type='text/javascript'>
+$(function(){
+
+})
+</script>
+</block>

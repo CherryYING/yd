@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<title>{tp#$webinfo.web_name}</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/dist/css/base.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/dist/css/layout-theme.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/assets/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/dist/css/font.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+</head>
+
+<body class="page">
+<svg display="none" width="0" height="0" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs>
+  <symbol id="icon-left" viewBox="0 0 1024 1024">
+    <path class="path1" d="M711.219 891.802c13.722 13.926 13.722 36.301 0 50.125s-35.891 13.875-49.613 0l-400.896-404.89c-13.722-13.824-13.722-36.198 0-50.125l400.896-404.89c13.722-13.824 35.891-13.824 49.613 0 13.722 13.875 13.722 36.301 0 50.125l-365.619 379.853 365.619 379.802z"></path>
+  </symbol>
+</defs>
+</svg>
+<header class="header"> <a class="returnIco" href="javascript:history.go(-1);"><code class="glyphicon glyphicon-chevron-left">返回</code></a>
+  <div class="pageTit">会员中心</div>
+</header>
+<div class="pt0">
+<div class="meb"><header><h3>会员名</h3><span>我的店铺</span></header><section>铜牌会员<div class="right"><span><i>余额(元)</i><i class="color_red">0.00</i></span><span><i>积分(分)</i><i class="color_red">10</i></span></div></section>
+<img src="__PUBLIC__/images/head.png" class="headphone"></div>
+  <ul class="commen_list set">
+    <a href="{tp#:U('order_list')}">
+    <li><img src="__PUBLIC__/images/meb01.png">我的订单<img src="__PUBLIC__/images/rt_arrow.png" class="rt_arrow"> </li>
+    </a>
+     <a href="{tp#:U('shop_config')}">
+    <li><img src="__PUBLIC__/images/meb02.png">店铺管理<img src="__PUBLIC__/images/rt_arrow.png" class="rt_arrow"> </li>
+    </a>
+     <a href="{tp#:U('jifen')}">
+    <li><img src="__PUBLIC__/images/meb03.png">积分管理<img src="__PUBLIC__/images/rt_arrow.png" class="rt_arrow"> </li>
+    </a>
+     <a href="{tp#:U('fund')}">
+    <li><img src="__PUBLIC__/images/meb04.png">资金管理<img src="__PUBLIC__/images/rt_arrow.png" class="rt_arrow"> </li>
+    </a>
+     <a href="{tp#:U('shop_setting')}">
+    <li><img src="__PUBLIC__/images/meb05.png">设置<img src="__PUBLIC__/images/rt_arrow.png" class="rt_arrow"> </li>
+    </a>
+  </ul>
+</div>
+<!--<div class="bot_menu mt25"><a href="#"><img src="__PUBLIC__/images/home.png"></a><a href="#">分类</a><a href="#">个人中心</a><a href="#">购物车</a></div>
+<p class="Copyright">©2015 {tp#$webinfo.web_name}</p>-->
+<include file="Public:footbar"/>
+</body>
+</html>

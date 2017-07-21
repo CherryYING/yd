@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{tp#$webinfo.web_name}</title>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/dist/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/dist/css/bootstrap-theme.css">
+	<link rel="stylesheet" href="__PUBLIC__/dist/css/font-awesome.css">
+    <script src="__PUBLIC__/js/jquery.1-7-1.js"></script>
+    <!--[if IE 7]>
+    <link rel="stylesheet" href="__PUBLIC__/dist/css/font-awesome-ie7.css">
+    <![endif]-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+</head>
+
+<body class="page bg">
+    <header class="navbar po-re">
+        <div class="navbar-icon">
+            <a href="javascript:history.go(-1);" class="left-back">
+                <!--<i class="icon-angle-left f26"></i>-->
+                <span class="glyphicon glyphicon-chevron-left">返回</span>
+			</a>
+		</div>
+        <span class="nav-title">注册</span>
+   </header>
+   
+   <div class="container">
+		 <div class="login-textwapper mt15">
+				<input name="username" type="text" placeholder="请输入您的手机/邮箱">
+				<!--<input type="text" placeholder="输入验证码">-->
+				<input name="password" type="password"  placeholder="请填写密码">
+				<input name="password2" type="password" class="bd0" placeholder="请再次确认密码">
+				<!--<span class="get-yzm">获取验证码</span>-->
+		 </div>
+		 <div class="login-reg"><span class="left"><input checked type="checkbox">同意<a href="">《用户协议》</a></span></div>
+		 <div class="text-center mt15">
+			<a id="btn-reg" class="col-xs-12  btn btn-warning btn-lg  border-r10">确 认</a>
+		</div>
+	</div>     
+</body>
+<script>
+$(function(){
+	$("#btn-reg").click(function(){
+		var post_data={};
+		post_data.username=$("input[name='username']").val();
+		post_data.password=$("input[name='password']").val();
+		password2=$("input[name='password2']").val();
+		if(post_data.username==''){
+			alert('请输入用户名（手机或邮箱）');
+			return false;
+		}
+		if(post_data.password==''){
+			alert('请输入密码');
+			return false;
+		}
+		if(password2==''){
+			alert('请确认密码');
+			return false;
+		}
+		if(post_data.password!=password2){
+			alert('两次密码输入不一致');
+			return false;
+		}
+		$.post("{tp#:U('Member/do_reg')}",post_data,function(errcode){
+			if(errcode==1){
+				alert('用户名已经存在！');
+			}else{
+				alert('注册成功!');
+				location.href="{tp#:U('Member/login')}";
+			}
+		});
+	});	
+});
+</script>
+</html>

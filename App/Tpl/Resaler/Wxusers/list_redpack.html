@@ -1,0 +1,43 @@
+<extend name="RBAC:base" />
+<block name="content-title">
+<h4>红包领取记录</h4> 
+<a style="float:right;margin:10px;" href="javascript:history.go(-1);" class="btn">返回</a> 
+</block>
+<block name="content">
+          <div class="tab-content default-tab" id="tab1">
+            <table>
+              <thead>
+                <tr>
+                   <th>微信OpenID</th>
+                   <th>红包金额</th>
+                   <th>领取时间</th>
+                   <th>操作</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <volist name="list" id="v">
+                    <tr>
+                      <td>【{tp#$v.wechatid}】</td>	
+                      <td>【<b>&yen; </b>{tp#$v.money}】</td>
+                      <td>{tp#$v.posttime|date='Y-m-d H:i:s',###}</td>
+                      <td>
+                         <a class='btn' href="{tp#:U('del_record',array('id'=>$v['id']))}">删除</a>
+                      </td>
+                    </tr>
+                </volist>
+              </tbody>
+
+              <tfoot>
+                <tr>
+                  <td colspan="6">
+                    <div class="pagination">
+                      {tp#$show}
+                    </div>
+                    <div class="clear"></div>
+                  </td>
+                </tr>
+              </tfoot>              
+            </table>
+          </div> <!-- End #tab1 -->  
+</block>  

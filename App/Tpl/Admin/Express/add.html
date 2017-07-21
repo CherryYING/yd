@@ -1,0 +1,116 @@
+<extend name="RBAC:base" />
+<block name="jq">
+
+<script type="text/javascript" src="__PUBLIC__/Js/jquery.min.js"></script>
+
+</block>
+<block name="content-title">
+<h3>新增快递公司</h3>  
+<a href="{tp#:U('index')}" class='btn align-right' style="margin:5px 10px;">返回</a>
+</block>
+<block name="content">
+<div class="tab-content default-tab" id="tab1">
+
+<!--kindeditor-->
+<link rel="stylesheet" href="/plugins/kindeditor/themes/default/default.css" />
+<script charset="utf-8" src="/plugins/kindeditor/kindeditor-min.js"></script>
+<script charset="utf-8" src="/plugins/kindeditor/lang/zh_CN.js"></script>
+<!--kindeditor-->
+<style type="text/css">
+.btn-del{background-color:#C00;padding:5px;color:white;border-radius:3px;border:0;cursor:pointer}
+</style>
+		
+<form method="post" action="{tp#:U('add')}" enctype="multipart/form-data">
+    <fieldset>
+    <p>
+        快递名称：
+        	<input required="required" type="text" name="name"  class="text-input small-input" placeholder="快递名称" /> 
+    </p>
+   <!-- <p>
+        物流代码：
+        	<input required="required" type="text" name="daima"  class="text-input small-input" placeholder="物流代码"  /> 
+    </p>-->
+    <p>
+        快递费用：
+        	<input type="text" name="price"  class="text-input small-input" placeholder="快递费用"/> 
+    </p>
+	<p>
+        描　　述：
+        	<input type="text" name="descript"  class="text-input small-input" placeholder="描述"/> 
+    </p>	
+    <p>
+        状　　态：
+     		<select name="status">
+            <option value="1" >可用</option>
+            <option value="0" >不可用</option>
+            </select>
+    </p>	 
+	<p>
+		<input type="submit" value="提 交" class="button">
+	</p>
+    </fieldset>
+	<div class="clear"></div>
+</form>
+
+</div>
+<script>
+function del(obj){
+	if(!confirm('确认删除?')){
+		return false;
+	}
+	$(obj).parent().remove();
+}
+</script>
+<script>
+	KindEditor.ready(function(K) {
+		//初始化编辑器
+		var editor1 = K.create('textarea[name="content"]', {
+			cssPath : '/plugins/kindeditor/plugins/code/prettify.css',
+			uploadJson : '/plugins/kindeditor/php/upload_json.php',
+			fileManagerJson : '/plugins/kindeditor/php/file_manager_json.php',
+			allowFileManager : true,
+			afterCreate : function() {}
+		});
+		prettyPrint();
+	});
+	/*$(function() {
+		var editor = KindEditor.create('textarea[name="content"]');
+	});*/
+	//单图上传
+	KindEditor.ready(function(K) {
+		var editor = K.editor({
+			allowFileManager : true
+		});
+		K('#image1').click(function() {
+			editor.loadPlugin('image', function() {
+				editor.plugin.imageDialog({
+					imageUrl : K('#url1').val(),
+					clickFn : function(url, title, width, height, border, align) {
+						K('#url1').val(url);
+						editor.hideDialog();
+					}
+				});
+			});
+		});
+	});
+	//批量上传图片
+	KindEditor.ready(function(K) {
+		var editor = K.editor({
+			allowFileManager : true
+		});
+		K('#J_selectImage').click(function() {
+			editor.loadPlugin('multiimage', function() {
+				editor.plugin.multiImageDialog({
+					clickFn : function(urlList) {
+						var div = K('#J_imageView');
+						div.html('');
+						K.each(urlList, function(i, data) {
+							div.append('<img src="' + data.url + '">');
+						});
+						editor.hideDialog();
+					}
+				});
+			});
+		});
+	});
+</script></block>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta name="format-detection" content="telephone=no">
+<title>我的礼包 - {tp#$webinfo.web_name}</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/comman.css" media="all">
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/jquery_dialog.css" media="all">
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/style.css" media="all">
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/user2015.css" media="all">	
+<script> var SITE_URL="http://www.wdkl168.com/";</script>
+<script type="text/javascript" src="__PUBLIC__/js/jquery.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/js/jquery_dialog.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/js/common.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/js/jquery.json-1.3.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/js/user.js"></script> 	
+<script type="text/javascript" src="__PUBLIC__/js/jweixin-1.0.0.js"></script> 
+</head>
+<body>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/css.css" media="all">
+<div id="home">
+	<div id="header">
+		<div class="logo" style="height:28px; padding-top:10px; background:url(__PUBLIC__/images/xy.png) 10px 8px no-repeat"><span onclick=" history.go(-1);">&nbsp;</span></div>
+		<div class="shoptitle"><span>我的礼包</span></div>
+		<!--right-->
+        <include file="Public:logoright"/>
+        <!--right-->
+	</div>
+</div>	
+<script type="text/javascript">
+function ajax_show_menu(){
+	$(".showmenu").toggle();
+}
+</script>
+<style type="text/css">
+.pw,.pwt{
+height:26px; line-height:26px;
+border: 1px solid #ddd;
+border-radius: 5px;
+background-color: #fff; padding-left:5px; padding-right:5px;
+-moz-border-radius:5px;/*仅Firefox支持，实现圆角效果*/
+-webkit-border-radius:5px;/*仅Safari,Chrome支持，实现圆角效果*/
+-khtml-border-radius:5px;/*仅Safari,Chrome支持，实现圆角效果*/
+border-radius:5px;/*仅Opera，Safari,Chrome支持，实现圆角效果*/
+}
+.pw{ width:90%;}
+.usertitle{
+height:22px; line-height:22px;color:#666; font-weight:bold; font-size:14px; padding:5px;
+border-radius: 5px;
+background-color: #ededed; padding-left:5px; padding-right:5px;
+-moz-border-radius:5px;/*仅Firefox支持，实现圆角效果*/
+-webkit-border-radius:5px;/*仅Safari,Chrome支持，实现圆角效果*/
+-khtml-border-radius:5px;/*仅Safari,Chrome支持，实现圆角效果*/
+border-radius:5px;/*仅Opera，Safari,Chrome支持，实现圆角效果*/
+}
+.pages{ margin-top:20px;}
+.pages a{ background:#ededed; padding:2px 4px 2px 4px; border-bottom:2px solid #ccc; border-right:2px solid #ccc; margin-right:5px;}
+#main table td:hover{ background:#fafafa}
+#main table td p a{ line-height:18px;display:block; padding:1px 5px 1px 5px; float:left; background:#fafafa; border-bottom:2px solid #d5d5d5;border-right:2px solid #d5d5d5;border-radius:10px; margin-right:5px;border-top:1px solid #ededed;border-left:1px solid #ededed;}
+</style>
+<div id="main" style="padding:5px; min-height:300px">
+ <table width="100%" border="0" cellpadding="0" cellspacing="0" style="line-height:25px; border:1px solid #E0E0E0;border-radius:5px; background:#FFF; overflow:hidden">
+        <tbody>
+        <volist name="list" id="item">
+            <tr>
+            <td style="border-bottom:1px solid #E0E0E0; padding-left:5px; padding-right:5px">
+            <p style="color:#5286B7">商品名称：<font color="#60ACDC">{tp#$item['goods']['goods_name']}</font></p>
+            <p　onclick='location.href="{tp#:U('Ucenter/order_detail',array('id'=>$item['id']))}"' style="color:#5286B7">订单编号：<font color="#60ACDC">{tp#$item.out_trade_no}</font></p>
+            <p style="color:#5286B7">订单金额：<font color="#FF0000">{tp#$item.total_fee}积分</font></p>
+            <p style="color:#5286B7">下单时间：<font color="#60ACDC">{tp#$item.order_time|date='Y/m/d H:i:i',###}</font></p>
+            <p style="color:#5286B7">订单状态：
+            <span color="#60ACDC" _style="background:#CCC;border-radius:5px;padding:2px 5px;color:#F00">
+            {tp#$item.order_status|order_status}
+            </span>
+            </p>
+            
+            <p>
+           	订单备注：{tp#$item.remark|default='无'}
+            </p>
+            <div class="clear"></div>
+            <p></p>
+            <p style="margin-top:5px; padding-bottom:10px;"></p>
+            </td>
+          </tr>
+          
+          <tr>
+          <td style="text-align:left;" class="pagesmoney">
+              </td>
+          </tr>
+       </volist> 
+       
+    </tbody>
+</table>
+<if condition="strlen($page) gt 1"><p id="page">{tp#$page}</p></if>
+</div>
+<script type="text/javascript">
+function ger_ress_copy(type,obj,seobj){
+	parent_id = $(obj).val();
+	if(parent_id=="" || typeof(parent_id)=='undefined'){ return false; }
+	$.post(SITE_URL+'user.php',{action:'get_ress',type:type,parent_id:parent_id},function(data){
+		if(data!=""){
+			$(obj).parent().find('#'+seobj).html(data);
+			if(type==3){
+				$(obj).parent().find('#'+seobj).show();
+			}
+			if(type==2){
+				$(obj).parent().find('#select_district').hide();
+				$(obj).parent().find('#select_district').html("");
+			}
+		}else{
+			alert(data);
+		}
+	});
+}
+
+$('.oporder').live('click',function(){
+		if(confirm("确定吗？")){
+			createwindow();
+			id = $(this).attr('id');
+			na = $(this).attr('name');
+			$.post('http://www.wdkl168.com/m/user.php',{action:'ajax_order_op_user',id:id,type:na},function(data){
+				removewindow();
+				if(data == ""){
+					window.location.href = 'http://www.wdkl168.com/m/user.php?act=orderlist';
+				}else{
+					alert(data);
+				}
+			});
+		}
+		return false;
+});
+</script>
+<!--QUYU-->
+<div id="opquyu">
+	
+</div>
+<div id="opquyubox">
+	<!--商品分类导航-->
+    <include file="Public:category"/>
+   	<!--商品分类导航-->
+</div>
+
+<!--FOOTER-->
+
+<!--底部-->
+<include file="Public:footbar"/>
+<!--底部-->
+
+</body>
+
+</html>

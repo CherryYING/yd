@@ -1,0 +1,97 @@
+<script src="__PUBLIC__/Js/jquery-1.8.3.min.js"></script>
+<script src="__PUBLIC__/hcharts/highcharts.js"></script>
+<!--<script src="__PUBLIC__/hcharts/highstock.js"></script>
+<script src="__PUBLIC__/hcharts/highmaps.js"></script>-->
+<div id="container"></div>
+<script>
+var pay_total_fee=parseInt("{tp#$count['pay_total_fee']|default=0}");
+var no_total_fee=parseInt("{tp#$count['no_total_fee']|default=0}");
+var refund_total_fee=parseInt("{tp#$count['refund_total_fee']|default=0}");
+
+$(function () {
+    $('#container').highcharts({
+        title: {
+            text: '{tp#:date("Y",time())}年月销售统计'
+        },
+        xAxis: {
+            categories: ['1月', '2月', '3月', '4月', '5月','6月','7月','8月','9月','10月','11月','12月'],
+			labels: {
+                        rotation: 0, //字体倾斜
+                        align: 'right',
+                        style: { font: 'normal 13px 宋体' }
+                    }
+
+			
+        },
+		yAxis: {  //y轴
+            title: {text: '交易金额（元）'}, //y轴标题
+			lineWidth: 2 //基线宽度
+        },
+        labels: {
+            items: [{
+                html: '平台累计销售统计',
+                style: {
+                    left: '50px',
+                    top: '18px',
+                    color: (Highcharts.theme && Highcharts.theme.textColor) || 'black'
+                }
+            }]
+        },
+		exporting: {
+			enabled: true  //设置导出按钮不可用
+		},
+		credits: { 
+			text: '【{tp#$config.web_name}】销售统计报表',
+			href: ''
+		},
+        series: [{
+            type: 'column',
+            name: '成交金额（元）',
+            data: JSON.parse("{tp#$count['trade_total_fee']}"),
+			color:'green'
+        }
+		
+		/*, {
+            type: 'spline',
+            name: '参考值',
+            data: [0,0,0,0,0,0,0,0,0,0,0,0],
+            marker: {
+                lineWidth: 2,
+                lineColor: Highcharts.getOptions().colors[3],
+                fillColor: 'white'
+            }
+        }*/
+		
+		
+		
+		//饼状图数据
+		 ,{
+            type: 'pie',
+            name: '订单金额',
+            data: [{
+                name: '成交金额（元）',
+                y: pay_total_fee,									 //数量	
+                //color: Highcharts.getOptions().colors[2] // Jane's color
+				color:'green'
+            }, {
+                name: '待付款金额（元）',
+                y: no_total_fee,
+                //color: Highcharts.getOptions().colors[1] // John's color
+				color:'orange'
+            }, {
+                name: '退款金额（元）',
+                y: refund_total_fee,
+                //color: Highcharts.getOptions().colors[0] // Joe's color
+				color:'yellow'
+            }],
+            center: [100, 80],			//饼状图中心点
+            size: 100,					//饼状图大小
+            showInLegend: false,
+            dataLabels: {
+                enabled: false
+            }
+        }]
+    });
+});
+
+</script>

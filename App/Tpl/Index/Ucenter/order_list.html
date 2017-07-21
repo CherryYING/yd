@@ -1,0 +1,297 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>我的订单-{tp#$webinfo['web_name']}</title>
+
+<link href="__PUBLIC__/css/css.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.8.2.min.js"></script>
+<script type="text/javascript">
+<!--
+var timeout         = 500;
+var closetimer		= 0;
+var ddmenuitem      = 0;
+
+// open hidden layer
+function mopen(id)
+{	
+	// cancel close timer
+	mcancelclosetime();
+
+	// close old layer
+	if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+	// get new layer and show it
+	ddmenuitem = document.getElementById(id);
+	ddmenuitem.style.visibility = 'visible';
+
+}
+// close showed layer
+function mclose()
+{
+	if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+}
+
+// go close timer
+function mclosetime()
+{
+	closetimer = window.setTimeout(mclose, timeout);
+}
+
+// cancel close timer
+function mcancelclosetime()
+{
+	if(closetimer)
+	{
+		window.clearTimeout(closetimer);
+		closetimer = null;
+	}
+}
+
+// close layer when click-out
+document.onclick = mclose; 
+// -->
+</script>
+
+<script type="text/javascript" src="__PUBLIC__/js/jquery.min.js"></script>
+<script type="text/javascript">
+
+var intDiff = parseInt(60);//倒计时总秒数量
+
+function timer(intDiff){
+	window.setInterval(function(){
+	var day=0,
+		hour=0,
+		minute=0,
+		second=0;//时间默认值		
+	if(intDiff > 0){
+		day = Math.floor(intDiff / (60 * 60 * 24));
+		hour = Math.floor(intDiff / (60 * 60)) - (day * 24);
+		minute = Math.floor(intDiff / 60) - (day * 24 * 60) - (hour * 60);
+		second = Math.floor(intDiff) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60);
+	}
+	if (minute <= 9) minute = '0' + minute;
+	if (second <= 9) second = '0' + second;
+	$('#day_show').html(day+"天");
+	$('#hour_show').html('<s id="h"></s>'+hour+'时');
+	$('#minute_show').html('<s></s>'+minute+'分');
+	$('#second_show').html('<s></s>'+second+'秒');
+	intDiff--;
+	}, 1000);
+} 
+
+$(function(){
+	timer(intDiff);
+});	
+</script>
+<script src="__PUBLIC__/js/showList.js" type="text/javascript"></script>
+<script type="text/javascript" src="__PUBLIC__/js/script.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/tab.js"></script>
+
+<link href="__PUBLIC__/css/style.css" rel="stylesheet" type="text/css" />
+<!--<script type="text/javascript" src="__PUBLIC__/js/jquery.1.4.2-min.js"></script>-->
+<script type="text/javascript" src="__PUBLIC__/js/Calculation.js"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+
+	//jquery特效制作复选框全选反选取消(无插件)
+	// 全选        
+	$(".allselect").click(function () {
+		$(".gwc_tb2 input[name=newslist]").each(function () {
+			$(this).attr("checked", true);
+			// $(this).next().css({ "background-color": "#3366cc", "color": "#ffffff" });
+		});
+		GetCount();
+	});
+
+	//反选
+	$("#invert").click(function () {
+		$(".gwc_tb2 input[name=newslist]").each(function () {
+			if ($(this).attr("checked")) {
+				$(this).attr("checked", false);
+				//$(this).next().css({ "background-color": "#ffffff", "color": "#000000" });
+			} else {
+				$(this).attr("checked", true);
+				//$(this).next().css({ "background-color": "#3366cc", "color": "#000000" });
+			} 
+		});
+		GetCount();
+	});
+
+	//取消
+	$("#cancel").click(function () {
+		$(".gwc_tb2 input[name=newslist]").each(function () {
+			$(this).attr("checked", false);
+			// $(this).next().css({ "background-color": "#ffffff", "color": "#000000" });
+		});
+		GetCount();
+	});
+
+	// 所有复选(:checkbox)框点击事件
+	$(".gwc_tb2 input[name=newslist]").click(function () {
+		if ($(this).attr("checked")) {
+			//$(this).next().css({ "background-color": "#3366cc", "color": "#ffffff" });
+		} else {
+			// $(this).next().css({ "background-color": "#ffffff", "color": "#000000" });
+		}
+	});
+
+	// 输出
+	$(".gwc_tb2 input[name=newslist]").click(function () {
+		// $("#total2").html() = GetCount($(this));
+		GetCount();
+		//layer.alert(conts);
+	});
+});
+//******************
+function GetCount() {
+	var conts = 0;
+	var aa = 0;
+	$(".gwc_tb2 input[name=newslist]").each(function () {
+		if ($(this).attr("checked")) {
+			for (var i = 0; i < $(this).length; i++) {
+				conts += parseInt($(this).val());
+				aa += 1;
+			}
+		}
+	});
+	$("#shuliang").text(aa);
+	$("#zong1").html((conts).toFixed(2));
+	$("#jz1").css("display", "none");
+	$("#jz2").css("display", "block");
+}
+</script>
+
+</head>
+
+<body>
+<include file="Public:top"/>
+<div class="main">
+       <include file="left"/>
+       <div class="order-right">
+           <div class="order-right-t">所有订单</div>
+           <div class="order">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                       <tr>
+                          <td width="33%">商品信息</td>
+                          <td width="14%">单价</td>
+                          <td width="14%">支付状态</td>
+                          <td width="23%">订单金额（元）</td>
+                          <td width="16%">操作</td>
+                       </tr>
+            </table>
+            <!--订单内容-->
+			   <volist name="list" id="item">
+               <div class="orderlist">
+                   <p>
+				   <!--<input name="order" type="checkbox" value" /=">-->
+				   <span>{tp#$item['order_time']|date='Y/m/d',###}</span> 订单号：{tp#$item['out_trade_no']}
+				   <eq name="item['pay_status']" value='0'><a href="javascrip:" class="btn-cancle" order_id="{tp#$item['id']}">取消订单</a></eq>
+				   </p>
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                                <td width="33%">
+                                    <a href="{tp#:U('Ucenter/order_detail',array('id'=>$item['id']))}"><img src="{tp#$item['goods']['goods_spic']}" align="left" onerror="this.src='__PUBLIC__/images/no-pic.jpg'"> {tp#$item['goods']['goods_name']}</a>
+                                </td>
+                                <td width="14%"  style="text-align:center">
+                                     <!--<span class="oldprice" style="color:#999; float:none">90.00</span><br>-->
+                                     <span class="price" style="color:#000; font-weight:bold; font-size:14px;float:none">￥{tp#$item['goods']['goods_price']}x{tp#$item['goods']['goods_nums']}）</span>
+                                </td>
+                                <td width="14%" style="text-align:center">
+								{tp#$item['order_status']|order_status}-
+								<eq name="item['pay_status']" value="1"><font color="green">已支付</font></eq>
+								<eq name="item['pay_status']" value="0"><font color="red">未支付</font></eq>
+								<eq name="item['pay_status']" value="2"><font color="red">已退款</font></eq>
+								</td>
+                                <td width="23%"  style="text-align:center">
+                                    <span class="price" style="color:#000; font-weight:bold; font-size:14px;float:none">{tp#$item['total_fee']+$item['express_fee']}</span><br>
+                                    包含运费（{tp#$item['express_fee']}）
+                                </td>
+                                <td width="16%" style="border:none;text-align:center">
+                                      <center><a href="{tp#:U('order_detail',array('id'=>$item['id']))}" class="btn">
+									  <!--<img src="__PUBLIC__/img/fk.png" style="width:78px; height:22px; border:0px">-->
+									  订单详情
+									  </a></center>
+                                    <!--<a href="#">用后评论</a>-->
+                                </td>
+                         </tr>
+                 </table>
+              </div>
+              </volist>
+			   
+               <div class="fenye" style="float:left">
+                    <!--<a href="">上一页</a> <a href="">1</a><a href=""> 2 </a><a href="">3</a>...<a href="">下一页</a>-->
+					<div class="pagination">{tp#$page}</div>
+               </div>
+           </div>
+       </div> 
+       <div class="rx" style="display:none">
+           <div class="rx-title"></div>
+           <div class="rx-show">
+                <!--下面是向左滚动代码-->
+                    <div id="colee_left" style="overflow:hidden;width:1080px; float:left">
+                    <table cellpadding="0" cellspacing="0" border="0">
+                    <tr><td id="colee_left1" valign="top" align="center">
+                    <table cellpadding="2" cellspacing="0" border="0">
+                    <tr align="center">
+                    <td>
+                    <p><a href=""><img src="__PUBLIC__/img/nylist/rx/tj1.jpg"  title="简约时尚两斗柜+五斗柜+电视柜" style="display:inline"></a></p>
+                    【厅柜组合】简约时尚两斗柜+五斗柜+电视柜<br>
+                     <span class="price">￥1205.00 </span> <span class="number" style="float:right" >还剩余10套</span> 
+                    </td>
+                    
+                    </tr>
+                    </table>
+                    </td>
+                    <td id="colee_left2" valign="top"></td>
+                    </tr>
+                    </table>
+                    </div>
+                    <script>
+                    //使用div时，请保证colee_left2与colee_left1是在同一行上.
+                    var speed=30//速度数值越大速度越慢
+                    var colee_left2=document.getElementById("colee_left2");
+                    var colee_left1=document.getElementById("colee_left1");
+                    var colee_left=document.getElementById("colee_left");
+                    colee_left2.innerHTML=colee_left1.innerHTML
+                    function Marquee3(){
+                    if(colee_left2.offsetWidth-colee_left.scrollLeft<=0)//offsetWidth 是对象的可见宽度
+                    colee_left.scrollLeft-=colee_left1.offsetWidth//scrollWidth 是对象的实际内容的宽，不包边线宽度
+                    else{
+                    colee_left.scrollLeft++
+                    }
+                    }
+                    var MyMar3=setInterval(Marquee3,speed)
+                    colee_left.onmouseover=function() {clearInterval(MyMar3)}
+                    colee_left.onmouseout=function() {MyMar3=setInterval(Marquee3,speed)}
+                    </script>
+                    <!--向左滚动代码结束-->
+           </div>
+      </div>
+</div>
+ </div>
+
+ <!--bottom-->
+         <include file="Public:foot"/>
+ <!--bottom-->
+</body>
+<script src="__PUBLIC__/js/tips.js"></script>
+<script>
+$(function(){
+	$(".btn-cancle").click(function(){
+		/*layer.confirm('确定？',function(){
+			return true
+		},function(){
+			return false;
+		});*/
+		
+		var post_data={};
+		post_data.order_id=$(this).attr('order_id');
+		$.post("{tp#:U('Weixin/Ajax/order_cancel')}",post_data,function(data){
+			show_tips('订单取消成功');
+			location.reload();
+		});
+	});
+});
+</script>
+</html>

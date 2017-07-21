@@ -1,0 +1,113 @@
+<extend name="RBAC:base" />
+<block name="content-title">
+<h4>供货商列表</h4> 
+<a style="margin:5px 10px;" href="{tp#:U('add')}" class="btn align-right">新增</a> 
+</block>
+<block name="content">
+          <div class="tab-content default-tab" id="tab1">
+	<div class="notification success png_bg" id="dmsg">
+        <a href="#" class="close">
+        <img src="__PUBLIC__/Images/icons/cross_grey_small.png" alt="close" /></a>
+        <div>
+        	<font style="font-weight:700">供货商登录地址：<a href="{tp#:U('Service/Login/index')}" target="_blank">
+            http://{tp#:I('server.HTTP_HOST')}/service.php
+            </a></font>
+        </div>
+    </div>
+        <p>
+          <form>
+                搜索：
+                <select name="key">
+                    <option value="username"  <eq name="Think.get.key" value="username">selected</eq> >账户名</option>
+                    <option value="name" <eq name="Think.get.val" value="name">selected</eq> >姓名/企业名称</option>    
+                </select>
+                <input value="{tp#$Think.get.val}" name="val" type="text" class="text-input small-input" placeholder="关键字"/>
+                 <input id='btn-so' type="button" value="搜索" class="button"/>
+                &nbsp;&nbsp;&nbsp;
+                <a  href="{tp#:U('index')}">查看全部</a>
+                &nbsp;&nbsp;&nbsp;
+            </form>    
+            </p>
+            <table width='100%'>
+              <thead>
+                <tr>
+                   <th>UID</th>
+                   <th>账户名</th>
+                   <!--<th>服务区域</th>-->
+                   <th>姓名/企业名称</th>
+                   <th>开通时间</th>
+                   <th>账号状态</th>
+                   <th>操作</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <volist name="list" id="v">
+                    <tr>
+                      <td>【{tp#$v.id}】</td>	
+                      <td>{tp#$v.username}</td>	
+                     <!-- <td><a class="btn btn-success" href="{tp#:U('area_edit',array('id'=>$v['id']))}">查看</a></td>-->
+                      <td>{tp#$v.name|default='---'}</td>		
+                      <td>
+                     	{tp#$v.posttime|date='Y-m-d H:i:s',###}
+                      </td>
+                      <td>
+                      <eq name="v.lock" value="0">
+                     	<a class="btn">正常</a>
+                        <else/>
+                        <a class="btn btn-danger">禁用</a>
+                        </eq>
+                      </td>
+                      <td>
+                      	 <a title="禁用或解禁" class='btn' href="{tp#:U('lock',array('id'=>$v['id']))}">
+                         <eq name="v.lock" value="1">解禁<else/><font color='red'>禁用</font></eq>
+                         </a>
+                      
+                         <a title="查看编辑服务商信息" class='btn' href="{tp#:U('edit',array('id'=>$v['id']))}">编辑</a>
+                         <a class='btn' href="{tp#:U('pwd',array('id'=>$v['id']))}">修改密码</a>
+                      </td>
+                    </tr>
+                </volist>
+              </tbody>
+
+              <tfoot>
+                <tr>
+                  <td colspan="6">
+                    <div class="pagination">
+                      {tp#$show}
+                    </div>
+                    <div class="clear"></div>
+                  </td>
+                </tr>
+              </tfoot>              
+            </table>
+          </div> <!-- End #tab1 -->  
+          <script>
+$(function(){
+	$("#btn-so").click(function(){
+		  var key=$("select[name='key'] option:selected").val();
+		  var val=$("input[name='val']").val();
+		  var param='';
+		  
+		  if(key!=''&&val!=''){
+			 param+="&key="+key+'&val='+val;
+		  }
+		  
+		 /* if(begin_time!=''){
+			   param+='&begin_time='+begin_time;
+		  }
+		  
+		  if(end_time!=''){
+			   param+='&end_time='+end_time;
+		  }*/
+		  
+		  if(param==''){
+			  //alert('请输入关键字！')
+			  artDialog({content:'请输入搜索条件！', style:'alert', lock:false}, function(){});
+		  }else{
+			  location.href="{tp#:U('index')}"+param;
+		  }
+	});
+});
+</script>   
+</block>  

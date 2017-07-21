@@ -1,0 +1,96 @@
+<extend name="RBAC:base" />
+<block name="content-title">
+<h4>商品规格</h4> 
+<a style="margin:6px 10px;float:right" class="btn" href="{tp#:U('index',array('p'=>I('get.p',1)))}">商品列表</a> 
+<a style="margin:6px 10px;float:right" class="btn" href="{tp#:U('norm_add',array('id'=>I('get.id')))}">新增规格</a> 
+</block>
+<block name="content">
+          <div class="tab-content default-tab" id="tab1">
+            <div class="notification png_bg" id="dmsg" style="display:none;">
+              <a href="#" class="close"><img src="__PUBLIC__/Images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
+              <div>
+                msg.
+              </div>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                   <th>商品ID</th>
+                   <th>商品名称</th>
+                   <th>商品图片</th>
+                   <th>规格名称</th>
+                   <th>销售价格</th>
+                   <th>状态</th>
+                   <th>操作</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <volist name="list" id="v">
+                    <tr>
+                      <td>【{tp#$v.id}】</td>
+                      <td width="200">
+                      <a href="{tp#:U('edit',array('id'=>$v['id']))}" title="{tp#$v.name}">
+                      {tp#$goods.name}
+                      </a>
+                      </td>
+                      <php>$picurl=base64_encode($goods['spic']);</php>
+                      <td>
+                      <a title="点击查看大图" rel='modal' href="{tp#:U('show_img',array('picurl'=>$picurl))}">
+                      <img onerror="this.src='__PUBLIC__/Images/no-img.png'" src="{tp#$goods.spic|get_thumb=###}" class="thumb">
+                      </a>
+                      </td>
+                      <td>{tp#$v['title']}</td>
+                      <td><font color="red"><b>&yen;</b>&nbsp;{tp#$v.price}</font></td>
+                      <td>
+                      <eq name='v.status' value='1'>上架<else/><font color="red"><font color="red">下架</font></font></eq>
+                      </td>
+                      <td align="center">
+                         <a class="btn btn-success" href="{tp#:U('norm_edit',array('id'=>$v['id']))}">编辑</a>
+                         <a class="btn btn-danger" href="{tp#:U('norm_del',array('id'=>$v['id']))}" onClick="return confirm('是否删除?')">删除</a> 
+                      </td>
+                    </tr>
+                </volist>
+              </tbody>
+
+              <tfoot>
+                <tr>
+                  <td colspan="7">
+                    <div class="pagination">
+						{tp#$show}
+                    </div>
+                    <div class="clear"></div>
+                  </td>
+                </tr>
+              </tfoot>              
+            </table>
+          </div> <!-- End #tab1 -->  
+<script>
+$(function(){
+	$("#btn-so").click(function(){
+		  var key=$("select[name='key'] option:selected").val();
+		  var val=$("input[name='val']").val();
+		  var param='';
+		  
+		  if(key!=''&&val!=''){
+			 param+="&key="+key+'&val='+val;
+		  }
+		  
+		 /* if(begin_time!=''){
+			   param+='&begin_time='+begin_time;
+		  }
+		  
+		  if(end_time!=''){
+			   param+='&end_time='+end_time;
+		  }*/
+		  
+		  if(param==''){
+			  //alert('请输入关键字！')
+			  artDialog({content:'请输入搜索条件！', style:'alert', lock:false}, function(){});
+		  }else{
+			  location.href="{tp#:U('index')}"+param;
+		  }
+	});
+});
+</script>  
+</block>  

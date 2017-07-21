@@ -1,0 +1,20 @@
+<extend name="RBAC:base" />
+<block name="content-title">
+<h4>添加用户组</h4>  
+</block>
+<block name="content">
+<div class="tab-content default-tab" id="tab1">
+            <form method="post" action="{tp#:U('add')}">
+              <fieldset>
+              	<p>
+              		用户组名称：<input required name="name"  class="text-input small-input"/>
+              	</p>            
+                <p>
+                  <input type="submit" value="  提 交  " class="button">
+                  <a href="{tp#:U('index')}" class='btn'>取消</a>
+                </p>
+              </fieldset>
+              <div class="clear"></div>
+            </form>
+</div>
+</block>

@@ -1,0 +1,33 @@
+<extend name="RBAC:base" />
+<block name="content-title">
+<h3>粉丝统计分析</h3> 
+<a style="float:right;margin:10px;" href="javascript:history.go(-1);" class="btn">返回</a> 
+</block>
+<block name="content">
+  <div class="tab-content default-tab" id="tab1">
+    <table>
+      <tbody>
+		<tr>
+            <th>粉丝总数</th>
+            <td>【{tp#$list.total}】人</td>
+        </tr>
+        <tr>
+            <th>男粉丝</th>
+            <td>未知</td>
+        </tr>
+        <tr>
+            <th>女粉丝</th>
+            <td>未知</td>
+        </tr>
+        <tr>
+            <th>今日关注人数</th>
+            <td>【{tp#$today_sub_num}】人</td>
+        </tr>
+        <tr>
+            <th>今日取消关注人数</th>
+            <td>【{tp#$today_unsub_num}】人</td>
+        </tr>
+      </tbody>            
+    </table>
+  </div> <!-- End #tab1 -->  
+</block>  

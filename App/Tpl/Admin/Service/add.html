@@ -1,0 +1,29 @@
+<extend name="RBAC:base" />
+<block name="content-title">
+<h4>新增供货商</h4>  
+<a style="margin:5px 10px;" href="{tp#:U('index')}" class="btn align-right">返回</a> 
+</block>
+<block name="content">
+<div class="tab-content default-tab" id="tab1">
+    <form method="post" action="{tp#:U('insert')}">
+      <p>
+            账户名　：<input name="username"  class="text-input small-input" required placeholder="登录账户名"/>
+            <font color="red">数字、字母、下划线，建议不要使用汉字</font>
+        </p>
+        <p>
+            登录密码：<input name="password"  type="password" class="text-input small-input" required placeholder="登录密码"/>
+            <font color="red">建议密码长度为6位以上</font>
+        </p> 
+        <p>
+            企业名称：<input name="name" maxlength="30" class="text-input small-input" required placeholder="姓名/企业名称"/>
+        </p>           	         	
+        <p>
+            用户备注：<textarea class="textarea small-input v-middle" name="remark" cols="30" placeholder="备注信息"></textarea> 
+        </p>               
+        <p>
+          <input type="submit" value="  提 交  " class="button">
+        </p>
+      <div class="clear"></div>
+    </form>
+</div>
+</block>

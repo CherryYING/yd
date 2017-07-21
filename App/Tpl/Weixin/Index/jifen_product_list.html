@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta name="format-detection" content="telephone=no">
+<title>积分换取、积分获得、礼品相送 - {tp#$webinfo.web_name}</title>
+<meta name="title" content="积分换取、积分获得、礼品相送">
+
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/comman.css" media="all">
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/jquery_dialog.css" media="all">
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/style.css" media="all">	
+<script> var SITE_URL="http://www.wdkl168.com/m/";</script>
+<script type="text/javascript" src="__PUBLIC__/js/jquery.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/js/jquery_dialog.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/js/common.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/js/jquery.json-1.3.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/js/goods.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/js/time.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/js/user.js"></script> 	
+<script type="text/javascript" src="__PUBLIC__/js/jweixin-1.0.0.js"></script> 
+</head>
+<body>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/css.css" media="all">
+<div id="home">
+	<div id="header">
+		<div class="logo" style="height:28px; padding-top:10px; background:url(__PUBLIC__/images/xy.png) 10px 8px no-repeat"><span onclick=" history.go(-1);">&nbsp;</span></div>
+		<div class="shoptitle"><span>积分兑换</span></div>
+		<!--logoright-->
+        <include file="Public:logoright"/>
+        <!--logoright-->
+	</div>
+</div>	
+<script type="text/javascript">
+function ajax_show_menu(){
+	$(".showmenu").toggle();
+}
+</script>
+
+<div id="main">
+<style type="text/css">
+.search_index {
+margin: 5px 0px 3px 5px;
+height: 46px;
+border-radius: 2px;
+background: url(__PUBLIC__/images/input_bg.png) repeat-x top left;
+}
+.search_index .right {
+width: 64px;
+float: right;
+text-align: left;
+}
+.search_index .left {
+text-align: center; height:46px;
+}
+.search_index .input1 {
+height: 46px;
+line-height: 46px;
+text-indent: 5px;
+color: #787575;
+border: none;
+background: url(__PUBLIC__/images/611.png) no-repeat center left;
+display: block;
+float: left;
+width: 75%;
+}
+.goodslists{ min-height:300px;}
+</style>
+<ul class="goodslists">
+<volist name='list' id="item">
+	<li style="width:50%; float:left;">
+		<div style="padding:4px;">
+		<a style="background:#fff; padding:5px; display:block;border:1px solid #ededed;border-radius:5px;" href="{tp#:U('Index/jifen_product',array('id'=>$item['id']))}">
+			<div style=" height:120px; overflow:hidden; text-align:center;">
+				<img onerror="this.src='__PUBLIC__/images/no-img.png'" src="{tp#$item.spic|get_thumb}" style="max-height:99%; max-width:99%;display:inline;" alt="{tp#$item.name}">
+			</div>
+			<p style="line-height:20px; height:20px; overflow:hidden; text-align:center">{tp#$item.name}</p>
+			<p style="line-height:22px; height:22px; overflow:hidden; text-align:center; background:#fafafa;">所需积分:<b class="price" style="font-size:12px;">{tp#$item.price}</b></p>
+		</a>
+		</div>
+	</li>
+</volist>
+<div class="clear"></div>
+</ul>
+</div>
+<!--QUYU-->
+<div id="opquyu">
+	
+</div>
+<div id="opquyubox">
+	<!--商品分类导航-->
+    <include file="Public:category"/>
+   	<!--商品分类导航-->
+</div>
+
+<!--FOOTER-->
+<!--底部-->
+<include file="Public:footbar"/>
+<!--底部-->
+
+</body>
+</html>

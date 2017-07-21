@@ -1,0 +1,63 @@
+<extend name="RBAC:base" />
+<block name="content-title">
+<h4>文章列表</h4>  
+</block>
+<block name="content">
+          <div class="tab-content default-tab" id="tab1">
+            <div class="notification png_bg" id="dmsg" style="display:none;">
+              <a href="#" class="close"><img src="__PUBLIC__/Images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
+              <div>
+                msg.
+              </div>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                   <th>ID</th>
+                   <th>文章标题</th>
+                   <th>所属栏目</th>
+                   <th>发布者</th>
+                   <th>外链地址</th>
+                   <th>发布时间</th>
+                   <th>文章属性</th>
+                   <th>操作</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <volist name="plist" id="v">
+                    <tr>
+                      <td>{tp#$v.id}</td>
+                      <td><a href="{tp#:U('Weixin/Cms/read',array('id'=>$v['id']))}" target="_blank" title="title">{tp#$v.title}</a></td>
+                      <td>{tp#$v.fname}</td>
+                      <td>{tp#$v.uname}</td>
+                      <td>{tp#:U('Weixin/Cms/read',array('id'=>$v['id']))}</td>
+                      <td>{tp#$v.posttime|date='Y-m-d',###}</td>
+                      <td>
+                      	<eq name="v.istop" value="1"><a class="btn btn-success" title="置顶文章">顶</a></eq>
+                      	<eq name="v.istui" value="1"><a class="btn btn-success"  title="推荐文章">推</a></eq>
+                      	<eq name="v.iswx" value="1"><a class="btn btn-success" title="显示到微官网">微</a></eq>
+                      </td>
+                      <td>
+                        <a class="btn btn-success" href="{tp#:U('artadd',array('id'=>$v['id'],'mid'=>$v['mid']))}" title="Edit">修改</a>                  	
+                        <a class="btn btn-danger" href="{tp#:U('artdel',array('id'=>$v['id'],'mid'=>$v['mid'],'fid'=>$v['fid']))}" onClick="return confirm('确定要删除此文章?')" title="Delete">删除</a> 
+                      </td>
+                    </tr>
+                </volist>
+              </tbody>
+
+              <tfoot>
+                <tr>
+                  <td colspan="8">
+                    <div class="bulk-actions align-left">
+                    </div>
+                    <div class="pagination">
+                      {tp#$show}
+                    </div>
+                    <div class="clear"></div>
+                  </td>
+                </tr>
+              </tfoot>              
+            </table>
+          </div> <!-- End #tab1 -->  
+</block>  

@@ -1,0 +1,33 @@
+<div class="order-left">
+  <div class="headimg"><img src="{tp#$user_info['headimgurl']}">
+  <p>{tp#$user_info['nickname']}</p>
+  <p>{tp#$user_info['role_id']|user_role}</p>
+<!--  <p><a href="{tp#:U('Ucenter/info',array('id',array('id'=>$this->user_id)))}" class="button">编辑</a></p>-->
+  </div>
+  <!--会员头像-->
+  <dl style="background:#FFFFFF;margin:10px 0;padding:10px 15px;text-align:left">
+	  <dt>快捷操作</dt>
+	  <dd><a href="{tp#:U('Ucenter/info')}">个人信息</a></dd>	
+	  <dd><a href="{tp#:U('Ucenter/take_money_list')}">我的提现</a></dd>
+	  <dd><a href="{tp#:U('Ucenter/fund_a')}">资金账户(A)</a></dd>	
+	  <dd><a href="{tp#:U('Ucenter/fund')}">资金账户(B)</a></dd>	
+	  <dd><a href="{tp#:U('Ucenter/money_cloud')}">云金币账户</a></dd>
+	  
+	  <if condition="$user_info['role_id'] eq 4">
+	   <dd><a href="{tp#:U('Ucenter/fund_p')}">我的货款</a></dd>	
+	  </if>
+	  
+	  <dd><a href="{tp#:U('Ucenter/parents')}">我的推荐人</a></dd>	
+	  
+	  <dd><a href="{tp#:U('Ucenter/team')}">我的团队</a></dd>
+
+	  <dd><a href="{tp#:U('Ucenter/order_list')}">我的订单</a></dd>
+	  <dd><a href="{tp#:U('Ucenter/collect')}">我的收藏</a></dd>
+	  <dd><a href="{tp#:U('Ucenter/addr_list')}">地址管理</a></dd>
+	  
+  </dl>
+</div>
+<style>
+.headimg{background:#FFFFFF;width:auto !important;padding:20px 0;text-align:center;}
+.headimg img{}
+</style>

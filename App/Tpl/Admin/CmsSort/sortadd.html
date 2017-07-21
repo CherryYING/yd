@@ -1,0 +1,96 @@
+<extend name="RBAC:base" />
+<block name="jq"><script type="text/javascript" src="__PUBLIC__/Js/jquery.min.js"></script></block>
+<block name="content-title">
+<h4><if condition="I('get.id') gt 0">[修改]<else/>[新增]</if>栏目</h4>  
+</block>
+<block name="content">
+<div class="tab-content default-tab" id="tab1">
+
+<!--kindeditor-->
+<link rel="stylesheet" href="/plugins/kindeditor/themes/default/default.css" />
+<script charset="utf-8" src="/plugins/kindeditor/kindeditor-min.js"></script>
+<script charset="utf-8" src="/plugins/kindeditor/lang/zh_CN.js"></script>
+<!--kindeditor-->
+            <form method="post" action="{tp#:U('sortaddhandle',array('id'=>I('get.id')))}" enctype="multipart/form-data">
+              <fieldset>
+                <p>
+                    栏目名称：<input required="required" type="text" name="name" id="small-input" class="text-input small-input" value="{tp#$nrs.name}"> 
+                </p>
+                <p>
+                    所属上级：<select name="fup">
+                    		<option value="0">不选择默认顶级</option>
+                    		<volist name="sortd" id="v">
+                    			<option value="{tp#$v.id}" <if condition="$nrs['fup'] eq $v['id']">selected</if>>{tp#$v.name}</option>
+                    		</volist>
+                			</select>	
+                </p>
+                <p>
+                	栏目类型：
+
+                    <input type="radio" name="type" value="0" <if condition="$nrs['type'] eq 0">checked="checked"</if>/>&nbsp;分类&nbsp;
+                    <input type="radio" name="type" value="1" <if condition="$nrs['type'] eq 1">checked="checked"</if> />&nbsp;栏目&nbsp;
+                    <input type="radio" name="type" value="2" <if condition="$nrs['type'] eq 2">checked="checked"</if>/>&nbsp;单篇&nbsp;
+                </p>
+                <p>
+                	数据模型：
+
+                    <input type="radio" name="class" value="0" <if condition="$_GET['id'] gt 0">disabled="disabled"</if> <if condition="$nrs['class'] eq 0">checked="checked"</if>/>&nbsp;文章&nbsp;
+                    <volist name="formd" id="v">
+
+                    	<input type="radio" name="class" value="{tp#$v.id}" <if condition="$_GET['id'] gt 0">disabled="disabled"</if>  <if condition="$nrs['class'] eq $v['id']">checked="checked"</if>/>&nbsp;{tp#$v.title}&nbsp;
+                    </volist> (添加后不能修改)
+
+                </p>
+                <!--<p>
+                    <span id='addfile'>缩 略 图</span>：
+                    <input id="tu1" type="file" onchange="document.getElementById('tu11').value=this.value;" style="display:none;" name="spic[]">
+                    <input readonly='readonly' id="tu11" value="{tp#$nrs.spic}" class="text-input small-input" type="text">&nbsp;
+                    <a class="btn" onclick="document.getElementById('tu1').click();">选择图片</a>
+                    <font style="color:red">&nbsp;【图片大小不能超过2M】</font>
+                </p>-->
+                   <p><span id='addfile'>缩 略 图</span>：
+                    <input readonly name="spic" type="text" id="url1" value="{tp#$nrs.spic}" class="text-input small-input"/> 
+                    <input type="button" id="image1" value="选择图片" class="button"/>
+                    <font style="color:red">&nbsp;【图片大小不能超过1M】</font>
+                   </p>
+                <!--<p>
+                	首页显示：
+
+                    <input type="radio" name="isform" value="0" <if condition="$nrs['isform'] eq 0">checked="checked"</if>/>&nbsp;不显示&nbsp;
+                    <input type="radio" name="isform" value="1" <if condition="$nrs['isform'] eq 1">checked="checked"</if>/>&nbsp;显示&nbsp;
+                    显示条数：<input type="text" name="form" class="text-input small-input2" value="{tp#$nrs.form}">
+                </p>                  
+                <p>
+                    列表模板：<input type="text" name="list_html" id="small-input" class="text-input small-input" value="{tp#$nrs.list_html}"> 
+                </p>
+                <p>
+                    内容模板：<input type="text" name="bencandy_html" id="small-input" class="text-input small-input" value="{tp#$nrs.bencandy_html}"> 
+                </p>                
+-->
+                <p>
+                  <input type="submit" value="  提 交  " class="button">
+                </p>
+              </fieldset>
+              <div class="clear"></div>
+            </form>
+</div>
+<script>
+//单图上传
+KindEditor.ready(function(K) {
+	var editor = K.editor({
+		allowFileManager : true
+	});
+	K('#image1').click(function() {
+		editor.loadPlugin('image', function() {
+			editor.plugin.imageDialog({
+				imageUrl : K('#url1').val(),
+				clickFn : function(url, title, width, height, border, align) {
+					K('#url1').val(url);
+					editor.hideDialog();
+				}
+			});
+		});
+	});
+});
+</script>
+</block>

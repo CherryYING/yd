@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="format-detection" content="telephone=no">
+<title>确认订单-{tp#$webinfo['web_name']}</title>
+<meta name="keywords" content="{tp#$webinfo['web_key']}">
+<meta name="description" content="{tp#$webinfo['web_descrip']}">
+
+<meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-touch-fullscreen" content="yes">
+<!-- <meta name="full-screen" content="yes"> -->
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="address=no">
+<link rel="icon" href="__PUBLIC__/images/logo.jpg" type="image/x-icon">
+<link rel="apple-touch-icon-precomposed" href="__PUBLIC__/images/favicon.png">
+<link rel="apple-touch-startup-image" href="__PUBLIC__/images/apple-touch-startup.png" media="(device-height:568px)">
+<link rel="stylesheet" href="__PUBLIC__/css/style.css">
+<link rel="stylesheet" href="__PUBLIC__/css/icomoon.css">
+<script type="text/javascript" src="__PUBLIC__/js/jq.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/jquery.urlparam.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/alert.js"></script>
+<style type="text/css">
+
+#windowcenter {
+	width:290px;
+	position:fixed;
+	display:none;
+	bottom:30px;
+	left:50%;
+	 z-index:9999;
+	margin-left:-145px;
+	padding:2px;
+	border-radius:3px;
+	-webkit-border-radius:3px;
+	-moz-border-radius:3px;
+	background-color: #ffffff;
+	-webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	-moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	-o-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	font:14px/1.5 Microsoft YaHei,Helvitica,Verdana,Arial,san-serif;
+}
+.window .title {
+	background-color: #2BB2A3;
+	line-height: 26px;
+  padding: 5px 5px 5px 10px;
+	color:#ffffff;
+	text-shadow:0px 1px 1px #14544D;
+	font-size:16px;
+	border-radius:3px 3px 0 0;
+	-webkit-border-radius:0.5em 0.5em 0 0;
+	-moz-border-radius:0.5em 0.5em 0 0;
+	
+}
+.window .content {
+	/*min-height:100px;*/
+	overflow:auto;
+	padding:10px;
+	background: linear-gradient(#FBFBFB, #EEEEEE) repeat scroll 0 0 #FFF9DF;
+    color: #222222;
+    text-shadow: 0 1px 0 #FFFFFF;
+	border-radius: 0 0 0.6em 0.6em;
+	-webkit-border-radius: 0 0 0.6em 0.6em;
+	-moz-border-radius: 0 0 0.6em 0.6em;
+}
+.window #txt {
+	min-height:30px;font-size:16px; line-height:22px;
+}
+.window #windowclosebutton {
+	margin-top:10px;
+}
+.window .btn {
+	height:40px;
+	line-height:40px;
+}
+input::-moz-placeholder, textarea::-moz-placeholder { color: #999;}
+.flex{
+	display:box;
+	display:-moz-box;
+	display:-webkit-box;
+}
+.window .title .close {
+	float:right;
+	background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACTSURBVEhL7dNtCoAgDAZgb60nsGN1tPLVCVNHmg76kQ8E1mwv+GG27cestQ4PvTZ69SFocBGpWa8+zHt/Up+IN+MhgLlUmnIE1CpBQB2COZibfpnXhHFaIZkYph0SOeeK/QJ8o7KOek84fkCWSBtfL+Ny2MPpCkPFMH6PWEhWhKncIyEk69VfiUuVhqJefds+YcwNbEwxGqGIFWYAAAAASUVORK5CYII=");
+	width:26px;
+	height:26px;
+	display:block;	
+}
+.confirm-box{
+    position: fixed;
+    top:50%;
+    left:50%;
+    padding:0px 15px;
+    width:220px;
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+    box-sizing:border-box;
+    background-color: rgba(0, 0, 0, 0.8);
+    color:#FFFFFF;
+    border-radius: 2px;
+    margin-left: -110px;
+    margin-top:-55px;
+    z-index:1000001;
+}
+.confirm-box .confirm-box-txt{
+    text-align: center;
+    margin:20px auto;
+}
+.confirm-box .confirm-box-btns{
+    width:190px;
+    padding-bottom:10px;
+    text-align: center;
+}
+.confirm-box .confirm-box-btns a{
+    background-color: #FFFFFF;
+    display:inline-block;
+    border-radius: 2px;
+    margin:5px;
+    text-align: center;
+    width:80px;
+    height:30px;
+    line-height: 30px;
+    color:#444444;
+}
+.confirm-mash{
+    position: fixed;
+    left:0px;
+    top:0px;
+    right:0px;
+    bottom:0px;
+    background-color: rgba(255,255,255,0.3);
+    z-index:1000000;
+}
+select{border:1px solid #FFF}
+#coupon{height:30px;width:60%;}
+#money_cloud{width:80px;background-color: #F0EFED;display:inline-block;}
+</style>
+</head>
+<body>
+<div class="window" id="windowcenter">
+	<div id="title" class="title"><span class="close" id="alertclose"></span><span class="tit_txt">消息提醒</span></div>
+	<div class="content">
+	 <div id="txt"></div>
+	 <input type="button" value="确定" id="windowclosebutton" name="确定" class="btn btn-block">	
+	</div>
+</div>
+
+<script type="text/javascript" src="__PUBLIC__/js/tips.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/geo.js"></script>
+
+
+
+<div class="header">
+	<a href="javascript:void(0);" onclick="previous();" class="topnav topnav-left"><i class="icon-arrow-left2"></i></a>
+	<a href="javascript:void(0);" entry="dropdown" class="topnav topnav-right"><i class="icon-list"></i></a>
+	<div id="nav-dropdown" class="nav-dropdown">
+		<include file="Public:nav_dropdown"/>
+	</div>
+	<span class="header_toptitle">确认订单</span>
+	<div class="clear"></div>
+</div>
+<script type="text/javascript">
+var previous = function()
+{
+	if (typeof (navigator.app) !== "undefined")
+	{
+		navigator.app.backHistory();
+	}
+	else
+	{
+		window.history.back();
+	}
+}
+$(function()
+{
+	$('.topnav[entry=dropdown]').click(function()
+	{
+		$('#nav-dropdown').slideToggle();
+	});
+	document.onclick=function(e)
+	{
+		var e=e?e:window.event;
+		var tar = e.srcElement||e.target;
+		if($(tar).attr('id') != "nav-dropdown" && $(tar).parents('#nav-dropdown').size() == 0 && (!$(tar).hasClass('topnav') || $(tar).attr('entry') != "dropdown") && $(tar).parents('.topnav[entry=dropdown]').size() == 0)
+		{
+			$('#nav-dropdown').slideUp();
+		}
+	}
+	$("input[type='checkbox'],input[type='radio']").live('click', function()
+	{
+		setbg()
+	});
+	setbg();
+
+	//设置label背景
+	function setbg()
+	{
+		$(":checkbox").parent("label").removeClass('on');
+		$(":checkbox[checked]").parent("label").addClass('on');
+		$(":radio").parent("label").removeClass('on');
+		$(":radio[checked]").parent("label").addClass('on');
+	}
+});
+</script>
+<link rel="stylesheet" href="__PUBLIC__/css/dialog.css">
+<script type="text/javascript" src="__PUBLIC__/js/dialog.js"></script>
+<script src="__PUBLIC__/js/jquery.template.js"></script>
+<div class="page-wrap" id="container">
+	<div id="itemContainer">
+		<form action="#">
+		      <if condition="$sid neq 7802">
+		        		<section class="section_box cart_box" name="company-items">	
+					<div class="tit">收货地址
+		            <a style="float:right" href="{tp#:U('Ucenter/address_add',array('jump'=>'cart'))}">新增</a>
+		            </div>
+					<div class="section_body cart-address" _id="cart-address">
+		                <select name="addr_id" id="addr_id" style="height:35px;width:100%">
+		                <option value=''>-选择收货地址-</option>
+		                <volist name="addr_list" id="item">
+		                <option value="{tp#$item['id']}" <eq name="Think.get.addr_id" value="$item['id']">selected</eq>>{tp#$item['consignee']}-{tp#$item['mobile']}-{tp#$item['address']}</option>
+		                </volist>
+		                </select>
+					</div>
+					</section>
+		        </if>
+        
+        <volist name="list" id="item">
+				<section class="section_box cart_box" name="company-items">
+                <!--<div class="tit">初纯旗舰店</div>-->
+                <div class="section_body">
+				<ul>
+					<li class="cartitem" price="99.00" num="1">
+						<div class="p-img"><img src="{tp#$item['spic']}" alt="{tp#$item['goods_name']}"></div>
+						<div class="p-info">
+							<div class="p-tit single-line">{tp#$item['name']}</div>
+							<p>单价：￥{tp#$item['goods_price']}元(x{tp#$item['goods_nums']})</p>
+							
+						</div>
+						<div class="clear"></div>
+					</li>
+					<!--<li class="cart-shipping cartitem">
+						<select entry="jq" name="shipping[54831]" data-uid="54831" class="pxnew">
+                            <option selected="selected" value="238" data-fee="0">配送费（￥0.00）</option>
+                        </select>
+					</li>-->
+
+					<if condition="$item['money_cloud'] gt 0">
+					<li class="cart-coupon cartitem">
+						可使用云金币：{tp#$item['money_cloud']*$item['goods_nums']}云金币抵去
+                         {tp#$item['money_cloud']*$item['goods_nums']}元
+					</li>
+                    </if>
+                    
+					<!--<li class="cartitem cart-remark">
+						<div class="remark">
+							<input type="text" name="remark[{tp#$item['goods_id']}]" placeholder="给卖家留言：">
+						</div>
+					</li>-->
+					<li class="cartitem cart-shop">
+						<div class="shoptotal">
+							共<span>{tp#$item['goods_nums']}</span>件商品&nbsp;&nbsp;合计：<span>￥{tp#$item['goods_price']*$item['goods_nums']}</span>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</section>
+        </volist>
+        
+        <div id="checkout-box">
+			<section class="section_box">
+				<div class="tit">优惠券抵现</div>
+				<div class="section_body">
+					<dl class="form-dl">
+						<dd>
+							<a href="javascript:void(0);" style="display:inline;">优惠券</a>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <if condition="!empty($coupon)">
+                            <select id="coupon">
+                            <option value='0' amount="0">-选择优惠券-</option>
+                            <volist name="coupon" id="val">
+                            <option value="{tp#$val['id']}" amount="{tp#$val['amount']}">
+                            {tp#$val['amount']} 元
+                            </option>
+                            </volist>
+                            </select>
+                            <else/>
+                            <span class="r_tip">暂无可使用优惠券</span>
+                            </if>
+						</dd>
+					</dl>
+				</div>
+			</section>
+		</div>
+        
+        
+        <if condition="$total_money_cloud gt 0">
+		<div id="checkout-box">
+			<section class="section_box">
+				<div class="tit">云金币抵现</div>
+				<div class="section_body">
+					<dl class="form-dl">
+						<dd>
+							使用 <if condition="$user_info['money_cloud'] gt $money_cloud">
+                            <input  type="text" pattern="[0-9]{1,}" min="0" max="{tp#$user_info['money_cloud']}" id="money_cloud" value="{tp#$money_cloud|default=0}" >
+                            <else/>
+                            <input  type="text" pattern="[0-9]{1,}" min="0" max="{tp#$user_info['money_cloud']}" id="money_cloud" value="{tp#$user_info['money_cloud']|default=0}" >
+                            </if>
+                            云金币支付
+                           
+                            <a class="goods-comment-btn btn-money-cloud">确认使用</a>
+						</dd>
+						<dd>您当前拥有<span class="red">{tp#$user_info['money_cloud']}</span>云金币。1云金币可抵1元人民币；您本次最多可使用{tp#$total_money_cloud}云金币</dd>
+					</dl>
+				</div>
+			</section>
+		</div>
+        </if>
+        
+        
+        
+        <section class="section_box">
+			<div class="tit">支付方式</div>
+			<ul name="payment" class="radio-ul" id="payment">
+            	<if condition="is_weixin()">
+                    <li>
+                        <div class="pay_way curr" payid="" payway="1" _onclick="Order.payChange($(this));">微信支付</div>
+                    </li>
+                <else/>
+                    <li>
+                        <div class="pay_way curr" payid="" payway="2" _onclick="Order.payChange($(this));">支付宝</div>
+                    </li>
+                </if>
+                
+			</ul>
+		</section>
+        
+		<section class="section_box">
+			<div class="tit">结算信息</div>
+			<div class="checkout">
+				<div class="section_body">
+					<ul id="checkout-fee" style="color:#FF5000;font-weight:600;font-size:13px">
+						<li>
+							<p>商品总价：<i class="icon-cny"></i> <span class="mbprice" id="goods_amount">{tp#$total_price|number_format=###,2}</span> 元</p>
+							<p>配送费用：<i class="icon-cny"></i> <span class="mbprice" id="shippfee_amount">{tp#$express_fee|number_format=###,2}</span> 元</p>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+
+		<div class="h40"></div>
+		<div class="tbfix-cart">
+			<ul>
+				<li><span class="cart-money" id="cart-money">需支付：￥ <span id="order_amount" data-money="{tp#$total_fee}">{tp#$total_fee|number_format=###,2}</span> 元</span></li>
+                <li style="display:block"></li>
+				<li><a id="btn-order" href="javascript:;">提交订单</a></li>
+			</ul>
+		</div>
+        
+        
+<script type="text/javascript">
+var pay_way=$(".pay_way").attr('payway');			//支付方式
+
+//本次订单最多可使用云金币
+var order_max_money_cloud=parseInt("{tp#$total_money_cloud}");
+//当前用户拥有云金币数量
+var my_money_cloud=parseInt("{tp#$user_info['money_cloud']}");
+	//计算订单金额
+	function count_order_fee(){
+		var money_cloud=parseInt($.trim($("#money_cloud").val()));
+		var total_fee=parseFloat("{tp#$total_fee}");
+		
+		if(parseInt($("#coupon").val())>0){
+			var coupon_amount=parseFloat($("#coupon option:selected").attr('amount'));
+			$("#order_amount").text((total_fee-money_cloud-coupon_amount).toFixed(2));
+		}else{
+			$("#order_amount").text((total_fee-money_cloud).toFixed(2));
+		}
+	}
+	$(function(){
+		
+		
+		//计算快递费用
+		$("#exp").change(function(){
+			var exp_price=$("#exp option:selected").attr('price');	//邮费
+			var total_price="{tp#$total_price}";					//商品总价
+			var total_fee;											//订单总金额
+			$(".express_price").text(exp_price);
+			total_fee=parseFloat(exp_price)+parseFloat(total_price);
+			$(".total_fee").text(total_fee);
+		});
+		
+		$("#money_cloud").keyup(function(){
+			var money_cloud=parseInt($.trim($(this).val()));
+			
+			//最多可使用云金币数量
+			var max_value=order_max_money_cloud>my_money_cloud?my_money_cloud:order_max_money_cloud;				
+			
+			if(isNaN(money_cloud)){
+				$(this).val(0);
+			}else{
+				if(money_cloud>max_value){
+					$(this).val(max_value);
+				}else{
+					$(this).val(money_cloud);
+				}
+				
+			}	
+			
+			
+		});
+		
+		$("#money_cloud").blur(function(){
+			count_order_fee();
+		});
+		
+		$(".btn-money-cloud").click(function(){
+			if($.trim($("#money_cloud").val())==0){
+				show_tips('请填写使用云金币数量');
+			}
+			
+			count_order_fee();
+		});
+				
+		$("#coupon").change(function(){
+			var amount=parseFloat($("#coupon option:selected").attr('amount'));
+			var money_cloud=parseInt($("#money_cloud").val());
+			if(money_cloud>0){
+				money_cloud=parseInt($("#money_cloud").val())*0.01;
+				var total_fee=parseFloat("{tp#$total_fee}")-amount-money_cloud;
+			}else{
+				var total_fee=parseFloat("{tp#$total_fee}")-amount;
+			}
+			
+			$("#order_amount").text(total_fee.toFixed(2));
+		});
+		
+		//提交订单
+		$("#btn-order").click(function(){
+			var post_data={};
+			
+			post_data.addr_id=$("select[name='addr_id']").val();
+			if(post_data.addr_id==''){
+				show_tips("请选择收货地址");
+				return false;
+			}
+			
+			//post_data.pay_way=1;									//支付方式
+			post_data.pay_way=pay_way;								//支付方式
+			
+			if(post_data.pay_way==''){
+				show_tips("请选择支付方式",'warn');
+				return false;
+			}
+			
+			//post_data.express_id=$("#exp").val();					//快递公司
+			post_data.express_fee="{tp#$express_fee}";				//邮费总金额	
+			
+			post_data.coupon_id=$('#coupon').val();					//优惠券ID
+			
+			post_data.money_cloud=$.trim($("#money_cloud").val());	//云金币
+			
+			//console.log(post_data);
+			//return false;
+			var p_obj=$(this).parent('li');
+			$(this).remove();
+			p_obj.html('<a href="javascript:;">提交中...</a>');
+			
+			$.post("{tp#:U('Ajax/order')}",post_data,function(json){
+				if(json.errcode==1){
+					show_tips('购物车中暂无商品');
+					location.reload();
+				}else{
+					if(pay_way==1){
+						location.href="./wxpay/index.php?order_id="+json.order_id;
+					}
+					if(pay_way==2){
+						location.href="./wxpay/alipay/index.php?order_id="+json.order_id;
+					}
+				}
+				
+			},'json');
+			
+		});
+	});
+
+</script>
+        
+</form>
+		</div>
+	<div class="clear"></div>
+</div>
+
+<div class="slide-left" id="silde-left">
+	<div class="slide-body">
+
+	</div>
+</div>
+<div class="slide-left" id="silde-left-coupon">
+	<div class="slide-body">
+		<div id="coupon-box">
+		    <ul id="coupon-list" class="coupon-list"></ul>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript" src="__PUBLIC__/js/selectArea.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/order9.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/api.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/areaData2.js"></script>
+<script type="text/javascript">
+$(function()
+{
+  
+   
+});
+
+function GetCookie(c_name)
+{
+    if (document.cookie.length > 0)
+    {
+        c_start = document.cookie.indexOf(c_name + "=")
+        if (c_start != -1)
+        {
+            c_start = c_start + c_name.length + 1;
+            c_end   = document.cookie.indexOf(";",c_start);
+            if (c_end == -1)
+            {
+                c_end = document.cookie.length;
+            }
+            return unescape(document.cookie.substring(c_start,c_end));
+        }
+    }
+    return null;
+}
+
+function SetCookie(c_name,value,expiredays)
+{
+    var exdate = new Date();
+    exdate.setDate(exdate.getDate() + expiredays);
+    document.cookie = c_name + "=" +escape(value) + ((expiredays == null) ? "" : ";expires=" + exdate.toGMTString());
+}
+</script>	
+</body>
+</html>

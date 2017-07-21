@@ -1,0 +1,80 @@
+<extend name="RBAC:base" />
+<block name="content-title">
+<h4>待审核分销商列表</h4> 
+<!--<a style="float:right;margin:10px;" href="{tp#:U('add')}" class="btn">添加</a> -->
+</block>
+<block name="content">
+          <div class="tab-content default-tab" id="tab1">
+            <table width='100%'>
+              <thead>
+                <tr>
+                   <th>UID</th>
+                   <th>微信头像</th>
+                   <th>等级</th>
+                   <th>所属角色</th>
+                   <th>微信昵称</th>
+                   <th>关注时间</th>
+                   <th>注册时间</th>
+                   <th>操作</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <volist name="list" id="v">
+                    <tr>
+                      <td>【{tp#$v.id}】</td>	
+                      <td>
+                      <neq name="v.headimgurl" value="">
+                      <php>
+                      $picurl=base64_encode($v['headimgurl']);
+                      </php>
+                      <a rel="modal" title="查看原图" href="{tp#:U('Index/show_img',array('picurl'=>$picurl))}" target="_blank"><img src="{tp#$v.headimgurl}" class='thumb'></a></neq>
+                      </td>
+                      <td>
+                      {tp#$user_level[$v['user_level']]['title']}
+                      </td>
+                      <td>
+                      <switch name="v.role_id">
+                      	<case value="1">普通会员</case>
+                        <case value="2">微店店主</case>
+                        <case value="3">分销商</case>
+                      </switch>
+                      </td>
+                      <td>
+                      <a title="{tp#$v.nickname}" href="{tp#:U('uedit',array('id'=>$v['id']))}" target="_blank">{tp#$v.nickname|mb_substr=###,0,8,'utf-8'|default='暂无'}
+                      </a>
+                      </td>
+					  <td>
+                      <eq name="v.subscribe_time" value='0'>
+                      暂无
+                      <else/>{tp#$v.subscribe_time|date='Y-m-d H:i:s',###}
+                      </eq>
+                      </td>
+                       <td>
+                      <eq name="v.posttime" value='0'>
+                      暂无
+                      <else/>{tp#$v.posttime|date='Y-m-d H:i:s',###}
+                      </eq>
+                      </td>
+                      <td>
+<!--                         <a rel="modal" title="获取用户最新微信资料" class='btn' href="{tp#:U('get_wxinfo',array('id'=>$v['id'],'p'=>I('get.p',1),'group_id'=>I('get.group_id')))}">更新资料</a>-->
+						 <a title="审核" class='btn' href="{tp#:U('pass_audit',array('id'=>$v['id']))}">审核</a>
+                         <a title="查看编辑分销商信息" class='btn' href="{tp#:U('edit',array('id'=>$v['id']))}">编辑</a>
+                      </td>
+                    </tr>
+                </volist>
+              </tbody>
+
+              <tfoot>
+                <tr>
+                  <td colspan="9">
+                    <div class="pagination">
+                      {tp#$show}
+                    </div>
+                    <div class="clear"></div>
+                  </td>
+                </tr>
+              </tfoot>              
+            </table>
+          </div> <!-- End #tab1 -->  
+</block>  

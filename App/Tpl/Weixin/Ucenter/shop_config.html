@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<title>{tp#$webinfo.web_name}</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/dist/css/base.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/dist/css/layout-theme.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/assets/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/dist/css/font.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<script src="__PUBLIC__/js/jquery.1-7-1.js"></script>
+<script src="__PUBLIC__/js/common.js"></script>
+</head>
+
+<body class="page">
+<svg display="none" width="0" height="0" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs>
+  <symbol id="icon-left" viewBox="0 0 1024 1024">
+    <path class="path1" d="M711.219 891.802c13.722 13.926 13.722 36.301 0 50.125s-35.891 13.875-49.613 0l-400.896-404.89c-13.722-13.824-13.722-36.198 0-50.125l400.896-404.89c13.722-13.824 35.891-13.824 49.613 0 13.722 13.875 13.722 36.301 0 50.125l-365.619 379.853 365.619 379.802z"></path>
+  </symbol>
+</defs>
+</svg>
+<style>
+input{border:0px;}
+</style>
+<header class="header"> 
+<a class="returnIco" href="{tp#:U('index')}">
+<code class="glyphicon glyphicon-chevron-left">返回</code></a> 
+  <!--<div class="pageTit">店铺设置</div>-->
+</header>
+<div class="pt0 shop_set">
+  <div class="col-xs-6 text-center"><a href="{tp#:U('shop_config')}" class="active">店铺设置</a><span class="verticalline pull-right"></span></div>
+  <div class="col-xs-6 text-center"><a href="{tp#:U('shop_goods')}">商品管理</a> </div>
+</div>
+<div class="pt0 shop_info">
+  
+  <!--<div class="list_div_sm color_tit">
+      <span class="col-xs-6 mt25">店铺头像</span>
+      <span class="col-xs-6 text-right color_96">
+      <img src="__PUBLIC__/images/shop.png" class="headphone2 img-circle"> 
+      </span>
+  </div>-->
+  
+  <div class="list_div_sm color_tit">
+      <span class="col-xs-5">店铺名称</span>
+      <span class="col-xs-7 text-right color_96">
+      <input name="shop_name" placeholder="店铺名称" value="{tp#$user_info.shop_name}"/>
+      <!--<img src="__PUBLIC__/images/rt_arrow.png" class="arrow">-->
+      </span>
+  </div>
+  
+<!--  <div class="list_div_sm color_tit">
+      <span class="col-xs-6">店铺简介</span>
+      <span class="col-xs-6 text-right color_96">未填写
+      <img src="__PUBLIC__/images/rt_arrow.png" class="arrow"></span>
+  </div>-->
+  
+  <div class="list_div_sm color_tit">
+  	<span class="col-xs-5">联系方式</span>
+    <span class="col-xs-7 text-right color_96">
+    <input name="mobile" placeholder="联系方式" value="{tp#$user_info.mobile}" class="number"/>
+    <!--<img src="__PUBLIC__/images/rt_arrow.png" class="arrow">-->
+    </span>
+  </div>
+  <div class="list_div_sm color_tit">
+  	<button id="edit-shop-info" class="btn btn-lg btn_blue width_auto mt25 btn-reg">保存</button>
+  </div>
+<!--  <div class="list_div_sm color_tit"><span class="col-xs-6">发货地址</span><span class="col-xs-6 text-right color_96"><img src="__PUBLIC__/images/rt_arrow.png" class="arrow"> </span></div>-->
+</div>
+<div class="bg_fff mt25 pb15 ShopTemplate" style="display:none">
+  <div class="Invitation"><span class="Modifiedbar"></span>店铺模板选择</div>
+  <volist name="list" id="item">
+  <div class="col-xs-4 text-center">
+    <div theme_name="{tp#$key}" class="btn-theme">
+       <label>
+       <img src="{tp#$item.thumb}" style="width:80px;height:100px;"><br>
+       <!--<i class="fa fa-circle-o <eq name='user_info.shop_theme' value='$key'>color_blue</eq>"></i>-->
+       <input name="shop_theme" value="{tp#$key}" type="radio"  <eq name="user_info.shop_theme" value="$key">checked="checked"</eq> />
+       </lable>
+      {tp#$key}</div>
+  </div>
+  </volist>
+ <!-- <div class="col-xs-4 text-center">
+    <div><img src="__PUBLIC__/images/fg01.jpg"><br>
+      <i class="fa fa-dot-circle-o color_blue"></i>
+      风格1
+    </div>
+  </div>
+  <div class="col-xs-4 text-center">
+    <div><img src="__PUBLIC__/images/fg01.jpg"><br>
+      <i class="fa fa-circle-o"></i>
+      风格2</div>
+  </div>-->
+</div>
+<!--公共底部-->
+<include file="Public:footbar"/>
+<!--公共底部-->
+<script>
+$(function(){
+	//选择微店主题
+	$(".btn-theme").click(function(){
+		$.post("{tp#:U('Ajax/shop_theme')}",{'shop_theme':$(this).attr('theme_name')},function(data){
+			if(data==1){
+				//alert('店铺主题修改成功');
+			}
+		});
+	});
+	//编辑店铺地址
+	$("#edit-shop-info").click(function(){
+		var post_data={};
+		post_data.shop_name=$("input[name='shop_name']").val();
+		post_data.mobile=$("input[name='mobile']").val();
+		if(post_data.shop_name==''){
+			alert('请填写店铺名称');
+			return false;
+		}	
+		if(post_data.mobile==''){
+			alert("请填写手机号码");
+			return false;
+			if(!mobile(post_data.mobile)){
+				alert('手机号码格式不正确');
+				return false;
+			}
+		}
+
+		$.post("{tp#:U('Ajax/edit_shop_info')}",post_data,function(data){
+			alert("保存成功");
+			location.reload();
+		});
+	});
+});
+</script>
+</body>
+</html>

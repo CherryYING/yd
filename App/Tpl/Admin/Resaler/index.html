@@ -1,0 +1,94 @@
+<extend name="RBAC:base" />
+<block name="content-title">
+<h4>分销商列表</h4> 
+<!--<a style="float:right;margin:10px;" href="{tp#:U('add')}" class="btn">添加</a> -->
+</block>
+<block name="content">
+          <div class="tab-content default-tab" id="tab1">
+             <p>
+            <form action="" method="post">
+                搜索： <input value="{tp#$Think.post.key}" name="key" type="text" class="text-input small-input" placeholder="关键字"/>
+                &nbsp;&nbsp;
+                
+                <input name="提交" type="submit" class="button" id='btn-so' value="搜索"/>
+                &nbsp;&nbsp;&nbsp;
+                <a  href="{tp#:U('index')}">查看全部</a>
+                &nbsp;&nbsp;&nbsp;店铺名称，微信昵称，姓名
+                &nbsp;&nbsp;&nbsp;
+                 <a href="{tp#:U('Resaler/top100')}" target="_blank">查看top100</a>
+                </form>
+            </p>
+            <table width='100%'>
+              <thead>
+                <tr>
+                   <th>UID</th>
+                   <th>账户名</th>
+                   <th>头像</th>
+                   <!--<th>等级</th>-->
+                   <th>所属角色</th>
+                   <th>昵称</th>
+                   <th>邀请码</th>
+                   <th>邀请数</th>
+                   <th>取消分销商</th>
+                   <th>注册时间</th>
+                   <th>操作</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <volist name="list" id="v">
+                    <tr>
+                      <td>【{tp#$v.id}】</td>	
+                      <td>{tp#$v.username}</td>	
+                      <td>
+                      <neq name="v.headimgurl" value="">
+                      <php>
+                      $picurl=base64_encode($v['headimgurl']);
+                      </php>
+                      <a rel="modal" title="查看原图" href="{tp#:U('Index/show_img',array('picurl'=>$picurl))}" target="_blank"><img src="{tp#$v.headimgurl}" class='thumb'></a></neq>
+                      </td>
+                     <!-- <td>
+                      {tp#$user_level[$v['user_level']]['title']}
+                      </td>-->
+                      <td>
+                      <switch name="v.role_id">
+                      	<case value="1">普通会员</case>
+                        <case value="2">微店店主</case>
+                        <case value="3">分销商</case>
+                      </switch>
+                      </td>
+                      <td>
+                     {tp#$v.nickname|mb_substr=###,0,8,'utf-8'|default='暂无'}
+                      </td>
+                      <td>{tp#$v.invite_code}</td>
+                      <td><a href="{tp#:U('store',array('id'=>$v['id']))}" title="点击查看下级店铺">{tp#$v.invite_num}</a></td>
+                      <td><a class="btn btn-danger confirm" href="{tp#:U('cancel_resaler',array('id'=>$v['id']))}">取消</a></td>
+                      <td>
+                      <eq name="v.posttime" value='0'>
+                      暂无
+                      <else/>{tp#$v.posttime|date='Y-m-d H:i:s',###}
+                      </eq>
+                      </td>
+                      <td>
+                         <a title="查看/编辑" class='btn' href="{tp#:U('edit',array('id'=>$v['id']))}">编辑</a>
+                      	 <neq name="v.username" value="">
+                         <a class='btn' href="{tp#:U('Wxusers/pwd',array('id'=>$v['id']))}">修改密码</a>
+                         </neq>
+                      </td>
+                    </tr>
+                </volist>
+              </tbody>
+
+              <tfoot>
+                <tr>
+                  <td colspan="10">
+                    <div class="pagination">
+                      {tp#$show}
+                    </div>
+                    <div class="clear"></div>
+                  </td>
+                </tr>
+              </tfoot>              
+            </table>
+          </div> <!-- End #tab1 -->  
+</block>  

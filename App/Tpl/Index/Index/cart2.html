@@ -1,0 +1,428 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>订单提交-{tp#$webinfo['web_name']}</title>
+<style>
+.select,.text-input{padding:3px;border-radius:3px;border:1px solid #CCC;width:50% !important;height:25px;margin:5px 0;}
+.select{height:30px;margin:10px 0;}
+.textarea{border-radius:3px;border:1px solid #CCC}
+</style>
+<link href="__PUBLIC__/css/css.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/common.js"></script>
+<script type="text/javascript">
+<!--
+var timeout         = 500;
+var closetimer		= 0;
+var ddmenuitem      = 0;
+
+// open hidden layer
+function mopen(id)
+{	
+	// cancel close timer
+	mcancelclosetime();
+
+	// close old layer
+	if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+	// get new layer and show it
+	ddmenuitem = document.getElementById(id);
+	ddmenuitem.style.visibility = 'visible';
+
+}
+// close showed layer
+function mclose()
+{
+	if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+}
+
+// go close timer
+function mclosetime()
+{
+	closetimer = window.setTimeout(mclose, timeout);
+}
+
+// cancel close timer
+function mcancelclosetime()
+{
+	if(closetimer)
+	{
+		window.clearTimeout(closetimer);
+		closetimer = null;
+	}
+}
+
+// close layer when click-out
+document.onclick = mclose; 
+// -->
+</script>
+
+<script type="text/javascript" src="__PUBLIC__/js/jquery.min.js"></script>
+<script type="text/javascript">
+
+var intDiff = parseInt(60);//倒计时总秒数量
+
+function timer(intDiff){
+	window.setInterval(function(){
+	var day=0,
+		hour=0,
+		minute=0,
+		second=0;//时间默认值		
+	if(intDiff > 0){
+		day = Math.floor(intDiff / (60 * 60 * 24));
+		hour = Math.floor(intDiff / (60 * 60)) - (day * 24);
+		minute = Math.floor(intDiff / 60) - (day * 24 * 60) - (hour * 60);
+		second = Math.floor(intDiff) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60);
+	}
+	if (minute <= 9) minute = '0' + minute;
+	if (second <= 9) second = '0' + second;
+	$('#day_show').html(day+"天");
+	$('#hour_show').html('<s id="h"></s>'+hour+'时');
+	$('#minute_show').html('<s></s>'+minute+'分');
+	$('#second_show').html('<s></s>'+second+'秒');
+	intDiff--;
+	}, 1000);
+} 
+
+$(function(){
+	timer(intDiff);
+});	
+</script>
+<script src="__PUBLIC__/js/showList.js" type="text/javascript"></script>
+<script type="text/javascript" src="__PUBLIC__/js/script.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/tab.js"></script>
+
+<link href="__PUBLIC__/css/style.css" rel="stylesheet" type="text/css" />
+<!--<!--<script type="text/javascript" src="__PUBLIC__/js/jquery.1.4.2-min.js"></script>-->-->
+<!--<script type="text/javascript" src="__PUBLIC__/js/Calculation.js"></script>-->
+<script type="text/javascript">
+$(document).ready(function () {
+
+	//jquery特效制作复选框全选反选取消(无插件)
+	// 全选        
+	$(".allselect").click(function () {
+		$(".gwc_tb2 input[name=newslist]").each(function () {
+			$(this).attr("checked", true);
+			// $(this).next().css({ "background-color": "#3366cc", "color": "#ffffff" });
+		});
+		GetCount();
+	});
+
+	//反选
+	$("#invert").click(function () {
+		$(".gwc_tb2 input[name=newslist]").each(function () {
+			if ($(this).attr("checked")) {
+				$(this).attr("checked", false);
+				//$(this).next().css({ "background-color": "#ffffff", "color": "#000000" });
+			} else {
+				$(this).attr("checked", true);
+				//$(this).next().css({ "background-color": "#3366cc", "color": "#000000" });
+			} 
+		});
+		GetCount();
+	});
+
+	//取消
+	$("#cancel").click(function () {
+		$(".gwc_tb2 input[name=newslist]").each(function () {
+			$(this).attr("checked", false);
+			// $(this).next().css({ "background-color": "#ffffff", "color": "#000000" });
+		});
+		GetCount();
+	});
+
+	// 所有复选(:checkbox)框点击事件
+	$(".gwc_tb2 input[name=newslist]").click(function () {
+		if ($(this).attr("checked")) {
+			//$(this).next().css({ "background-color": "#3366cc", "color": "#ffffff" });
+		} else {
+			// $(this).next().css({ "background-color": "#ffffff", "color": "#000000" });
+		}
+	});
+
+	// 输出
+	$(".gwc_tb2 input[name=newslist]").click(function () {
+		// $("#total2").html() = GetCount($(this));
+		GetCount();
+		//layer.alert(conts);
+	});
+});
+//******************
+function GetCount() {
+	var conts = 0;
+	var aa = 0;
+	$(".gwc_tb2 input[name=newslist]").each(function () {
+		if ($(this).attr("checked")) {
+			for (var i = 0; i < $(this).length; i++) {
+				conts += parseInt($(this).val());
+				aa += 1;
+			}
+		}
+	});
+	$("#shuliang").text(aa);
+	$("#zong1").html((conts).toFixed(2));
+	$("#jz1").css("display", "none");
+	$("#jz2").css("display", "block");
+}
+</script>
+<style>
+.addr_item:hover{border:0px solid #CCC;background:#FFF}
+</style>
+</head>
+
+<body>
+<include file="Public:top"/>
+<div class="main">
+<!--        <div class="gg01">
+          <center><a href=""><img src="__PUBLIC__/img/top/gg01.jpg"></a></center>
+        </div>-->
+      <div class="order-left">
+          <center><img src="{tp#$user_info['headimgurl']}"><p>{tp#$user_info['nickname']}</p></center><!--会员头像-->
+  	  </div>
+       <div class="order-right">
+           <div class="order-right-t">收货信息</div>
+           <div class="order">
+                <form>
+<!--                        <span class="formselect"> <input name="add1" type="radio" value="" > 地址：陕西省西安市高新区高新四路(张先生 收)  邮编：710011 联系电话：1333665555 </span>-->
+					<volist name="addr_list" id="item">	
+                     <label>
+					 <p class="addr_item" style="padding:3px 5px;" consignee="{tp#$item['consignee']}" mobile="{tp#$item['mobile']}" province="{tp#$item['province']}" city="{tp#$item['city']}" district="{tp#$item['district']}" address="{tp#$item['address']}">
+                     
+                     <input name="add1" type="radio" value="" > 地址：{tp#$item['province']}{tp#$item['city']}{tp#$item['district']}{tp#$item['address']}({tp#$item['consignee']} 收)  联系电话：{tp#$item['mobile']}
+                     
+                     </p>
+                     </label>
+                     </volist>
+
+                      <table width="98%" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                              <td width="11%" height="37">收货人：</td>
+                              <td width="89%"><input class="text-input" placeholder="收货人" name="consignee" type="text" /></td>
+                            </tr>
+                            <tr>
+                              <td height="34">联系电话：</td>
+                              <td><input class="text-input number" placeholder='联系电话' required name="mobile" type="text" /></td>
+                            </tr>
+                            <tr>
+                              <td height="34">省份：</td>
+                              <td>
+                              <input class="text-input"  placeholder='省份' required name="province" type="text" />
+                              </td>
+                            </tr>
+                            
+                            <tr>
+                              <td height="34">城市：</td>
+                              <td>
+                              <input class="text-input" placeholder='城市' required name="city" type="text" />
+                              </td>
+                            </tr>
+                            
+                            <tr>
+                              <td height="34">区县：</td>
+                              <td>
+                              <input class="text-input"  placeholder='区县' required name="district" type="text" />
+                              </td>
+                            </tr>
+                            
+                            <tr>
+                              <td height="90">详细地址：</td>
+                              <td><textarea class="textarea" name="address" placeholder='详细地址' cols="60" rows="5"></textarea></td>
+                            </tr>
+                    </table>
+                    
+                    <!--<table width="98%" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                              <td width="11%" height="37">收货人：</td>
+                              <td width="89%"><input class="text-input" placeholder="收货人" name="consignee" type="text" /></td>
+                            </tr>
+                            <tr>
+                              <td height="34">联系电话：</td>
+                              <td><input class="text-input number" placeholder='联系电话' required name="mobile" type="text" /></td>
+                            </tr>
+                            <tr>
+                              <td height="34">省份：</td>
+                              <td>
+                              <select id="province" class="select">
+                              <option value=''>-请选择-</option>
+                              </select>
+                              </td>
+                            </tr>
+                            
+                            <tr>
+                              <td height="34">城市：</td>
+                              <td>
+                              <select id="city" class="select">
+                              <option value=''>-请选择-</option>
+                              </select>
+                              </td>
+                            </tr>
+                            
+                            <tr>
+                              <td height="34">区县：</td>
+                              <td>
+                              <select id="district" class="select">
+                              <option value=''>-请选择-</option>
+                              </select>
+                              </td>
+                            </tr>
+                            
+                            <tr>
+                              <td height="90">详细地址：</td>
+                              <td><textarea class="textarea" name="address" placeholder='详细地址' cols="60" rows="5">&nbsp;</textarea></td>
+                            </tr>
+                    </table>-->
+                </form><!--修改的地址直接显示在上面地址列表-->
+           </div>
+       </div> 
+       <div class="ordernr">
+           <span>确认订单信息：</span><br>
+           <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td width="34%" style="border-bottom:3px solid #B1D0FE"><span>商品详情</span></td>
+                    <td width="18%" style="border-bottom:3px solid #B1D0FE"><span>单价</span></td>
+                    <td width="12%" style="border-bottom:3px solid #B1D0FE"><span>数量</span></td>
+                    <td width="16%" style="border-bottom:3px solid #B1D0FE"><span>运费</span></td>
+                    <td width="20%" style="border-bottom:3px solid #B1D0FE"><span>小计（元）</span></td>
+                  </tr>
+                  <volist name="list" id="item">
+                  <tr>
+                    <td style="text-align:left"><a href=""><img src="{tp#$item['spic']}" onerror="this.src='__PUBLIC__/images/no-pic.jpg'" align="left"/></a><a href="">{tp#$item['name']}</a></td>
+                    <td>{tp#$item['goods_price']}</td>
+                    <td>x{tp#$item['goods_nums']}</td>
+                    <td>免邮费</td>
+                    <td>{tp#$item['goods_nums']*$item['goods_price']}</td>
+                  </tr>
+                  </volist>
+                  <tr style="background:#CCC">
+                  	<td style="text-align:left !important">
+                    <a class="btn" href="{tp#:U('cart')}">上一步</a>
+                    </td>
+                    <td  colspan="3" style="color:red;font-weight:700;font-size:14px;text-align:right">
+                    邮费：&yen;{tp#$express_fee}
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    订单金额：&yen;{tp#$total_fee}
+                    </td>
+                    <td  style="text-align:right !important">
+                    <a href="javascript:" id="btn-order" class="btn">
+                    确认提交
+                    </a>
+                    </td>
+                   <!--如果没有付款成功，那么产品信息会出现在我的订单-->
+                  </tr>
+                  
+         </table>
+
+           
+       </div>
+</div>
+
+ <!--bottom-->
+        <include file="Public:foot"/>
+ <!--bottom-->
+</body>
+<script>
+$(function(){
+	
+	$(".addr_item").click(function(){
+		var consignee=$(this).attr('consignee');
+		var mobile=$(this).attr('mobile');
+		var province=$(this).attr('province');
+		var city=$(this).attr('city');
+		var district=$(this).attr('district');
+		var address=$(this).attr('address');
+		$("[name='consignee']").val(consignee);
+		$("[name='mobile']").val(mobile);
+		$("[name='province']").val(province);
+		$("[name='city']").val(city);
+		$("[name='district']").val(district);
+		$("[name='address']").val(address);
+	});	
+	
+	//提交订单
+	$("#btn-order").click(function(){
+		
+		var post_data={};
+		
+		/*post_data.addr_id=$("select[name='addr_id']").val();
+		if(post_data.addr_id==''){
+			layer.alert("请选择收货地址");
+			return false;
+		}*/
+		post_data.consignee=$("[name='consignee']").val();
+		post_data.mobile=$("[name='mobile']").val();
+		/*post_data.province_id=$("#province").val();
+		post_data.city_id=$("#city").val();
+		post_data.district_id=$("#district").val();*/
+		post_data.province=$("[name='province']").val();
+		post_data.city=$("[name='city']").val();
+		post_data.district=$("[name='district']").val();
+		post_data.address=$.trim($("[name='address']").val());
+		
+		post_data.pay_way=2;									//支付方式【支付宝】
+		//post_data.express_id=$("#exp").val();					//快递公司
+		post_data.express_fee="{tp#$express_fee}";				//邮费总金额	
+		
+		if(post_data.consignee==''){
+			layer.alert('请填写收货人');
+			return false;
+		}
+		
+		if(post_data.mobile==''){
+			layer.alert('请填写联系电话');
+			return false;
+		}
+		
+		/*if(post_data.province_id==''){
+			layer.alert('请选择省份');
+			return false;
+		}
+		if(post_data.city_id==''){
+			layer.alert('请选择城市');
+			return false;
+		}
+		if(post_data.district_id==''){
+			layer.alert('请选择区县');
+			return false;
+		}*/
+		if(post_data.province==''){
+			layer.alert('请填写省份');
+			return false;
+		}
+		if(post_data.city==''){
+			layer.alert('请填写城市');
+			return false;
+		}
+		if(post_data.district==''){
+			layer.alert('请填写区县');
+			return false;
+		}
+		
+		if(post_data.address==''){
+			layer.alert('请填写详细地址');
+			return false;
+		}
+		
+		$(this).hide().attr('disabled',true);	
+		//post_data.coupon_id=$('#coupon').val();					//优惠券ID
+		
+		//post_data.money_cloud=$.trim($("#money_cloud").val());	//云金币
+		
+		//console.log(post_data);
+		//return false;
+		
+		$.post("{tp#:U('Weixin/Ajax/order')}",post_data,function(json){
+			if(json.errcode==1){
+				layer.alert('购物车中暂无商品');
+				location.reload();
+			}else{
+				location.href="./wxpay/w_alipay/index.php?order_id="+json.order_id;	
+			}
+			
+			//location.href="{tp#:U('Ucenter/order_detail')}&id="+json.order_id;
+		},'json');
+		
+	});
+});
+</script>
+</html>

@@ -1,0 +1,65 @@
+<extend name="RBAC:base" />
+<block name="content-title">
+<h4>CMS栏目管理</h4>  
+</block>
+<block name="content">
+          <div class="tab-content default-tab" id="tab1">
+            <div class="notification png_bg" id="dmsg" style="display:none;">
+              <a href="#" class="close"><img src="__PUBLIC__/Images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
+              <div>
+                msg.
+              </div>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                   <th>栏目ID</th>
+                   <th>栏目名称</th>
+                   <th>栏目类型</th>
+                   <th>数据模型</th>
+                   <th>栏目模板</th>
+                   <th>操作</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <volist name="plist" id="v">
+                    <tr>
+                      <td>【{tp#$v.id}】</td>
+                      <td><if condition="$v['fup'] eq 0"><else/>┠</if>&nbsp;<a href="{tp#:U('CmsArt/artlist',array('fid'=>$v['id'],'mid'=>$v['class']))}" title="title">{tp#$v.name}</a></td>
+                      <td>{tp#$v.type|cmstype=1,###}</td>
+                      <td>{tp#$v.class|cmstype=2,###}</td>
+                      <td>[LIST:{tp#$v.list_html}] &nbsp; [BENCANDY:{tp#$v.bencandy_html}]</td>
+                      <td>
+<if condition="$v['type'] eq 1">
+						<a class="btn btn-success" href="{tp#:U('CmsArt/artadd',array('fid'=>$v['id'],'mid'=>$v['class']))}">发布</a>
+                        <a class="btn btn-success" href="{tp#:U('CmsArt/artlist',array('fid'=>$v['id'],'mid'=>$v['class']))}" >管理</a>
+                         <a class="btn btn-success" href="{tp#:U('sortadd',array('id'=>$v['id']))}" title="Edit">配置</a>
+
+<elseif condition="$v['type'] eq 2" />
+						<a class="btn btn-success" href="{tp#:U('sortaloneedit',array('id'=>$v['id']))}" title="Edit">编辑</a>
+<else />
+						<a class="btn btn-success" href="{tp#:U('sortadd',array('id'=>$v['id']))}" title="Edit">配置</a>
+</if>                      	
+                         <a class="btn btn-danger" href="{tp#:U('sortdel',array('id'=>$v['id']))}" onClick="return confirm('是否将此栏目删除?')" title="Delete">删除</a> 
+                      </td>
+                    </tr>
+                </volist>
+              </tbody>
+
+              <tfoot>
+                <tr>
+                  <td colspan="6">
+                    <div class="bulk-actions align-left">
+
+                    </div>
+                    <div class="pagination">
+
+                    </div>
+                    <div class="clear"></div>
+                  </td>
+                </tr>
+              </tfoot>              
+            </table>
+          </div> <!-- End #tab1 -->  
+</block>  

@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="format-detection" content="telephone=no">
+<title>升级代理-{tp#$webinfo['web_name']}</title>
+<meta name="keywords" content="{tp#$webinfo['web_key']}">
+<meta name="description" content="{tp#$webinfo['web_descrip']}">
+
+<meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-touch-fullscreen" content="yes">
+<!-- <meta name="full-screen" content="yes"> -->
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="address=no">
+<link rel="icon" href="__PUBLIC__/images/logo.jpg" type="image/x-icon">
+<link rel="apple-touch-icon-precomposed" href="__PUBLIC__/images/favicon.png">
+<link rel="apple-touch-startup-image" href="__PUBLIC__/images/apple-touch-startup.png" media="(device-height:568px)">
+<link rel="stylesheet" href="__PUBLIC__/css/style.css">
+<link rel="stylesheet" href="__PUBLIC__/css/icomoon.css">
+<script type="text/javascript" src="__PUBLIC__/js/jq.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/jquery.urlparam.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/alert.js"></script><style type="text/css">
+
+#windowcenter {
+	width:290px;
+	position:fixed;
+	display:none;
+	bottom:30px;
+	left:50%;
+	 z-index:9999;
+	margin-left:-145px;
+	padding:2px;
+	border-radius:3px;
+	-webkit-border-radius:3px;
+	-moz-border-radius:3px;
+	background-color: #ffffff;
+	-webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	-moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	-o-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	font:14px/1.5 Microsoft YaHei,Helvitica,Verdana,Arial,san-serif;
+}
+.window .title {
+	background-color: #2BB2A3;
+	line-height: 26px;
+  padding: 5px 5px 5px 10px;
+	color:#ffffff;
+	text-shadow:0px 1px 1px #14544D;
+	font-size:16px;
+	border-radius:3px 3px 0 0;
+	-webkit-border-radius:0.5em 0.5em 0 0;
+	-moz-border-radius:0.5em 0.5em 0 0;
+	
+}
+.window .content {
+	/*min-height:100px;*/
+	overflow:auto;
+	padding:10px;
+	background: linear-gradient(#FBFBFB, #EEEEEE) repeat scroll 0 0 #FFF9DF;
+    color: #222222;
+    text-shadow: 0 1px 0 #FFFFFF;
+	border-radius: 0 0 0.6em 0.6em;
+	-webkit-border-radius: 0 0 0.6em 0.6em;
+	-moz-border-radius: 0 0 0.6em 0.6em;
+}
+.window #txt {
+	min-height:30px;font-size:16px; line-height:22px;
+}
+.window #windowclosebutton {
+	margin-top:10px;
+}
+.window .btn {
+	height:40px;
+	line-height:40px;
+}
+input::-moz-placeholder, textarea::-moz-placeholder { color: #999;}
+.flex{
+	display:box;
+	display:-moz-box;
+	display:-webkit-box;
+}
+.window .title .close {
+	float:right;
+	background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACTSURBVEhL7dNtCoAgDAZgb60nsGN1tPLVCVNHmg76kQ8E1mwv+GG27cestQ4PvTZ69SFocBGpWa8+zHt/Up+IN+MhgLlUmnIE1CpBQB2COZibfpnXhHFaIZkYph0SOeeK/QJ8o7KOek84fkCWSBtfL+Ny2MPpCkPFMH6PWEhWhKncIyEk69VfiUuVhqJefds+YcwNbEwxGqGIFWYAAAAASUVORK5CYII=");
+	width:26px;
+	height:26px;
+	display:block;	
+}
+.confirm-box{
+    position: fixed;
+    top:50%;
+    left:50%;
+    padding:0px 15px;
+    width:220px;
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+    box-sizing:border-box;
+    background-color: rgba(0, 0, 0, 0.8);
+    color:#FFFFFF;
+    border-radius: 2px;
+    margin-left: -110px;
+    margin-top:-55px;
+    z-index:1000001;
+}
+.confirm-box .confirm-box-txt{
+    text-align: center;
+    margin:20px auto;
+}
+.confirm-box .confirm-box-btns{
+    width:190px;
+    padding-bottom:10px;
+    text-align: center;
+}
+.confirm-box .confirm-box-btns a{
+    background-color: #FFFFFF;
+    display:inline-block;
+    border-radius: 2px;
+    margin:5px;
+    text-align: center;
+    width:80px;
+    height:30px;
+    line-height: 30px;
+    color:#444444;
+}
+.confirm-mash{
+    position: fixed;
+    left:0px;
+    top:0px;
+    right:0px;
+    bottom:0px;
+    background-color: rgba(255,255,255,0.3);
+    z-index:1000000;
+}
+</style>
+</head>
+
+<body>
+
+<div class="window" id="windowcenter">
+	<div id="title" class="title">
+        <span class="close" id="alertclose"></span>
+        <span class="tit_txt">消息提醒</span>
+    </div>
+	<div class="content">
+	 <div id="txt"></div>
+	 <input type="button" value="确定" id="windowclosebutton" name="确定" class="btn btn-block">	
+	</div>
+</div>
+
+<script type="text/javascript" src="__PUBLIC__/js/tips.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/geo.js"></script>
+
+
+
+<div class="header">
+	<a href="javascript:void(0);" onclick="previous();" class="topnav topnav-left"><i class="icon-arrow-left2"></i></a>
+	<a href="javascript:void(0);" entry="dropdown" class="topnav topnav-right"><i class="icon-list"></i></a>
+	<div id="nav-dropdown" class="nav-dropdown">
+		<include file="Public:nav_dropdown"/>
+	</div>
+	<span class="header_toptitle">{tp#$webinfo['web_name']}</span>
+	<div class="clear"></div>
+</div>
+
+<include file="Public:sub_tips"/>
+
+
+<style type="text/css">
+.qrcode_box{
+	position: fixed;
+	top:0px;
+	bottom:0px;
+	left:0px;
+	right:0px;
+	color:#FFFFFF;
+	z-index: 1000000000;
+	background-color: rgba(0,0,0,0.8);
+}
+.qrcode_box #qrcode_close{
+	position: absolute;
+	right:5px;
+	top:5px;
+	font-size: 20px;
+}
+.qrcode_box  .qrcode{
+	margin-top:120px;
+	text-align: center;
+	font-size: 16px;
+	line-height: 30px;
+}
+.qrcode_box  .qrcode img{
+	width:200px;
+	height:200px;
+}
+</style>
+
+<script type="text/javascript">
+$("#aouth_login_btn_close").click(function()
+{
+	$("#fix_aouth_login").fadeOut();
+});
+$('#show-qrcode').click(function()
+{
+	$('#qrcode_box').show();
+	$('#qrcode_box #qrcode_close').click(function()
+	{
+		$('#qrcode_box').hide();
+	});
+});
+</script>
+
+<script type="text/javascript">
+var previous = function()
+{
+	if (typeof (navigator.app) !== "undefined")
+	{
+		navigator.app.backHistory();
+	}
+	else
+	{
+		window.history.back();
+	}
+}
+$(function()
+{
+	$('.topnav[entry=dropdown]').click(function()
+	{
+		$('#nav-dropdown').slideToggle();
+	});
+	document.onclick=function(e)
+	{
+		var e=e?e:window.event;
+		var tar = e.srcElement||e.target;
+		if($(tar).attr('id') != "nav-dropdown" && $(tar).parents('#nav-dropdown').size() == 0 && (!$(tar).hasClass('topnav') || $(tar).attr('entry') != "dropdown") && $(tar).parents('.topnav[entry=dropdown]').size() == 0)
+		{
+			$('#nav-dropdown').slideUp();
+		}
+	}
+	$("input[type='checkbox'],input[type='radio']").live('click', function()
+	{
+		setbg()
+	});
+	setbg();
+
+	//设置label背景
+	function setbg()
+	{
+		$(":checkbox").parent("label").removeClass('on');
+		$(":checkbox[checked]").parent("label").addClass('on');
+		$(":radio").parent("label").removeClass('on');
+		$(":radio[checked]").parent("label").addClass('on');
+	}
+});
+</script>
+<link rel="stylesheet" href="__PUBLIC__/css/buycard.css">
+<div class="swiper-slide swiper-slide-active">
+		<img style="width:100%;height:auto;" src="__PUBLIC__/images/agent-banner.jpg">
+	</div>
+<div class="wrapper_buycard">
+	<div class="card_level table-box">
+		<div class="table-cell table-l" style="width:50px;">产&nbsp;&nbsp;&nbsp;&nbsp;品：</div>
+		<div class="table-cell">VIP会员&nbsp;</div>
+	</div>
+	<form action="#" id="myform">
+		<div class="card_level table-box">
+			<div class="table-cell table-l" style="width:50px;">等&nbsp;&nbsp;&nbsp;&nbsp;级：</div>
+			<div class="table-cell">
+            	<volist name="list" id="item">
+				<a <neq name="item['status']" value='1'>style="display:none"</neq> href="javascript:;"  money_cloud="{tp#$item['money_cloud']}"  price="{tp#$item['price']}" data-id="{tp#$item['id']}" class="btn-card">{tp#$item['name']}</a>
+                &nbsp;&nbsp;
+                </volist>
+			</div>
+		</div>
+		<div class="card_level table-box">
+			<div class="table-cell table-l">姓&nbsp;&nbsp;&nbsp;&nbsp;名：</div>
+			<div class="table-cell">
+				<input type="text" name="name" placeholder="姓名" value="{tp#$user_info['name']}">
+			</div>
+		</div>
+		<div class="card_level table-box">
+			<div class="table-cell table-l">微信号：</div>
+			<div class="table-cell">
+				<input type="text" name="weixin" placeholder="微信号" value="{tp#$user_info['weixin']}">
+			</div>
+		</div>
+		<div class="card_level table-box">
+			<div class="table-cell table-l">手机号：</div>
+			<div class="table-cell">
+				<input type="tel" name="mobile" placeholder="手机号" value="{tp#$user_info['mobile']}">
+			</div>
+		</div>
+        
+       <!-- <div class="card_level table-box">
+			<div class="table-cell table-l">地&nbsp;&nbsp;&nbsp;&nbsp;址：</div>
+			<div class="table-cell">
+				<input type="text" name="address" placeholder="地址" value="{tp#$user_info['address']}">
+			</div>
+		</div>-->
+<!--		<div class="card_level table-box">
+			<div class="table-cell table-l">导&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;师：</div>
+			<div class="table-cell">
+				[0]九鼎云店			</div>
+		</div>-->
+		
+		<div class="card_level table-box">
+			<div class="table-cell table-l">
+				<input type="checkbox" value="1" checked="true">
+			</div>
+			<div class="table-cell">
+				<a href="{tp#:U('Cms/read',array('id'=>1))}">易道云商协议</a>
+			</div>
+		</div>
+        <input id="agent_rank" name="agent_rank" type="hidden" value="0"/>
+	</form>
+</div>
+<div style="height:60px"></div>
+<div class="tbfix-cart">
+	
+	<div class="card_buy_fix_btn">
+					<a href="javascript:;" id="saveOrder" class="btn btn-block">立即购买(<span class="price" id="cart-money">￥0</span>)</a>
+			</div>
+</div>
+<script src="__PUBLIC__/js/swiper.min.js"></script>
+<script>
+var pay_way="{tp#$pay_way}";
+$(function(){
+	var agent_rank=0,price=0,money_cloud=0;	
+	//选择代理级别
+	$(".btn-card").click(function()
+	{
+		agent_rank = $(this).attr('data-id');
+		obj = $(this);
+		price=obj.attr('price');
+		
+		obj.prevAll().addClass('curr');
+		obj.addClass('curr');
+		obj.nextAll().removeClass('curr');
+		$("#agent_rank").val(agent_rank);
+		$("#cart-money").text('￥' + price);
+		
+		price=obj.attr('price');				//价格
+		money_cloud=obj.attr('money_cloud');	//金币
+	});
+	
+	$("#saveOrder").click(function(){
+		
+		post_data={};
+		post_data.aid=$("[name='agent_rank']").val() ;
+		post_data.name=$("[name='name']").val() ;
+		post_data.mobile=$("[name='mobile']").val() ;
+		post_data.weixin=$("[name='weixin']").val() ;
+		//post_data.address=$("[name='address']").val() ;
+		post_data.price=price ;
+		post_data.money_cloud=money_cloud;
+		
+		obj = $(this);
+		//obj.attr('disabled',true);
+		
+		if(post_data.aid == 0){
+			show_tips('请选择代理等级');
+			return false;
+		}
+		if(post_data.name== ''){
+			show_tips('请输入你的姓名');
+			return false;
+		}
+		if(post_data.mobile== ''){
+			show_tips('请输入你的手机号');
+			return false;
+		}
+		if(post_data.weixin== ''){
+			show_tips('请输入你的微信');
+			return false;
+		}
+		/*if(post_data.address== ''){
+			show_tips('请输入你的地址');
+			return false;
+		}*/
+		if($(":checked").size() == 0)
+		{
+			show_tips('请同意我们的协议');
+			return false;
+		}
+		
+		$.ajax(
+		{
+			url: "{tp#:U('Ajax/agent_order')}",
+			data:post_data,
+			type:'POST',
+			dataType: 'json',
+			beforeSend:function()
+			{		
+				show_tips('正在提交中','load',2000);
+			},
+			success:function(json)
+			{
+				if(json.errcode == 0)
+				{
+					//jsApiCall2(json.data.pay_param);
+					//show_tips('下单成功');
+					if(pay_way==1){
+						location.href="./wxpay/agent.php?order_id="+json.order_id;
+					}
+					if(pay_way==2){
+						location.href="./wxpay/alipay/upgrade.php?order_id="+json.order_id;
+					}
+					
+				}
+				
+			}
+		});
+	})
+	var mySwiper  = new Swiper('#slider',
+	{
+		'autoplay': '2000',
+		'pagination':'.pagination'
+	});
+});
+
+checkMobile = function(val)
+{
+	var returnObj = {isChecked:false,msg:""};
+	if(val === "")
+	{
+		returnObj.isChecked = false;
+		returnObj.msg = "请输入手机号码";
+	}
+	else if(!(/^13\d{9}$/.test(val) | /^15\d{9}$/.test(val) | /^18\d{9}$/.test(val) | /^14\d{9}$/.test(val) | /^17\d{9}$/.test(val)))
+	{
+		returnObj.isChecked = false;
+		returnObj.msg = "手机号码不正确";
+	}
+	else
+	{
+		returnObj.isChecked = true;
+		returnObj.msg = "";
+	}
+	return returnObj;
+}
+</script>
+</body>
+</html>

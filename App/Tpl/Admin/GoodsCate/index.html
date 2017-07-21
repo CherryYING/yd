@@ -1,0 +1,68 @@
+<extend name="RBAC:base" />
+<block name="content-title">
+<h4>商品分类</h4>  
+<a style="margin:6px 10px;float:right" class="btn" href="{tp#:U('add')}">添加分类</a> 
+</block>
+<block name="content">
+          <div class="tab-content default-tab" id="tab1">
+            <div class="notification png_bg" id="dmsg" style="display:none;">
+              <a href="#" class="close"><img src="__PUBLIC__/Images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
+              <div>
+                msg.
+              </div>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                   <th>分类ID</th>
+                   <th>分类名称</th>
+                   <th>分类图标</th>
+                   <!--<th>模型</th>-->
+                   <th>前台显示</th>
+                   <th>首页推荐</th>
+                   <th>排序</th>
+                   <th>操作</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <volist name="list" id="v">
+                    <tr>
+                      <td>【{tp#$v.id}】</td>
+                      <td><neq name='v.pre' value=''>|{tp#$v.pre}</neq>{tp#$v.name}</td>
+                      <td> 
+                      <neq name="v.spic" value="">
+                          <php>
+                          $picurl=base64_encode($v['spic']);
+                          </php>
+                          <a rel="modal" title="查看原图" href="{tp#:U('Index/show_img',array('picurl'=>$picurl))}" target="_blank">
+                          <img src="{tp#$v.spic}" class='thumb'></a>
+                      </neq></td>
+                      <!--<td>商品</td>-->
+                      <td><eq name="v.is_show" value='1'><font color='green'>显示</font><else/><font color='red'>隐藏</font></eq></td>
+                      <td>
+                      <a class="btn" href="{tp#:U('status',array('id'=>$v['id']))}">
+                      <eq name="v.is_tui" value='1'><font color='green'>推荐</font><else/><font color='red'>不推荐</font></eq></a>
+                      </td>
+                      <td><a class='btn'>{tp#$v.list}</a></td>
+                      <td>
+                         <a class="btn btn-success" href="{tp#:U('edit',array('id'=>$v['id']))}">编辑</a>
+                         <a class="btn btn-danger" href="{tp#:U('del',array('id'=>$v['id']))}" onClick="return confirm('是否删除?')">删除</a> 
+                      </td>
+                    </tr>
+                </volist>
+              </tbody>
+
+              <tfoot>
+                <tr>
+                  <td colspan="7">
+                    <div class="pagination">
+						{tp#$show}
+                    </div>
+                    <div class="clear"></div>
+                  </td>
+                </tr>
+              </tfoot>              
+            </table>
+          </div> <!-- End #tab1 -->  
+</block>  

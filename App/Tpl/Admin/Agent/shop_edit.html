@@ -1,0 +1,229 @@
+<extend name="RBAC:base" />
+<block name="jq"><script type="text/javascript" src="__PUBLIC__/Js/jquery.min.js"></script></block>
+<block name="content-title">
+<h3>店铺信息</h3>  
+<a style="margin:5px 10px;" class="btn align-right" href="{tp#:U('shop_list')}">返回列表</a>
+</block>
+<block name="content">
+<div class="tab-content default-tab" id="tab1">
+    <form method="post" action="{tp#:U('shop_edit',array('id'=>I('get.id')))}">
+     	<p>
+            店铺名称：<input requried value="{tp#$shop['shop_name']}" required type="text" name="shop_name"  class="text-input small-input"> 
+        </p>
+        <p>
+            店铺状态：<select name='shop_status'>
+                    	<option value='1' <eq name="shop['shop_status']" value="1">selected</eq> >正常</option>
+                    	<option value='0' <eq name="shop['shop_status']" value="0">selected</eq> >关闭</option>
+                    </select> 
+        </p>
+        <p>
+        店铺商标：
+        <input readonly name="shop_logo" type="text" id="url1" value="{tp#$shop['shop_logo']}" class="text-input small-input" placeholder="店铺商标"/> 
+        <input type="button" id="image1" value="选择图片" class="button"/>
+        <if condition="!empty($shop['shop_logo'])">
+        <php>$picurl=base64_encode($shop['shop_logo']);</php>
+        <a  rel='modal' href="{tp#:U('show_img',array('picurl'=>$shop['shop_logo']))}">
+        <img src="{tp#$shop['shop_logo']}" class="thumb">
+        </a>
+        </if>
+        </p>
+        
+         <p>
+        店铺资质：
+        <input readonly name="shop_license" type="text" id="url2" value="{tp#$shop['shop_license']}" class="text-input small-input" placeholder="店铺资质"/> 
+        <input type="button" id="image2" value="选择图片" class="button"/>
+        <if condition="!empty($shop['shop_license'])">
+        <php>$picurl=base64_encode($shop['shop_license']);</php>
+        <a  rel='modal' href="{tp#:U('show_img',array('picurl'=>$picurl))}">
+        <img src="{tp#$shop['shop_license']}" class="thumb">
+        </a>
+        </if>
+        </p>
+        
+        <p>
+            身份证正面：<input required name="idcard_img1" type="text" id="url3" value="{tp#$shop['idcard_img1']}" class="text-input small-input" placeholder="身份证正面"/> 
+    		<input type="button" id="image3" value="选择图片" class="button"/>
+            <if condition="!empty($shop['idcard_img1'])">
+            <php>$picurl=base64_encode($shop['idcard_img1']);</php>
+            <a  rel='modal' href="{tp#:U('show_img',array('picurl'=>$picurl))}">
+            <img src="{tp#$shop['idcard_img1']}" class="thumb"/>
+            </a>
+            </if>
+        </p>
+        <p>
+            身份证背面：<input required name="idcard_img2" type="text" id="url4" value="{tp#$shop['idcard_img2']}" class="text-input small-input" placeholder="身份证背面"/> 
+    		<input type="button" id="image4" value="选择图片" class="button"/>
+            <if condition="!empty($shop['idcard_img2'])">
+            <php>$picurl=base64_encode($shop['idcard_img2']);</php>
+            <a  rel='modal' href="{tp#:U('show_img',array('picurl'=>$picurl))}">
+            <img src="{tp#$shop['idcard_img2']}" class="thumb"/>
+            </a>
+            </if>
+        </p>
+        
+        
+        
+        <p>
+            客服电话：<input value="{tp#$shop['shop_tel']}" required type="text" name="shop_tel"  class="text-input small-input" placeholder="客服电话"> 
+        </p>
+        <p>
+            店铺邮箱：<input value="{tp#$shop['shop_email']}" type="text" name="shop_email"  class="text-input small-input" placeholder="店铺邮箱"> 
+        </p>
+        <p>
+            店铺地址：<input value="{tp#$shop['shop_address']}" type="text" name="shop_address"  class="text-input small-input" placeholder='店铺地址'> 
+        </p>
+        <p>
+            显示排序：<input value="{tp#$shop['shop_list']}" required type="text" name="shop_list"  class="text-input small-input number"> 
+        </p>
+        <p>
+            店铺简介：<textarea name="shop_introduce" class="v-middle" placeholder="店铺介绍">{tp#$shop['shop_introduce']}</textarea>
+        </p>
+        
+         <p>
+            <font color='red'>更多资质</font>：<textarea placeholder="相关图片" class="v-middle editor" name="shop_descript">{tp#$shop['shop_descript']|htmlspecialchars_decode}</textarea>
+            <font color="red">相关资质图片均可上传</font>
+        </p>
+        
+        <p class="form-actions">
+          <input type="submit" value="  提 交  " class="button">
+        </p>
+      <div class="clear"></div>
+    </form>
+    <fieldset class="block">
+    <legend><b>店主信息</b></legend>
+    <table>
+    	<tr>
+            <td>头像</td>
+            <td>会员等级</td>
+            <td>姓名</td>
+            <td>昵称</td>
+            <td>性别</td>
+            <td>微信</td>
+            <td>支付宝</td>
+            <td>联系电话</td>
+            <td>通信地址</td>
+            <td>资金账户（A）</td>
+            <td>资金账户（A）</td>
+            <td>货款资金</td>
+            <td>查看</td>
+        </tr>
+        <tr>
+            <td><img src="{tp#$user['headimgurl']}" class="thumb"></td>
+            <td>
+          <switch name="user.role_id">
+            <case value="1">普通会员</case>
+            <case value="2"><font color='green'>市级代理</font></case>
+            <case value="3"><font color='blue'>省级代理</font></case>
+            <case value="4"><font color='red'>全国代理</font></case>
+          </switch>
+            
+            </td>
+            <td>{tp#$user['name']|default='---'}</td>
+            <td>{tp#$user['nickname']|default='---'}</td>
+            <td><eq name="user['sex']" value="1">男<else/>女</eq></td>
+            <td>{tp#$user['weixin']|default='---'}</td>
+            <td>{tp#$user['alipay']|default='---'}</td>
+            <td>{tp#$user['mobile']|default='---'}</td>
+            <td>{tp#$user['province']}{tp#$user['city']}{tp#$user['district']}{tp#$user['address']}</td>
+            
+            <td style="color:red">&yen; {tp#$user['money_a']} 元</td>
+            <td style="color:red">&yen; {tp#$user['money']} 元</td>
+            <td style="color:red">&yen;{tp#$user['money_p']} 元</td>
+            
+            <td><a class="btn" href="{tp#:U('Wxusers/edit',array('id'=>$user['id']))}" target="_blank">查看</a></td>
+        </tr>
+    </table>
+    </fieldset>
+</div>
+<!--kindeditor-->
+<link rel="stylesheet" href="/plugins/kindeditor/themes/default/default.css" />
+<script charset="utf-8" src="/plugins/kindeditor/kindeditor-min.js"></script>
+<script charset="utf-8" src="/plugins/kindeditor/lang/zh_CN.js"></script>
+<!--kindeditor-->
+<script>
+	KindEditor.ready(function(K) {
+		//初始化编辑器
+		var editor1 = K.create('textarea.editor', {
+			cssPath : '/plugins/kindeditor/plugins/code/prettify.css',
+			uploadJson : '/plugins/kindeditor/php/upload_json.php',
+			fileManagerJson : '/plugins/kindeditor/php/file_manager_json.php',
+			allowFileManager : true,
+			afterCreate : function() {}
+		});
+	});
+	/*$(function() {
+		var editor = KindEditor.create('textarea[name="content"]');
+	});*/
+	//单图上传
+	KindEditor.ready(function(K) {
+		var editor = K.editor({
+			allowFileManager : true
+		});
+		K('#image1').click(function() {
+			editor.loadPlugin('image', function() {
+				editor.plugin.imageDialog({
+					imageUrl : K('#url1').val(),
+					clickFn : function(url, title, width, height, border, align) {
+						K('#url1').val(url);
+						editor.hideDialog();
+					}
+				});
+			});
+		});
+	});
+	
+	//单图上传
+	KindEditor.ready(function(K) {
+		var editor = K.editor({
+			allowFileManager : true
+		});
+		K('#image2').click(function() {
+			editor.loadPlugin('image', function() {
+				editor.plugin.imageDialog({
+					imageUrl : K('#url2').val(),
+					clickFn : function(url, title, width, height, border, align) {
+						K('#url2').val(url);
+						editor.hideDialog();
+					}
+				});
+			});
+		});
+	});
+	//单图上传
+	KindEditor.ready(function(K) {
+		var editor = K.editor({
+			allowFileManager : true
+		});
+		K('#image3').click(function() {
+			editor.loadPlugin('image', function() {
+				editor.plugin.imageDialog({
+					imageUrl : K('#url3').val(),
+					clickFn : function(url, title, width, height, border, align) {
+						K('#url3').val(url);
+						editor.hideDialog();
+					}
+				});
+			});
+		});
+	});
+	
+	//单图上传
+	KindEditor.ready(function(K) {
+		var editor = K.editor({
+			allowFileManager : true
+		});
+		K('#image4').click(function() {
+			editor.loadPlugin('image', function() {
+				editor.plugin.imageDialog({
+					imageUrl : K('#url4').val(),
+					clickFn : function(url, title, width, height, border, align) {
+						K('#url4').val(url);
+						editor.hideDialog();
+					}
+				});
+			});
+		});
+	});
+	
+</script>
+</block>

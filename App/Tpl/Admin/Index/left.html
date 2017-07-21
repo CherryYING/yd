@@ -1,0 +1,258 @@
+<div id="sidebar">
+	<div id="sidebar-wrapper"> <!-- Sidebar with logo and menu -->
+      <h1 id="sidebar-title"><a href="#">{tp#config['web_name']}</a></h1>
+      <!-- Logo (221px wide) -->
+     <!-- <a href="{tp#:U('Index/index')}"><center><img id="logo" src="__PUBLIC__/Images/logo.jpg"/></center></a>-->
+      <!-- Sidebar Profile links -->
+      <div id="profile-links">
+        <!--你好, <a href="{tp#:U('RBAC/editUser',array('id'=>1))}" title="修改密码">{tp#:I('session.username')}</a>
+        , 您有 <a href="#messages" rel="modal" title="3 Messages">3 条未读消息</a>-->
+        <br />
+        <br />
+        <a href="{tp#:U('Weixin/Index/index')}" title="商城首页" target="_blank">商城首页</a> |
+        <a href="{tp#:U('Index/index')}" title="管理中心">管理中心</a> |
+         <a href="{tp#:U('Login/logout')}" title="退 出">退 出</a>
+      </div>
+     
+      <ul id="main-nav">  
+      <!-- Accordion Menu -->
+<if condition="(I('session.username') eq C('RBAC_SUPERADMIN'))">
+		<li>
+			<a href="#" class="nav-top-item">
+			管理中心权限管理
+			</a>
+			<ul class="dlink">
+				<li><a href="{tp#:U('RBAC/index')}">管理员列表</a></li>
+				<li><a href="{tp#:U('RBAC/role')}">角色列表</a></li>
+				<li><a href="{tp#:U('RBAC/node')}">节点列表</a></li>
+				<li><a href="{tp#:U('RBAC/addNode')}">添加节点</a></li>
+			</ul>
+		</li>
+</if> 
+
+		<li> 
+          <a href="#" class="nav-top-item">
+          平台状态管理
+          </a>
+          <ul class="dlink"> 
+            <li><a href="{tp#:U('Sys/index')}">系统状态</a></li>
+          </ul>
+        </li> 
+        
+		<li> 
+          <a href="#" class="nav-top-item">
+          店铺管理
+          </a>
+          <ul class="dlink"> 
+            <li><a href="{tp#:U('Agent/shop_list')}">店铺列表</a></li>
+          </ul>
+        </li> 
+        
+		<li> 
+          <a href="#" class="nav-top-item">
+          代理管理系统（A网）
+          </a>
+          <ul class="dlink"> 
+            <li><a href="{tp#:U('Agent/index')}">代理规则</a></li>
+            <li><a href="{tp#:U('Agent/order_list')}">代理订单</a></li>
+            <li><a href="{tp#:U('Agent/user_list')}">代理商管理</a></li>
+          </ul>
+        </li> 
+        
+        <li> 
+          <a href="#" class="nav-top-item">
+          区域代理管理（B网）
+          </a>
+          <ul class="dlink"> 
+            <li><a href="{tp#:U('Agent/agent_b_add')}">代理设置</a></li>
+            <li><a href="{tp#:U('Agent/agent_b_list')}">代理列表</a></li>
+          </ul>
+        </li> 
+		
+        <li> 
+          <a href="#" class="nav-top-item">
+          分销规则
+          </a>
+          <ul class="dlink">
+          	<!--<li><a href="{tp#:U('Conf/resaler')}">分销商升级规则</a></li>-->
+            <li><a href="{tp#:U('Conf/resale_a')}">A网佣金规则</a></li>
+            <li><a href="{tp#:U('Conf/resale')}">B网佣金规则</a></li>
+          </ul>
+        </li>
+        
+        
+        <li> 
+          <a href="#" class="nav-top-item">
+          提现管理
+          </a>
+          <ul class="dlink">
+            <li><a href="{tp#:U('Conf/take_money')}">提现手续费</a></li>
+            <li><a href="{tp#:U('TakeMoney/index')}">提现申请</a></li>
+          </ul>
+        </li>
+        
+
+	
+         <li>
+          <a href="#" class="nav-top-item">
+            会员管理
+          </a>
+          <ul class="dlink">
+            <!--<li><a href="{tp#:U('WxGroup/index')}">微信用户分组</a></li>-->
+            <li><a href="{tp#:U('Wxusers/index')}">会员列表</a></li>
+            <!--<li><a href="{tp#:U('Wxusers/level')}">会员等级管理</a></li>-->
+            <!--<li><a href="{tp#:U('PluginChat/index')}">会员聊天管理</a></li>-->
+            <li><a href="{tp#:U('Money/recharge')}">会员资金变更</a></li>
+          </ul>
+        </li>
+        
+        <li> 
+          <a href="#" class="nav-top-item">
+          优惠券管理
+          </a>
+          <ul class="dlink">
+            <li><a href="{tp#:U('Coupon/index')}">优惠券管理</a></li>
+            <li><a href="{tp#:U('Coupon/add')}">发送优惠券</a></li>
+          </ul>
+        </li>
+        
+       <li> 
+          <a href="#" class="nav-top-item">
+          轮播图管理
+          </a>
+          <ul class="dlink">
+            <li><a href="{tp#:U('Slide/category')}">轮播图分类</a></li>
+          </ul>
+        </li>
+        
+		<li> 
+          <a href="#" class="nav-top-item">
+          商城管理
+          </a>
+          <ul class="dlink">
+            <li><a href="{tp#:U('Goods/index')}">商品管理</a></li>
+            <li><a href="{tp#:U('GoodsCate/index')}">分类管理</a></li>
+            <!--<li><a href="{tp#:U('GoodsBrand/index')}">品牌管理</a></li>-->
+            <li><a href="{tp#:U('Goods/reply_list')}">评论管理</a></li>
+            <!--<li><a href="{tp#:U('Navlink/index')}">首页导航</a></li>
+            <li><a href="{tp#:U('Navlink/service')}">微客服管理</a></li>
+            <li><a href="{tp#:U('Slide/index')}">首页轮播图</a></li>-->
+          </ul>
+        </li> 
+        <li> 
+          <a href="#" class="nav-top-item">
+          订单管理
+          </a>
+          <ul class="dlink">
+            <li><a href="{tp#:U('Order/index')}">订单列表</a></li>
+            <li><a href="{tp#:U('Order/refund_list')}">售后申请</a></li>
+          </ul>
+        </li> 
+        
+        <li> 
+          <a href="#" class="nav-top-item">
+          财务管理
+          </a>
+          <ul class="dlink">
+          	<li><a href="{tp#:U('Money/recharge')}">会员资金变更</a></li>
+            <li><a href="{tp#:U('Money/index')}">佣金明细</a></li>
+            <li><a href="{tp#:U('Money/money_cloud_list')}">云金币明细</a></li>
+            <li><a href="{tp#:U('Money/sell_money_list')}"> 销售业绩明细</a></li>
+            <li><a href="{tp#:U('Money/wechat_hb_list')}">微信红包发送记录</a></li>
+          </ul>
+        </li> 
+
+        <li> 
+          <a href="#" class="nav-top-item">
+          积分商城管理
+          </a>
+          <ul class="dlink">
+          	<li><a href="{tp#:U('Conf/jifen')}">积分规则设置</a></li>
+            <li><a href="{tp#:U('Jifen/index')}">商品管理</a></li>
+            <li><a href="{tp#:U('Jifen/order_list')}">订单管理</a></li>
+          </ul>
+        </li> 
+       
+        <li>
+          <a href="#" class="nav-top-item">
+            微信公众平台
+          </a>
+          <ul class="dlink">
+            <li><a href="{tp#:U('WechatPub/index')}">公众账号设置</a></li>
+            <li><a href="{tp#:U('WechatMenu/index')}">自定义菜单</a></li>
+            <li><a href="{tp#:U('WechatText/index')}">自定义回复</a></li>
+            <li><a href="{tp#:U('WechatText/textadd',array('id'=>2))}">关注回复</a></li>
+            <li><a href="{tp#:U('WechatPub/tpl_msg')}">消息模板</a></li>
+            <!--<li><a href="{tp#:U('Wxusers/fans_analyze')}">4、粉丝统计分析</a></li>
+            <li><a href="{tp#:U('Wxusers/list_wxfans')}">4、拉取粉丝列表</a></li>-->
+          </ul>
+        </li>
+        
+        
+         <li> 
+          <a href="#" class="nav-top-item">
+          地区管理
+          </a>
+          <ul class="dlink"> 
+            <li><a href="{tp#:U('Region/index')}">地区管理</a></li>
+          </ul>
+        </li>      
+        <li> 
+          <a href="#" class="nav-top-item">
+          内容管理系统
+          </a>
+          <ul class="dlink"> 
+            <li><a href="{tp#:U('CmsSort/sortlist')}">栏目管理</a></li>
+            <li><a href="{tp#:U('CmsArt/artlist')}">文章管理</a></li>
+          </ul>
+        </li>
+             
+		<li>
+          <a href="#" class="nav-top-item">
+            系统配置
+          </a>
+          <ul class="dlink">
+         	<li><a href="{tp#:U('Conf/index')}">平台信息设置</a></li>
+            <!--<li><a href="{tp#:U('Conf/msg')}">短信网关设置</a></li>-->
+            <!--<li><a href="#">短信模板管理</a></li>-->
+            <!--<li><a href="{tp#:U('Conf/email')}">邮件服务器设置</a></li>-->
+            <li><a href="{tp#:U('Log/index')}">后台登录日志</a></li>
+            <!--<li><a href="{tp#:U('FriendLink/index')}">友情链接管理</a></li>-->
+            <li><a rel='modal' href="{tp#:U('Delcache/index')}">清除系统缓存</a></li>
+          </ul>
+        </li>
+<if condition="(I('session.username') eq C('RBAC_SUPERADMIN'))">        	
+       <!-- <li>
+          <a href="#" class="nav-top-item">
+            数据备份恢复
+          </a>
+          <ul class="dlink">
+			<li><a href="{tp#:U('Database/index')}">数据备份</a></li>
+          	<li><a href="{tp#:U('Database/recover')}">数据恢复</a></li>
+          </ul>
+        </li>	-->
+</if>        
+      </ul> <!-- End #main-nav -->
+      
+    </div>
+<script type="text/javascript">
+$(document).ready(function() {
+	var url=window.location.search;
+	$('#main-nav li ul li a').each(function(){
+		var aurl='?'+$(this).attr("href").split("?")[1];
+
+		var pul=$(this).parent().parent().prev();
+		var tul=$(this).parent().parent().parent();
+		if(aurl.indexOf(url)>=0){
+			$(this).addClass("current").siblings("a").removeClass("current");
+			$(".nav-top-item").removeClass("current");
+			pul.addClass("current");
+			$(".dlink").css("display","none");
+			$(this).parent().parent().css("display","block");
+			
+		}
+	});
+});
+</script> 
+
+</div> <!-- End #sidebar -->

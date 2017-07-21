@@ -1,0 +1,76 @@
+<extend name="RBAC:base" />
+<block name="content-title">
+<h4>店铺列表</h4> 
+</block>
+<block name="content">
+          <div class="tab-content default-tab" id="tab1">
+            <div class="notification png_bg" id="dmsg" style="display:none;">
+              <a href="#" class="close"><img src="__PUBLIC__/Images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
+              <div>
+                msg.
+              </div>
+            </div>
+            <p>
+            <form action="" method="post">
+                搜索： <input value="{tp#$Think.post.key}" name="key" type="text" class="text-input small-input" placeholder="关键字"/>
+                &nbsp;&nbsp;
+                
+                <input name="提交" type="submit" class="button" id='btn-so' value="搜索"/>
+                &nbsp;&nbsp;&nbsp;
+                <a  href="{tp#:U('index')}">查看全部</a>
+                &nbsp;&nbsp;&nbsp;店铺名称，微信昵称，姓名
+                </form>
+            </p>
+            <table>
+              <thead>
+                <tr>
+                   <th>ID</th>
+                   <th>店主帐号</th>
+                   <th>店铺名称</th>
+                   <!--<th>店铺等级</th>-->
+                   <th>审核状态</th>
+                   <th>开店时间</th>
+                   <th>升级分销商</th>
+                   <th>操作</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <volist name="list" id="v">
+                    <tr>
+                      <td>【{tp#$v.id}】</td>
+                      <td>{tp#$v.username}</td>
+                      <td>{tp#$v.shop_name}</td>
+                      <!--<td>{tp#$level_list[$v['user_level']]['title']}</td>-->
+                      <td><a class="btn">
+                      <switch name="v.status">
+                      	<case value="0"><font color="red">等待审核</font></case>
+                        <case value="1">通过审核</case>
+                        <case value="2"></case>
+                      </switch>
+                      </a>
+                      </td>
+                      <td>{tp#$v.posttime|date='Y-m-d H:i:s',###}</td>
+                      <td><a href="{tp#:U('Wxusers/upgrade_resaler',array('id'=>$v['id']))}" class="btn">升级</a></td>
+                      <td>
+                        <a class="btn btn-success" href="{tp#:U('edit',array('id'=>$v['id']))}"> 编辑</a>
+                      </td>
+                    </tr>
+                </volist>
+              </tbody>
+
+              <tfoot>
+                <tr>
+                  <td colspan="7">
+                    <div class="bulk-actions align-left">
+                    </div>
+                    <div class="pagination">
+                      {tp#$show}
+                    </div>
+                    <div class="clear"></div>
+                  </td>
+                </tr>
+              </tfoot>              
+            </table>
+          </div> <!-- End #tab1 -->  
+</block>  

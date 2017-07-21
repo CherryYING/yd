@@ -1,0 +1,661 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>首页-{tp#$webinfo['web_name']}</title>
+
+<link href="__PUBLIC__/css/css.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.8.2.min.js"></script>
+<script type="text/javascript">
+<!--
+var timeout         = 500;
+var closetimer		= 0;
+var ddmenuitem      = 0;
+
+// open hidden layer
+function mopen(id)
+{	
+	// cancel close timer
+	mcancelclosetime();
+
+	// close old layer
+	if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+	// get new layer and show it
+	ddmenuitem = document.getElementById(id);
+	ddmenuitem.style.visibility = 'visible';
+
+}
+// close showed layer
+function mclose()
+{
+	if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+}
+
+// go close timer
+function mclosetime()
+{
+	closetimer = window.setTimeout(mclose, timeout);
+}
+
+// cancel close timer
+function mcancelclosetime()
+{
+	if(closetimer)
+	{
+		window.clearTimeout(closetimer);
+		closetimer = null;
+	}
+}
+
+// close layer when click-out
+document.onclick = mclose; 
+// -->
+</script>
+<script type="text/javascript" src="__PUBLIC__/js/jquery.min.js"></script>
+<script type="text/javascript">
+
+var intDiff = parseInt(60);//倒计时总秒数量
+
+function timer(intDiff){
+	window.setInterval(function(){
+	var day=0,
+		hour=0,
+		minute=0,
+		second=0;//时间默认值		
+	if(intDiff > 0){
+		day = Math.floor(intDiff / (60 * 60 * 24));
+		hour = Math.floor(intDiff / (60 * 60)) - (day * 24);
+		minute = Math.floor(intDiff / 60) - (day * 24 * 60) - (hour * 60);
+		second = Math.floor(intDiff) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60);
+	}
+	if (minute <= 9) minute = '0' + minute;
+	if (second <= 9) second = '0' + second;
+	$('#day_show').html(day+"天");
+	$('#hour_show').html('<s id="h"></s>'+hour+'时');
+	$('#minute_show').html('<s></s>'+minute+'分');
+	$('#second_show').html('<s></s>'+second+'秒');
+	intDiff--;
+	}, 1000);
+} 
+
+$(function(){
+	timer(intDiff);
+});	
+</script>
+
+<link href="__PUBLIC__/css/zzsc.css" type="text/css" rel="stylesheet" />
+<script src="__PUBLIC__/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+ $(".imgtext").hide();
+ $(".zzsc").hover(function(){
+  $(".imgtext",this).slideToggle(500);
+ });
+});
+</script>
+</head>
+
+<body>
+<!--top01 最顶部-->
+<include file="Public:top"/>
+
+<div class="main">
+<!--banner-->
+     <div class="banner">
+           <div id="demo01" class="flexslider">
+	          <ul class="slides">
+                    <li><div class="img"><img src="__PUBLIC__/img/banner/banner1.jpg" width="1080" height="446"/></div></li>
+                    <li><div class="img"><img src="__PUBLIC__/img/banner/banner2.jpg" width="1080" height="446"/></div></li>
+                    <li><div class="img"><img src="__PUBLIC__/img/banner/banner3.jpg" width="1080" height="446" /></div></li>
+                   
+	        </ul>
+           </div>
+               <script type="text/javascript" src="__PUBLIC__/js/slider.js"></script> 
+<script type="text/javascript">
+$(function(){
+
+	$('#demo01').flexslider({
+		animation: "slide",
+		direction:"horizontal",
+		easing:"swing"
+	});
+	
+	
+	
+});
+</script>
+     </div>
+     <!--品牌专区-->
+     <div class="pp">
+       
+           <table width="98%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td><a href=""><img src="__PUBLIC__/img/pinpai/pp1.jpg"></a></td>
+                    <td><a href=""><img src="__PUBLIC__/img/pinpai/pp2.jpg"></a></td>
+                    <td><a href=""><img src="__PUBLIC__/img/pinpai/pp3.jpg"></a></td>
+                    <td><a href=""><img src="__PUBLIC__/img/pinpai/pp4.jpg"></a></td>
+                    <td><a href=""><img src="__PUBLIC__/img/pinpai/pp6.jpg"></a></td>
+                  </tr>
+                  <tr>
+                    <td><a href=""><img src="__PUBLIC__/img/pinpai/pp5.jpg" style="margin-bottom:0px"></a></td>
+                    <td><a href=""><img src="__PUBLIC__/img/pinpai/pp7.jpg" style="margin-bottom:0px"></a></td>
+                    <td><a href=""><img src="__PUBLIC__/img/pinpai/pp4.jpg" style="margin-bottom:0px"></a></td>
+                    <td><a href=""><img src="__PUBLIC__/img/pinpai/pp1.jpg" style="margin-bottom:0px"></a></td>
+                    <td><a href=""><img src="__PUBLIC__/img/pinpai/pp2.jpg" style="margin-bottom:0px"></a></td>
+                  </tr>
+         </table>
+
+     </div>
+      <!--抢购专区-->
+     <div class="qg">
+         <div class="qg-t"><span><a href="snap up.html">+更多</a></span></div>
+         <div class="qg-r">
+              <ul>
+                  <li>
+                      <ul>
+                          <li><a href="show.html"><img src="__PUBLIC__/img/qianggou/qq1.jpg" title="简约时尚两斗柜+五斗柜+电视柜" style="display:inline"></a></li>
+                          <li>
+                             【厅柜组合】简约时尚两斗柜+五斗柜+电视柜<br>
+                              <span class="price">￥2990.00 </span> <span class="oldprice">￥3100.00</span><br>
+                              <span class="number">还剩余10套</span>
+                              <!--倒计时模块-->
+                                <div style="float:right">
+                                 剩余时间：  
+                                  <span id="hour_show"><span style=" color:#000; font-weight:bold">1</span>时</span>
+                                  <span id="minute_show"><span style=" color:#000; font-weight:bold">20</span>分</span>
+                                  <span id="second_show"><span style=" color:#000; font-weight:bold">10</span>秒</span>
+                              </div>
+                         </li>
+                      </ul>
+                  </li>
+                  <li>
+                       <ul>
+                          <li><a href="show.html"><img src="__PUBLIC__/img/qianggou/qq2.jpg" title="简约时尚两斗柜+五斗柜+电视柜" style="display:inline"></a></li>
+                          <li>
+                             贵族专座黄牛头层真皮沙发<br>
+                              <span class="price">￥2500.00 </span> <span class="oldprice">￥4000.00</span><br>
+                              <span class="number">还剩余10套</span>
+                              <!--倒计时模块-->
+                                <div style="float:right">
+                                 剩余时间：  
+                                  <span id="hour_show"><span style=" color:#000; font-weight:bold">0</span>时</span>
+                                  <span id="minute_show"><span style=" color:#000; font-weight:bold">0</span>分</span>
+                                  <span id="second_show"><span style=" color:#000; font-weight:bold">0</span>秒</span>
+                              </div>
+                         </li>
+                      </ul>
+                  </li>
+                  <li>
+                       <ul>
+                          <li><a href="show.html"><img src="__PUBLIC__/img/qianggou/qq3.jpg" title="简约时尚两斗柜+五斗柜+电视柜" style="display:inline"></a></li>
+                          <li>
+                             【厅柜组合】简约时尚两斗柜+五斗柜+电视柜<br>
+                              <span class="price">￥2500.00 </span> <span class="oldprice">￥2845.00</span><br>
+                              <span class="number">还剩余10套</span>
+                              <!--倒计时模块-->
+                                <div style="float:right">
+                                 剩余时间：  
+                                  <span id="hour_show"><span style=" color:#000; font-weight:bold">0</span>时</span>
+                                  <span id="minute_show"><span style=" color:#000; font-weight:bold">0</span>分</span>
+                                  <span id="second_show"><span style=" color:#000; font-weight:bold">0</span>秒</span>
+                              </div>
+                         </li>
+                      </ul>
+                  </li>
+                  <li style="margin-right:0px">
+                      <ul>
+                          <li><a href="show.html"><img src="__PUBLIC__/img/qianggou/qq4.jpg" title="简约时尚两斗柜+五斗柜+电视柜" style="display:inline"></a></li>
+                          <li>
+                             高贵简约电视柜<br>
+                              <span class="price">￥2000.00 </span> <span class="oldprice">￥2100.00</span><br>
+                              <span class="number">还剩余10套</span>
+                              <!--倒计时模块-->
+                                <div style="float:right">
+                                 剩余时间：  
+                                  <span id="hour_show"><span style=" color:#000; font-weight:bold">0</span>时</span>
+                                  <span id="minute_show"><span style=" color:#000; font-weight:bold">0</span>分</span>
+                                  <span id="second_show"><span style=" color:#000; font-weight:bold">0</span>秒</span>
+                              </div>
+                         </li>
+                      </ul>
+                  </li>
+              </ul>
+         </div>
+     </div>
+     <!--广告条-->
+     <div class="gg02">
+         <a href=""><img src="__PUBLIC__/img/gg02.jpg" border="0"></a>
+     </div>
+     <!--1f-->
+     <div class="f1">
+         <div class="f1-t"></div>
+         <div class="f1-r">
+             <div class="kinds">
+              <div class="kindslist">
+                    <ul>
+                        <li>
+                            <h3>卫浴用具</h3>
+                            <p>
+                               <a href="screening.html" target="_blank">花洒</a>
+                                <a href="screening.html" target="_blank">水槽</a>
+                                 <a href="screening.html" target="_blank">浴盆</a>
+                                  <a href="screening.html" target="_blank">坐便器</a>
+                                   <a href="screening.html" target="_blank">浴室柜</a>
+                                    <a href="screening.html" target="_blank">水龙头</a>
+                            <p>
+                        </li>
+                        <li>
+                            <h3>厨卫电器</h3>
+                            <p>
+                               <a href="screening.html" target="_blank">烟机</a>
+                                <a href="screening.html" target="_blank">灶具</a>
+                                 <a href="screening.html" target="_blank">热水器</a>
+                                  <a href="screening.html" target="_blank">浴霸</a>
+                                   
+                            <p>
+                        </li>
+                        <li>
+                            <h3>基础建材</h3>
+                            <p>
+                               <a href="screening.html" target="_blank">墙纸</a>
+                                <a href="screening.html" target="_blank">地板</a>
+                                 <a href="screening.html" target="_blank">瓷砖</a>
+                                  <a href="screening.html" target="_blank">乳胶漆</a>
+                                   <a href="screening.html" target="_blank">橱柜</a>
+                                    <a href="screening.html" target="_blank">门窗</a>
+                                    <a href="screening.html" target="_blank">油漆套餐</a>
+                                    
+                            <p>
+                        </li>
+                        <li>
+                              <h3>灯具开光</h3>
+                            <p>
+                               <a href="screening.html" target="_blank">吊灯</a>
+                                <a href="screening.html" target="_blank">光源</a>
+                                 <a href="screening.html" target="_blank">开关</a>
+                                  <a href="screening.html" target="_blank">插座</a>
+                                   <a href="screening.html" target="_blank">吸顶灯</a>
+                                    
+                                    
+                            <p>
+                        </li>
+                      
+                    </ul>
+                 </div>
+                 <div class="fqq">
+                      <table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                              <td><center><a href=""><img src="__PUBLIC__/img/1f/fpp1.jpg"></a></center></td>
+                              <td><center><a href=""><img src="__PUBLIC__/img/1f/fpp2.jpg"></a></center></td>
+                            </tr>
+                            <tr>
+                              <td><center><a href=""><img src="__PUBLIC__/img/1f/fpp3.jpg"></a></center></td>
+                              <td><center><a href=""><img src="__PUBLIC__/img/1f/fpp4.jpg"></a></center></td>
+                            </tr>
+                      </table>
+
+                 </div>
+             </div>
+             <div class="f1pic">
+                   <table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
+                      <tr>
+                        <td>
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                  <tr>
+                                    <td><a href="show.html"><img src="__PUBLIC__/img/1f/pic1.jpg" width="642" height="240" title="简约时尚两斗柜+五斗柜+电视柜" style="display:inline"></a></td>
+                                    <td><a href="show.html"><img src="__PUBLIC__/img/1f/pic2.jpg" width="186" height="240" title="简约时尚两斗柜+五斗柜+电视柜" style="display:inline"></a></td>
+                                  </tr>
+                            </table>
+                        </td>
+                        </tr>
+                        <tr>
+                        <td>
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                  <tr>
+                                    <td><a href="show.html"><img src="__PUBLIC__/img/1f/pic3.jpg" width="180" height="179" title="简约时尚两斗柜+五斗柜+电视柜" style="display:inline"></a></td>
+                                    <td><a href="show.html"><img src="__PUBLIC__/img/1f/pic4.jpg" width="221" height="179" title="简约时尚两斗柜+五斗柜+电视柜" style="display:inline"></a></td>
+                                    <td><a href="show.html"><img src="__PUBLIC__/img/1f/pic5.jpg" width="212" height="179" title="简约时尚两斗柜+五斗柜+电视柜" style="display:inline"></a></td>
+                                    <td><a href="show.html"><img src="__PUBLIC__/img/1f/pic6.jpg" width="208" height="179" title="简约时尚两斗柜+五斗柜+电视柜" style="display:inline"></a></td>
+                                  </tr>
+                            </table>
+
+                        </td>
+                      </tr>
+                  </table>
+
+             </div>
+         </div>
+     </div>
+     <!--2f-->
+          <div class="f1">
+         <div class="f1-t" style="background:url(__PUBLIC__/img/2f/f2title.jpg) left top no-repeat; display:block"></div>
+         <div class="f1-r">
+             <div class="kinds" style="border-bottom:5px solid #2CB8AD" >
+              <div class="kindslist">
+                    <ul>
+                        <li>
+                            <h3>床类</h3>
+                            <p>
+                               <a href="screening.html" target="_blank">板式床</a>
+                                <a href="screening.html" target="_blank">软床</a>
+                                 <a href="screening.html" target="_blank">实木床</a>
+                                  
+                            <p>
+                        </li>
+                        <li>
+                            <h3>沙发</h3>
+                            <p>
+                               <a href="screening.html" target="_blank">布艺沙发</a>
+                                <a href="screening.html" target="_blank">真皮沙发</a>
+                                 <a href="screening.html" target="_blank">实木沙发</a>
+                                  <a href="screening.html" target="_blank">沙发床</a>
+                                    <a href="screening.html" target="_blank">懒人沙发</a>
+                                   
+                            <p>
+                        </li>
+                        <li>
+                            <h3>柜类</h3>
+                            <p>
+                               <a href="screening.html" target="_blank">鞋柜</a>
+                                <a href="screening.html" target="_blank">衣柜</a>
+                                 <a href="screening.html" target="_blank">橱柜</a>
+                                  <a href="screening.html" target="_blank">餐厅柜</a>
+                                   <a href="screening.html" target="_blank">电视柜</a>
+                                    <a href="screening.html" target="_blank">斗柜</a>
+                                
+                                    
+                            <p>
+                        </li>
+                        <li>
+                              <h3>桌类</h3>
+                            <p>
+                               <a href="screening.html" target="_blank">餐桌</a>
+                                <a href="screening.html" target="_blank">书桌</a>
+                                 <a href="screening.html" target="_blank">电脑桌</a>
+                                  <a href="screening.html" target="_blank">梳妆台</a>
+                                   <a href="screening.html" target="_blank">吸顶灯</a>
+                                    
+                                    
+                            <p>
+                        </li>
+                      
+                    </ul>
+                 </div>
+                 <div class="fqq">
+                      <table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                              <td><center><a href=""><img src="__PUBLIC__/img/1f/fpp1.jpg"></a></center></td>
+                              <td><center><a href=""><img src="__PUBLIC__/img/1f/fpp2.jpg"></a></center></td>
+                            </tr>
+                            <tr>
+                              <td><center><a href=""><img src="__PUBLIC__/img/1f/fpp3.jpg"></a></center></td>
+                              <td><center><a href=""><img src="__PUBLIC__/img/1f/fpp4.jpg"></a></center></td>
+                            </tr>
+                      </table>
+
+                 </div>
+             </div>
+             <div class="f1pic">
+                   <table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
+                      <tr>
+                        <td>
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                  <tr>
+                                    <td><a href="show.html"><img src="__PUBLIC__/img/2f/pic1.jpg" width="649" height="317" title="简约时尚两斗柜+五斗柜+电视柜" style="display:inline"></a></td>
+                                    <td><a href="show.html"><img src="__PUBLIC__/img/2f/pic2.jpg" width="179" height="317" title="简约时尚两斗柜+五斗柜+电视柜" style="display:inline"></a></td>
+                                  </tr>
+                            </table>
+                        </td>
+                        </tr>
+                        <tr>
+                        <td>
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                  <tr>
+                                    <td><a href="show.html"><img src="__PUBLIC__/img/2f/pic3.jpg" width="576" height="100" title="简约时尚两斗柜+五斗柜+电视柜" style="display:inline"></a></td>
+                                    <td><a href="show.html"><img src="__PUBLIC__/img/2f/pic4.jpg" width="252" height="100" title="简约时尚两斗柜+五斗柜+电视柜" style="display:inline"></a></td>
+                                   </tr>
+                            </table>
+
+                        </td>
+                      </tr>
+                  </table>
+
+             </div>
+         </div>
+     </div>
+     <!--2f-->
+     <!--3f-->
+        <div class="f1">
+         <div class="f1-t" style="background:url(__PUBLIC__/img/3f/f3title.jpg) left top no-repeat; display:block"></div>
+         <div class="f1-r">
+             <div class="kinds" style="border-bottom:5px solid #F3DA4A" >
+              <div class="kindslist">
+                    <ul>
+                        <li>
+                            <h3>家纺</h3>
+                            <p>
+                               <a href="screening.html" target="_blank">四件套</a>
+                                <a href="screening.html" target="_blank">被子/被芯</a>
+
+                                 <a href="screening.html" target="_blank">枕头/枕芯</a>
+                                  <a href="screening.html" target="_blank">蚊帐</a>
+                                  <a href="screening.html" target="_blank">凉席</a>
+                            <p>
+                        </li>
+                        <li>
+                            <h3>家电</h3>
+                            <p>
+                               <a href="screening.html" target="_blank">空气净化器</a>
+                                <a href="screening.html" target="_blank">电饭煲</a>
+                                 <a href="screening.html" target="_blank">电磁炉</a>
+                                  <a href="screening.html" target="_blank">热水壶</a>
+                                    <a href="screening.html" target="_blank">懒人沙发</a>
+                                   
+                            <p>
+                        </li>
+                        <li>
+                            <h3>日用</h3>
+                            <p>
+                               <a href="screening.html" target="_blank">照明工具</a>
+                                <a href="screening.html" target="_blank">净味除味</a>
+                                 <a href="screening.html" target="_blank">收纳盒</a>
+                                  <a href="screening.html" target="_blank">钟表</a>
+                                   <a href="screening.html" target="_blank">砂锅</a>
+                                    <a href="screening.html" target="_blank">毛巾</a>
+                                
+                                    
+                            <p>
+                        </li>
+                        <li>
+                              <h3>家居装饰</h3>
+                            <p>
+                               <a href="screening.html" target="_blank">仿真花卉</a>
+                                <a href="screening.html" target="_blank">地毯</a>
+                                 <a href="screening.html" target="_blank">窗帘</a>
+                                  <a href="screening.html" target="_blank">靠垫</a>
+                                  
+                                    
+                                    
+                            <p>
+                        </li>
+                      
+                    </ul>
+                 </div>
+                 <div class="fqq">
+                      <table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                              <td><center><a href=""><img src="__PUBLIC__/img/1f/fpp1.jpg"></a></center></td>
+                              <td><center><a href=""><img src="__PUBLIC__/img/1f/fpp2.jpg"></a></center></td>
+                            </tr>
+                            <tr>
+                              <td><center><a href=""><img src="__PUBLIC__/img/1f/fpp3.jpg"></a></center></td>
+                              <td><center><a href=""><img src="__PUBLIC__/img/1f/fpp4.jpg"></a></center></td>
+                            </tr>
+                      </table>
+
+                 </div>
+             </div>
+             <div class="f1pic">
+                   <table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
+                      <tr>
+                        <td>
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                  <tr>
+                                    <td><a href="show.html"><img src="__PUBLIC__/img/3f/pic1.jpg" width="483" height="251" title="简约时尚两斗柜+五斗柜+电视柜" style="display:inline"></a></td>
+                                    <td><a href="show.html"><img src="__PUBLIC__/img/3f/pic2.jpg" width="345" height="250" title="简约时尚两斗柜+五斗柜+电视柜" style="display:inline"></a></td>
+                                  </tr>
+                            </table>
+                        </td>
+                        </tr>
+                        <tr>
+                        <td>
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                  <tr>
+                                    <td><a href="show.html"><img src="__PUBLIC__/img/3f/pic3.jpg" width="173" height="185" title="简约时尚两斗柜+五斗柜+电视柜" style="display:inline"></a></td>
+                                    <td><a href="show.html"><img src="__PUBLIC__/img/3f/pic4.jpg" width="245" height="185" title="简约时尚两斗柜+五斗柜+电视柜" style="display:inline"></a></td>
+                                    <td><a href="show.html"><img src="__PUBLIC__/img/3f/pic5.jpg" width="245" height="185" title="简约时尚两斗柜+五斗柜+电视柜" style="display:inline"></a></td>
+                                    <td><a href="show.html"><img src="__PUBLIC__/img/3f/pic6.jpg" width="165" height="185" title="简约时尚两斗柜+五斗柜+电视柜" style="display:inline"></a></td>
+                                   </tr>
+                            </table>
+
+                        </td>
+                      </tr>
+                  </table>
+
+             </div>
+         </div>
+     </div>
+     <!--3f-->
+     <!--4F-->
+           <div class="f1">
+         <div class="f1-t" style="background:url(__PUBLIC__/img/4F/F4title.jpg) left top no-repeat; display:block"></div>
+         <div class="f1-r">
+             <div class="kinds" style="border-bottom:5px solid #EE1B2E" >
+              <div class="kindslist">
+                    <ul>
+                        <li>
+                            <h3>家纺</h3>
+                            <p>
+                               <a href="screeing.html" target="_blank">四件套</a>
+                                <a href="screeing.html" target="_blank">被子/被芯</a>
+                                 <a href="screeing.html" target="_blank">枕头/枕芯</a>
+                                  <a href="screeing.html" target="_blank">蚊帐</a>
+                                  <a href="screeing.html" target="_blank">凉席</a>
+                            <p>
+                        </li>
+                        <li>
+                            <h3>家电</h3>
+                            <p>
+                               <a href="screeing.html" target="_blank">空气净化器</a>
+                                <a href="screeing.html" target="_blank">电饭煲</a>
+                                 <a href="screeing.html" target="_blank">电磁炉</a>
+                                  <a href="screeing.html" target="_blank">热水壶</a>
+                                    <a href="screeing.html" target="_blank">懒人沙发</a>
+                                   
+                            <p>
+                        </li>
+                        <li>
+                            <h3>日用</h3>
+                            <p>
+                               <a href="screeing.html" target="_blank">照明工具</a>
+                                <a href="screeing.html" target="_blank">净味除味</a>
+                                 <a href="screeing.html" target="_blank">收纳盒</a>
+                                  <a href="screeing.html" target="_blank">钟表</a>
+                                   <a href="screeing.html" target="_blank">砂锅</a>
+                                    <a href="screening.html" target="_blank">毛巾</a>
+                                
+                                    
+                            <p>
+                        </li>
+                        <li>
+                              <h3>家居装饰</h3>
+                            <p>
+                               <a href="screening.html" target="_blank">仿真花卉</a>
+                                <a href="screening.html" target="_blank">地毯</a>
+                                 <a href="screening.html" target="_blank">窗帘</a>
+                                  <a href="screening.html" target="_blank">靠垫</a>
+                                  
+                                    
+                                    
+                            <p>
+                        </li>
+                      
+                    </ul>
+                 </div>
+                 <div class="fqq">
+                      <table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                              <td><center><a href=""><img src="__PUBLIC__/img/1f/fpp1.jpg"></a></center></td>
+                              <td><center><a href=""><img src="__PUBLIC__/img/1f/fpp2.jpg"></a></center></td>
+                            </tr>
+                            <tr>
+                              <td><center><a href=""><img src="__PUBLIC__/img/1f/fpp3.jpg"></a></center></td>
+                              <td><center><a href=""><img src="__PUBLIC__/img/1f/fpp4.jpg"></a></center></td>
+                            </tr>
+                      </table>
+
+                 </div>
+             </div>
+             <div class="f1pic">
+                   <div class="casetitle"></div>
+                   <div class="case">
+                         <table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
+                              <tr>
+                                <td>
+                                    <div class="zzsc" style=" width:448px; height:328px">
+                                        <a href=""><img src="__PUBLIC__/img/4F/case1.jpg" width="448" height="328"></a>
+                                           <div class="text" style=" width:448px;">
+                                                      <div class="imgtext" style=" width:448px;"> <a href="">卧室精装修</a> </div>
+                                            </div>
+                                   </div>
+                                </td>
+                                <td>
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                          <tr>
+                                            <td>
+                                               <div class="zzsc">
+                                                   <a href=""><img src="__PUBLIC__/img/4F/case2.jpg" width="171" height="127"></a>
+                                                   <div class="text">
+                                                      <div class="imgtext"> <a href="">卧室精装修</a> </div>
+                                                   </div>
+                                               </div>
+                                          </td>
+                                            <td>
+                                             <div class="zzsc" style=" width:139px; height:127px">
+                                                    <a href=""><img src="__PUBLIC__/img/4F/case3.jpg" width="139" height="127"></a>
+                                                    <div class="text" style=" width:139px;">
+                                                      <div class="imgtext" style=" width:139px;"> <a href="">卧室精装修</a> </div>
+                                                    </div>
+                                             </div>
+                                            </td>
+                                          </tr>
+                                          <tr>
+                                            <td colspan="2">
+                                            <div class="zzsc" style=" width:319px; height:187px; margin-top:14px">
+                                                <a href=""><img src="__PUBLIC__/img/4F/case4.jpg" width="319" height="187" ></a>
+                                                  <div class="text" style=" width:319px;">
+                                                      <div class="imgtext" style=" width:319px;"> <a href="">卧室精装修</a> </div>
+                                                    </div>
+                                            </div>
+                                            </td>
+                                            
+                                          </tr>
+                                      </table>
+
+                                </td>
+                              </tr>
+                           </table>
+
+                   </div>
+             </div>
+         </div>
+     </div> 
+     <!--4F-->
+    
+</div>
+ <!--bottom-->
+          <include file="Public:foot"/>
+ <!--bottom-->
+</body>
+</html>

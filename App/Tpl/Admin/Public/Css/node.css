@@ -1,0 +1,66 @@
+#wrap{
+	width:100%;
+	height:auto;
+	overflow:hidden;
+	margin:2px auto;
+	padding:1px 2px;
+	border:0px solid #ccc;
+}
+/*#wrap .add-app {
+display:block;
+width:100px;
+height:28px;
+line-height:28px;
+text-align:center;
+background:#670768;
+color:#fff;
+border-radius:4px;
+
+}*/
+#wrap .app {
+	padding:5px;
+	margin-top:0px;
+	border:1px solid:#f6f6f6;
+	border-radius:4px;
+
+}
+#wrap .app p {
+height:15px;
+line-height:20px;
+/*background:#66cccc;*/
+border: 1px solid #ccc;
+margin: 0 0 20px 0;
+background: url("../Images/bg-content-box.gif") repeat-x scroll left top #E5E5E5;
+}
+#wrap .app p strong {
+padding: 0px 15px;
+float: left;	
+font-size:15px;
+color:#0b99d8;
+}
+#wrap .app dl {
+padding: 0px 40px;	
+margin:10px 0;
+border:1px solid:#dcdcdc;
+background: url("../Images/bg-radial-gradient.gif") ;
+height:auto;
+overflow:hidden; 
+}
+#wrap .app dl dt {
+
+display:black;
+height:30px;
+line-height:30px;
+background:#e6e6fa;
+text-indent:10px;
+border: 1px solid #ccc;
+background: url("../Images/bg-content-box.gif") repeat-x scroll left top #E5E5E5;
+}
+#wrap .app dl dt strong {
+	font-size:14px;
+	color:#61a1fa;
+}
+#wrap .app dl dd {
+padding:10px;
+float:left;
+}

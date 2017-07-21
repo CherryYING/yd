@@ -1,0 +1,12 @@
+<ul>
+   <li><a  href="{tp#:U('Index/Index/index')}">首页</a></li>
+   <li><a  href="{tp#:U('Index/product_list')}">全部商品</a></li>
+   <li><a  href="{tp#:U('Index/shop_list')}">品牌商家</a></li>
+   <li><a  href="{tp#:U('Cms/read',array('id'=>1))}">企业入驻</a></li>
+   <li><a  href="{tp#:U('Ucenter/index')}">会员中心</a></li>
+   <if condition="!empty($_SESSION['user_id'])">
+   <li><a  href="{tp#:U('Index/logout')}">安全退出</a></li>
+   </if>
+  
+ </ul>
+ <a href="{tp#:U('Index/cart')}"><img src="__PUBLIC__/img/top/shopcar.jpg" width="172" height="43" border="0" style=" text-align:right"></a>

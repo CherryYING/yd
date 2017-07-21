@@ -1,0 +1,54 @@
+<extend name="RBAC:base" />
+<block name="content-title">
+<h4>店铺等级管理</h4> 
+<a href="{tp#:U('level_add')}" style="float: right;font-weight: 700;margin:5px 10px;" class="btn">新增</a>
+</block>
+<block name="content">
+          <div class="tab-content default-tab" id="tab1">
+            <div class="notification png_bg" id="dmsg" style="display:none;">
+              <a href="#" class="close"><img src="__PUBLIC__/Images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
+              <div>
+                msg.
+              </div>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                   <th>ID</th>
+                   <th>等级名称</th>
+                   <th>升级条件</th>
+                   <th>等级描述</th>
+                   <th>操作</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <volist name="list" id="v">
+                    <tr>
+                      <td>【{tp#$v.id}】</td>
+                      <td>{tp#$v.title}</td>
+                      <td>{tp#$v.condition}</td>
+                      <td>{tp#$v.descript}</td>
+                      <td>
+                        <a class="btn btn-success" href="{tp#:U('level_edit',array('id'=>$v['id']))}">修改</a>                  	
+                        <a class="btn btn-danger confirm" href="{tp#:U('level_del',array('id'=>$v['id']))}">删除</a> 
+                      </td>
+                    </tr>
+                </volist>
+              </tbody>
+
+              <tfoot>
+                <tr>
+                  <td colspan="5">
+                    <div class="bulk-actions align-left">
+                    </div>
+                    <div class="pagination">
+                      {tp#$show}
+                    </div>
+                    <div class="clear"></div>
+                  </td>
+                </tr>
+              </tfoot>              
+            </table>
+          </div> <!-- End #tab1 -->  
+</block>  

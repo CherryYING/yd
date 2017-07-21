@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta name="format-detection" content="telephone=no">
+<title>{tp#$info.name} - {tp#$webinfo.web_name}</title><meta name="title" content="{tp#$info.name}">
+<meta name="keywords" content="">
+<meta name="description" content="">
+
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/comman.css" media="all">
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/jquery_dialog.css" media="all">
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/style.css" media="all">
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/flexslider.css" media="all">	
+<script> var SITE_URL="http://www.wdkl168.com/";</script>
+<script type="text/javascript" src="__PUBLIC__/js/jquery.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/js/jquery_dialog.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/js/common.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/js/jquery.json-1.3.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/js/goods.js"></script> 
+<!--<script type="text/javascript" src="__PUBLIC__/js/time.js"></script> -->
+<script type="text/javascript" src="__PUBLIC__/js/user.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/js/jquery.flexslider-min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/js/main.js"></script> 	
+<script type="text/javascript" src="__PUBLIC__/js/jweixin-1.0.0.js"></script> 
+</head>
+<body>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/css.css" media="all">
+<div id="home">
+	<div id="header">
+		<div class="logo" style="height:28px; padding-top:10px; background:url(__PUBLIC__/images/images/xy.png) 10px 8px no-repeat"><span onclick=" history.go(-1);">&nbsp;</span></div>
+		<div class="shoptitle"><span>商品详情</span></div>
+		<div class="logoright">
+			<p style="height:46px; line-height:46px;">
+			<a href="javascript:void(0)" onclick="$('.show_zhuan').show();"><span style="background:#C90A0D">推荐返佣</span></a>
+			</p>
+		</div>
+	</div>
+</div>	
+
+<!--顶栏焦点图--> 
+<div class="flexslider" style="margin-bottom: 0px;overflow: hidden;">
+      <ul class="slides">
+	 		 
+		<li style="display: list-item;">
+        <img class="ggimg" onerror="this.src='__PUBLIC__/images/no-img.png'" src="{tp#$info.spic|get_thumb}" width="100%" height="300" alt="{tp#$info.name}">
+        </li>
+	  					
+	  </ul>
+</div>
+
+<style type="text/css">
+#main .goods_desc img{ max-width:100%;}
+</style>		
+<div id="main">
+	<div class="mainhead" style="margin:5px; margin-top:0px; border:1px solid #ededed;border-radius:5px; background:#FFF">
+        <form id="ECS_FORMBUY" name="ECS_FORMBUY" method="post" action="">
+		<div class="shopinfol" style="font-size:14px">
+		<h1>{tp#$info.name}</h1>
+		<p class="scjprice"><b>市场价：</b><del>￥{tp#$info.market_price}</del></p>
+		<p class="vippfont"><b>所需积分：</b><span class="price">{tp#$info.price} 积分</span></p>
+<!--		<p style="padding-top:3px;"><b>购买数量：</b> <span class="gjian">-</span><input class="nb" type="text" name="number" size="5" value="1" /><span class="gjia">+</span> 件 <font color="#FF0000">(<u>库存 10 件</u>)</font></p>
+-->		 
+		<div class="buyclass"></div>
+		<p style="height:32px; line-height:32px; padding-top:10px;">
+		<!--<input type="button" class="pushf" value="加入收藏" style="cursor:pointer;" onclick="return addToColl('203')">-->
+            <input type="button" id="cart" class="addcar" value="立即兑换" style="cursor:pointer;" _onclick="return addToCartJifen(203)">
+        </p>
+		</div>
+            </form>
+	</div>
+	<div _class="mainbottombg" style="border-radius:3px;padding:10px 0;background:#FFF;color:#000;margin:0 6px;text-align:center !important">
+	<span>产品详情</span>
+	</div>
+	<div style="padding:10px;" class="goods_desc">
+		{tp#$info.content|htmlspecialchars_decode|stripcslashes}
+	</div>
+</div>
+<div class="show_zhuan" style="width: 100%; height: 100%; position: fixed; top: 0px; right: 0px; z-index: 9999999; opacity: 0.9; display: none; background: url(__PUBLIC__/images/121.png) 100% 0% / 100% no-repeat rgb(0, 0, 0);" onclick="$(this).hide();"></div>	
+<script type="text/javascript">
+var uid="{tp#$user_id}"
+$("#cart").click(function(){
+	if(uid==''){
+		alert('您还没有登录');
+		return false;
+	}
+	var my_jifen="{tp#$user_info.jifen}";
+	var price="{tp#$info.price}";
+	if(parseInt(my_jifen)<parseInt(price)){
+		//alert('您的积分不足，攒够积分再来吧！');
+		$(".tip_box").text('您的积分不足，攒够积分再来吧！').show();	
+		setTimeout("close_tip()",1000);
+		return false;
+	}else{
+		location.href="{tp#:U('Index/jifen_cart',array('id'=>$info['id']))}";
+	}
+	
+});
+
+
+$('input[name="number"]').change(function(){
+	vall = $(this).val();
+	if(!(vall>0)){
+		$(this).val('1');
+	}
+});
+
+$('.spec_p a').click(function(){
+	na = $(this).attr('name');
+	vl = $(this).attr('id');
+	$('input[name="'+na+'"]').val(vl);
+	
+	$(this).parent().find('a').each(function(i){
+	   this.style.border='1px solid #cbcbcb';
+	});
+	
+	$(this).css('border','1px solid #FF0000');
+	
+	return false;
+});
+
+$('#main .gjia').click(function(){
+	var tnum = $(this).parent().find('input').val();
+	$(this).parent().find('input').val(parseInt(tnum)+1);
+});
+$('#main .gjian').click(function(){
+	var tnum = $(this).parent().find('input').val();
+	tnum = parseInt(tnum);
+	if(tnum>1){
+		$(this).parent().find('input').val(tnum-1);
+	}
+});		
+</script>
+<!--QUYU-->
+<div id="opquyu">
+	
+</div>
+<div id="opquyubox">
+	<!--商品分类导航-->
+    <include file="Public:category"/>
+   	<!--商品分类导航-->
+</div>
+
+<!--FOOTER-->
+<!--footbar-->
+<include file="Public/footbar"/>
+<!--footbar-->
+
+</body>
+</html>

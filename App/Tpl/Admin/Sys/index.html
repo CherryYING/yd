@@ -1,0 +1,39 @@
+<extend name="RBAC:base" />
+<block name="content-title">
+<h4>平台状态管理</h4>  
+</block>
+<block name="content">
+<div class="tab-content default-tab" id="tab1">
+
+<table width='100%'>
+      <thead>
+        <tr>
+           <th>系统模块</th>
+           <th>状态</th>
+           <th>备注</th>
+           <th>操作</th>
+        </tr>
+      </thead>
+
+      <tbody>
+            <tr <eq name="conf['web_status']" value='2'>style="background:#FADEDB"</eq>>
+              <td>平台状态</td>		
+              <td>
+                <eq name="conf['web_status']" value='1'><font color="green">正常运行</font></eq>
+                <eq name="conf['web_status']" value='2'><font color="red">升级维护</font></eq>
+              </td>
+              <td style="color:red">
+               关闭状态，会员端不能进行任何操作，提示"系统维护中"
+              </td>
+              <td>
+              	<eq name="conf['web_status']" value='1'>
+                <a title="暂时关闭" class='btn btn-danger' href="{tp#:U('handle',array('mod'=>'web_status'))}">立即关闭</a>
+                </eq>
+                <eq name="conf['web_status']" value='2'>
+                <a title="立即开启" class='btn' href="{tp#:U('handle',array('mod'=>'web_status'))}">立即开启</a>
+                </eq>
+              </td>
+            </tr>
+      </tbody>
+</table>
+</block>

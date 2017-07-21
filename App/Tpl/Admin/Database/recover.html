@@ -1,0 +1,89 @@
+<extend name="RBAC:base" />
+<block name="content-title">
+<h4>数据库恢复</h4>  
+</block>
+<block name="content">
+<div class="tab-content default-tab" id="tab1">
+    <!--<form method="post" action="{tp#:U('Database/do_recover')}">
+        <p>
+           恢复数据：<select name="sql_name">
+           			<volist name="list" id="item">
+                    <option value="{tp#$item.name}">{tp#$item.name}</option>
+                    </volist>
+                    </select>
+                    <input type="button" value="恢复" class="button">
+       </p>  			
+      <div class="clear"></div>
+    </form>-->
+    <table>
+      <thead>
+        <tr>
+           <th>文件名</th>
+           <th>文件大小</th>
+           <th>备份时间</th>
+           <th>操作</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <volist name="list" id="item">
+            <tr>
+              <td>{tp#$item.name}</td>
+              <td>{tp#$item.size} KB</td>
+              <td>{tp#$item.time|date='Y-m-d H:i:s',###}</td>
+              <td>
+              <a href="./Data/Databack/{tp#$item.name}" title="下载备份文件" class="btn btn-success">下载</a>
+              <a href="{tp#:U('del',array('filename'=>$item['name']))}" title="删除备份文件" class="btn btn-danger">删除</a>  
+              </td>
+            </tr>
+        </volist>
+      </tbody>
+
+      <tfoot>
+        <tr>
+          <td colspan="6">
+            <div class="pagination">
+              {tp#$show}
+            </div>
+            <div class="clear"></div>
+          </td>
+        </tr>
+      </tfoot>              
+    </table>
+</div>
+<!--kindeditor-->
+<link rel="stylesheet" href="/plugins/kindeditor/themes/default/default.css" />
+<script charset="utf-8" src="/plugins/kindeditor/kindeditor-min.js"></script>
+<script charset="utf-8" src="/plugins/kindeditor/lang/zh_CN.js"></script>
+<!--kindeditor-->
+<script>
+//单图上传
+	KindEditor.ready(function(K) {
+		var editor = K.editor({
+			allowFileManager : true
+		});
+		K('#image1').click(function() {
+			editor.loadPlugin('image', function() {
+				editor.plugin.imageDialog({
+					imageUrl : K('#url1').val(),
+					clickFn : function(url, title, width, height, border, align) {
+						K('#url1').val(url);
+						editor.hideDialog();
+					}
+				});
+			});
+		});
+		K('#image2').click(function() {
+			editor.loadPlugin('image', function() {
+				editor.plugin.imageDialog({
+					imageUrl : K('#url1').val(),
+					clickFn : function(url, title, width, height, border, align) {
+						K('#url2').val(url);
+						editor.hideDialog();
+					}
+				});
+			});
+		});
+	});
+</script>
+</block>

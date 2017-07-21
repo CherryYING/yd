@@ -1,0 +1,440 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>无标题文档</title>
+
+<link href="css/css.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
+<script type="text/javascript">
+<!--
+var timeout         = 500;
+var closetimer		= 0;
+var ddmenuitem      = 0;
+
+// open hidden layer
+function mopen(id)
+{	
+	// cancel close timer
+	mcancelclosetime();
+
+	// close old layer
+	if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+	// get new layer and show it
+	ddmenuitem = document.getElementById(id);
+	ddmenuitem.style.visibility = 'visible';
+
+}
+// close showed layer
+function mclose()
+{
+	if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+}
+
+// go close timer
+function mclosetime()
+{
+	closetimer = window.setTimeout(mclose, timeout);
+}
+
+// cancel close timer
+function mcancelclosetime()
+{
+	if(closetimer)
+	{
+		window.clearTimeout(closetimer);
+		closetimer = null;
+	}
+}
+
+// close layer when click-out
+document.onclick = mclose; 
+// -->
+</script>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript">
+
+var intDiff = parseInt(60);//倒计时总秒数量
+
+function timer(intDiff){
+	window.setInterval(function(){
+	var day=0,
+		hour=0,
+		minute=0,
+		second=0;//时间默认值		
+	if(intDiff > 0){
+		day = Math.floor(intDiff / (60 * 60 * 24));
+		hour = Math.floor(intDiff / (60 * 60)) - (day * 24);
+		minute = Math.floor(intDiff / 60) - (day * 24 * 60) - (hour * 60);
+		second = Math.floor(intDiff) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60);
+	}
+	if (minute <= 9) minute = '0' + minute;
+	if (second <= 9) second = '0' + second;
+	$('#day_show').html(day+"天");
+	$('#hour_show').html('<s id="h"></s>'+hour+'时');
+	$('#minute_show').html('<s></s>'+minute+'分');
+	$('#second_show').html('<s></s>'+second+'秒');
+	intDiff--;
+	}, 1000);
+} 
+
+$(function(){
+	timer(intDiff);
+});	
+</script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="js/showList.js" type="text/javascript"></script>
+<script type="text/javascript" src="js/script.js"></script>
+<script type="text/javascript" src="js/tab.js"></script>
+
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/jquery.1.4.2-min.js"></script>
+<script type="text/javascript" src="js/Calculation.js"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+
+	//jquery特效制作复选框全选反选取消(无插件)
+	// 全选        
+	$(".allselect").click(function () {
+		$(".gwc_tb2 input[name=newslist]").each(function () {
+			$(this).attr("checked", true);
+			// $(this).next().css({ "background-color": "#3366cc", "color": "#ffffff" });
+		});
+		GetCount();
+	});
+
+	//反选
+	$("#invert").click(function () {
+		$(".gwc_tb2 input[name=newslist]").each(function () {
+			if ($(this).attr("checked")) {
+				$(this).attr("checked", false);
+				//$(this).next().css({ "background-color": "#ffffff", "color": "#000000" });
+			} else {
+				$(this).attr("checked", true);
+				//$(this).next().css({ "background-color": "#3366cc", "color": "#000000" });
+			} 
+		});
+		GetCount();
+	});
+
+	//取消
+	$("#cancel").click(function () {
+		$(".gwc_tb2 input[name=newslist]").each(function () {
+			$(this).attr("checked", false);
+			// $(this).next().css({ "background-color": "#ffffff", "color": "#000000" });
+		});
+		GetCount();
+	});
+
+	// 所有复选(:checkbox)框点击事件
+	$(".gwc_tb2 input[name=newslist]").click(function () {
+		if ($(this).attr("checked")) {
+			//$(this).next().css({ "background-color": "#3366cc", "color": "#ffffff" });
+		} else {
+			// $(this).next().css({ "background-color": "#ffffff", "color": "#000000" });
+		}
+	});
+
+	// 输出
+	$(".gwc_tb2 input[name=newslist]").click(function () {
+		// $("#total2").html() = GetCount($(this));
+		GetCount();
+		//layer.alert(conts);
+	});
+});
+//******************
+function GetCount() {
+	var conts = 0;
+	var aa = 0;
+	$(".gwc_tb2 input[name=newslist]").each(function () {
+		if ($(this).attr("checked")) {
+			for (var i = 0; i < $(this).length; i++) {
+				conts += parseInt($(this).val());
+				aa += 1;
+			}
+		}
+	});
+	$("#shuliang").text(aa);
+	$("#zong1").html((conts).toFixed(2));
+	$("#jz1").css("display", "none");
+	$("#jz2").css("display", "block");
+}
+</script>
+<script type="text/javascript" src="js/zzsc.js"></script>
+</head>
+
+<body>
+<!--top01 最顶部-->
+<div class="top01">
+   <div class="top01-m">
+       <ul>
+            <li>您好，欢迎来到爱家商城！ <a href="">请登录</a>  <a href="regest.html">免费注册</a></li>
+            <li>
+            <ul id="sddm">
+                  <li><a href="order.html">我的订单</a></li>
+                <li>
+                   <a href="#" onmouseover="mopen('m1')" onmouseout="mclosetime()"><img src="img/top/icon01.jpg"> 我的爱家</a>
+                   <div id="m1" onmouseover="mcancelclosetime()" onmouseout="mclosetime()">
+                      <a href="order.html">已购买的</a>
+                      <a href="collecting.html">我的收藏</a>
+                     
+                    </div>
+                </li>
+                <li>
+                   <a href="#" onmouseover="mopen('m2')" onmouseout="mclosetime()"><img src="img/top/icon01.jpg"> 服务中心</a>
+                   <div id="m2" onmouseover="mcancelclosetime()" onmouseout="mclosetime()">
+                      <a href="#">帮助中心</a>
+                      <a href="#">售后管理</a><!--连接到QQ-->
+                      
+                   </div>
+                   
+                </li>
+                <li><a href="">在线客服</a></li><!--连接到QQ-->
+                <li>
+                  <a href="#" onmouseover="mopen('m3')" onmouseout="mclosetime()"><img src="img/top/icon01.jpg"> 网站导航</a>
+                  <div id="m3" onmouseover="mcancelclosetime()" onmouseout="mclosetime()">
+                   
+                       <dl>
+                           <dt>购物</dt>
+                           <dd><a href="float.html">建材城</a></dd>
+                           <dd><a href="float.html">家具城</a></dd>
+                           <dd><a href="float.html">家居城</a></dd>
+                       </dl>
+                       <br>
+
+                       <dl>
+                           <dt><a href="decorate.html">装修汇</a></dt>
+                           
+                       </dl>
+                   </div>
+                </li>
+            </ul>
+            </li>
+        </ul>
+        
+    </div>
+</div>
+<div class="top02">
+  <div class="top02-m">
+         <!--顶部广告-->
+        <div class="gg01">
+          <center><a href=""><img src="img/top/gg01.jpg"></a></center>
+        </div>
+        <!--logo  搜索框-->
+        <div class="gg01">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td width="35%"><img src="img/top/logo.jpg" align="left"></td>
+                    <td width="43%">
+                        <div class="search">
+                           <form>
+                             <div class="searchnr">
+                                 <input name="search" type="text"  class="txt"   onfocus="if(this.value == '输入关键字搜索')this.value = ''" onblur="if(this.value == '')this.value='输入关键字搜索'" maxlength="20" value="输入关键字搜索"/>
+                             </div>
+                             <div class="searchbtn"><input type="image" id="submit" src="img/top/search/searchbtn.jpg" width="77" height="38" class="btn"></div>
+                           </form>
+                        </div>
+                         <span> 热门搜索：<a href="">衣橱</a> | <a href="">装修建材</a> | <a href="">地板</a> </span> 
+                    </td>
+                    <td width="22%"><img src="img/top/icon02.jpg" style=" width:63px; height:65px;"><img src="img/top/icon03.jpg"  style=" width:63px; height:65px;"><img src="img/top/icon04.jpg"  style=" width:63px; height:65px;"></td>
+                  </tr>
+            </table>
+           
+        </div>
+  </div>
+</div>
+<div class="nav">
+   <div class="navlist">
+      <ul>
+       <li><a  href="index.html">首页</a></li>
+       <li><a  href="snap up.html">抢购</a></li>
+       <li><a  href="float.html">建材城</a></li>
+       <li><a  href="float.html">家具城</a></li>
+       <li><a  href="float.html">家居城</a></li>
+       <li><a  href="decorate.html">装修汇</a></li>
+      
+     </ul>
+     <a href="shopcart.html"><img src="img/top/shopcar.jpg" width="172" height="43" border="0" style=" text-align:right"></a>
+   </div>
+</div>
+<div class="main">
+        <div class="gg01">
+          <center><a href=""><img src="img/top/gg01.jpg"></a></center>
+        </div>
+      <div class="order-left">
+          <center><img src="img/show/images/img03.jpg"></center><!--会员头像-->
+          <dl>
+              <dt>我的交易</dt>
+                <dd><a href="shopcart.html">我的购物车</a></dd>
+              <dd><a href="order.html">我的订单</a></dd>
+              <dd><a href="collecting.html">我的收藏</a></dd>
+              <dd><a href="evaluation.html">评价管理</a></dd>
+              
+          </dl>
+      </div>
+       <div class="order-right">
+           <div class="order-right-t">评价管理</div>
+           <div class="order">
+                     <form>
+                           <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                  <td width="24%"><img src="img/collecting/c3.jpg" width="164" height="167"><!--获取产品图片--></td>
+                                  <td width="76%">
+                                        
+                                         使用感受：<br>
+                                         <textarea name="pingjia" cols="60" rows="8"></textarea><!--填写评价******当下面评价点击修改时直接获取原评价内容-->
+                                         <input name="submit" type="button" value="提交" />&nbsp;&nbsp;<input name="reset" type="button" value="重置" />
+                                  </td>
+                                </tr>
+                              </table>
+
+                     </form>
+                       
+                     <table width="100%" border="0" cellspacing="0" cellpadding="0" style="float:left; text-align:left; background:none; border:none">
+                        <tr>
+                          <td width="54%" height="34" style="text-align:center; background:#FF3F00; color:#FFF">历史评论</td>
+                          <td width="26%" style="text-align:center; background:#FF3F00; color:#FFF">商品信息</td>
+                          <td width="20%" style="text-align:center; background:#FF3F00; color:#FFF">操作</td>
+                        </tr>
+                        <tr>
+                          <td width="54%" style="border-bottom:1px solid #E2E2E2">宝贝收到了，特意用了几天才来评价的，除了快递给我发错了，其他的都非常好，功能齐全，非常方便做出来...</td>
+                          <td width="26%" style="text-align:center;border-bottom:1px solid #E2E2E2">【淘宝清仓】童装套装 童装</td>
+                          <td width="20%" style="text-align:center;border-bottom:1px solid #E2E2E2"><a href="">删除</a>&nbsp;&nbsp; <a href="">修改</a></td>
+                        </tr>
+                        <tr>
+                          <td style="border-bottom:1px solid #E2E2E2">东西差不多，说得过去今天</td>
+                          <td style="text-align:center;border-bottom:1px solid #E2E2E2">【淘宝清仓】童装套装 童装</td>
+                          <td style="text-align:center;border-bottom:1px solid #E2E2E2"><a href="">删除</a>&nbsp;&nbsp; <a href="">修改</a></td>
+                        </tr>
+                        <tr>
+                          <td style="border-bottom:1px solid #E2E2E2">下午收到?超级赞 早上提前泡了黄豆，收到就做了豆浆?自己做的豆浆就是纯正又营养 哈哈 </td>
+                          <td style="text-align:center;border-bottom:1px solid #E2E2E2">【淘宝清仓】童装套装 童装</td>
+                          <td style="text-align:center;border-bottom:1px solid #E2E2E2"><a href="">删除</a>&nbsp;&nbsp; <a href="">修改</a></td>
+                         </tr>
+                         <tr>
+                          <td width="54%" style="border-bottom:1px solid #E2E2E2">宝贝收到了，特意用了几天才来评价的，除了快递给我发错了，其他的都非常好，功能齐全，非常方便做出来...</td>
+                          <td width="26%" style="text-align:center;border-bottom:1px solid #E2E2E2">【淘宝清仓】童装套装 童装</td>
+                          <td width="20%" style="text-align:center;border-bottom:1px solid #E2E2E2"><a href="">删除</a>&nbsp;&nbsp; <a href="">修改</a></td>
+                        </tr>
+                        <tr>
+                          <td style="border-bottom:1px solid #E2E2E2">东西差不多，说得过去今天</td>
+                          <td style="text-align:center;border-bottom:1px solid #E2E2E2">【淘宝清仓】童装套装 童装</td>
+                          <td style="text-align:center;border-bottom:1px solid #E2E2E2"><a href="">删除</a>&nbsp;&nbsp; <a href="">修改</a></td>
+                        </tr>
+                        <tr>
+                          <td style="border-bottom:1px solid #E2E2E2">下午收到?超级赞 早上提前泡了黄豆，收到就做了豆浆?自己做的豆浆就是纯正又营养 哈哈 </td>
+                          <td style="text-align:center;border-bottom:1px solid #E2E2E2">【淘宝清仓】童装套装 童装</td>
+                          <td style="text-align:center;border-bottom:1px solid #E2E2E2"><a href="">删除</a>&nbsp;&nbsp; <a href="">修改</a></td>
+                         </tr>
+                         <tr>
+                          <td width="54%" style="border-bottom:1px solid #E2E2E2">宝贝收到了，特意用了几天才来评价的，除了快递给我发错了，其他的都非常好，功能齐全，非常方便做出来...</td>
+                          <td width="26%" style="text-align:center;border-bottom:1px solid #E2E2E2">【淘宝清仓】童装套装 童装</td>
+                          <td width="20%" style="text-align:center;border-bottom:1px solid #E2E2E2"><a href="">删除</a>&nbsp;&nbsp; <a href="">修改</a></td>
+                        </tr>
+                        <tr>
+                          <td style="border-bottom:1px solid #E2E2E2">东西差不多，说得过去今天</td>
+                          <td style="text-align:center;border-bottom:1px solid #E2E2E2">【淘宝清仓】童装套装 童装</td>
+                          <td style="text-align:center;border-bottom:1px solid #E2E2E2"><a href="">删除</a>&nbsp;&nbsp; <a href="">修改</a></td>
+                        </tr>
+                        <tr>
+                          <td style="border-bottom:1px solid #E2E2E2">下午收到?超级赞 早上提前泡了黄豆，收到就做了豆浆?自己做的豆浆就是纯正又营养 哈哈 </td>
+                          <td style="text-align:center;border-bottom:1px solid #E2E2E2">【淘宝清仓】童装套装 童装</td>
+                          <td style="text-align:center;border-bottom:1px solid #E2E2E2"><a href="">删除</a>&nbsp;&nbsp; <a href="">修改</a></td>
+                         </tr>
+                         <tr>
+                          <td width="54%" style="border-bottom:1px solid #E2E2E2">宝贝收到了，特意用了几天才来评价的，除了快递给我发错了，其他的都非常好，功能齐全，非常方便做出来...</td>
+                          <td width="26%" style="text-align:center;border-bottom:1px solid #E2E2E2">【淘宝清仓】童装套装 童装</td>
+                          <td width="20%" style="text-align:center;border-bottom:1px solid #E2E2E2"><a href="">删除</a>&nbsp;&nbsp; <a href="">修改</a></td>
+                        </tr>
+                        <tr>
+                          <td style="border-bottom:1px solid #E2E2E2">东西差不多，说得过去今天</td>
+                          <td style="text-align:center;border-bottom:1px solid #E2E2E2">【淘宝清仓】童装套装 童装</td>
+                          <td style="text-align:center;border-bottom:1px solid #E2E2E2"><a href="">删除</a>&nbsp;&nbsp; <a href="">修改</a></td>
+                        </tr>
+                        <tr>
+                          <td style="border-bottom:1px solid #E2E2E2">下午收到?超级赞 早上提前泡了黄豆，收到就做了豆浆?自己做的豆浆就是纯正又营养 哈哈 </td>
+                          <td style="text-align:center;border-bottom:1px solid #E2E2E2">【淘宝清仓】童装套装 童装</td>
+                          <td style="text-align:center;border-bottom:1px solid #E2E2E2"><a href="">删除</a>&nbsp;&nbsp; <a href="">修改</a></td>
+                         </tr>
+                        
+                      </table> 
+                      <div class="fenye">
+                           <a href="">上一页</a> <a href="">1</a><a href=""> 2 </a><a href="">3</a>...<a href="">下一页</a>
+                     </div>  
+           </div>
+           
+       </div> 
+      
+      </div>
+</div>
+ </div>
+
+ <!--bottom-->
+          <div class="bottom">
+              <div class="bottom-m">
+                   <div class="bottom-m1">
+                                <dl>
+                               <dt>新手上路</dt>
+                                <dd><a href="">注册新用户</a></dd>
+                               <dd><a href="">了解新产品工艺</a></dd>
+                                <dd><a href="">服务流程</a></dd>
+                                <dd><a href="">常见问题解答</a></dd>
+                                </dl>
+                          
+                               <dl>
+                               <dt>量房设计</dt>
+                                <dd><a href="">免费上门量尺寸</a></dd>
+                                <dd><a href="">电话预约</a></dd>
+                                <dd><a href="">在线咨询服务</a></dd>
+                                <dd><a href="">网络申请</a></dd>
+                                </dl>
+                           
+                                <dl>
+                                <dt>配送服务</dt>
+                                <dd><a href="">配送范围及运费</a></dd>
+                                <dd><a href="">商品验收及签收</a></dd>
+                               </dl> 
+                           
+                              <dl>
+                               <dt>售后保障</dt>
+                                <dd><a href="">咨询及投诉</a></dd>
+                                <dd><a href="">维修及安装</a></dd>
+                                <dd><a href="">购买延保服务</a></dd>
+                                <dd><a href="">退货申请</a></dd>
+                                 <dd><a href="">退货政策</a></dd>
+                                 </dl>
+                          
+                            <dl>
+                                <dt>商家服务</dt>
+                                <dd><a href="">商家帮助</a></dd>
+                                <dd><a href="">商家入驻</a></dd>
+                                <dd><a href="">新手指导</a></dd>
+                                <dd><a href="">培训中心</a></dd>
+                                 <dd><a href="">商家公告</a></dd>
+                          </dl>
+                        
+                         
+                       <img src="img/bottom/weixin.jpg" style="margin-left:20px">
+                       </div>
+                       <div class="bottom-m2">
+                           <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                              <tr>
+                                <td width="81%">
+                                    <a href="">关于我们</a> | <a href="">商业合作</a> | <a href="">联系我们</a> | <a href="">友情链接</a><br>
+                                    Copyright?2012 西安爱家商城 版权所有
+                                </td>
+                                <td width="19%">
+                                    联系电话：029-898889996<br>
+                                 地址：西安市高新区高新四路
+                                </td>
+                              </tr>
+                            </table>
+
+                       </div>
+              </div>
+          </div>
+ <!--bottom-->
+</body>
+</html>

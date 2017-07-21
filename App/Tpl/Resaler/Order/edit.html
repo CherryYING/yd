@@ -1,0 +1,171 @@
+<extend name="Index:base" />
+<block name="content-title">
+<h4>订单详情</h4>
+ <a href="{tp#:U('index')}" style="margin:5px 10px;" class="btn align-right">返回列表</a>
+</block>
+<block name="content">
+<div class="tab-content default-tab" id="tab1">
+    <form id="form" method="post" action="{tp#:U('edit',array('id'=>$data['id']))}">
+        <fieldset>
+             <legend>订单信息</legend>
+        <p>
+            订单ID：【{tp#$data.id}】
+        </p>
+        <p>
+            下单用户：【{tp#$data['order_user']['nickname']}】&nbsp;
+            <a title="查看下单用户" target="_blank" href="{tp#:U('Wxusers/uedit',array('id'=>$data['order_user']['id']))}">查看</a>
+        </p>
+        <p>
+            订单编号：【{tp#$data.order_sn}】
+        </p>
+        <p>
+            订单状态：
+            <eq name="data.order_status" value="3">
+            <font color="green">已签收【交易完成】</font>
+            <else/>
+                <select name="order_status">
+                <eq name="data.order_status" value="1"><option value="2" <eq name="data.order_status" value="2">selected</eq> >已发货</option></eq>
+                <eq name="data.order_status" value="2"><option value="3" <eq name="data.order_status" value="3">selected</eq> >已签收</option></eq>
+                </select>
+            </eq>
+            
+        </p>
+        <p>
+            商品总价：【<font color="red"><b>&yen; </b>{tp#$data.total_price}</font>】
+        </p>
+        <neq name="data.discount" value='0'>
+        <p>优惠折扣：【<b>{tp#$data.discount}折</b>】</p> 	
+        </neq>
+        <neq name="data.use_jifen" value='0'>
+        <p>使用积分：【<b>{tp#$data.use_jifen}</b> 积分】</p> 	
+        </neq>
+        <neq name="data.coupon_amount" value='0'>
+        <p>使用代金券：【<b>{tp#$data.coupon_amount}</b>】</p> 	
+        </neq>
+        <p>
+            订单金额：【<font color="red"><b>&yen; </b>{tp#$data.total_fee}</font>】
+        </p>
+        
+        <p>
+            下单时间：【{tp#$data.order_time|date='Y-m-d H:i:s',###}】
+        </p>
+        <p>
+            支付状态：【<switch name="data.pay_status">
+            	<case value='0'><font style="color:red">未支付</font></case>
+                <case value='1'><font style="color:green;font-weight:700">已支付</font></case>
+                <case value='2'><font style="color:red">申请退款</font></case>
+                <case value='3'><font style="color:green;font-weight:700">退款成功</font></case>
+            </switch>】
+        </p>
+         <p>
+            支付方式：【<b style="color:green">
+            <switch name="data.pay_way">
+            <case value='1'>微信支付</case>
+            <case value='2'>支付宝</case>
+            <case value='3'>银联支付</case>
+            </switch></b>
+            】
+        </p>
+        <eq name="data.pay_status" value="1">
+            <p>
+                支付时间：【<neq name="data.pay_time" value="0">{tp#$data.pay_time|date='Y-m-d H:i:s',###}</neq>】
+            </p>
+        </eq>
+        <p>
+          <neq name="data.order_status" value="3">
+          <input type="submit" value="确认<eq name='data.order_status' value='1'>已发货</eq><eq name='data.order_status' value='2'>已签收</eq>" class="button">
+          </neq>
+        </p>
+            <legend>商品信息</legend>
+        <volist name="order_goods" id="item">
+            <hr/>
+            <p>
+                商品名称：【{tp#$item.goods_name}】| 单价：【{tp#$item.goods_price}】| 数量：【{tp#$item.goods_nums}】
+                <a class="align-right" href="{tp#:U('Goods/edit',array('id'=>$item['goods_id']))}" target="_blank" title="查看商品">查看</a>
+                <span class='clear'></span>
+            </p>
+        </volist>
+            <hr/>
+            <legend>收货人信息</legend>
+        <p>
+            姓名：【{tp#$data.consignee}】
+        </p>
+        <p>
+            手机：【{tp#$data.mobile}】
+        </p>
+        <!--<p>
+            座机：【{tp#$data.tel}】
+        </p>-->
+        <p>
+            地址：【{tp#$data.province}-{tp#$data.city}-{tp#$data.district}-{tp#$data.address}】
+        </p>
+<!--         <legend>店铺信息</legend>
+        <p>
+            店铺名称：【{tp#$data.shop_wechatid}】
+        </p>
+        <p>
+            会员名：【{tp#$data.shop_wechatid}】
+        </p>-->
+      <div class="clear"></div>
+      </fieldset>
+    </form>
+</div>
+<!--kindeditor-->
+<link rel="stylesheet" href="/plugins/kindeditor/themes/default/default.css" />
+<script charset="utf-8" src="/plugins/kindeditor/kindeditor-min.js"></script>
+<script charset="utf-8" src="/plugins/kindeditor/lang/zh_CN.js"></script>
+<!--kindeditor-->
+<script>
+	KindEditor.ready(function(K) {
+		//初始化编辑器
+		var editor1 = K.create('textarea[name="content"]', {
+			cssPath : '/plugins/kindeditor/plugins/code/prettify.css',
+			uploadJson : '/plugins/kindeditor/php/upload_json.php',
+			fileManagerJson : '/plugins/kindeditor/php/file_manager_json.php',
+			allowFileManager : true,
+			afterCreate : function() {}
+		});
+		prettyPrint();
+	});
+	/*$(function() {
+		var editor = KindEditor.create('textarea[name="content"]');
+	});*/
+	//单图上传
+	KindEditor.ready(function(K) {
+		var editor = K.editor({
+			allowFileManager : true
+		});
+		K('#image1').click(function() {
+			editor.loadPlugin('image', function() {
+				editor.plugin.imageDialog({
+					imageUrl : K('#url1').val(),
+					clickFn : function(url, title, width, height, border, align) {
+						K('#url1').val(url);
+						editor.hideDialog();
+					}
+				});
+			});
+		});
+	});
+	//批量上传图片
+	KindEditor.ready(function(K) {
+		var editor = K.editor({
+			allowFileManager : true
+		});
+		K('#J_selectImage').click(function() {
+			editor.loadPlugin('multiimage', function() {
+				editor.plugin.multiImageDialog({
+					clickFn : function(urlList) {
+						var div = K('#J_imageView');
+						div.html('');
+						K.each(urlList, function(i, data) {
+							div.append('<img src="' + data.url + '">');
+						});
+						editor.hideDialog();
+					}
+				});
+			});
+		});
+	});
+</script>
+</block>

@@ -1,0 +1,73 @@
+<extend name="RBAC:base" />
+<block name="content-title">
+<h4>分销商升级规则</h4>  
+</block>
+<block name="content">
+<div class="tab-content default-tab" id="tab1">
+<form method="post" action="{tp#:U('resaler')}">
+    <p>
+       单笔订单金额：<input required type="text" name="resaler_single_order"  class="text-input small-input number" value="{tp#$info.resaler_single_order}" placeholder="单笔订单金额" required> 元
+        <font color='red'>单笔订单金额超过该金额，订单完成后，自定升级为分销商</font>
+    </p>
+    <p>
+       累计订单金额：<input required type="text" name="resaler_total_order"  class="text-input small-input number" value="{tp#$info.resaler_total_order}" placeholder="累计订单金额" required> 元
+       <font color='red'>累计订单金额超过该金额，订单完成后，自定升级为分销商</font>
+    </p>                
+   <p>
+      <input type="submit" value="保存设置" class="button">
+    </p>
+  <div class="clear"></div>
+</form>
+</div>
+<!--kindeditor-->
+<link rel="stylesheet" href="/plugins/kindeditor/themes/default/default.css" />
+<script charset="utf-8" src="/plugins/kindeditor/kindeditor-min.js"></script>
+<script charset="utf-8" src="/plugins/kindeditor/lang/zh_CN.js"></script>
+<!--kindeditor-->
+<script>
+$(function(){
+	$("form").submit(function(){
+		var parent_1=$("input[name='parent_1']").val();
+		var parent_2=$("input[name='parent_2']").val();
+		var parent_3=$("input[name='parent_3']").val();
+		if(parseFloat(parent_1)>100||parseFloat(parent_2)>100||parseFloat(parent_3)>100){
+			artDialog({content:'分佣百分比不能大于100%！', style:'alert', lock:false}, function(){});
+			return false;
+		}
+		
+		if(parseFloat(parent_1)+parseFloat(parent_2)+parseFloat(parent_3)>100){
+			artDialog({content:'三级分佣百分比之和不能大于100%！', style:'alert', lock:false}, function(){});
+			return false;
+		}
+	});
+})
+//单图上传
+	KindEditor.ready(function(K) {
+		var editor = K.editor({
+			allowFileManager : true
+		});
+		K('#image1').click(function() {
+			editor.loadPlugin('image', function() {
+				editor.plugin.imageDialog({
+					imageUrl : K('#url1').val(),
+					clickFn : function(url, title, width, height, border, align) {
+						K('#url1').val(url);
+						editor.hideDialog();
+					}
+				});
+			});
+		});
+		K('#image2').click(function() {
+			editor.loadPlugin('image', function() {
+				editor.plugin.imageDialog({
+					imageUrl : K('#url1').val(),
+					clickFn : function(url, title, width, height, border, align) {
+						K('#url2').val(url);
+						editor.hideDialog();
+					}
+				});
+			});
+		});
+	});
+</script>
+</block>

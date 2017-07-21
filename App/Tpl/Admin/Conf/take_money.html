@@ -1,0 +1,75 @@
+<extend name="RBAC:base" />
+<block name="content-title">
+<h4>提现手续费</h4>  
+</block>
+<block name="content">
+<div class="tab-content default-tab" id="tab1">
+
+<div class="well">B网提现手续费：货款提现每笔加收1元手续费；A网提现免手续费</div>
+
+<form method="post" action="{tp#:U('take_money')}">
+	<p>
+       会员提现：<input type="text" name="tx_fee_1"  class="text-input small-input number" value="{tp#$info['tx_fee_1']}" placeholder="会员提现手续费" required> %
+    </p> 
+    <p>
+       货款提现：<input type="text" name="tx_fee_2"  class="text-input small-input number" value="{tp#$info['tx_fee_2']}" placeholder="货款提现" required> %
+    </p>            
+   	<p>
+      <input type="submit" value="保存设置" class="button">
+    </p>
+  <div class="clear"></div>
+</form>
+
+</div>
+<!--kindeditor-->
+<link rel="stylesheet" href="/plugins/kindeditor/themes/default/default.css" />
+<script charset="utf-8" src="/plugins/kindeditor/kindeditor-min.js"></script>
+<script charset="utf-8" src="/plugins/kindeditor/lang/zh_CN.js"></script>
+<!--kindeditor-->
+<script>
+$(function(){
+	$("form").submit(function(){
+		var parent_1=$("input[name='parent_1']").val();
+		var parent_2=$("input[name='parent_2']").val();
+		var parent_3=$("input[name='parent_3']").val();
+		if(parseFloat(parent_1)>100||parseFloat(parent_2)>100||parseFloat(parent_3)>100){
+			artDialog({content:'分佣百分比不能大于100%！', style:'alert', lock:false}, function(){});
+			return false;
+		}
+		
+		if(parseFloat(parent_1)+parseFloat(parent_2)+parseFloat(parent_3)>100){
+			artDialog({content:'三级分佣百分比之和不能大于100%！', style:'alert', lock:false}, function(){});
+			return false;
+		}
+	});
+})
+//单图上传
+	KindEditor.ready(function(K) {
+		var editor = K.editor({
+			allowFileManager : true
+		});
+		K('#image1').click(function() {
+			editor.loadPlugin('image', function() {
+				editor.plugin.imageDialog({
+					imageUrl : K('#url1').val(),
+					clickFn : function(url, title, width, height, border, align) {
+						K('#url1').val(url);
+						editor.hideDialog();
+					}
+				});
+			});
+		});
+		K('#image2').click(function() {
+			editor.loadPlugin('image', function() {
+				editor.plugin.imageDialog({
+					imageUrl : K('#url1').val(),
+					clickFn : function(url, title, width, height, border, align) {
+						K('#url2').val(url);
+						editor.hideDialog();
+					}
+				});
+			});
+		});
+	});
+</script>
+</block>

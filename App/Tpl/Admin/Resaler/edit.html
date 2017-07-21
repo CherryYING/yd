@@ -1,0 +1,86 @@
+<extend name="RBAC:base" />
+<block name="content-title">
+<h4>分销商信息管理</h4>  
+<a style="margin:5px 10px;" href="{tp#:U('index')}" class="btn align-right">返回</a> 
+</block>
+<block name="content">
+<div class="tab-content default-tab" id="tab1">
+            <div class="notification png_bg" id="dmsg" style="display:none;background:#E9E9E9;border:0px;padding:3px;">
+              <a href="#" class="close">
+              <img src="__PUBLIC__/Images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
+              <p>&nbsp;&nbsp;编辑成功!</p>
+            </div>
+            <form method="post" action="{tp#:U('edit',array('id'=>$info['id']))}">
+              <fieldset>
+               
+              	<if condition="$info['wechatid']">
+                <p><a class="button">微信资料</a></p>
+                <div class='block'>
+              	<p>
+              		微信Openid：【{tp#$info.wechatid}】
+              	</p>
+                <p>
+              		性　　别：【<eq name="info.sex" value='1'>男<else/><eq name="info.sex" value='2'>女<else/>未知</eq></eq>】
+              	</p>
+                <p>
+              		微信昵称：【{tp#$info.nickname}】
+              	</p>
+               
+                </div>
+                </if>
+                <p><a class='button'>用户资料</a></p>
+              	<div class='block'>
+                <p>
+              		用户头像：<neq name="info.headimgurl" value="">
+                    <img src="{tp#$info.headimgurl}" class='thumb'></neq>
+              	</p>
+                <p>
+                	账户名　：【{tp#$info.username}】
+                </p>
+                <!-- <p>
+              		会员级别：<select name="user_level">
+                    			<volist name="user_level" id="item">
+                    			<option value="{tp#$item.id}" <eq name="info.user_level" value="$item.id">selected</eq> >{tp#$item.title}</option>
+                            	</volist>
+                            </select>
+              	</p>-->
+                 <p>
+              		所属角色：<select name="role_id">
+                    			<option value="1" <eq name="info.role_id" value='1'>selected</eq> >普通会员</option>
+                                <option value="2" <eq name='info.role_id' value='2'>selected</eq> >微店店主</option>
+                                <option value="3" <eq name='info.role_id' value='3'>selected</eq> >分销商</option>
+                            </select>
+              	</p>
+                <p>
+              		用户姓名：<input name="name" value="{tp#$info.name}" class="text-input small-input"/>
+              	</p>
+              	<p>
+              		用户电话：<input name="mobile" value="{tp#$info.mobile}" class="text-input small-input"/>
+              	</p>   
+                <p>
+              		银行卡号：【{tp#$info.bank_card}】
+              	</p>
+                <p>
+              		开户银行：【{tp#$info.bank_name}】
+              	</p>  
+                <p>
+              		资金账户：【&yen; {tp#$info['money_account']+$info['money_dongjie']}】
+              	</p>
+                <p>
+              		积分账户：【{tp#$info['jifen']+$info['jifen_dongjie']}】 (积分)
+              	</p>      	         	
+                <p>
+                    用户备注：<textarea class="textarea small-input v-middle" name="remark" >{tp#$info.remark}</textarea> 
+                </p> 
+                </div>              
+                <p>
+                  <input type="submit" value="  提 交  " class="button">
+                </p>
+              </fieldset>
+              <div class="clear"></div>
+            </form>
+</div>
+<style>
+.block{border:1px dashed #ccc;padding:10px;border-radius:3px;-box-shadow:1px 1px 1px 1px #CCC;}
+</style>
+</block>

@@ -1,0 +1,285 @@
+<extend name="RBAC:base" />
+<block name="content-title">
+<h4>售后申请</h4>
+ <a href="{tp#:U('refund_list')}" style="margin:5px 10px;" class="btn align-right">返回列表</a>
+</block>
+<block name="content">
+<div class="tab-content default-tab" id="tab1">
+	<div class="well" style="color:red;font-weight:700">
+    平台要督促代理店铺及时处理用户售后申请；代理店铺做出相关处理后，平台才能进行处理（退款需要登录
+    <a target="_blank" href="https://pay.weixin.qq.com">微信支付商户平台</a>
+    进行退款；退款成功后点击平台退款按钮--执行佣金撤回，货款撤回等操作）；
+    </div>
+    
+    <form id="form" method="post" action="{tp#:U('refund_handle',array('id'=>I('get.id')))}">
+        <table class="block">
+            <tr>
+            <td>店主处理结果</td><td>处理状态</td>
+            <td>申请类型</td><td>申请理由</td>
+            <td>申请时间</td><td>平台处理结果</td>
+            </tr>
+            <tr>
+                <td>
+                <b><switch name='info.shop_handle_status'>
+                    <case value="0"><font color='red'>未处理</font></case>
+                    <case value="1"><font color='green'>已处理</font></case>
+                </switch></b>
+                </td>
+                <td>
+                <b><switch name='info.status'>
+                    <case value="0"> 等待处理</case>
+                    <case value="1">退款成功</case>
+                    <case value="2">退款失败</case>
+                </switch></b>
+                </td>
+                
+                <td>
+                <b><switch name='info.type'>
+                <case value="1">退款</case>
+                <case value="2">换货</case>
+                <case value="3">其他</case>
+                </switch></b>
+                </td>
+                <td width="120">{tp#$info.remark}</td>
+                <td>{tp#$info.posttime|date='Y-m-d H:i:s',###}</td>
+                <td>
+                 <if condition="$info['type'] eq 1">
+                  <switch name="info.status" >
+                      <case value='0'><font color='red'>等待处理</font></case>
+                      <case value='1'><font color='green'>处理成功</font></case>
+                      <case value='2'>处理失败</case>
+                  </switch>
+                  </if>
+                </td>
+            </tr>
+        </table>
+        <div class="form-actions">
+        
+        <if condition="$info['status'] eq 0">
+        
+        	<if condition="$info['type'] eq 1">
+        		<a class="button" id="btn-refund">确认退款</a>
+            <else/>
+            	<a class="button" id="btn-sub">确认处理</a>
+            </if>
+        
+        </if>
+        
+        </div>
+        
+        <p><a class="btn">收货人信息</a></p>    
+        <table class="block">    
+        <tr>
+        	<td>收货人姓名</td>
+            <td>联系电话</td>
+            <td>收货地址</td>
+        </tr>
+        <tr>
+        <td>
+        	{tp#$data.consignee}
+        </td>
+
+        <td>
+        	{tp#$data.mobile}
+        </td>
+        <td>
+        	【{tp#$data.province}-{tp#$data.city}-{tp#$data.district}-{tp#$data.address}】
+        </td>
+        </tr>
+        </table>
+        
+        
+        <p><a class="btn">店铺信息</a></p>    
+        <table class="block">    
+        <tr>
+        	<td>店铺ID</td>
+            <td>店铺名称</td>
+            <td>联系电话</td>
+            <td>操作</td>
+        </tr>
+        <tr>
+        <td>
+        	{tp#$shop['id']}
+        </td>
+
+        <td>
+        	{tp#$shop['shop_name']|default='---'}
+        </td>
+        <td>
+        	{tp#$shop['shop_tel']|default='---'}
+        </td>
+        <td><a href="{tp#:U('Agent/shop_edit',array('id'=>$shop['id']))}" target="_blank">查看</a></td>
+        </tr>
+        </table>
+        
+        
+        <p><a class="btn">商品信息</a></p>     
+        <table class="block">
+        <thead><tr><td>商品图片</td><td>商品名称</td><td>商品规格</td><td>单价</td><td>数量</td><td>操作</td></tr></thead>
+        <volist name="order_goods" id="item">
+        	<tr>
+            	<td><img src="{tp#$item.goods_spic}" class="thumb" onerror="this.src='__PUBLIC__/Images/no-img.png'"/></td>
+                <td>{tp#$item.goods_name}</td>
+                <td>{tp#$item.goods_norm|default='---'}</td>
+                <td>{tp#$item.goods_price} 元</td>
+                <td>{tp#$item.goods_nums}</td>
+                <td><a  href="{tp#:U('Goods/edit',array('id'=>$item['goods_id']))}" target="_blank" title="查看商品">查看</a>
+                </td>
+            </tr>
+        </volist>
+        </table>
+        
+        <p><a class="btn">订单信息</a></p>     
+      <table class="block">
+        <tr>
+            <td>订单ID</td>
+            <td>订单编号</td>
+            <td>订单状态</td>
+            <td>商品总价</td>
+            <td>订单金额</td>
+            <td>支付状态</td>
+            <td>下单时间</td>
+        </tr>
+       	
+        <tr>
+            <td>{tp#$data['id']}</td>
+            <td>
+            <a href="{tp#:U('Order/edit',array('id'=>$data['id']))}" target="_blank">
+            {tp#$data['out_trade_no']}
+            </a>
+            </td>
+            <td>
+            <switch name="data.order_status">
+            <case value="1"><font color='red'>未发货</font></case>
+            <case value="2"><font color="green">已发货</font></case>
+            <case value="3"><font color='green'>已签收</font></case>
+            </switch>
+            </td>
+            <td>{tp#$data['total_price']} 元</td>
+            <td>{tp#$data['total_fee']} 元</td>
+           
+            <td>
+            <switch name="data.pay_status">
+            <case value='0'>未支付</case>
+            <case value='1'>已支付</case>
+            </switch>
+            </td>
+             <td>
+            {tp#$data['order_time']|date='y/m/d H:i',###}
+            </td>
+        </tr>
+       
+        </table>
+
+       <p><a class="btn">下单人信息</a></p>    
+        <table class="block">    
+        <tr>
+        	<td>下单人</td>
+            <td>角色</td>
+            <td>操作</td>
+        </tr>
+        <tr>
+        <td>
+        	<img src="{tp#$user['headimgurl']}" class="thumb" onerror="this.src='__PUBLIC__/Images/no-pic.png'">
+            [{tp#$user['id']}]{tp#$user.nickname|default='暂无'}
+        </td>
+
+        <td>
+        	<switch name="user.role_id">
+            <case value="1">普通会员</case>
+            <case value="2">市级代理</case>
+            <case value="3">省级代理</case>
+            <case value="4">全国代理</case>
+            </switch>
+        </td>
+        <td>
+        	<a target="_blank" href="{tp#:U('Wxusers/edit',array('id'=>$user['id']))}" class="btn">查看</a>
+        </td>
+        </tr>
+        </table>
+        
+    </form>
+</div>
+<style>
+.block{border:1px dashed #ccc;padding:10px;border-radius:3px;-box-shadow:1px 1px 1px 1px #CCC;}
+</style>
+<!--kindeditor-->
+<link rel="stylesheet" href="/plugins/kindeditor/themes/default/default.css" />
+<script charset="utf-8" src="/plugins/kindeditor/kindeditor-min.js"></script>
+<script charset="utf-8" src="/plugins/kindeditor/lang/zh_CN.js"></script>
+<!--kindeditor-->
+<script>
+$(function(){
+	$("#btn-refund").click(function(){
+		var post_data={};
+		post_data.refund_id="{tp#$Think.get.id}";
+		if(confirm('确认退款?该操作会执行佣金撤回、货款撤回等操作')){
+			$.post("{tp#:U('Ajax/goods_refund')}",post_data,function(json){
+				alert(json.msg);
+				location.reload();
+			},'json');
+		}
+	});
+	
+	$("#btn-sub").click(function(){
+		var post_data={};
+		post_data.refund_id="{tp#$Think.get.id}";
+		$.post("{tp#:U('Ajax/goods_refund')}",post_data,function(json){
+			alert(json.msg);
+			location.reload();
+		},'json');
+	});
+});
+
+	KindEditor.ready(function(K) {
+		//初始化编辑器
+		var editor1 = K.create('textarea[name="content"]', {
+			cssPath : '/plugins/kindeditor/plugins/code/prettify.css',
+			uploadJson : '/plugins/kindeditor/php/upload_json.php',
+			fileManagerJson : '/plugins/kindeditor/php/file_manager_json.php',
+			allowFileManager : true,
+			afterCreate : function() {}
+		});
+	});
+	/*$(function() {
+		var editor = KindEditor.create('textarea[name="content"]');
+	});*/
+	//单图上传
+	KindEditor.ready(function(K) {
+		var editor = K.editor({
+			allowFileManager : true
+		});
+		K('#image1').click(function() {
+			editor.loadPlugin('image', function() {
+				editor.plugin.imageDialog({
+					imageUrl : K('#url1').val(),
+					clickFn : function(url, title, width, height, border, align) {
+						K('#url1').val(url);
+						editor.hideDialog();
+					}
+				});
+			});
+		});
+	});
+	//批量上传图片
+	KindEditor.ready(function(K) {
+		var editor = K.editor({
+			allowFileManager : true
+		});
+		K('#J_selectImage').click(function() {
+			editor.loadPlugin('multiimage', function() {
+				editor.plugin.multiImageDialog({
+					clickFn : function(urlList) {
+						var div = K('#J_imageView');
+						div.html('');
+						K.each(urlList, function(i, data) {
+							div.append('<img src="' + data.url + '">');
+						});
+						editor.hideDialog();
+					}
+				});
+			});
+		});
+	});
+</script>
+</block>

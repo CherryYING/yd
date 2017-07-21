@@ -1,0 +1,112 @@
+<style>
+.main{min-height:300px !important;}
+</style>
+<a name="top"></a>
+<div class="top01">
+   <div class="top01-m">
+       <ul>
+       		<if condition="empty($user_info)">
+            <li>您好，欢迎来到
+            {tp#$webinfo['web_name']}！ 
+            <a href="{tp#:U('Index/login')}">请登录</a>  <a href="{tp#:U('Index/reg')}">免费注册</a></li>
+            <else/>
+           	<li>您好
+            <a href="{tp#:U('Ucenter/index')}">
+            {tp#$user_info['nickname']}
+            </a>
+            ，欢迎来到{tp#$webinfo['web_name']}！</li>
+            </if>
+            
+            <li>
+            <ul id="sddm">
+                <li><a href="{tp#:U('Ucenter/order_list')}">我的订单</a></li>
+				<li><a href="{tp#:U('Ucenter/collect')}">我的收藏</a></li>
+               <!-- <li>
+                   <a href="#" onMouseOver="mopen('m1')" onMouseOut="mclosetime()"><img src="__PUBLIC__/img/top/icon01.jpg"> 我的收藏</a>
+                   <div id="m1" onMouseOver="mcancelclosetime()" onMouseOut="mclosetime()">
+                      <a href="{tp#:U('Ucenter/collect_list')}">我的收藏</a>
+                     
+                    </div>
+                </li>-->
+                <li>
+                   <a href="#" onMouseOver="mopen('m2')" onMouseOut="mclosetime()"><img src="__PUBLIC__/img/top/icon01.jpg"> 服务中心</a>
+                   <div id="m2" onMouseOver="mcancelclosetime()" onMouseOut="mclosetime()">
+                      <a href="{tp#:U('Cms/read',array('id'=>6))}">帮助中心</a>
+                      <a href="{tp#:U('Cms/read',array('id'=>9))}">售后服务</a>
+                      
+                   </div>
+                   
+                </li>
+                <li style="width:auto"><a href="tel:{tp#$webinfo['phone']}">客服热线：{tp#$webinfo['phone']}</a></li><!--连接到QQ-->
+                <!--<li>
+                  <a href="#" onMouseOver="mopen('m3')" onMouseOut="mclosetime()"><img src="__PUBLIC__/img/top/icon01.jpg"> 网站导航</a>
+                  <div id="m3" onMouseOver="mcancelclosetime()" onMouseOut="mclosetime()">
+                   
+                       <dl>
+                           <dt>购物</dt>
+                           <dd><a href="float.html">建材城</a></dd>
+                           <dd><a href="float.html">家具城</a></dd>
+                           <dd><a href="float.html">家居城</a></dd>
+                       </dl>
+                       <br>
+
+                       <dl>
+                           <dt><a href="decorate.html">装修汇</a></dt>
+                           
+                       </dl>
+                   </div>
+                </li>-->
+            </ul>
+            </li>
+        </ul>
+        
+    </div>
+</div>
+<div class="top02">
+  <div class="top02-m">
+         <!--顶部广告-->
+        <div class="gg01">
+          <center><a href=""><img src="__PUBLIC__/img/top/gg01.jpg"></a></center>
+        </div>
+        <!--logo  搜索框-->
+        <div class="gg01">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td width="35%">
+					<a href="{tp#:U('Index/Index/index')}">
+					<img src="__PUBLIC__/img/top/logo.jpg" align="left"></a></td>
+                    <td width="43%">
+                        <div class="search">
+                            <div class="searchnr">
+                                 <input value="{tp#:I('get.keyword')}" id="keywrod" type="text"  class="txt"  maxlength="20" placeholder="输入产品关键字"/>
+                             </div>
+                             <div class="searchbtn"><input type="image" id="submit" src="__PUBLIC__/img/top/search/searchbtn.jpg" width="80" height="38"></div>
+                        </div>
+                        <!-- <span> 热门搜索：<a href="">衣橱</a> | <a href="">装修建材</a> | <a href="">地板</a> </span> -->
+                    </td>
+                    <td width="22%"><img src="__PUBLIC__/img/top/icon02.jpg" style=" width:63px; height:65px;"><img src="__PUBLIC__/img/top/icon03.jpg"  style=" width:63px; height:65px;"><img src="__PUBLIC__/img/top/icon04.jpg"  style=" width:63px; height:65px;"></td>
+                  </tr>
+            </table>
+           
+        </div>
+  </div>
+</div>
+<div class="nav">
+   <div class="navlist">
+      <include file="Public:nav"/>
+     
+   </div>
+</div>
+<script src="__PUBLIC__/layer/layer.js"></script>
+<script>
+$(function(){
+	$(".searchbtn").click(function(){
+		var keyword=$.trim($("#keywrod").val());
+		if(keyword==''){
+			layer.alert('请输入产品名称');
+		}else{
+			location.href="{tp#:U('Index/product_list')}&keyword="+keyword;	
+		}
+	});	
+});
+</script>

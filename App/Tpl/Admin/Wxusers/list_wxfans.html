@@ -1,0 +1,48 @@
+<extend name="RBAC:base" />
+<block name="content-title">
+<h4>拉取粉丝列表</h4> 
+</block>
+<block name="content">
+  <div class="tab-content default-tab" id="tab1">
+   <div class="notification success png_bg" id="dmsg">
+        <a href="#" class="close">
+        <img src="__PUBLIC__/Images/icons/cross_grey_small.png" alt="close" /></a>
+        <div>
+        	<font style="font-weight:700">一次最多拉取10000个关注者的OpenID，可以通过修改next_openid[第一个拉取的OPENID]，分多次拉取</font>
+        </div>
+    </div>
+    <form method="post" action="{tp#:U('list_wxfans')}">
+    <table>
+      	<tr>
+            <th><b>粉丝总数</b></th>
+            <td>【{tp#$list.total}】人</td>
+        </tr>
+        <tr>
+            <th><b>本次拉取人数</b></th>
+            <td>【{tp#$list.count}】人</td>
+        </tr>
+        <tr>
+            <th>
+            <b>next_openid</b>
+            </th>
+            <td>
+            <input id="next_openid" name="next_openid" type="text" value="{tp#$list.next_openid}" class="text-input large-input"/>
+            </td>
+        </tr>         
+    </table>
+    <p>
+   	<if condition="$list['total'] gt $list['count']">
+    <input type="submit"  class="button"  value="继续拉取"/>
+    <else/>
+    <b>就这么多粉丝了！</b>
+    </if>
+    </p>
+    </form>
+    <p>
+    <p><b>本次拉取结果：</b></p>
+    <div style="width:40%;height:100px;overflow:auto;border:1px solid #CCC;border-radius:3px;padding:0 10px;line-height:22px;">
+    	<volist name="list.data.openid" id="item">{tp#$item}<br/></volist>
+    </div>
+    </p>
+  </div> <!-- End #tab1 -->  
+</block>  

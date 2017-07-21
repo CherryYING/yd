@@ -1,0 +1,1634 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="format-detection" content="telephone=no">
+<title>猜你喜欢-{tp#$shop['shop_name']}-{tp#$webinfo['web_name']}</title>
+<meta name="keywords" content="{tp#$webinfo.web_keyword}">
+<meta name="description" content="{tp#$webinfo.web_descrip}">
+<meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-touch-fullscreen" content="yes">
+<!-- <meta name="full-screen" content="yes"> -->
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="address=no">
+<link rel="icon" href="__PUBLIC__/images/logo.jpg" type="image/x-icon">
+<link rel="apple-touch-icon-precomposed" href="__PUBLIC__/images/logo.jpg">
+<link rel="apple-touch-startup-image" href="__PUBLIC__/images/apple-touch-startup.png" media="(device-height:568px)">
+<link rel="stylesheet" href="__PUBLIC__/css/style.css">
+<link rel="stylesheet" href="__PUBLIC__/css/icomoon.css">
+<script type="text/javascript" src="__PUBLIC__/js/jq.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/jquery.urlparam.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/alert.js"></script><style type="text/css">
+
+#windowcenter {
+	width:290px;
+	position:fixed;
+	display:none;
+	bottom:30px;
+	left:50%;
+	 z-index:9999;
+	margin-left:-145px;
+	padding:2px;
+	border-radius:3px;
+	-webkit-border-radius:3px;
+	-moz-border-radius:3px;
+	background-color: #ffffff;
+	-webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	-moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	-o-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	font:14px/1.5 Microsoft YaHei,Helvitica,Verdana,Arial,san-serif;
+}
+.window .title {
+	background-color: #2BB2A3;
+	line-height: 26px;
+  padding: 5px 5px 5px 10px;
+	color:#ffffff;
+	text-shadow:0px 1px 1px #14544D;
+	font-size:16px;
+	border-radius:3px 3px 0 0;
+	-webkit-border-radius:0.5em 0.5em 0 0;
+	-moz-border-radius:0.5em 0.5em 0 0;
+	
+}
+.window .content {
+	/*min-height:100px;*/
+	overflow:auto;
+	padding:10px;
+	background: linear-gradient(#FBFBFB, #EEEEEE) repeat scroll 0 0 #FFF9DF;
+    color: #222222;
+    text-shadow: 0 1px 0 #FFFFFF;
+	border-radius: 0 0 0.6em 0.6em;
+	-webkit-border-radius: 0 0 0.6em 0.6em;
+	-moz-border-radius: 0 0 0.6em 0.6em;
+}
+.window #txt {
+	min-height:30px;font-size:16px; line-height:22px;
+}
+.window #windowclosebutton {
+	margin-top:10px;
+}
+.window .btn {
+	height:40px;
+	line-height:40px;
+}
+input::-moz-placeholder, textarea::-moz-placeholder { color: #999;}
+.flex{
+	display:box;
+	display:-moz-box;
+	display:-webkit-box;
+}
+.window .title .close {
+	float:right;
+	background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACTSURBVEhL7dNtCoAgDAZgb60nsGN1tPLVCVNHmg76kQ8E1mwv+GG27cestQ4PvTZ69SFocBGpWa8+zHt/Up+IN+MhgLlUmnIE1CpBQB2COZibfpnXhHFaIZkYph0SOeeK/QJ8o7KOek84fkCWSBtfL+Ny2MPpCkPFMH6PWEhWhKncIyEk69VfiUuVhqJefds+YcwNbEwxGqGIFWYAAAAASUVORK5CYII=");
+	width:26px;
+	height:26px;
+	display:block;	
+}
+.confirm-box{
+    position: fixed;
+    top:50%;
+    left:50%;
+    padding:0px 15px;
+    width:220px;
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+    box-sizing:border-box;
+    background-color: rgba(0, 0, 0, 0.8);
+    color:#FFFFFF;
+    border-radius: 2px;
+    margin-left: -110px;
+    margin-top:-55px;
+    z-index:1000001;
+}
+.confirm-box .confirm-box-txt{
+    text-align: center;
+    margin:20px auto;
+}
+.confirm-box .confirm-box-btns{
+    width:190px;
+    padding-bottom:10px;
+    text-align: center;
+}
+.confirm-box .confirm-box-btns a{
+    background-color: #FFFFFF;
+    display:inline-block;
+    border-radius: 2px;
+    margin:5px;
+    text-align: center;
+    width:80px;
+    height:30px;
+    line-height: 30px;
+    color:#444444;
+}
+.confirm-mash{
+    position: fixed;
+    left:0px;
+    top:0px;
+    right:0px;
+    bottom:0px;
+    background-color: rgba(255,255,255,0.3);
+    z-index:1000000;
+}
+</style>
+</head>
+<body>
+<div class="window" id="windowcenter">
+	<div id="title" class="title"><span class="close" id="alertclose"></span><span class="tit_txt">消息提醒</span></div>
+	<div class="content">
+	 <div id="txt"></div>
+	 <input type="button" value="确定" id="windowclosebutton" name="确定" class="btn btn-block">	
+	</div>
+</div>
+
+<script type="text/javascript" src="__PUBLIC__/js/tips.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/geo.js"></script>
+
+
+<div class="header">
+	<!--<a href="javascript:void(0);" onclick="previous();" class="topnav topnav-left"><i class="icon-arrow-left2"></i></a>-->
+    <a class="topnav topnav-left" href="{tp#:U('Agent/shop',array('id'=>$_GET['sid']))}">
+    <i class="icon-arrow-left2"></i> </a>
+    
+	<a href="javascript:void(0);" entry="dropdown" class="topnav topnav-right"><i class="icon-list"></i></a>
+	<div id="nav-dropdown" class="nav-dropdown">
+		<include file="Public:nav_dropdown"/>
+	</div>
+	<span class="header_toptitle">猜你喜欢-{tp#$shop['shop_name']}</span>
+	<div class="clear"></div>
+</div>
+<!--关注tips-->
+<include file="Public:sub_tips"/>
+<!--关注tips-->
+
+
+<section class="wrapper_card">
+    <section class="search">
+        <input _style="width:50%" class="wd" name="word" placeholder="商品名称或关键字" type="text" value="{tp#$Think.get.keyword}">
+        <a class="sub" value="搜索" type="button" id="btn_search_1" _style="width:15%">店内搜索</a>
+       <!-- <a class="sub" value="搜索" type="button" id="btn_search" style="width:10%">搜索</a>
+        <a class="sub" value="搜索" type="button" style="width:15%" id="btn-all">全部商品</a>-->
+        <script type="text/javascript">
+			$("#btn-all").click(function(){
+				location.href="{tp#:U('product_list',array('sid'=>$shop['id']))}";
+			});
+			
+			$("#btn_search_1").click(function()
+            {
+                var keyword=$.trim($(".wd").val());
+                if(keyword==''){
+                    location.href="{tp#:U('Index/product_list',array('sid'=>$shop['id']))}";
+					//show_tips('请输入商品名称');
+                }else{
+                    location.href="{tp#:U('Index/product_list',array('sid'=>$shop['id']))}&keyword="+keyword;
+                }
+                
+            })
+		
+            $("#btn_search").click(function()
+            {
+                var keyword=$.trim($(".wd").val());
+                if(keyword==''){
+                    //show_tips('请输入商品名称');
+					location.href="{tp#:U('Index/product_list')}";
+                }else{
+                    location.href="{tp#:U('Index/product_list')}&keyword="+keyword;
+                }
+                
+            })
+        </script>
+    </section>
+</section>
+
+<style type="text/css">
+.qrcode_box{
+	position: fixed;
+	top:0px;
+	bottom:0px;
+	left:0px;
+	right:0px;
+	color:#FFFFFF;
+	z-index: 1000000000;
+	background-color: rgba(0,0,0,0.8);
+}
+.qrcode_box #qrcode_close{
+	position: absolute;
+	right:5px;
+	top:5px;
+	font-size: 20px;
+}
+.qrcode_box  .qrcode{
+	margin-top:120px;
+	text-align: center;
+	font-size: 16px;
+	line-height: 30px;
+}
+.qrcode_box  .qrcode img{
+	width:200px;
+	height:200px;
+}
+</style>
+
+<script type="text/javascript">
+$("#aouth_login_btn_close").click(function()
+{
+	$("#fix_aouth_login").fadeOut();
+});
+$('#show-qrcode').click(function()
+{
+	$('#qrcode_box').show();
+	$('#qrcode_box #qrcode_close').click(function()
+	{
+		$('#qrcode_box').hide();
+	});
+});
+</script><script type="text/javascript">
+
+var previous = function()
+{
+	if (typeof (navigator.app) !== "undefined")
+	{
+		navigator.app.backHistory();
+	}
+	else
+	{
+		window.history.back();
+	}
+}
+$(function()
+{
+	$('.topnav[entry=dropdown]').click(function()
+	{
+		$('#nav-dropdown').slideToggle();
+	});
+	document.onclick=function(e)
+	{
+		var e=e?e:window.event;
+		var tar = e.srcElement||e.target;
+		if($(tar).attr('id') != "nav-dropdown" && $(tar).parents('#nav-dropdown').size() == 0 && (!$(tar).hasClass('topnav') || $(tar).attr('entry') != "dropdown") && $(tar).parents('.topnav[entry=dropdown]').size() == 0)
+		{
+			$('#nav-dropdown').slideUp();
+		}
+	}
+	$("input[type='checkbox'],input[type='radio']").live('click', function()
+	{
+		setbg()
+	});
+	setbg();
+	//设置label背景
+	function setbg()
+	{
+		$(":checkbox").parent("label").removeClass('on');
+		$(":checkbox[checked]").parent("label").addClass('on');
+		$(":radio").parent("label").removeClass('on');
+		$(":radio[checked]").parent("label").addClass('on');
+	}
+});
+</script>
+<script type="text/javascript" src="__PUBLIC__/js/countdown.js"></script>
+<div id="nav-bar" class="nav-bar" style="position: relative; top: 0px; left: 0px; width: 100%;">
+   <!-- <ul class="nav">
+        <li data-flag="fid" class="dropdown">旗袍/礼服/民族风</li>
+         <li data-flag="zone" class="dropdown">全城</li> 
+        <li data-flag="sort" class="dropdown">默认排序</li>
+    </ul>-->
+    <div id="dropdown-wrapper" class="dropdown-wrapper">
+        <div id="filter_fid" class="none">
+            <ul class="dropdown-scroller" style="transform: translateY(0px);">
+                                <li>
+                    <a href="javascript:void(0)" data-param="fid" data-value="0" has-sub="0">全部分类</a>
+                </li>
+                                <li class="current">
+                    <a href="javascript:void(0)" data-param="fid" data-value="206" has-sub="1">潮流女装</a>
+                </li>
+                                <li>
+                    <a href="javascript:void(0)" data-param="fid" data-value="54" has-sub="1">时尚男装</a>
+                </li>
+                                <li>
+                    <a href="javascript:void(0)" data-param="fid" data-value="52" has-sub="1">鞋靴箱包</a>
+                </li>
+                                <li>
+                    <a href="javascript:void(0)" data-param="fid" data-value="53" has-sub="1">内衣饰品</a>
+                </li>
+                                <li>
+                    <a href="javascript:void(0)" data-param="fid" data-value="213" has-sub="1">个护化妆</a>
+                </li>
+                                <li>
+                    <a href="javascript:void(0)" data-param="fid" data-value="204" has-sub="1">手机数码</a>
+                </li>
+                                <li>
+                    <a href="javascript:void(0)" data-param="fid" data-value="207" has-sub="1">母婴儿童</a>
+                </li>
+                                <li>
+                    <a href="javascript:void(0)" data-param="fid" data-value="85" has-sub="1">食品酒水</a>
+                </li>
+                                <li>
+                    <a href="javascript:void(0)" data-param="fid" data-value="205" has-sub="1">家具家电</a>
+                </li>
+                                <li>
+                    <a href="javascript:void(0)" data-param="fid" data-value="203" has-sub="1">家居家纺</a>
+                </li>
+                                <li>
+                    <a href="javascript:void(0)" data-param="fid" data-value="294" has-sub="1">文体运动</a>
+                </li>
+                                <li>
+                    <a href="javascript:void(0)" data-param="fid" data-value="215" has-sub="1">整车车品</a>
+                </li>
+                            </ul>
+                                                            <div id="fid206" class="dropdown-sub-scroller ">
+                <ul style="transform: translateY(0px);">
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="206" has-sub="-1">全部</a>
+                    </li>
+                                    <li class="current">
+                        <a href="javascript:void(0)" data-param="fid" data-value="132" has-sub="-1">旗袍/礼服/民族风</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="137" has-sub="-1">长裤</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="234" has-sub="-1">牛仔裤/牛仔裙/牛仔衫</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="447" has-sub="-1">卫衣/风衣</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="448" has-sub="-1">毛衣/羊绒衫</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="445" has-sub="-1">棉服/羽绒</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="444" has-sub="-1">外套/毛呢大衣</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="443" has-sub="-1">针织衫</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="405" has-sub="-1">连衣裙/半身裙</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="406" has-sub="-1">T恤</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="407" has-sub="-1">运动休闲</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="408" has-sub="-1">衬衫/上衣</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="409" has-sub="-1">短裤</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="410" has-sub="-1">套装/西装</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="412" has-sub="-1">大码/妈妈</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="449" has-sub="-1">休闲裤</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="450" has-sub="-1">西裤</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="460" has-sub="-1">长裙</a>
+                    </li>
+                                </ul>
+            </div>
+           	<div id="fid54" class="dropdown-sub-scroller none">
+                <ul style="transform: translateY(0px);">
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="54" has-sub="-1">全部</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="130" has-sub="-1">短裤/中裤</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="131" has-sub="-1">唐装/中山装</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="232" has-sub="-1">牛仔裤</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="465" has-sub="-1">棉服/羽绒服</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="413" has-sub="-1">男T恤</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="414" has-sub="-1">POLO</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="415" has-sub="-1">衬衫</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="416" has-sub="-1">休闲裤</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="417" has-sub="-1">外套/上衣</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="419" has-sub="-1">西服/正装</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="464" has-sub="-1">毛衣/针织衫</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="466" has-sub="-1">风衣/卫衣</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="468" has-sub="-1">背心/马甲</a>
+                    </li>
+                                </ul>
+            </div>
+            <div id="fid52" class="dropdown-sub-scroller none">
+                <ul style="transform: translateY(0px);">
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="52" has-sub="-1">全部</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="233" has-sub="-1">男鞋</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="235" has-sub="-1">女鞋</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="427" has-sub="-1">凉鞋/拖鞋</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="428" has-sub="-1">高跟鞋</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="429" has-sub="-1">平底鞋</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="430" has-sub="-1">帆布鞋/休闲鞋</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="136" has-sub="-1">靴子/雪地靴</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="431" has-sub="-1">运动鞋</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="432" has-sub="-1">皮鞋</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="236" has-sub="-1">民族风包</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="420" has-sub="-1">双肩包</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="421" has-sub="-1">单肩包</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="425" has-sub="-1">休闲包</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="456" has-sub="-1">手提包</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="458" has-sub="-1">斜跨包</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="133" has-sub="-1">学生书包</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="134" has-sub="-1">拉杆箱</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="135" has-sub="-1">牛仔包</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="422" has-sub="-1">旅行包</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="423" has-sub="-1">钱包/卡包/手包</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="424" has-sub="-1">商务包/公文包</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="426" has-sub="-1">腰包</a>
+                    </li>
+                                </ul>
+            </div>
+                                                <div id="fid53" class="dropdown-sub-scroller none">
+                <ul style="transform: translateY(0px);">
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="53" has-sub="-1">全部</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="237" has-sub="-1">文胸</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="455" has-sub="-1">睡衣</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="462" has-sub="-1">打底裤/打底衫</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="104" has-sub="-1">女内裤</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="418" has-sub="-1">男内裤</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="118" has-sub="-1">保暖内衣</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="105" has-sub="-1">情趣内衣</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="411" has-sub="-1">泳衣/沙滩裤</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="238" has-sub="-1">服饰配件</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="106" has-sub="-1">皮带/腰带/领带</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="259" has-sub="-1">金饰/银饰/翡翠玉石</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="261" has-sub="-1">耳饰/头饰</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="262" has-sub="-1">手表</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="404" has-sub="-1">项链/手链/戒指</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="452" has-sub="-1">丝巾/围巾/披肩</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="453" has-sub="-1">太阳镜/护目镜</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="454" has-sub="-1">帽子/手套/耳罩</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="470" has-sub="-1">袜类</a>
+                    </li>
+                                </ul>
+            </div>
+                                                <div id="fid213" class="dropdown-sub-scroller none">
+                <ul style="transform: translateY(0px);">
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="213" has-sub="-1">全部</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="107" has-sub="-1">面部清洁</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="110" has-sub="-1">护肤</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="111" has-sub="-1">面膜</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="108" has-sub="-1">身体护肤</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="109" has-sub="-1">口腔护理</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="257" has-sub="-1">清洁用品</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="256" has-sub="-1">彩妆/香水/美妆工具</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="258" has-sub="-1">美发护发/假发</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="287" has-sub="-1">女性护理/卫生巾</a>
+                    </li>
+                                </ul>
+            </div>
+                                                <div id="fid204" class="dropdown-sub-scroller none">
+                <ul style="transform: translateY(0px);">
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="204" has-sub="-1">全部</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="239" has-sub="-1">数码周边</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="240" has-sub="-1">手机</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="241" has-sub="-1">手机配件</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="242" has-sub="-1">智能设备</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="243" has-sub="-1">笔记本/平板</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="244" has-sub="-1">充电宝/USB线</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="245" has-sub="-1">耳机/蓝牙/音箱</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="246" has-sub="-1">U盘/硬盘/存储设备</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="247" has-sub="-1">录音笔/投影</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="248" has-sub="-1">电子教育/益智</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="249" has-sub="-1">电玩/游戏机</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="250" has-sub="-1">电脑配件/组装机</a>
+                    </li>
+                                </ul>
+            </div>
+                                                <div id="fid207" class="dropdown-sub-scroller none">
+                <ul style="transform: translateY(0px);">
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="207" has-sub="-1">全部</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="263" has-sub="-1">奶粉/辅食/营养品</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="264" has-sub="-1">尿片/洗护</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="265" has-sub="-1">喂哺/推车床</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="266" has-sub="-1">孕妇装/孕产妇用品</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="267" has-sub="-1">童装/婴儿装/亲子装</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="268" has-sub="-1">玩具/模型/电器</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="269" has-sub="-1">动漫/早教/益智</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="270" has-sub="-1">童鞋/婴儿鞋/亲子鞋</a>
+                    </li>
+                                </ul>
+            </div>
+                                                <div id="fid85" class="dropdown-sub-scroller none">
+                <ul style="transform: translateY(0px);">
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="85" has-sub="-1">全部</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="283" has-sub="-1">营养保健</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="284" has-sub="-1">坚果/特产</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="285" has-sub="-1">粮油米面/南北干货</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="289" has-sub="-1">茶/咖啡/冲饮</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="290" has-sub="-1">食品/生物科技</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="291" has-sub="-1">水产肉类/新鲜蔬果</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="292" has-sub="-1">熟食腊味</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="435" has-sub="-1">酒类</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="439" has-sub="-1">休闲食品</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="461" has-sub="-1">糕点/饼干/糖果</a>
+                    </li>
+                                </ul>
+            </div>
+                                                <div id="fid205" class="dropdown-sub-scroller none">
+                <ul style="transform: translateY(0px);">
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="205" has-sub="-1">全部</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="112" has-sub="-1">家具/桌凳/沙发</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="214" has-sub="-1">智能家居</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="251" has-sub="-1">大家电</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="252" has-sub="-1">影音电器</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="253" has-sub="-1">生活电器</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="254" has-sub="-1">厨房电器</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="255" has-sub="-1">保健/按摩器材</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="433" has-sub="-1">五金家装/灯饰</a>
+                    </li>
+                                </ul>
+            </div>
+                                                <div id="fid203" class="dropdown-sub-scroller none">
+                <ul style="transform: translateY(0px);">
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="203" has-sub="-1">全部</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="217" has-sub="-1">老年用品</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="280" has-sub="-1">生活日用</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="281" has-sub="-1">厨房/烹饪用具</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="282" has-sub="-1">家庭清洁</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="286" has-sub="-1">床上用品/家纺</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="288" has-sub="-1">家装软饰/罩垫套</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="293" has-sub="-1">卫生护理</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="403" has-sub="-1">收纳整理防尘</a>
+                    </li>
+                                </ul>
+            </div>
+                                                <div id="fid294" class="dropdown-sub-scroller none">
+                <ul style="transform: translateY(0px);">
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="294" has-sub="-1">全部</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="374" has-sub="-1">乐器</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="375" has-sub="-1">文具</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="260" has-sub="-1">运动器材/晨练</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="301" has-sub="-1">代步/滑板车/骑行装备件</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="300" has-sub="-1">健身器材</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="299" has-sub="-1">跳舞鞋/武术鞋/溜冰鞋</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="297" has-sub="-1">户外/登山/野营/旅行</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="298" has-sub="-1">运动服/练功服</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="296" has-sub="-1">球类</a>
+                    </li>
+                                </ul>
+            </div>
+                                                <div id="fid215" class="dropdown-sub-scroller none">
+                <ul style="transform: translateY(0px);">
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="215" has-sub="-1">全部</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="371" has-sub="-1">自行车/电瓶摩托</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="397" has-sub="-1">汽车装饰</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="398" has-sub="-1">汽车配件</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="399" has-sub="-1">车载电器</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="400" has-sub="-1">品牌整车</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="fid" data-value="401" has-sub="-1">维护保养</a>
+                    </li>
+                                </ul>
+            </div>
+                                </div>
+        <div id="filter_zone" class="none">
+            <ul class="dropdown-scroller" style="transform: translateY(0px);">
+                                <li class="current">
+                    <a href="javascript:void(0)" data-param="zone_id" data-value="0" has-sub="0">全城</a>
+                </li>
+                                <li>
+                    <a href="javascript:void(0)" data-param="zone_id" data-value="73" has-sub="1">荔湾区</a>
+                </li>
+                                <li>
+                    <a href="javascript:void(0)" data-param="zone_id" data-value="74" has-sub="1">越秀区</a>
+                </li>
+                                <li>
+                    <a href="javascript:void(0)" data-param="zone_id" data-value="75" has-sub="1">东山区</a>
+                </li>
+                                <li>
+                    <a href="javascript:void(0)" data-param="zone_id" data-value="76" has-sub="1">天河区</a>
+                </li>
+                                <li>
+                    <a href="javascript:void(0)" data-param="zone_id" data-value="77" has-sub="1">海珠区</a>
+                </li>
+                                <li>
+                    <a href="javascript:void(0)" data-param="zone_id" data-value="78" has-sub="1">黄埔区</a>
+                </li>
+                                <li>
+                    <a href="javascript:void(0)" data-param="zone_id" data-value="79" has-sub="1">白云区</a>
+                </li>
+                                <li>
+                    <a href="javascript:void(0)" data-param="zone_id" data-value="80" has-sub="1">番禺区</a>
+                </li>
+                                <li>
+                    <a href="javascript:void(0)" data-param="zone_id" data-value="81" has-sub="1">花都区</a>
+                </li>
+                                <li>
+                    <a href="javascript:void(0)" data-param="zone_id" data-value="82" has-sub="0">增城区</a>
+                </li>
+                                <li>
+                    <a href="javascript:void(0)" data-param="zone_id" data-value="83" has-sub="0">从化区</a>
+                </li>
+                                <li>
+                    <a href="javascript:void(0)" data-param="zone_id" data-value="286" has-sub="0">芳村</a>
+                </li>
+                                <li>
+                    <a href="javascript:void(0)" data-param="zone_id" data-value="287" has-sub="0">东山</a>
+                </li>
+                                <li>
+                    <a href="javascript:void(0)" data-param="zone_id" data-value="288" has-sub="0">越秀</a>
+                </li>
+                                <li>
+                    <a href="javascript:void(0)" data-param="zone_id" data-value="289" has-sub="0">番禺</a>
+                </li>
+                                <li>
+                    <a href="javascript:void(0)" data-param="zone_id" data-value="290" has-sub="0">增城</a>
+                </li>
+                                <li>
+                    <a href="javascript:void(0)" data-param="zone_id" data-value="291" has-sub="0">从化</a>
+                </li>
+                                <li>
+                    <a href="javascript:void(0)" data-param="zone_id" data-value="292" has-sub="0">南沙</a>
+                </li>
+                                <li>
+                    <a href="javascript:void(0)" data-param="zone_id" data-value="293" has-sub="0">花都</a>
+                </li>
+                            </ul>
+                                                            <div class="dropdown-sub-scroller none" id="zone73">
+                <ul style="transform: translateY(0px);">
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="0" has-sub="-1">全部</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="24" has-sub="-1">荔湾湖</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="25" has-sub="-1">沙面</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="26" has-sub="-1">流花</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="27" has-sub="-1">上下九地区</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="28" has-sub="-1">陈家祠</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="29" has-sub="-1">中山七八路</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="30" has-sub="-1">西关</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="31" has-sub="-1">芳村</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="32" has-sub="-1">坑口</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="33" has-sub="-1">窖口</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="34" has-sub="-1">东风西</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="35" has-sub="-1">宝华路</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="36" has-sub="-1">鹤洞新村</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="37" has-sub="-1">周门</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="38" has-sub="-1">彩虹戏院</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="39" has-sub="-1">黄沙</a>
+                    </li>
+                                </ul>
+            </div>
+                                                <div class="dropdown-sub-scroller none" id="zone74">
+                <ul style="transform: translateY(0px);">
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="0" has-sub="-1">全部</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="40" has-sub="-1">北京路</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="41" has-sub="-1">小北</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="42" has-sub="-1">海珠广场</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="43" has-sub="-1">西门口</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="44" has-sub="-1">东风中路/越秀公园</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="45" has-sub="-1">东山环市东</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="46" has-sub="-1">五羊新城</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="47" has-sub="-1">麓湖公园</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="48" has-sub="-1">中山云路</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="49" has-sub="-1">东川</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="50" has-sub="-1">解放南</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="51" has-sub="-1">解放北</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="52" has-sub="-1">沿江路线</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="53" has-sub="-1">中山二三路/东山口</a>
+                    </li>
+                                </ul>
+            </div>
+                                                <div class="dropdown-sub-scroller none" id="zone75">
+                <ul style="transform: translateY(0px);">
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="0" has-sub="-1">全部</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="54" has-sub="-1">五羊新村</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="55" has-sub="-1">东风东路</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="56" has-sub="-1">东华西路</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="57" has-sub="-1">德政中路</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="58" has-sub="-1">达道路</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="59" has-sub="-1">广东工大</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="60" has-sub="-1">白云路</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="61" has-sub="-1">黄花岗</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="62" has-sub="-1">新河蒲路</a>
+                    </li>
+                                </ul>
+            </div>
+                                                <div class="dropdown-sub-scroller none" id="zone76">
+                <ul style="transform: translateY(0px);">
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="0" has-sub="-1">全部</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="63" has-sub="-1">棠下</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="64" has-sub="-1">东圃</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="65" has-sub="-1">员村</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="66" has-sub="-1">珠江新城/跑马场</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="67" has-sub="-1">天河公园</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="68" has-sub="-1">天河北/广州东站</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="69" has-sub="-1">车陂</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="70" has-sub="-1">五山</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="71" has-sub="-1">沙河</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="72" has-sub="-1">天河南</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="73" has-sub="-1">后天河北</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="74" has-sub="-1">体育中心</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="75" has-sub="-1">岗顶</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="76" has-sub="-1">粤垦</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="77" has-sub="-1">黄村</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="78" has-sub="-1">林和</a>
+                    </li>
+                                </ul>
+            </div>
+                                                <div class="dropdown-sub-scroller none" id="zone77">
+                <ul style="transform: translateY(0px);">
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="0" has-sub="-1">全部</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="79" has-sub="-1">江南大道</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="80" has-sub="-1">滨江路沿线</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="81" has-sub="-1">工业大道</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="82" has-sub="-1">宝岗</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="83" has-sub="-1">新港西</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="84" has-sub="-1">南洲</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="85" has-sub="-1">琶洲</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="86" has-sub="-1">广州大道</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="87" has-sub="-1">赤岗</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="88" has-sub="-1">昌岗</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="89" has-sub="-1">江南中</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="90" has-sub="-1">华州/东晓路</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="91" has-sub="-1">官州</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="92" has-sub="-1">大学城</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="93" has-sub="-1">南石头</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="94" has-sub="-1">江海</a>
+                    </li>
+                                </ul>
+            </div>
+                                                <div class="dropdown-sub-scroller none" id="zone78">
+                <ul style="transform: translateY(0px);">
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="0" has-sub="-1">全部</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="95" has-sub="-1">黄浦区府</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="96" has-sub="-1">开发区</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="97" has-sub="-1">黄埔岗</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="98" has-sub="-1">文冲</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="99" has-sub="-1">新塘</a>
+                    </li>
+                                </ul>
+            </div>
+                                                <div class="dropdown-sub-scroller none" id="zone79">
+                <ul style="transform: translateY(0px);">
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="0" has-sub="-1">全部</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="100" has-sub="-1">南湖</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="101" has-sub="-1">同和</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="102" has-sub="-1">机场路</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="103" has-sub="-1">黄石路</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="104" has-sub="-1">广园路</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="105" has-sub="-1">同德罗冲围</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="106" has-sub="-1">新体育馆</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="107" has-sub="-1">广花</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="108" has-sub="-1">白云大道</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="109" has-sub="-1">新广从路</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="110" has-sub="-1">三元里</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="111" has-sub="-1">广源新村</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="112" has-sub="-1">桂花岗</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="113" has-sub="-1">新市</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="114" has-sub="-1">金沙洲</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="115" has-sub="-1">白云山</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="116" has-sub="-1">棠溪</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="117" has-sub="-1">外语学校</a>
+                    </li>
+                                </ul>
+            </div>
+                                                <div class="dropdown-sub-scroller none" id="zone80">
+                <ul style="transform: translateY(0px);">
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="0" has-sub="-1">全部</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="118" has-sub="-1">市桥</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="119" has-sub="-1">洛溪</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="120" has-sub="-1">华南板块</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="121" has-sub="-1">大石</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="122" has-sub="-1">南沙</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="123" has-sub="-1">钟村</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="124" has-sub="-1">祈福</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="125" has-sub="-1">石基</a>
+                    </li>
+                                </ul>
+            </div>
+                                                <div class="dropdown-sub-scroller none" id="zone81">
+                <ul style="transform: translateY(0px);">
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="0" has-sub="-1">全部</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="126" has-sub="-1">旧区</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="127" has-sub="-1">新区</a>
+                    </li>
+                                    <li>
+                        <a href="javascript:void(0)" data-param="street_id" data-value="128" has-sub="-1">狮岭</a>
+                    </li>
+                                </ul>
+            </div>
+                                                                                                                                                                                                                                                                                </div>
+        <div id="filter_sort" class="none">
+            <ul class="dropdown-scroller" style="transform: translateY(0px);">
+                                <li class="current">
+                    <a href="javascript:void(0);" data-param="sort" data-value="default" has-sub="0">默认排序</a>
+                </li>
+                                <li>
+                    <a href="javascript:void(0);" data-param="sort" data-value="hot" has-sub="0">人气最高</a>
+                </li>
+                                <li>
+                    <a href="javascript:void(0);" data-param="sort" data-value="new" has-sub="0">最新发布</a>
+                </li>
+                            </ul>
+        </div>
+    </div>
+</div>
+<!--<div class="search-new">
+    <i class="icon-search" id="icon-search"></i><input type="text" id="search-btn">
+</div>-->
+<div class="wrapper-search wrapper-search-new" id="wrapper-search">
+	<div id="index_search_head" class="index_search_head">
+		<div id="icon-close" class="index_search_bar_cancel">
+			<img src="__PUBLIC__/images/close.png" alt="">
+		</div>
+        <form action="#" method="GET" id="form_word" class="index_searchForm">
+        	<div class="header-search-box">
+        		<div class="header-search-input">
+        			<input class="wd hilight2" name="word" id="word" placeholder="商品名称或关键字" type="text" autocomplete="off">
+        		</div><a class="header-icon-search" value="搜索" type="submit" id="a_search"><img src="__PUBLIC__/images/search.png" alt=""></a>
+        	</div>
+            <script type="text/javascript">
+                $("#a_search").click(function()
+                {
+                    $("#form_word").submit();
+                })
+            </script>
+        </form>
+	</div>
+	<div id="search_land_searchland" class="search-lading-area">
+				<div class="hot-search-bar" id="hot-search-bar">
+			<strong>热搜</strong>
+		</div>
+		<div class="landing-tags" id="landing-tags">
+						<a href="#" class="">#</a>
+						
+					</div>
+	    		<div class="landing-keywords" id="search_res">
+	    </div>
+	</div>
+</div>
+<script type="text/javascript">
+$(function()
+{
+	// if($(".header .icon-arrow-left2").size() == 1)
+	// {
+	// 	$("#icon-close").css('display','none');
+	// }
+	temp_previous = previous;
+	$("#search-btn").focus(function()
+	{
+		$(".topnav-left").attr('id','icon-close');
+		previous = function()
+		{
+
+		};
+		$("#wrapper-search").css('right','0');
+		$(document).scrollTop(0);
+		$("#word").focus();
+
+		window.setTimeout(function()
+		{
+			$('#data-list').css('display','none');
+		},200);
+
+	});
+	$("#icon-close").live('click', function()
+	{
+		$('#data-list').css('display','block');
+		$("#wrapper-search").css('right','-100%');
+		$(".topnav-left").removeAttr('id');
+		$("#landing-tags,#hot-search-bar").removeClass('none');
+		previous = temp_previous;
+	});
+
+})
+</script><section id="data-list" class="section_box new_section_box">
+    <ul class="qianggou_box goods-grid">
+    
+    	<volist name="list" id="item">
+		<li class="qianggou goods-item">
+			<a href="{tp#:U('Index/product',array('id'=>$item['id']))}">
+				<div class="goods-img">
+					<img src="{tp#$item['spic']}" alt="{tp#$item['name']}" onerror="this.src=__PUBLIC__/images/no-pic.png;" style="height:220px;">
+				</div>
+				<div class="goods-info">
+					<p class="name">{tp#$item['name']}</p>
+                    <p>
+                       	<span class="price"><b>{tp#$item['price']}</b>元</span>
+                		<span class="r">已售{tp#$item['sale_num']}</span>
+					</p>
+				</div>
+			</a>
+		</li>
+        </volist>
+
+    </ul>
+
+    <div class="clear"></div>
+<!--    <div class="no-data none loading-img" id="loading-data"><img src="__PUBLIC__/images/loading.gif" alt="加载中..."></div>-->
+	<p id="page">{tp#$page}</p>
+</section>
+<a href="javascript:void(0);" class="fix_cart_btn " onclick="#"><span></span></a>
+<div id="dropdown-mash" class="none"></div>
+<script type="text/javascript" src="__PUBLIC__/js/mobile.js"></script>
+<script type="text/javascript">
+$(function()
+{
+    if($("#data-list ul li").size() == 0)
+    {
+        nohtml = $("#tip-box").html();
+        $("#data-list").html(nohtml);
+    }
+    page = 2;
+    flag = true;
+    $(window).scroll(function()
+    {
+        //选择分类浮动
+        scrollx = $(document).scrollTop();
+        navx = $("#nav-bar").position().top;
+        if(scrollx >= 45)
+        {
+            $("#nav-bar").css(
+                {
+                    'position':'fixed',
+                    'top':'0px',
+                    'left':'0px',
+                    'width':'100%'
+                })
+        }
+        else
+        {
+            $("#nav-bar").css(
+            {
+                'position':'relative',
+            })
+        }
+        if($(document).scrollTop() + $(window).height() >= $(document).height())
+        {
+            $("#loading-data").removeClass('none');
+            ajax_page();
+        }
+    });
+    sy = [];
+    ey = [];
+    my = [];
+    $('.dropdown-scroller,.dropdown-sub-scroller ul').each(function(k)
+    {
+        var el = this;
+        $(el).css({'transform':'translateY(0px)'});
+        ey[k] = 0;
+        sy[k] = 0;
+        my[k] = 0;
+        TE(el,'tb',function(i)
+        {
+            ey[k] = Math.round(my[k]/40) * 40;
+            ey[k] = Math.min(Math.max($('#dropdown-wrapper').height() - $(el).height(),ey[k]),0);
+            $(el).css('transform','translateY('+(ey[k])+'px)');
+        },
+        function(y)
+        {
+            my[k] = y - sy[k] + ey[k];
+            $(el).css('transform','translateY('+(my[k])+'px)');
+        },
+        function(x,y)
+        {
+            sy[k] = y;
+        });
+    });
+    var sort = 'default';
+    $('#nav-bar .dropdown').each(function()
+    {
+        var obj = $(this);
+        var div = $(this).attr('data-flag');
+        var text = $(this).text();
+        obj.text(function()
+        {
+            var len = $('#filter_'+div + ' li.current').size();
+            if(len > 0)
+            {
+                var value = $('#filter_'+div + ' .dropdown-scroller li.current>a').attr('data-value');
+                if(len > 1 && $('#'+div+value+' li.current>a').text() != '全部')
+                {
+                    text = $('#'+div+value+' li.current>a').text();
+                }
+                else
+                {
+                    text = $('#filter_'+div + ' .dropdown-scroller li.current>a').text();
+                }
+            }
+            obj.text(text);
+        })
+    });
+    $('#dropdown-mash').click(function()
+    {
+        $('#nav-bar .dropdown.active').removeClass('active');
+        $('#dropdown-wrapper>div').addClass('none');
+        $('#dropdown-mash').addClass('none');
+    });
+    $('#nav-bar .dropdown').click(function()
+    {
+        var div = $(this).attr('data-flag');
+        if($(this).hasClass('active'))
+        {
+            $('#filter_'+div).addClass('none');
+            $(this).removeClass('active');
+            $('#dropdown-mash').addClass('none');
+        }
+        else
+        {
+            $('#dropdown-wrapper>div').addClass('none');
+            $('#filter_'+div).removeClass('none');
+            $(this).addClass('active').siblings().removeClass('active');
+            $('#dropdown-mash').removeClass('none');
+            $('#filter_' + div + ' li a').click(function()
+            {
+                var sub = $(this).attr('has-sub');
+                var value = $(this).attr('data-value');
+                $('#filter_'+ div + ' li').removeClass('current');
+                $(this).parent().addClass('current');
+                if(sub == '-1')
+                {
+                    var p_value = $(this).parents('.dropdown-sub-scroller').attr('id').replace(div,'');
+                    $('#filter_'+ div + ' .dropdown-scroller li>a[data-value='+p_value+']').parent().addClass('current');
+                }
+                if(sub != '-1')
+                {
+                    $('#filter_' + div + ' .dropdown-sub-scroller').addClass('none');
+                }
+                if(sub == '1')
+                {
+                    $('#'+div+value).removeClass('none');
+                }
+                else
+                {
+                    params = [];
+                    $('#dropdown-wrapper li.current>a').each(function()
+                    {
+                        var param = $(this).attr('data-param');
+                        params[param] = $(this).attr('data-value');
+                    });
+                    if($(this).attr('data-param') == 'sort' && $(this).attr('data-value') == 'distance')
+                    {
+                        $('#filter_sort').addClass('none');
+                        $('#nav-bar [data-flag=sort]').removeClass('active');
+                        $('#dropdown-mash').addClass('none');
+                        set_cookie('lng','',0);
+                        set_cookie('lat','',0);
+                        Geo.init(null,null,{},set_distance);
+                    }
+                    else
+                    {
+                        var link = site_url + '/groupbuy.php';
+                        var param_str = '';
+                        var uid = '';
+                        if(uid != '')
+                        {
+                            params['uid'] = uid;
+                        }
+                        for(var k in params)
+                        {
+                            param_str += param_str ? '&' + k + '=' + params[k] : '?'  + k + '=' + params[k];
+                        }
+                        link += param_str;
+                        // console.log(link);
+                        window.location.href = link;
+                    }
+                }
+            });
+            $(document).scrollTop($('#nav-bar').position().top);
+        }
+    });
+    if(sort == 'distance')
+    {
+        var address = get_cookie('address');
+        if(address)
+        {
+            $('#data-list').before('<div id="gps_address" style="padding:10px;background-color:#F5F5F5;border:1px solid #CCCCCC;margin:10px auto;">'+address+'</div>');
+        }
+    }
+    load_count();
+});
+
+function set_distance(geo)
+{
+    set_cookie('address',geo.address,600);
+    params.choose_cityID = geo.city_id;
+    var link = site_url + '/{page_active}.php';
+    var param_str = '';
+    for(var k in params)
+    {
+        param_str += param_str ? '&' + k + '=' + params[k] : '?'  + k + '=' + params[k];
+    }
+    link += param_str;
+    // console.log(link);
+    window.location.href = link;
+}
+//加载计数器
+function load_count(len)
+{
+    if(len > 0)
+    {
+        sel = '[entry=countdown]:gt('+len+')';
+    }
+    else
+    {
+        sel = '[entry=countdown]';
+    }
+    $(sel).each(function()
+    {
+        var starttime = $(this).attr('data-start') - Math.round(new Date().getTime()/1000);
+        var time = $(this).attr('data-time') - Math.round(new Date().getTime()/1000);
+        if(time > 8640000)
+        {
+            $(this).text('长期有效');
+        }
+        else
+        {
+            if(starttime > 0)
+            {
+                time = starttime;
+            }
+            $(this).countdown(
+            {
+                format:'HMS',
+                until:time,
+                expiryText: '活动已过期',
+                alwaysExpire: true,
+                layout: '<span>{hn}</span>时<span>{mn}</span>分<span>{sn}</span>秒'
+            });
+        }
+    });
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<extend name="RBAC:base" />
+<block name="content-title">
+<h4>仓库库存信息</h4>  
+<a style="margin:6px 10px;" class="btn align-right" href="{tp#:U('index')}">返回</a> 
+</block>
+<block name="content">
+          <div class="tab-content default-tab" id="tab1">
+            <div class="notification png_bg" id="dmsg" style="display:none;">
+              <a href="#" class="close"><img src="__PUBLIC__/Images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
+              <div>
+                msg.
+              </div>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                   <th>仓库ID</th>
+                   <th>商品编号</th>
+                   <th>商品名称</th>
+                   <th>仓库名称</th>
+                   <th>库存数量</th>
+                   <th>操作</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <volist name="list" id="v">
+                    <tr>
+                      <td>【{tp#$v.id}】</td>
+                      <td>{tp#$v.goods_code}</td>
+                      <td>{tp#$v.goods_name}</td>
+                      <td>{tp#$v.storage}</td>
+                      <td>{tp#$v.store_nums}</td>
+                      <td>
+                         <a class="btn btn-success" href="{tp#:U('edit',array('id'=>$v['id']))}">编辑</a>
+                         <a class="btn btn-danger" href="{tp#:U('del',array('id'=>$v['id'],'goods_id'=>$v['goods_id']))}" onClick="return confirm('是否删除?')">删除</a> 
+                      </td>
+                    </tr>
+                </volist>
+              </tbody>
+
+              <tfoot>
+                <tr>
+                  <td colspan="6">
+                    <div class="pagination">
+						{tp#$show}
+                    </div>
+                    <div class="clear"></div>
+                  </td>
+                </tr>
+              </tfoot>              
+            </table>
+          </div> <!-- End #tab1 -->  
+</block>  

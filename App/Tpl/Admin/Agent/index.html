@@ -1,0 +1,53 @@
+<extend name="RBAC:base" />
+<block name="content-title">
+<h4>代理规则</h4> 
+<!--<a href="{tp#:U('add')}" style="float: right;font-weight: 700;margin:5px 10px;" class="btn">新增</a>-->
+</block>
+<block name="content">
+          <div class="tab-content default-tab" id="tab1">
+            <div class="notification png_bg" id="dmsg" style="display:none;">
+              <a href="#" class="close"><img src="__PUBLIC__/Images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
+              <div>
+                msg.
+              </div>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                   <th>ID</th>
+                   <th>代理名称</th>
+                   <th>代理价格</th>
+                   <th>赠送云金币</th>
+                   <th>是否显示</th>
+                   <th>操作</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <volist name="list" id="v">
+                    <tr>
+                      <td>{tp#$v.id}</td>
+                      <td>{tp#$v['name']}</td>
+                      <td>{tp#$v['price']} 元</td>
+                      <td>{tp#$v['money_cloud']}云金币</td>
+                      <td>
+                        <eq name="v.status" value="0"><a class="btn btn-danger" title="隐藏">隐藏</a></eq>
+                      	<eq name="v.status" value="1"><a class="btn"  title="显示">显示</a></eq>
+                      </td>  
+                      <td>
+                        <a class="btn btn-success" href="{tp#:U('edit',array('id'=>$v['id']))}">修改</a>                  	
+<!--                        <a class="btn btn-danger" href="{tp#:U('del',array('id'=>$v['id']))}" onClick="return confirm('确定要删除此链接?')">删除</a> -->
+                      </td>
+                    </tr>
+                </volist>
+              </tbody>
+			 
+            </table>
+            
+            <div class="pagination">
+              {tp#$show}
+            </div>
+            <div class="clear"></div> 
+            
+          </div> <!-- End #tab1 -->  
+</block>  

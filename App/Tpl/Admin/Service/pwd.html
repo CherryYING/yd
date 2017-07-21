@@ -1,0 +1,24 @@
+<extend name="RBAC:base" />
+<block name="content-title">
+<h4>修改密码</h4>  
+<a style="margin:5px 10px;" href="{tp#:U('index')}" class="btn align-right">返回</a> 
+</block>
+<block name="content">
+<div class="tab-content default-tab" id="tab1">
+    <form method="post" action="{tp#:U('pwd',array('id'=>I('get.id')))}">
+      <fieldset>
+        <p>
+            账户名：{tp#$info.username}
+        </p>
+        <p>
+            新密码：<input required name="password"  class="text-input small-input" placeholder="新密码"/>
+            <font color='red'>必填项</font>
+        </p>        
+        <p>
+          <input type="submit" value="提 交" class="button">
+        </p>
+      </fieldset>
+      <div class="clear"></div>
+    </form>
+</div>
+</block>

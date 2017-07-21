@@ -1,0 +1,31 @@
+<extend name="base" />
+<block name="content-title">
+<h4>添加节点</h4>  
+<a class="btn align-right" style="margin:5px 10px;" href="{tp#:U('node')}">返回</a> 
+</block>
+<block name="content">
+<div class="tab-content default-tab" id="tab1">
+            <form method="post" action="{tp#:U('Admin/RBAC/editNodeHandle')}">
+              <fieldset>
+                <p>
+                    {tp#$type}名称：<input required type="text" name="name"  class="text-input small-input" value="{tp#$nrs.name}"> 
+                </p>
+                <p>
+                    {tp#$type}描述：<input type="text" name="title"  class="text-input small-input" value="{tp#$nrs.title}"> 
+                </p>
+                <p>
+                    是否开启：<input type="radio" name="status" value="1" checked="checked"/>&nbsp;开启&nbsp;
+                              <input type="radio" name="status" value="0"/>&nbsp;关闭&nbsp;
+                </p>
+                <p>
+                    {tp#$type}排序：<input type="text" name="sort"  class="text-input small-input" value="{tp#$nrs.sort}"> 
+                </p>                
+                <p>
+                  <input type="hidden" name="id" value="{tp#$nrs.id}"/>
+                  <input type="submit" value="  提 交  " class="button">
+                </p>
+              </fieldset>
+              <div class="clear"></div>
+            </form>
+</div>
+</block>

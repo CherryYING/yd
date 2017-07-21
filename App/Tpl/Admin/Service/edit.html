@@ -1,0 +1,39 @@
+<extend name="RBAC:base" />
+<block name="content-title">
+<h4>供货商信息</h4>  
+<a style="margin:5px 10px;" href="{tp#:U('index')}" class="btn align-right">返回</a> 
+</block>
+<block name="content">
+<div class="tab-content default-tab" id="tab1">
+            <div class="notification png_bg" id="dmsg" style="display:none;background:#E9E9E9;border:0px;padding:3px;">
+              <a href="#" class="close">
+              <img src="__PUBLIC__/Images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
+              <p>&nbsp;&nbsp;编辑成功!</p>
+            </div>
+            <form method="post" action="{tp#:U('edit',array('id'=>$info['id']))}">
+              <fieldset>
+              	<div class='block'>
+                <p>
+              		账户名　：【{tp#$info.username}】
+              	</p>
+                <p>
+              		用户姓名：<input name="name" value="{tp#$info.name}" class="text-input small-input"/>
+              	</p>
+              	<p>
+              		用户电话：<input name="mobile" value="{tp#$info.mobile}" class="text-input small-input"/>
+              	</p>   
+                <p>
+              		电子邮箱：<input name="email" value="{tp#$info.email}" class="text-input small-input"/>
+              	</p>         	         	
+                </div>              
+                <p>
+                  <input type="submit" value="提 交" class="button">
+                </p>
+              </fieldset>
+              <div class="clear"></div>
+            </form>
+</div>
+<style>
+.block{border:1px dashed #ccc;padding:10px;border-radius:3px;-box-shadow:1px 1px 1px 1px #CCC;}
+</style>
+</block>

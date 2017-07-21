@@ -1,0 +1,68 @@
+<extend name="RBAC:base" />
+<block name="content-title">
+<h4>仓库商品列表</h4> 
+<a style="margin:6px 10px;" class="btn align-right" href="{tp#:U('index')}">返回</a> 
+</block>
+<block name="content">
+          <div class="tab-content default-tab" id="tab1">
+            <div class="notification png_bg" id="dmsg" style="display:none;">
+              <a href="#" class="close"><img src="__PUBLIC__/Images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
+              <div>
+                msg.
+              </div>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                   <th>商品ID</th>
+                   <th>预览图片</th>
+                   <th>商品编号</th>
+                   <th>商品名称</th>
+                   <th>零售价格</th>
+                   <th>库存</th>
+                   <th>操作</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <volist name="list" id="v">
+                    <tr>
+                      <td>【{tp#$v.id}】</td>
+                      
+                      <php>$picurl=base64_encode($v['goods']['spic']);</php>
+                      <td>
+                      <a title="点击查看大图" rel='modal' href="{tp#:U('show_img',array('picurl'=>$picurl))}">
+                      <img src="{tp#$v['goods']['spic']|get_thumb=###}" class="thumb">
+                      </a>
+                      </td>
+                      
+                      <td>{tp#$v.goods_code}</td>
+                      <td>
+                      <a href="{tp#:U('Goods/edit',array('id'=>$v['goods_id']))}" title="{tp#$v.name}">
+                      {tp#$v.goods_name|mb_substr=###,0,30,'utf-8'}
+                      </a>
+                      </td>
+                     
+                      <td><b>&yen;</b>&nbsp;{tp#$v['goods']['price']}</td>
+                       <td>{tp#$v.store_nums}</td>
+                      <td align="center">
+                         <a class="btn btn-success" href="{tp#:U('goods_edit',array('id'=>$v['id']))}">编辑</a>
+                         <a class="btn btn-danger" href="{tp#:U('storagedel',array('id'=>$v['id'],'storage_id'=>$v['storage_id']))}" onClick="return confirm('是否删除?')">删除</a> 
+                      </td>
+                    </tr>
+                </volist>
+              </tbody>
+
+              <tfoot>
+                <tr>
+                  <td colspan="7">
+                    <div class="pagination">
+						{tp#$show}
+                    </div>
+                    <div class="clear"></div>
+                  </td>
+                </tr>
+              </tfoot>              
+            </table>
+          </div> <!-- End #tab1 -->  
+</block>  

@@ -1,0 +1,87 @@
+<extend name="RBAC:base" />
+<block name="content-title">
+<h4>数据库备份</h4>  
+</block>
+<block name="content">
+<div class="tab-content default-tab" id="tab1">
+    <form method="post" action="{tp#:U('import_excel')}">
+       <p>
+           上传excel：
+           <input name="excel"  type="text" id="url" readonly class="text-input small-input"/> 
+          <input type="button" id="uploadButton" value="上传" />
+       </p>
+       <p>
+           <input type="submit" value="导入" class="button">
+       </p>   			
+      <div class="clear"></div>
+    </form>
+    <table>
+      <thead>
+        <tr>
+           <th>表名</th>
+           <th>表类型</th>
+           <th>记录数</th>
+           <th>注释</th>
+           <th>操作</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <volist name="list" id="item">
+            <tr>
+              <td>{tp#$item.Name}</td>
+              <td>{tp#$item.Engine}</td>
+              <td>{tp#$item.Rows}</td>
+              <td>{tp#$item.Comment}</td>
+              
+              <td>
+              <a href="{tp#:U('click',array('table'=>$item['Name'],'do'=>'optimize'))}" title="优化表" class="btn btn-success">优化表</a>
+              <a href="{tp#:U('click',array('table'=>$item['Name'],'do'=>'repair'))}" title="优化表" class="btn btn-success">修复表</a>  
+              </td>
+            </tr>
+        </volist>
+      </tbody>
+
+      <tfoot>
+        <tr>
+          <td colspan="6">
+            <div class="pagination">
+              {tp#$show}
+            </div>
+            <div class="clear"></div>
+          </td>
+        </tr>
+      </tfoot>              
+    </table>
+</div>
+<!--kindeditor-->
+<link rel="stylesheet" href="/plugins/kindeditor/themes/default/default.css" />
+<script charset="utf-8" src="/plugins/kindeditor/kindeditor-min.js"></script>
+<script charset="utf-8" src="/plugins/kindeditor/lang/zh_CN.js"></script>
+<!--kindeditor-->
+<script>
+	KindEditor.ready(function(K) {
+		var uploadbutton = K.uploadbutton({
+			button : K('#uploadButton')[0],
+			fieldName : 'imgFile',
+			url : './plugins/kindeditor/php/upload_json.php?dir=file',
+			afterUpload : function(data) {
+				if (data.error === 0) {
+					var url = K.formatUrl(data.url, 'absolute');
+					K('#url').val(url);
+				} else {
+					alert(data.message);
+				}
+			},
+			afterError : function(str) {
+				alert('自定义错误信息: ' + str);
+			}
+		});
+		uploadbutton.fileBox.change(function(e) {
+			uploadbutton.submit();
+		});
+	});
+</script>
+
+
+</block>

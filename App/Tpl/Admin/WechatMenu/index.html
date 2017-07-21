@@ -1,0 +1,66 @@
+<extend name="RBAC:base" />
+<block name="content-title">
+<h4>公众号菜单设置</h4>  
+</block>
+<block name="content">
+          <div class="tab-content default-tab" id="tab1">
+            <div class="notification success png_bg" id="dmsg" style="display:;">
+              <a href="#" class="close"><img src="__PUBLIC__/Images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
+              <div>
+                公众号菜单设置：①级菜单最多只能开启3个，②级子菜单最多开启5个!（通过认证的订阅号或者服务号才能使用自定义菜单。）
+              </div>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                   <th>菜单ID</th>
+                   <th>菜单标题</th>
+                   <th>菜单类型</th>
+                   <th>菜单键值</th>
+                   <th>菜单排序</th>
+                   <th>操作</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <volist name="plist" id="v">
+                    <tr>
+                      <td>【{tp#$v.id}】</td>
+                      <td>
+                      <if condition="$v['fup'] eq 0">
+                      <a href="#">⊙&nbsp;<b>{tp#$v.name}</b></a>
+                      <else/>&nbsp;┠{tp#$v.name}
+                      </if>
+                      </td>
+                      <td><if condition="$v['type'] eq 0">按钮(click)<else/>链接(view)</if></td>
+                      <td><textarea style="resize:vertical">{tp#$v.key}</textarea></td>
+                      <td>{tp#$v.list}</td>
+                      <td>
+						<a class="btn btn-success" href="{tp#:U('menuadd',array('id'=>$v['id']))}" title="Edit">编辑</a>
+                    	
+                         <a class="btn btn-danger" href="{tp#:U('menudel',array('id'=>$v['id']))}" onClick="return confirm('是否将此菜单删除?')" title="Delete">删除</a> 
+                      </td>
+                    </tr>
+                </volist>
+              </tbody>
+
+              <tfoot>
+                <tr>
+                  <td colspan="6">
+                    <div class="bulk-actions align-left">
+                    <a class="button" href="{tp#:U('menuadd')}">添加菜单</a>&nbsp;&nbsp;&nbsp;
+                    <a class="button" href="{tp#:U('menusend')}" rel="modal">生成菜单</a>&nbsp;&nbsp;&nbsp;
+                    <a class="button" href="{tp#:U('menuget')}" rel="modal">查看当前菜单</a>&nbsp;&nbsp;&nbsp;
+                    <a class="button" href="https://mp.weixin.qq.com/debug" target="_blank">微信接口调试地址</a>&nbsp;&nbsp;&nbsp;
+                    
+                    </div>
+                    <div class="pagination">
+
+                    </div>
+                    <div class="clear"></div>
+                  </td>
+                </tr>
+              </tfoot>              
+            </table>
+      </div>
+</block>  

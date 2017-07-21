@@ -1,0 +1,134 @@
+.dialog-overlay
+{
+	background: #000000;
+	filter: alpha(opacity:50);
+	opacity: 0.5
+}
+.dialog
+{
+	background-clip: padding-box;
+    /*background-color: #F8F8F8;*/
+    /*border: 1px solid rgba(0, 0, 0, 0.3);*/
+    /*box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);*/
+    border-radius: 2px;
+    -moz-border-radius:2px;
+    -webkit-border-radius:2px;
+    outline: 0 none;
+	top:40px;
+	left:5%;
+    right:5%;
+	/*width:90%;*/
+	margin:0px 5%;
+	transition: opacity 0.3s linear 0s, top 0.5s ease-out 0s;
+}
+.dialog .dialog-title{
+    background-color: #F8F8F8;
+    border-bottom: 1px solid #E1E1E1;
+    text-align: center;
+    height: 37px;
+    line-height: 37px;
+    padding: 0 10px;
+}
+.dialog .dialog-title a{
+    display: block;
+    color: #246183;
+    width: 30%;
+}
+.dialog .dialog-title a:first-child {
+    padding-left: 5px;
+    text-align: left;
+    float: left;
+}
+.dialog .dialog-title a:last-child {
+    padding-right: 5px;
+    text-align: right;
+    float: right;
+}
+.dialog .dialog-title span {
+    text-align: center;
+    font-weight: 700;
+}
+.dialog .dialog-content
+{
+	/*padding: 10px;*/
+	/*background-color: #fff;*/
+	box-sizing:border-box;
+	-moz-box-sizing:border-box; /* Firefox */
+	-webkit-box-sizing:border-box; /* Safari */
+    width:100%;
+}
+.dialog .dialog-footer
+{
+	border-top:1px solid #DDDDDD;
+	padding: 14px 15px 15px;
+    text-align: right;
+    background-color:#F5F5F5;
+	box-sizing:border-box;
+	-moz-box-sizing:border-box; /* Firefox */
+	-webkit-box-sizing:border-box; /* Safari */
+}
+.dialog-footer .btn-primary
+{
+	background-color: #4B8CF7;
+    background-image: linear-gradient(to bottom, #4D90FE, #4787ED);
+    background-repeat: repeat-x;
+    border: 1px solid #3079ED;
+    color: #FFFFFF;
+    margin-left:5px;
+}
+.btn-primary:focus {
+    border: 1px solid #3079ED;
+    box-shadow: 0 0 0 1px #FFFFFF inset;
+}
+
+.dataTable
+{
+	background-color:#DDDDDD;
+	/*margin:10px;*/
+	border-collapse: separate;
+	border-spacing: 1px;
+}
+.dataTable tr:hover td{
+    background-color:#F8F8F8;
+}
+.dataTable th,.dataTable td
+{
+	padding:5px;
+}
+.dataTable th
+{
+	background-color:#F8F8F8;
+	font-weight:bold;
+    text-align: right;
+    width:65px;
+}
+.dataTable td
+{
+	background-color:#FFFFFF;
+}
+.dataTable input[type='text'],
+.dataTable input[type='password'],
+.dataTable input[type='number'],
+.dataTable input[type='email'],
+.dataTable input[type='tel'],
+.dataTable input[type='url']
+{
+    padding:5px;
+    width:100%;
+    box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+}
+.dataTable input.mini{
+    width:80px;
+}
+
+.dialog-content .tips{
+    padding:20px;
+    background-color:rgba(0,0,0,0.8);
+    color:#FFFFFF;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    max-width: 80%;
+}

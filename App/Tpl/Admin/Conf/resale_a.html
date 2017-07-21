@@ -1,0 +1,74 @@
+<extend name="RBAC:base" />
+<block name="content-title">
+<h4>A网佣金分配规则</h4>  
+</block>
+<block name="content">
+<div class="tab-content default-tab" id="tab1">
+ <fieldset class="block">
+       <legend class="legend">易道云商A网制度</legend>	
+	<p>1，市代 100元，获得1000云金币
+      可发展三个 下一级（市，省，全国）＊100</p>
+    <p>2，省代 230元，获得2300云金币
+      可发展无限个下一级（市，省，全国）＊100
+      可发展三个 下二级（省，全国）＊100</p>
+    <p>3， 全国代 399元，获得3990云金币，易道云商商户后台一个（须在后台上传资质，总后台审核后可通过）
+       可发展无限个下一级（市，省，全国）＊100
+       可发展无限个下二级（省，全国）＊100
+       可发展无限个下三级（全国）＊100
+       第四级（全国）分红无限＊30
+       加权分红 10，每月A网新加入的全国代理＊10，平均分给所有达到10万业绩的全国代理（若没有符合资格的代理，加权分红奖金沉淀到商城）
+       </p>
+   </fieldset>
+</div>
+<!--kindeditor-->
+<link rel="stylesheet" href="/plugins/kindeditor/themes/default/default.css" />
+<script charset="utf-8" src="/plugins/kindeditor/kindeditor-min.js"></script>
+<script charset="utf-8" src="/plugins/kindeditor/lang/zh_CN.js"></script>
+<!--kindeditor-->
+<script>
+$(function(){
+	$("form").submit(function(){
+		var parent_1=$("input[name='parent_1']").val();
+		var parent_2=$("input[name='parent_2']").val();
+		var parent_3=$("input[name='parent_3']").val();
+		if(parseFloat(parent_1)>100||parseFloat(parent_2)>100||parseFloat(parent_3)>100){
+			artDialog({content:'分佣百分比不能大于100%！', style:'alert', lock:false}, function(){});
+			return false;
+		}
+		
+		if(parseFloat(parent_1)+parseFloat(parent_2)+parseFloat(parent_3)>100){
+			artDialog({content:'三级分佣百分比之和不能大于100%！', style:'alert', lock:false}, function(){});
+			return false;
+		}
+	});
+})
+//单图上传
+	KindEditor.ready(function(K) {
+		var editor = K.editor({
+			allowFileManager : true
+		});
+		K('#image1').click(function() {
+			editor.loadPlugin('image', function() {
+				editor.plugin.imageDialog({
+					imageUrl : K('#url1').val(),
+					clickFn : function(url, title, width, height, border, align) {
+						K('#url1').val(url);
+						editor.hideDialog();
+					}
+				});
+			});
+		});
+		K('#image2').click(function() {
+			editor.loadPlugin('image', function() {
+				editor.plugin.imageDialog({
+					imageUrl : K('#url1').val(),
+					clickFn : function(url, title, width, height, border, align) {
+						K('#url2').val(url);
+						editor.hideDialog();
+					}
+				});
+			});
+		});
+	});
+</script>
+</block>

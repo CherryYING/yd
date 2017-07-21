@@ -1,0 +1,800 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>
+    <title>注册-企业用户</title>
+    <link type="text/css" rel="stylesheet" href="__PUBLIC__/css/passport.base.css"/>
+    <link type="text/css" rel="stylesheet" href="__PUBLIC__/css/regist.company.css?t=0813"/>
+    <script type="text/javascript" src="css/jquery-1.2.6.pack.js"></script>
+</head>
+
+<body>
+    <script type="text/javascript">function login() {
+    location.href = document.location.protocol + "//passport.jd.com/uc/login" + location.search;
+    return false
+}
+function regist() {
+    location.href = document.location.protocol + "//reg.jd.com/reg/person" + location.search;
+    return false
+}
+(function (a) {
+    a.fn.Jdropdown = function (d, e) {
+        if (!this.length) {
+            return
+        }
+        if (typeof d == "function") {
+            e = d;
+            d = {}
+        }
+        var c = a.extend({event: "mouseover", current: "hover", delay: 0}, d || {});
+        var b = (c.event == "mouseover") ? "mouseout" : "mouseleave";
+        a.each(this, function () {
+            var h = null, g = null, f = false;
+            a(this).bind(c.event,
+                    function () {
+                        if (f) {
+                            clearTimeout(g)
+                        } else {
+                            var j = a(this);
+                            h = setTimeout(function () {
+                                j.addClass(c.current);
+                                f = true;
+                                if (e) {
+                                    e(j)
+                                }
+                            }, c.delay)
+                        }
+                    }).bind(b, function () {
+                        if (f) {
+                            var j = a(this);
+                            g = setTimeout(function () {
+                                j.removeClass(c.current);
+                                f = false
+                            }, c.delay)
+                        } else {
+                            clearTimeout(h)
+                        }
+                    })
+        })
+    }
+})(jQuery);
+function addToFavorite() {
+    var a = "http://www.jd.com/";
+    var b = "京东商城-网购上京东，省钱又放心";
+    if (document.all) {
+        window.external.AddFavorite(a, b)
+    } else if (window.sidebar) {
+        window.sidebar.addPanel(b, a, "")
+    } else {
+        layer.alert("对不起，您的浏览器不支持此操作!\n请您使用菜单栏或Ctrl+D收藏本站。")
+    }
+}</script>
+<div id="shortcut-2013">
+    <div class="w">
+        <ul class="fl lh">
+            <li class="fore1 ld"><b></b><a href="javascript:addToFavorite()" rel="nofollow">收藏京东</a></li>
+        </ul>
+        <ul class="fr lh">
+            <li class="fore1" id="loginbar">您好！欢迎来到京东！<a href="javascript:login()">[登录]</a>&nbsp;<a
+                    href="javascript:regist()">[免费注册]</a></li>
+            <li class="fore2 ld">
+                <s></s>
+                <a href="#" rel="nofollow">我的订单</a>
+            </li>
+            <li class="fore3 ld">
+                <s></s>
+                <a href="#" target="_blank">手机京东</a>
+            </li>
+            <li class="fore4 ld menu" id="biz-service" data-widget="dropdown">
+                <s></s>
+                <span class="outline"></span>
+                <span class="blank"></span>
+                客户服务
+                <b></b>
+
+                <div class="dd">
+                    <div><a href="#" target="_blank">常见问题</a></div>
+                    <div><a href="#" target="_blank" rel="nofollow">售后服务</a>
+                    </div>
+                    <div><a href="#" target="_blank" rel="nofollow">在线客服</a></div>
+                    <div><a href="#" target="_blank" rel="nofollow">投诉中心</a></div>
+                    <div><a href="#" target="_blank">客服邮箱</a></div>
+                </div>
+            </li>
+            <li class="fore5 ld menu" id="site-nav" data-widget="dropdown">
+                <s></s>
+                <span class="outline"></span>
+                <span class="blank"></span>
+                网站导航
+                <b></b>
+
+                <div class="dd lh">
+                    <dl class="item fore1">
+                        <dt>特色栏目</dt>
+                        <dd>
+                            <div><a target="_blank" href="#">为我推荐</a></div>
+                            <div><a target="_blank" href="#">视频购物</a></div>
+                            <div><a target="_blank" href="#">京东社区</a></div>
+                            <div><a target="_blank" href="#">校园频道</a></div>
+                            <div><a target="_blank" href="#">在线读书</a></div>
+                            <div><a target="_blank" href="#">装机大师</a></div>
+                            <div><a target="_blank" href="#">礼品卡</a></div>
+                        </dd>
+                    </dl>
+                    <dl class="item fore2">
+                        <dt>企业服务</dt>
+                        <dd>
+                            <div><a target="_blank" href="#">企业客户</a>
+                            </div>
+                            <div><a target="_blank" href="#">办公直通车</a></div>
+                        </dd>
+                    </dl>
+                    <dl class="item fore3">
+                        <dt>旗下网站</dt>
+                        <dd>
+                            <div><a target="_blank" href="#">360TOP</a></div>
+                            <div><a target="_blank" href="#">迷你挑</a></div>
+                            <div><a target="_blank" href="#">English Site</a></div>
+                        </dd>
+                    </dl>
+                </div>
+            </li>
+        </ul>
+        <span class="clr"></span>
+    </div>
+</div>
+
+<div class="w" id="logo">
+    <div><a href="#"><img src="__PUBLIC__/images/logo-2013.png" alt="京东商城" width="170"  height="60"/></a> <b></b>
+    </div>
+</div>
+
+<div class="w" id="regist">
+<div class="mt">
+    <ul class="tab">
+        <li><a href="#">个人用户</a></li>
+        <li class="curr">企业用户</li>
+            <li class="fore"><a href="#">International Customers</a></li>
+        </ul>
+    <div class="extra">
+    <span style="text-align:right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="flk13"
+                                                                          onclick="javascript:location.href=&quot;http://en.360buy.com&quot;+location.search;"
+                                                                          href="#">English</a></span>
+        <span>我已经注册，现在就&nbsp;<a href="#" class="flk13">登录</a></span>
+    </div>
+</div>
+<div class="mc">
+
+<div id="superior">
+    <dl>
+        <dt>专享服务</dt>
+        <dd>        
+            1. 采购流程化；<br/>
+			2. 价格透明化；<br/>
+			3. 服务一体化；<br/>
+			4. 信息系统化；
+        </dd>
+    </dl>
+
+    <dl>
+        <dt>四大特权</dt>
+        <dd>        	
+			1. 专属VIP客服，专属客户经理；<br/>
+			2. 专属采购频道，专属活动特权；<br/>
+			3. 采购合同签订，增值税票开具；<br/>
+			4. 批量采购，产品定制需求；<br/>
+			<b>为您提供全方位的服务！</b>
+        </dd>
+    </dl>
+
+    <dl>
+        <dt>服务须知</dt>
+        <dd>
+			我们的审核时限为24小时（工作日），遇法定节假日顺延。<br/>
+			如您对企业用户注册有疑问，或有批量采购需求，<br/>
+			请拨打企业专享热线：400-656-0055或<a href="#" target="_blank" class="flk13">留言咨询</a>。
+        </dd>
+    </dl>
+</div>
+
+<form id="formcompany" method="post">
+<input type="hidden" name="regType" id="regType" value="company"/>
+
+<input type="hidden" name="uuid" id="uuid" value="8f6906f1-2f3b-43e8-ade0-dd022eed74f4"/>
+
+<div class="form">
+<h3>账户信息</h3>
+
+<div class="item" id="select-regName">
+    <span class="label"><b class="ftx04">*</b>用户名：</span>
+
+    <div class="fl item-ifo">
+        <div class="o-intelligent-regName">
+            <input type="text" id="regName" name="regName"  maxlength="20"  class="text" tabindex="1" autoComplete="off"
+                   onpaste="return false;"
+                   value=""
+                   onfocus="if(this.value=='') this.value='';this.style.color='#333'"
+                   onblur="if(this.value=='') {this.value='';this.style.color='#999999'}"/>
+            <i class="i-name"></i>
+            <ul id="intelligent-regName" class="hide"></ul>
+            <label id="regName_succeed" class="blank"></label>
+            <label id="regName_error"></label>
+        </div>
+
+        <div class="intelligent-error hide" id="morePinDiv">
+            <h5>推荐您使用：</h5>
+
+            <div class="groom" id="morePinGroom"></div>
+        </div>
+        <input type="hidden" value="-1" id="hnschool"/>
+        <input type="hidden" id="schoolid" name="schoolid"/>
+        <input type="hidden" id="hnseli"/>
+    </div>
+</div>
+
+<div id="o-password">
+    <div id="capslock"><i></i><s></s>键盘大写锁定已打开，请注意大小写</div>
+    <div class="item">
+        <span class="label"><b class="ftx04">*</b>请设置密码：</span>
+
+        <div class="fl item-ifo item-pass">
+            <input type="password" id="pwd" name="pwd"  maxlength="20"  class="text" tabindex="2"
+                   style="ime-mode:disabled;"
+                   onpaste="return  false" autocomplete="off"/>
+            <i class="i-pass"></i>
+            <label id="pwd_succeed" class="blank"></label>
+            <label id="pwd_error" class="hide"></label>
+            <span class="clr"></span>
+            <label class="hide" id="pwdstrength"><span class="fl">安全程度：</span><b></b></label>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $('#pwd')[0].onkeypress = function(event){
+            var e = event||window.event,
+                $tip = $('#capslock'),
+                    kc  =  e.keyCode||e.which, // 按键的keyCode
+                    isShift  =  e.shiftKey ||(kc  ==   16 ) || false ; // shift键是否按住
+            if (((kc >=65&&kc<=90)&&!isShift)|| ((kc >=97&&kc<=122)&&isShift)){
+                    $tip.show();
+            }
+            else{
+                    $tip.hide();
+            }
+        };
+    </script>
+
+    <div class="item">
+        <span class="label"><b class="ftx04">*</b>请确认密码：</span>
+
+        <div class="fl item-ifo item-pass">
+            <input type="password" id="pwdRepeat" name="pwdRepeat"  maxlength="20"  class="text" tabindex="3"
+                   onpaste="return  false" autocomplete="off"/>
+            <i class="i-pass"></i>
+            <label id="pwdRepeat_succeed" class="blank"></label>
+            <label id="pwdRepeat_error"></label>
+        </div>
+    </div>
+</div>
+<input type="hidden" name="RGOrEhfiAn" value="XxAZa"/>
+
+<h3>联系人信息</h3>
+
+<div class="item">
+    <span class="label"><b class="ftx04">*</b>联系人姓名：</span>
+
+    <div class="fl item-ifo">
+        <input type="text" id="realname" name="realname"  maxlength="20"  class="text" tabindex="4"/>
+        <label id="realname_succeed" class="blank"></label>
+        <label id="realname_error"></label>
+    </div>
+</div>
+<div class="item">
+    <span class="label"><b class="ftx04">*</b>所在部门：</span>
+
+    <div class="fl item-ifo item-td">
+        <select rel="select" id="department" name="department" tabindex="5">
+                <option value="-1"  >请选择</option>
+             <option value="1"  >办公室</option>
+            <option value="2"  >市场部</option>
+            <option value="3"  >采购部</option>
+            <option value="4"  >技术部</option>
+            <option value="5"  >人力资源</option>
+            <option value="6"  >其他</option>
+            </select>
+        <label id="department_succeed" class="blank"></label>
+        <span class="clr"></span>
+        <label id="department_error"></label>
+    </div>
+</div>
+<div class="item">
+    <span class="label"><b class="ftx04">*</b>固定电话：</span>
+
+    <div class="fl item-ifo">
+        <input type="text" id="tel" name="tel" class="text"  maxlength="20" tabindex="6"/>
+        <label id="tel_succeed" class="blank"></label>
+        <label id="tel_error"></label>
+    </div>
+</div>
+<div class="item">
+    <span class="label"><b class="ftx04">*</b>验证手机：</span>
+
+    <div class="fl item-ifo">
+        <input type="text" id="mobile" name="mobile" onblur="mobileBlur();" maxlength="11" class="text" tabindex="7"/>
+        <label id="mobile_succeed" class="blank"></label>
+        <label id="mobile_error"></label>
+    </div>
+</div>
+<div class="item " style="height: 62px;">
+    <span class="label"><b class="ftx04">*</b>短信验证码：</span>
+    
+    <div class="fl item-ifo">
+        <input type="text" maxlength="6" autocomplete="off" tabindex="6" class="text text-1"
+               name="mobileCode"
+               style="ime-mode:disabled" id="bmobileCode" onblur="bmobileCodeBlur()"
+               onfocus="bmobileCodeFocus();">
+        <label class="blank invisible"></label>
+        <a class="btn" href="javascript:void(0);" onclick="bsendMobileCode();"  id="bsendMobileCode">
+            <span id="bdyMobileButton">获取短信验证码</span></a>
+        <span class="clr"></span>
+    
+        <div class="msg-text" id="bmobileCodeSucMessage"></div>
+        <label id="bmobileCode_error" class="blank"></label>
+        <label id="bmobileCode_succeed" class="blank invisible"></label>
+    </div>
+    <span class="clr"></span>
+</div>
+<div class="item">
+    <span class="label">联系人邮箱：</span>
+
+    <div class="fl item-ifo">
+        <input type="text" id="mail" name="email" class="text"  maxlength="50" tabindex="8" autocomplete="off"/>
+        <label id="mail_succeed" class="blank"></label>
+        <label id="mail_error"></label>
+    </div>
+</div>
+
+<h3>公司信息</h3>
+
+<div class="item">
+    <span class="label"><b class="ftx04">*</b>公司名称：</span>
+
+    <div class="fl item-ifo">
+        <input type="text" id="companyname" name="companyname"  maxlength="40"  class="text" tabindex="9"/>
+        <label id="companyname_succeed" class="blank"></label>
+        <label id="companyname_error"></label>
+    </div>
+</div>
+<div class="item it-company">
+    <span class="label"><b class="ftx04">*</b>公司所在地：</span>
+
+    <div class="fl item-ifo">
+				    <span class="fl">
+                    <select class="mar" name2="hncompanyarea" rel="select" tabindex="10" id="companyprovince"
+                            name="companyprovince">
+                            <option value="-1"  >请选择</option>
+             <option value="1"  >北京</option>
+            <option value="2"  >上海</option>
+            <option value="3"  >天津</option>
+            <option value="4"  >重庆</option>
+            <option value="5"  >河北</option>
+            <option value="6"  >山西</option>
+            <option value="7"  >河南</option>
+            <option value="8"  >辽宁</option>
+            <option value="9"  >吉林</option>
+            <option value="10"  >黑龙江</option>
+            <option value="11"  >内蒙古</option>
+            <option value="12"  >江苏</option>
+            <option value="13"  >山东</option>
+            <option value="14"  >安徽</option>
+            <option value="15"  >浙江</option>
+            <option value="16"  >福建</option>
+            <option value="17"  >湖北</option>
+            <option value="18"  >湖南</option>
+            <option value="19"  >广东</option>
+            <option value="20"  >广西</option>
+            <option value="21"  >江西</option>
+            <option value="22"  >四川</option>
+            <option value="23"  >海南</option>
+            <option value="24"  >贵州</option>
+            <option value="25"  >云南</option>
+            <option value="26"  >西藏</option>
+            <option value="27"  >陕西</option>
+            <option value="28"  >甘肃</option>
+            <option value="29"  >青海</option>
+            <option value="30"  >宁夏</option>
+            <option value="31"  >新疆</option>
+            <option value="32"  >台湾</option>
+            <option value="42"  >香港</option>
+            <option value="43"  >澳门</option>
+            <option value="84"  >钓鱼岛</option>
+                        </select>
+                    </span>
+					<span class="fl"><select class="mar" name2="hncompanyarea" rel="select" tabindex="11"
+                                             id="companycity" name="companycity">
+                        <option value="-1" selected="selected">请选择</option>
+                    </select>
+					</span>
+					<span class="fl"><select id="companyarea" name="companyarea" name2="hncompanyarea" rel="select"
+                                             tabindex="11">
+                        <option value="-1" selected="selected">请选择</option>
+                    </select>
+					</span>
+        <input id="hncompanyarea" type="hidden" value="-1"/>
+        <input id="hprov" type="hidden"/>
+        <label id="hncompanyarea_succeed" class="blank"></label>
+
+        <label id="hncompanyarea_error"></label>
+    </div>
+</div>
+
+<div class="item">
+    <span class="label"><b class="ftx04">*</b>公司地址：</span>
+
+    <div class="fl item-ifo">
+        <input type="text" tabindex="11" class="text" name="companyaddr" id="companyaddr" maxlength="50" >
+        <label class="blank" id="companyaddr_succeed"></label>
+        <label id="companyaddr_error"></label>
+    </div>
+</div>
+
+<div class="item fore1">
+    <span class="label"><b class="ftx04">*</b>购买类型/用途：</span>
+
+    <div class="fl item-ifo" style="width:500px;">                   <input id="purpose2" tabindex="13" class="checkbox" name="purposetype" runant="server" type="checkbox" value="1" />
+      <label class="pad" for="purpose1">IT设备</label>
+          <input id="purpose2" tabindex="13" class="checkbox" name="purposetype" runant="server" type="checkbox" value="2" />
+      <label class="pad" for="purpose2">数码通讯</label>
+          <input id="purpose2" tabindex="13" class="checkbox" name="purposetype" runant="server" type="checkbox" value="3" />
+      <label class="pad" for="purpose3">办公用品耗材</label>
+          <input id="purpose2" tabindex="13" class="checkbox" name="purposetype" runant="server" type="checkbox" value="4" />
+      <label class="pad" for="purpose4">大家电</label>
+          <input id="purpose2" tabindex="13" class="checkbox" name="purposetype" runant="server" type="checkbox" value="5" />
+      <label class="pad" for="purpose5">项目合作-政府采购</label>
+          <input id="purpose2" tabindex="13" class="checkbox" name="purposetype" runant="server" type="checkbox" value="6" />
+      <label class="pad" for="purpose6">礼品</label>
+          <input id="purpose2" tabindex="13" class="checkbox" name="purposetype" runant="server" type="checkbox" value="7" />
+      <label class="pad" for="purpose7">商旅(机票/酒店等)</label>
+            <input id="purpose" type="hidden" value=""/>
+        <label id="purpose_succeed" class="blank"></label>
+        <span class="clr"></span>
+        <label id="purpose_error"></label>
+    </div>
+</div>
+<div class="item">
+    <span class="label">负责销售：</span>
+
+    <div class="fl item-ifo">
+        <input type="text" id="companysite" name="companysite"  maxlength="20"  class="text" tabindex="19"/>
+        <label id="companysite_succeed" class="blank"></label>
+        <label id="companysite_error"></label>
+    </div>
+</div>
+<div class="item">
+    <span class="label">企业人数：</span>
+
+    <div class="fl item-ifo">
+        <select rel="select" tabindex="20" id="employees" name="employees">
+                <option value="-1"  >请选择</option>
+             <option value="1"  >1-49</option>
+            <option value="2"  >50-99</option>
+            <option value="3"  >100-499</option>
+            <option value="4"  >500-999</option>
+            <option value="5"  >1000以上</option>
+            </select>
+        <label id="employee_succeed" class="blank"></label>
+        <span class="clr"></span>
+        <label id="employee_error"></label>
+    </div>
+</div>
+<div class="item">
+    <span class="label">公司行业：</span>
+
+    <div class="fl item-ifo">
+        <select rel="select" tabindex="21" id="industry" name="industry">
+                <option value="-1"  >请选择</option>
+             <option value="1"  >计算机硬件及网络设备</option>
+            <option value="2"  >计算机软件</option>
+            <option value="3"  >IT服务（系统/数据/维护）/多领域经营</option>
+            <option value="4"  >互联网/电子商务</option>
+            <option value="5"  >网络游戏</option>
+            <option value="6"  >通讯（设备/运营/增值服务）</option>
+            <option value="7"  >电子技术/半导体/集成电路</option>
+            <option value="8"  >仪器仪表及工业自动化</option>
+            <option value="9"  >金融/银行/投资/基金/证券</option>
+            <option value="10"  >保险</option>
+            <option value="11"  >房地产/建筑/建材/工程</option>
+            <option value="12"  >家居/室内设计/装饰装潢</option>
+            <option value="13"  >物业管理/商业中心</option>
+            <option value="14"  >广告/会展/公关/市场推广</option>
+            <option value="15"  >媒体/出版/影视/文化/艺术</option>
+            <option value="16"  >印刷/包装/造纸</option>
+            <option value="17"  >咨询/管理产业/法律/财会</option>
+            <option value="18"  >教育/培训</option>
+            <option value="19"  >检验/检测/认证</option>
+            <option value="20"  >中介服务</option>
+            <option value="21"  >贸易/进出口</option>
+            <option value="22"  >零售/批发</option>
+            <option value="23"  >快速消费品（食品/饮料/烟酒/化妆品</option>
+            <option value="24"  >耐用消费品（服装服饰/纺织/皮革/家具/家电）</option>
+            <option value="25"  >办公用品及设备</option>
+            <option value="26"  >礼品/玩具/工艺美术/收藏品</option>
+            <option value="27"  >大型设备/机电设备/重工业</option>
+            <option value="28"  >加工制造（原料加工/模具）</option>
+            <option value="29"  >汽车/摩托车（制造/维护/配件/销售/服务）</option>
+            <option value="30"  >交通/运输/物流</option>
+            <option value="31"  >医药/生物工程</option>
+            <option value="32"  >医疗/护理/美容/保健</option>
+            <option value="33"  >医疗设备/器械</option>
+            <option value="34"  >酒店/餐饮</option>
+            <option value="35"  >娱乐/体育/休闲</option>
+            <option value="36"  >旅游/度假</option>
+            <option value="37"  >石油/石化/化工</option>
+            <option value="38"  >能源/矿产/采掘/冶炼</option>
+            <option value="39"  >电气/电力/水利</option>
+            <option value="40"  >航空/航天</option>
+            <option value="41"  >学术/科研</option>
+            <option value="42"  >政府/公共事业/非盈利机构</option>
+            <option value="43"  >环保</option>
+            <option value="44"  >农/林/牧/渔</option>
+            <option value="45"  >跨领域经营</option>
+            <option value="46"  >其它</option>
+            </select>
+        <label id="industry_succeed" class="blank"></label>
+        <span class="clr"></span>
+        <label id="industry_error"></label>
+    </div>
+</div>
+<div class="item">
+    <span class="label">公司性质：</span>
+
+    <div class="fl item-ifo">
+        <select rel="select" tabindex="22" id="nature" name="nature">
+                <option value="-1"  >请选择</option>
+             <option value="1"  >政府机关/事业单位</option>
+            <option value="2"  >国营</option>
+            <option value="3"  >私营</option>
+            <option value="4"  >中外合资</option>
+            <option value="5"  >外资</option>
+            <option value="6"  >其他</option>
+            </select>
+        <label id="nature_succeed" class="blank"></label>
+        <span class="clr"></span>
+        <label id="nature_error"></label>
+    </div>
+</div>
+
+        <div class="item" id="authcodeDiv">
+        <span class="label"><b class="ftx04">*</b>验证码：</span>
+
+        <div class="fl item-ifo">
+            <input type="text" id="authcode" style="ime-mode:disabled" name="authcode" class="text text-1"
+                   tabindex="23" autocomplete="off" MaxLength="6"/>
+            <label class="img">
+                <img style="cursor:pointer;width:100px;height:36px;display:block;" alt=""  clstag="regist|keycount|personalreg|06"
+                     onclick="this.src= document.location.protocol +'//authcode.jd.com/verify/image?a=0&amp;acid=8f6906f1-2f3b-43e8-ade0-dd022eed74f4&amp;uid=8f6906f1-2f3b-43e8-ade0-dd022eed74f4&amp;srcid=reg&amp;is=d49f2a8f448cd021247ef9831f6b8e76&amp;yys='+new Date().getTime()"
+                     ver_colorofnoisepoint="#888888" id="JD_Verification1"> </label>
+            <script type="text/javascript">$("#JD_Verification1").click();</script>
+            <label class="ftx23">&nbsp;看不清？<a href="javascript:void(0)" onclick="setTimeout(verc,50);"
+                                              class="flk13">换一张</a></label>
+            <label id="authcode_succeed" class="blank invisible"></label>
+            <span class="clr"></span>
+            <label id="authcode_error"></label>
+        </div>
+    </div>
+    
+
+
+<div class="item item-new">
+    <span class="label">&nbsp;</span>
+
+    <div class="fl item-ifo">
+        <input type="checkbox" class="checkbox" checked="checked" id="readme"
+               onclick="agreeonProtocol();">
+        <label for="protocol">我已阅读并同意<a href="#" class="blue" id="protocol">《京东用户注册协议》</a></label>
+        <span class="clr"></span>
+        <label id="protocol_error" class="error hide">请接受服务条款</label>
+    </div>
+</div>
+
+<div class="item">
+    <span class="label">&nbsp;</span>
+    <input type="button" class="btn-img btn-regist" id="registsubmit" value="立即注册" tabindex="25" clstag="regist|keycount|companyreg|04"/>
+</div>
+</form>
+
+</div>
+</div>
+</div>
+
+    <script type="text/javascript">
+    function hello() {
+        var helloUrl = "https://passport.jd.com/call/getHelloJson?m=ls";
+        jQuery.ajax({url: helloUrl, dataType: "jsonp", scriptCharset: "gb2312", success: function (a) {
+            if (a && a.info) {
+                $("#loginbar").html(a.info);
+            }
+            if (a && a.sso) {
+                $.each(a.sso, function () {
+                    $.getJSON(this)
+                })
+            }
+        }});
+    }
+    (function ($) {
+        $("#shortcut-2013 .menu").Jdropdown({delay: 50});
+        hello();
+    })(jQuery);</script>
+<div class="w">
+    <div id="footer-2013">
+        <div class="links"><a rel="nofollow" target="_blank" href="#">关于我们</a>|<a
+                rel="nofollow" target="_blank" href="#">联系我们</a>|<a rel="nofollow"
+                                                                                             target="_blank"
+                                                                                             href="#">人才招聘</a>|<a
+                rel="nofollow" target="_blank" href="#">商家入驻</a>|<a rel="nofollow"
+                                                                                                        target="_blank"
+                                                                                                        href="#">广告服务</a>|<a
+                rel="nofollow" target="_blank" href="#">手机京东</a>|<a target="_blank"
+                                                                                     href="#">友情链接</a>|<a
+                target="_blank" href="#">销售联盟</a>|<a href="#"
+                                                                      target="_blank">京东社区</a>|<a
+                href="#" target="_blank">京东公益</a></div>
+        <div class="copyright">Copyright&copy;2004-2015&nbsp;&nbsp;京东JD.com&nbsp;版权所有</div>
+    </div>
+</div><script type="text/javascript" src="../misc/js/jd.lib.js"></script>
+<script type="text/javascript" src="../misc/js/jdThickBox.js"></script>
+<script type="text/javascript" src="../misc/js/companyJdValidate.js?t=20130108"></script>
+<script type="text/javascript" src="../misc/js/jdValidate.emailRegCompany.js?t=20130101"></script>
+    <script type="text/javascript">
+    (function () {
+        var ja = document.createElement('script');
+        ja.type = 'text/javascript';
+        ja.async = true;
+        ja.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'cscssl.jd.com/wl.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(ja, s);
+    })();
+</script>
+
+
+<style>
+    #toppanel {
+        position: relative;
+        z-index: 1000
+    }
+
+    #sidepanel {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        z-index: 1000
+    }
+
+    #sidepanel a,#sidepanel b {
+        background-image: url(http://misc.360buyimg.com/lib/skin/2013/i/20130330A_2.png);
+        background-repeat: no-repeat
+    }
+
+    #sidepanel a {
+        display: block;
+        position: relative;
+        width: 17px;
+        height: 66px;
+        padding: 28px 4px 0;
+        margin: 5px 0;
+        text-align: center;
+        line-height: 14px;
+        text-decoration: none
+    }
+
+    #sidepanel b {
+        position: absolute;
+        top: 9px;
+        left: 4px;
+        width: 17px;
+        height: 16px;
+        overflow: hidden
+    }
+
+    #sidepanel a:link,#sidepanel a:visited {
+        background-position: -85px -149px
+    }
+
+    #sidepanel a:hover,#sidepanel a:active {
+        background-position: -50px -149px
+    }
+
+    #sidepanel .gotop:link b,#sidepanel .gotop:visited b {
+        background-position: -21px -219px
+    }
+
+    #sidepanel .gotop:hover b,#sidepanel .gotop:active b {
+        background-position: -21px -200px
+    }
+
+    #sidepanel .research:link b,#sidepanel .research:visited b {
+        background-position: 0 -219px
+    }
+
+    #sidepanel .research:hover b,#sidepanel .research:active b {
+        background-position: 0 -200px
+    }
+
+    *html #sidepanel {
+        position: absolute;
+        top: expression(documentElement.scrollTop+documentElement.clientHeight-this.offsetHeight);
+        overflow: visible
+    }
+</style>
+<script>
+    $(function(){
+        function Toppanel() {};
+
+        Toppanel.prototype = {
+            constructor : Toppanel,
+            init : function() {
+                if(!$("#toppanel").length){
+                    $(document.body).prepend("<div class=\"w ld\" id=\"toppanel\"></div>");
+                }
+                $("#toppanel").append("<div id=\"sidepanel\" class=\"hide\"></div>");
+                this.obj=$("#sidepanel");
+            },
+            scroll : function(){
+                var _this=this;
+                $(window).bind("scroll",function(){
+                    var top=document.body.scrollTop||document.documentElement.scrollTop;
+                    if(top==0){
+                        _this.obj.hide()
+                    }else{
+                        _this.obj.show()
+                    }
+                });
+                _this.initCss();
+                $(window).bind("resize",function(){
+                    _this.initCss();
+                });
+            },
+            initCss : function(){
+                var css,
+                        width=$('#toppanel').width(),
+                        cwidth = document.documentElement.clientWidth;
+                if(cwidth>1024){
+                    if(jQuery.browser.msie&&jQuery.browser.version<=6){
+                        css={"right":"-26px"}
+                    }else{
+                        css={
+                            "right":(cwidth-width)/2-26+"px"
+                        }
+                    }
+                }else{
+                    css={"right":"0"}
+                }
+
+                this.obj.css(css)
+
+            },
+            addCss : function(a){
+                this.obj.css(a)
+            },
+            addItem : function(a){
+                this.obj.append(a)
+            },
+            setTop : function(){
+                this.addItem("<a href='#' class='gotop' title='使用快捷键T也可返回顶部哦！'><b></b>返回顶部</a>");
+            }
+        };
+
+        var sidePanle = new Toppanel;
+        sidePanle.init();
+        sidePanle.addItem("<a class='research' target='_blank' href='http://surveys.jd.com/index.php?r=survey/index/sid/447941/lang/zh-Hans'><b></b>调查问卷</a><a title='使用快捷键T也可返回顶部哦！' class='gotop' href='#'><b></b>返回顶部</a>")
+        sidePanle.scroll();
+    });
+</script>
+</body>
+</html>
+
+
+
+

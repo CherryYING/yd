@@ -1,0 +1,93 @@
+<div id="sidebar">
+	<div id="sidebar-wrapper"> <!-- Sidebar with logo and menu -->
+      <h1 id="sidebar-title"><a href="#"></a></h1>
+      <!-- Logo (221px wide) -->
+     <!-- <a href="{tp#:U('Index/index')}"><center><img id="logo" src="__PUBLIC__/Images/logo.jpg"/></center></a>-->
+      <!-- Sidebar Profile links -->
+      <div id="profile-links">
+        <!--你好, <a href="{tp#:U('RBAC/editUser',array('id'=>1))}" title="修改密码">{tp#:I('session.username')}</a>
+        , 您有 <a href="#messages" rel="modal" title="3 Messages">3 条未读消息</a>-->
+        <br />
+        <br />
+         <a target="_blank" href="{tp#:U('Weixin/Agent/shop',array('id'=>$sid))}" title="店铺首页">店铺首页</a> |
+         <a href="{tp#:U('Index/index')}" title="管理中心">管理中心</a> |
+         <a href="{tp#:U('Login/logout')}" title="安全退出">退出</a>
+      </div>
+     
+      <ul id="main-nav">  
+      <!-- Accordion Menu -->
+		<li>
+			<a href="#" class="nav-top-item">
+			账户管理
+			</a>
+			<ul class="dlink">
+            	<li><a href="{tp#:U('User/info')}">个人信息</a></li>
+				<li><a href="{tp#:U('User/pwd')}">修改密码</a></li>
+                <li><a href="{tp#:U('User/fund')}">资金账户</a></li>
+			</ul>
+		</li>		
+        <li> 
+          <a href="#" class="nav-top-item">
+          订单管理
+          </a>
+          <ul class="dlink">
+            <li><a href="{tp#:U('Order/index')}">订单列表</a></li>
+          </ul>
+        </li>    
+        <li> 
+          <a href="#" class="nav-top-item">
+          售后申请
+          </a>
+          <ul class="dlink">
+            <li><a href="{tp#:U('Order/refund_list')}">售后申请</a></li>
+          </ul>
+        </li>      
+        <li>
+          <a href="#" class="nav-top-item">
+            商品管理
+          </a>
+          <ul class="dlink">
+            <li><a href="{tp#:U('Goods/index')}">商品列表</a></li>
+            <!--<li><a href="{tp#:U('Goods/goods_manage')}">官方商品推荐</a></li>-->
+          </ul>
+        </li>
+        
+        <li>
+          <a href="#" class="nav-top-item">
+            店铺管理
+          </a>
+          <ul class="dlink">
+            <li><a href="{tp#:U('User/shop')}">基础信息管理</a></li>
+            <li><a href="{tp#:U('Slide/index')}">轮播图片管理</a></li>
+          </ul>
+        </li>
+        
+        
+        
+        
+       
+        
+      </ul> <!-- End #main-nav -->
+      
+    </div>
+<script type="text/javascript">
+$(document).ready(function() {
+	var url=window.location.search;
+	$('#main-nav li ul li a').each(function(){
+		var aurl='?'+$(this).attr("href").split("?")[1];
+
+		var pul=$(this).parent().parent().prev();
+		var tul=$(this).parent().parent().parent();
+		if(aurl.indexOf(url)>=0){
+			$(this).addClass("current").siblings("a").removeClass("current");
+			$(".nav-top-item").removeClass("current");
+			pul.addClass("current");
+			$(".dlink").css("display","none");
+			$(this).parent().parent().css("display","block");
+			
+		}
+	});
+});
+</script> 
+
+</div> <!-- End #sidebar -->

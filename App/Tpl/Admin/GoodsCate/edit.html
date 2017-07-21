@@ -1,0 +1,90 @@
+<extend name="RBAC:base" />
+<block name="jq"><script type="text/javascript" src="__PUBLIC__/Js/jquery.min.js"></script></block>
+<block name="content-title">
+<h3>编辑分类</h3>  
+<a style="margin:5px 10px;" class="btn align-right" href="{tp#:U('index')}">返回列表</a>
+</block>
+<block name="content">
+<div class="tab-content default-tab" id="tab1">
+    <form method="post" action="{tp#:U('edit',array('id'=>I('get.id')))}">
+      <fieldset>
+        <p>
+            分类名称：<input value="{tp#$info.name}" required type="text" name="name"  class="text-input small-input"> 
+        </p>
+         <p>
+            首页推荐：<select name='is_tui'>
+                    	<option value='1' <eq name="info.is_tui" value="1">selected</eq> >推荐</option>
+                    	<option value='0' <eq name="info.is_tui" value="0">selected</eq> >不推荐</option>
+                    </select> 
+        </p>
+         <p>
+            上级分类：
+            		<select name='fup'>
+                    	<option value='0'>-顶级分类-</option>
+                    	<volist name='catelist' id='item'>
+                    	<option value="{tp#$item['id']}" <eq name="info.fup" value="$item['id']">selected</eq> >{tp#$item['name']}</option>
+                        </volist>
+                    </select> 
+        </p>
+        <p>
+        分类logo：
+        <input readonly name="spic" type="text" id="url1" value="{tp#$info.spic}" class="text-input small-input"/> 
+        <input type="button" id="image1" value="选择图片" class="button"/>
+        </p>
+        <p>
+            首页显示：
+            		<select name='is_show'>
+                    <option value='1' <eq name='info.is_show' value='1'>selected</eq> >显示</option>
+                    <option value='2' <eq name='info.is_show' value='2'>selected</eq> >隐藏</option>
+                    </select>
+        </p>
+        <p>
+            显示排序：<input value="{tp#$info.list}" required type="text" name="list"  class="text-input small-input"> 
+        </p>
+        <p>
+          <input type="submit" value="  提 交  " class="button">
+        </p>
+      </fieldset>
+      <div class="clear"></div>
+    </form>
+</div>
+<!--kindeditor-->
+<link rel="stylesheet" href="/plugins/kindeditor/themes/default/default.css" />
+<script charset="utf-8" src="/plugins/kindeditor/kindeditor-min.js"></script>
+<script charset="utf-8" src="/plugins/kindeditor/lang/zh_CN.js"></script>
+<!--kindeditor-->
+<script>
+	KindEditor.ready(function(K) {
+		//初始化编辑器
+		var editor1 = K.create('textarea[name="content"]', {
+			cssPath : '/plugins/kindeditor/plugins/code/prettify.css',
+			uploadJson : '/plugins/kindeditor/php/upload_json.php',
+			fileManagerJson : '/plugins/kindeditor/php/file_manager_json.php',
+			allowFileManager : true,
+			afterCreate : function() {}
+		});
+		prettyPrint();
+	});
+	/*$(function() {
+		var editor = KindEditor.create('textarea[name="content"]');
+	});*/
+	//单图上传
+	KindEditor.ready(function(K) {
+		var editor = K.editor({
+			allowFileManager : true
+		});
+		K('#image1').click(function() {
+			editor.loadPlugin('image', function() {
+				editor.plugin.imageDialog({
+					imageUrl : K('#url1').val(),
+					clickFn : function(url, title, width, height, border, align) {
+						K('#url1').val(url);
+						editor.hideDialog();
+					}
+				});
+			});
+		});
+	});
+	
+</script>
+</block>

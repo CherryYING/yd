@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta name="format-detection" content="telephone=no">
+<title>我的团队 -  {tp#$webinfo.web_name}</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/comman.css" media="all">
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/jquery_dialog.css" media="all">
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/style.css" media="all">
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/user2015.css" media="all">	
+<script> var SITE_URL="http://www.wdkl168.com/";</script>
+<script type="text/javascript" src="__PUBLIC__/js/jquery.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/js/jquery_dialog.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/js/common.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/js/jquery.json-1.3.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/js/user.js"></script> 	
+<script type="text/javascript" src="__PUBLIC__/js/jweixin-1.0.0.js"></script> 
+</head>
+<body>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/css.css" media="all">
+<div id="home">
+	<div id="header">
+		<div class="logo" style="height:28px; padding-top:10px; background:url(__PUBLIC__/images/xy.png) 10px 8px no-repeat">
+        <span onclick=" history.go(-1);">&nbsp;</span></div>
+		<div class="shoptitle"><span>我的团队</span></div>
+		<!--logoright-->
+        <include file="Public:logoright"/>
+        <!--logoright-->
+	</div>
+</div>	
+<script type="text/javascript">
+function ajax_show_menu(){
+	$(".showmenu").toggle();
+}
+</script>
+
+<style type="text/css">
+.pw,.pwt{
+height:26px; line-height:26px;
+border: 1px solid #ddd;
+border-radius: 5px;
+background-color: #fff; padding-left:5px; padding-right:5px;
+-moz-border-radius:5px;/*仅Firefox支持，实现圆角效果*/
+-webkit-border-radius:5px;/*仅Safari,Chrome支持，实现圆角效果*/
+-khtml-border-radius:5px;/*仅Safari,Chrome支持，实现圆角效果*/
+border-radius:5px;/*仅Opera，Safari,Chrome支持，实现圆角效果*/
+}
+.pw{ width:90%;}
+.usertitle{
+height:22px; line-height:22px;color:#666; font-weight:bold; font-size:14px; padding:5px;
+border-radius: 5px;
+background-color: #ededed; padding-left:5px; padding-right:5px;
+-moz-border-radius:5px;/*仅Firefox支持，实现圆角效果*/
+-webkit-border-radius:5px;/*仅Safari,Chrome支持，实现圆角效果*/
+-khtml-border-radius:5px;/*仅Safari,Chrome支持，实现圆角效果*/
+border-radius:5px;/*仅Opera，Safari,Chrome支持，实现圆角效果*/
+}
+.dailicenter{ margin:5px;border-radius:5px; border:1px solid #dcd9d8; overflow:hidden}
+.dailicenter li{ height:40px; line-height:40px; background:#f8f8f8; border-bottom:1px solid #dcd9d8; text-align:left}
+.dailicenter li a{ padding-right:10%;font-size:16px; display:block; background:url(__PUBLIC__/images/404-2.png) 90% center no-repeat;}
+.dailicenter li a:hover{ background:url(__PUBLIC__/images/404-2.png) 90% center no-repeat #6EAAD3}
+.dailicenter li i{ list-style:decimal; width:28px; height:40px; float:left; margin-left:7%; margin-right:10px;}
+.dailicenter li.li0 i{ background:url(__PUBLIC__/images/icon/gg.png) 10% center no-repeat #f8f8f8;background-size:28px auto;}
+.dailicenter li.li1 i{ background:url(__PUBLIC__/images/3433.png) 10% center no-repeat #f8f8f8;background-size:28px auto;}
+.dailicenter li.li2 i{ background:url(__PUBLIC__/images/icon/key.png) 10% center no-repeat #f8f8f8;background-size:28px auto;}
+.dailicenter li.li3 i{ background:url(__PUBLIC__/images/icon/li8.png) 10% center no-repeat #f8f8f8;background-size:28px auto;}
+.dailicenter li.li4 i{ background:url(__PUBLIC__/images/23.png) 10% center no-repeat #f8f8f8;background-size:28px auto;}
+.dailicenter li.li5 i{ background:url(__PUBLIC__/images/2323.png) 10% center no-repeat #f8f8f8;background-size:28px auto;}
+.dailicenter li.li6 i{ background:url(__PUBLIC__/images/43434.png) 10% center no-repeat #f8f8f8;background-size:28px auto;}
+.dailicenter li.li7 i{ background:url(__PUBLIC__/images/icon/dp.png) 10% center no-repeat #f8f8f8;background-size:28px auto;}
+.dailicenter li.li44 i{ background:url(__PUBLIC__/images/23232.png) 10% center no-repeat #f8f8f8;background-size:28px auto;}
+.dailicenter li.li55 i{ background:url(__PUBLIC__/images/212.png) 10% center no-repeat #f8f8f8;background-size:28px auto;}
+
+.dailicenter li.li0 a:hover i{ background:url(__PUBLIC__/images/icon/gg.png) 10% center no-repeat #6EAAD3;background-size:28px auto;}
+.dailicenter li.li1 a:hover i{ background:url(__PUBLIC__/images/3433.png) 10% center no-repeat #6EAAD3;background-size:28px auto;}
+.dailicenter li.li2 a:hover i{ background:url(__PUBLIC__/images/icon/key.png) 10% center no-repeat #6EAAD3;background-size:28px auto;}
+.dailicenter li.li3 a:hover i{ background:url(__PUBLIC__/images/icon/li8.png) 10% center no-repeat #6EAAD3;background-size:28px auto;}
+.dailicenter li.li4 a:hover i{ background:url(__PUBLIC__/images/23.png) 10% center no-repeat #6EAAD3;background-size:28px auto;}
+.dailicenter li.li5 a:hover i{ background:url(__PUBLIC__/images/2323.png) 10% center no-repeat #6EAAD3;background-size:28px auto;}
+.dailicenter li.li6 a:hover i{ background:url(__PUBLIC__/images/43434.png) 10% center no-repeat #6EAAD3;background-size:28px auto;}
+.dailicenter li.li7 a:hover i{ background:url(__PUBLIC__/images/icon/dp.png) 10% center no-repeat #6EAAD3;background-size:28px auto;}
+.dailicenter li.li44 a:hover i{ background:url(__PUBLIC__/images/23232.png) 10% center no-repeat #6EAAD3;background-size:28px auto;}
+.dailicenter li.li55 a:hover i{ background:url(__PUBLIC__/images/212.png) 10% center no-repeat #6EAAD3;background-size:28px auto;}
+
+.user-list{list-style-type:none}
+.user-list li{margin:10px 0;border-radius:3px;background:#FFF;padding:5px;}
+.headimg{width:80px;height:70px;max-width:20% !important;border-radius:40px;}
+.fl{float:left}
+.fr{float:right}
+.clear{clear:both}
+.info{margin:0 0 0 10px;width:70% !important}
+.tag{padding:3px;color:#FFF;border-radius:20px;width:80px !important;text-align:center;font-size:12px;}
+.bg-green{background:#093;}
+.bg-red{background:#DB383E;}
+.line{margin:5px 0;width:100%;font-size:12px;}
+.ml120{margin-left:120px;}
+a.tag,a.tag:hover,a.tag:active,a.tag:visited{color:#FFF !important}
+.f10{font-size:8px !important;}
+</style>
+<div id="main" style="padding:5px; min-height:300px; font-size:16px;">
+	<ul class="user-list">
+   <!-- <volist name="parent" id="item">
+    	<li>
+			<img src="{tp#$item.headimgurl}" onerror="this.src='__PUBLIC__/images/no-img.png'" class='headimg fl'>
+            <div class="fl info">
+            <p class="line">昵称：{tp#$item.nickname}</p>
+            <p class="line">
+            <span class="tag bg-red">{tp#$item.relation}</span>
+            <a class="tag bg-red fr" href="{tp#:U('Plugin/chat_room',array('id'=>$item['id']))}">发送消息</a>
+            <div class="clear"></div>
+            </p>
+            </div>
+            <div class="clear"></div>
+		</li>
+    </volist>-->
+    
+    <volist name="son_list" id="item">
+		<li>
+			<img src="{tp#$item.headimgurl}" onerror="this.src='__PUBLIC__/images/no-img.png'" class='headimg fl'>
+            <div class="fl info">
+            <p class="line">会员ID：{tp#$item.id}
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <span class="tag bg-red f10">{tp#$item.relation}</span>
+            </p>
+            <p class="line">昵称：{tp#$item.nickname|default='---'}</p>
+            <p class="line">
+            <span>角色：
+            <eq name="item.role_id" value="2">
+            <font color='red'>分销会员</font>
+            <else/>
+            普通会员
+            </eq>
+            </span>
+            <br/><br/>
+            
+            <span class="tel">
+            <if condition="!empty($item['mobile'])">
+            <a href="tel:{tp#$item.mobile}"><img src="__PUBLIC__/images/tel.png"></a>
+            <else/>
+            <a href="javascript:alert('对方暂未设置电话');"><img src="__PUBLIC__/images/tel.png"></a>
+            </if>
+            </span>
+           
+            <a class="tag bg-red fr" href="{tp#:U('Plugin/chat_room',array('id'=>$item['id']))}">发送消息</a>
+            <div class="clear"></div>
+            </p>
+            </div>
+            <div class="clear"></div>
+		</li>
+    </volist>    
+        
+	</ul>
+</div>
+
+<!--分页-->
+<if condition="strlen($page) gt 1"><p id="page">{tp#$page}</p></if>
+<!--分页-->
+
+<!--QUYU-->
+<div id="opquyu">
+	
+</div>
+<div id="opquyubox">
+	<!--商品分类导航-->
+    <include file="Public:category"/>
+   	<!--商品分类导航-->
+</div>
+
+<!--FOOTER-->
+<!--底部-->
+<include file="Public:footbar"/>
+<!--底部-->
+
+</body>
+
+</html>

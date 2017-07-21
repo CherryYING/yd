@@ -1,0 +1,33 @@
+﻿@charset "utf-8";
+*{margin:0;padding:0;list-style-type:none;}
+a,img{border:0;}
+a{color:#000000;text-decoration:none;}
+a:hover{color:#3899BE;}
+body{font:12px/180% Arial, Helvetica, sans-serif, "新宋体";}
+
+.w740{width:760px;overflow:hidden;margin:20px auto;border:solid 1px #ddd;padding:10px 0 15px 0;}
+
+.title{line-height:35px;height:35px;margin:0 0 10px 0;}
+.title h1{font-size:18px;font-family:"microsoft yahei";text-align:center;font-weight:normal;margin:0;text-decoration: none;clear:both;line-height:35px;margin-top:5px;}
+
+/* 组图开始 小图部分 */
+.thumbpic{margin:10px auto;width:700px;}
+.thumbpic .ltp{float:left;width:58px;heght:86px;margin:10px 35px 0 0;}
+.thumbpic span{height:20px;float:left;cursor:pointer; line-height:20px;width:80px;}
+.thumbpic .rtp{float:left;width:58px;heght:86px;margin:10px 0 0 15px;}
+#piclist{width:450px;float:left;overflow:hidden;height:86px;position:relative;}
+#piclist ul{margin:0;padding:0;list-style:none;overflow:hidden;width:20000px;position:relative;}
+#piclist ul li{float:left;cursor:pointer;position:relative;height:86px;background-image: url(../images/ico_none.gif);background-repeat: no-repeat;  background-position: center -10px;}
+#piclist ul li img{height:58px;width:78px;margin:10px 4px;padding:3px;}
+#piclist .hover{height:86px;background-image: url(../images/ico_bg.gif);background-repeat: no-repeat;background-position: center  -10px;}
+#piclist ul li tt{background:#000;color:#FFF;position:absolute;z-index:20; font-family:arial;font-size:12px;line-height:16px;padding:0 5px;margin:55px 0 0 -85px;}
+
+.thumbpic a.bntprev{float:left;width:20px;height:64px;display:block;outline:none;background-image: url(../images/ico_left.gif);background-repeat: no-repeat;
+background-position: center 20px;}
+.thumbpic a.bntnext{float:left;width:20px;height:64px;display:block;outline:none;background-image: url(../images/ico_right.gif);background-repeat: no-repeat;
+background-position: center 20px;}
+
+#originalpic{position:relative;overflow:hidden;zoom:1;height:100%;clear:both;text-align:center;}
+#originalpic img{display:none;position:relative;max-width:700px;}
+#aPrev{position:absolute;z-index:10;left:0;top:0;display:block;width:50%;height:100%;background:url(../images/blank.gif);}
+#aNext{position:absolute;z-index:10;right:0;top:0;display:block;width:50%;height:100%;background:url(../images/blank.gif);}

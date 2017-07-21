@@ -1,0 +1,58 @@
+<extend name="RBAC:base" />
+<block name="content-title">
+<h4>导入库存Excel</h4>  
+</block>
+<block name="content">
+<div class="tab-content default-tab" id="tab1">
+    <form method="post" action="{tp#:U('import_excel')}">
+       <p>
+           上传Excel：
+           <input required name="excel"  type="text" id="url" readonly class="text-input small-input"/> 
+          <input type="button" id="uploadButton" value="上传" />
+       </p>
+       <p>
+           <input type="submit" value="确定导入" class="button">
+       </p>   			
+      <div class="clear"></div>
+    </form>
+    
+</div>
+<!--kindeditor-->
+<link rel="stylesheet" href="/plugins/kindeditor/themes/default/default.css" />
+<script charset="utf-8" src="/plugins/kindeditor/kindeditor-min.js"></script>
+<script charset="utf-8" src="/plugins/kindeditor/lang/zh_CN.js"></script>
+<!--kindeditor-->
+<script>
+$(function(){
+	$('form').submit(function(){
+		if($("input[name='excel']").val()==''){
+			alert('请上传excel文件');return false;
+		}
+	});
+});
+
+	KindEditor.ready(function(K) {
+		var uploadbutton = K.uploadbutton({
+			button : K('#uploadButton')[0],
+			fieldName : 'imgFile',
+			url : './plugins/kindeditor/php/upload_json.php?dir=file',
+			afterUpload : function(data) {
+				if (data.error === 0) {
+					var url = K.formatUrl(data.url, 'absolute');
+					K('#url').val(url);
+				} else {
+					alert(data.message);
+				}
+			},
+			afterError : function(str) {
+				alert('自定义错误信息: ' + str);
+			}
+		});
+		uploadbutton.fileBox.change(function(e) {
+			uploadbutton.submit();
+		});
+	});
+</script>
+
+
+</block>

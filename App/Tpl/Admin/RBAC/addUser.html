@@ -1,0 +1,47 @@
+<extend name="base" />
+<block name="content-title">
+<h4>添加账号</h4> 
+<a class="btn align-right" style="margin:5px 10px;" href="{tp#:U('index')}">返回</a> 
+</block>
+<block name="content">
+<div class="tab-content default-tab" id="tab1">
+            <form method="post" action="{tp#:U('Admin/RBAC/addUserHandle')}">
+              <fieldset>
+                <p>
+                    用户账号：<input required="required"  type="text" name="username"  class="text-input small-input" placeholder="用户账号"/>
+                     <!--<span class="input-notification success png_bg">Successful message</span>-->
+                </p>
+                <p>
+                    密　　码：<input required="required"  type="text" name="password"  class="text-input small-input" placeholder="登录密码"/> 
+                    <!--<span class="input-notification error png_bg">Error message</span>-->
+                </p>
+                <p>
+                    所属角色：<select class="small-input" name="role_id[]">
+                    <option value="">请选择</option>
+                  <volist name="role" id="v">
+                    <option value="{tp#$v['id']}">{tp#$v['name']}({tp#$v['remark']})</option>
+                  </volist>
+                  </select> 
+                </p>
+                <p>
+                    是否开启：<input type="radio" name="lock" value="0" checked="checked"/>&nbsp;开启&nbsp;
+                              <input type="radio" name="lock" value="1"/>&nbsp;关闭&nbsp;
+                </p>
+                <p>
+                  <input type="submit" value="  提 交  " class="button">
+                </p>
+              </fieldset>
+              <div class="clear"></div>
+            </form>
+</div>
+<script type='text/javascript'>
+$(function(){
+	$("form").submit(function(){
+		if($("select[name='role_id[]']").val()==''){
+			alert('请选择角色组！');
+			return false;
+		}
+	});
+})
+</script>
+</block>

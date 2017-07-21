@@ -1,0 +1,119 @@
+<extend name="RBAC:base" />
+<block name="content-title">
+<h4>会员聊天列表</h4> 
+<!--<a style="float:right;margin:10px;" href="{tp#:U('add')}" class="btn">添加</a> -->
+</block>
+<block name="content">
+          <div class="tab-content default-tab" id="tab1">
+           <p style="display:none">
+                搜索：
+                <select name="key">
+                	<option value="nickname"  <eq name="Think.get.key" value="nickname">selected</eq>>昵称</option> 
+                    <option value="id" <eq name="Think.get.key" value="id">selected</eq>>会员ID</option>  
+                    <option value="mobile" <eq name="Think.get.key" value="mobile">selected</eq>>联系电话</option>    
+                    <option value="username" <eq name="Think.get.key" value="username">selected</eq>>账户名</option>
+                </select>
+                <input value="{tp#$Think.get.val}" name="val" type="text" class="text-input bg-gray small-input" placeholder="关键字"/>
+                &nbsp;&nbsp;
+                注册时间：
+                <input value="{tp#$Think.get.begin_time}" name="begin_time" type="text" class="text-input bg-gray small-input" placeholder="起始时间" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/> ~
+                <input value="{tp#$Think.get.end_time}" name="end_time" type="text" class="text-input bg-gray small-input" placeholder="截止时间" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>
+                <input id='btn-so' type="button" value="搜索" class="button"/>
+               
+                &nbsp;&nbsp;&nbsp;
+                <a href="{tp#:U('index',array('role_id'=>1))}" class="btn <eq name='Think.get.role_id' value='1'>btn-success</eq>" >普通会员</a>
+                &nbsp;&nbsp;&nbsp;
+                <a href="{tp#:U('index',array('role_id'=>2))}" class="btn <eq name='Think.get.role_id' value='2'>btn-success</eq>">分销商</a>
+                 &nbsp;&nbsp;&nbsp;
+                <a  href="{tp#:U('index',array('p'=>I('get.p',1)))}">查看全部</a>
+            </p>
+            <table width='100%'>
+              <thead>
+                <tr>
+                   <th>ID</th>
+                   <th>发送用户</th>
+                   <th>接收用户</th>
+                   <th>消息内容</th>
+                   <th>发送时间</th>
+                   <th>操作</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <volist name="list" id="v">
+                    <tr>
+                      <td>【{tp#$v.id}】</td>	
+                      <td>
+                      【{tp#$v['f_user']['id']}】{tp#$v['f_user']['nickname']}
+                      </td>
+                       <td>
+                      【{tp#$v['t_user']['id']}】{tp#$v['t_user']['nickname']}
+                      </td>
+                     
+					  <td width="220">
+                      {tp#$v['content']}
+                      </td>
+                     
+                      <td>
+                     {tp#$v.posttime|date='Y/m/d H:i:s',###}
+                      </td>
+                 
+                      <td>
+                       <a title="删除"  class='btn btn-danger confirm' href="{tp#:U('del',array('id'=>$v['id'],'p'=>I('get.p',1)))}">删除</a>
+                      </td>
+                    </tr>
+                </volist>
+              </tbody>
+
+              <tfoot>
+                <tr>
+                  <td colspan="6">
+                    <div class="pagination">
+                      {tp#$show}
+                    </div>
+                    <div class="clear"></div>
+                  </td>
+                </tr>
+              </tfoot>              
+            </table>
+          </div> <!-- End #tab1 -->  
+<style>
+	select,input[type='text']{border-radius:3px;padding:3px 5px;border:1px solid #CCC}
+</style>          
+<script>
+$(function(){
+	$(document).keyup(function(event){
+		if(event.keyCode==13){
+			$("#btn-so").click();
+		}
+	});
+	$("#btn-so").click(function(){
+		  var key=$("select[name='key'] option:selected").val();
+		  var val=$("input[name='val']").val();
+		  var begin_time=$("input[name='begin_time']").val();
+		  var end_time=$("input[name='end_time']").val();
+		  
+		  var param='';
+		  
+		  if(key!=''&&val!=''){
+			 param+="&key="+key+'&val='+val;
+		  }
+		  
+		  if(begin_time!=''){
+			   param+='&begin_time='+begin_time;
+		  }
+		  
+		  if(end_time!=''){
+			   param+='&end_time='+end_time;
+		  }
+		  
+		  if(param==''){
+			  //alert('请输入关键字！')
+			  artDialog({content:'请输入搜索条件！', style:'alert', lock:false}, function(){});
+		  }else{
+			  location.href="{tp#:U('index')}"+param;
+		  }
+	});
+});
+</script>          
+</block>  

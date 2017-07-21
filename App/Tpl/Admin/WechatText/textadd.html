@@ -1,0 +1,225 @@
+<extend name="RBAC:base" />
+<block name="content-title">
+<h4><if condition="I('get.id') gt 0">[修改]<else/>[新增]</if>回复配置</h4>  
+<a style="float:right;margin:5px 10px;" href="{tp#:U('index')}" class="btn">返回</a> 
+</block>
+
+<block name="content">
+<div class="tab-content default-tab" id="tab1">
+<!--<link href="/plugins/ueditor/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" charset="utf-8" src="/plugins/ueditor/umeditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="/plugins/ueditor/umeditor.min.js"></script>
+<script type="text/javascript" src="/plugins/ueditor/lang/zh-cn/zh-cn.js"></script>	-->
+<!--<script type="text/javascript" src="__PUBLIC__/Js/jquery.min.js"></script>-->
+<form method="post" action="{tp#:U('textaddhandle',array('id'=>I('get.id')))}">
+  <fieldset>
+    <p>
+        关键字&nbsp;&nbsp;&nbsp;：&nbsp;&nbsp;<input type="text" name="textkey" id="small-input" class="text-input small-input" value="{tp#$nrs.textkey}"> 
+    </p>
+    <p>
+        触发菜单：
+        <select name='menukey'>
+            <option value=''>—选择触发该消息的click菜单—</option>
+            <option value='subscribe' <eq name='nrs.menukey' value='subscribe'>selected</eq>>关注</option>
+            <volist name='menulist' id='val'>
+                <option value='{tp#$val.key}' <eq name='nrs.menukey' value='$val.key'>selected</eq>>{tp#$val.name}</option>
+            </volist>
+        </select>
+        <span class="input-notification success png_bg">&nbsp;希望某个事件或click类型菜单触发该关键字时选择，不需要时留空即可！</span>
+    </p>
+
+    <p>
+        回复类型：
+
+        <input type="radio" class="text-radio" name="type" value="0" <if condition="$nrs['type'] eq 0">checked="checked"</if>/>&nbsp;图文消息(news)&nbsp;
+        <input type="radio" name="type" class="text-radio" value="1" <if condition="$nrs['type'] eq 1">checked="checked"</if> />&nbsp;文字消息(text)&nbsp;
+    </p>
+    <eq name="nrs.type" value="1">
+    <p>
+      回复内容：
+        <!--<input type="text" name="conf" id="small-input" class="text-input small-input" value="{tp#$nrs.conf}" style="width:90% !important"> -->
+        <textarea name="conf" required style="height:auto" rows="5" class="text-input small-input">{tp#$nrs.conf}</textarea>
+        <!--<span class="input-notification success png_bg">{nickname}会被替换为用户微信昵称，{id}会被替换为用户id</span>-->
+    </p>                
+    </eq>
+    <p>
+      <input type="submit" value="  提 交  " class="button">
+    </p>
+  </fieldset>
+  <div class="clear"></div>
+ </form> 
+</div>
+    
+    <form action="{tp#:U('newsaddrep',array('id'=>I('get.id')))}" method="post" enctype="multipart/form-data">
+        <div id='addnews' class="content-box column-left-" <eq name="nrs.type" value="1">style="display:none"</eq>>            
+                    <div class="content-box-header">
+                        <h4 style="cursor: s-resize;">新增图文</h4>
+                    </div>
+                    <div class="content-box-content" style="display: block;">
+                        <div class="tab-content default-tab" style="display: block;">
+                        <p>
+                            菜单标题： <input required="" type="text" name="title" id="small-input" class="text-input medium-input" value="{tp#$nrs.Title}">
+                        </p>
+                        <p>
+                        菜单描述： <input required type="text" name="descrip" id="small-input" class="text-input medium-input" value="{tp#$nrs.Description}">
+                        </p>
+<!--                        <p>                    
+                            菜单图片：<input  id="pic1" type="file" onchange="document.getElementById('picurl1').value=this.value;" style="display:none;" name="spic[]">
+                            <input required="" id="picurl1" class="text-input medium-input" type="text" value="{tp#$nrs.PicUrl}">&nbsp;
+                                    <a class="btn" onclick="document.getElementById('pic1').click();">选择文件</a>
+                        </p>-->
+                        <p>
+                        菜单图片：
+                        <input readonly name="picurl" type="text" id="url1" value="{tp#$news.conf.PicUrl}" class="text-input medium-input"/> 
+                        <input type="button" id="image1" value="选择图片" class="button"/>
+                        <font style="color:red">&nbsp;【图片大小不能超过1M】</font>
+                        </p>
+                        <p>                                
+                            菜单链接： <input  type="text" name="url" id="small-input" class="text-input medium-input" value="{tp#$nrs.Url}">
+                        <select class='selfurl'>
+                            <option value=''>—选择系统内部地址—</option>
+                            <option value='' disabled="disabled">【系统功能】</option>
+                            <volist name='wx_nav' id='item'>
+                            <option value="{tp#$item.url}">{tp#$item.name}</option>
+                            </volist>
+                            <option disabled="disabled">【系统文章】</option>
+ 							<volist name="cmslist" id="item">
+                            <option value="{tp#$item.id}" disabled="disabled">{tp#$item.name}【栏目】</option>
+                                <volist name="item.artlist" id="val">
+                                	<option value="{tp#:U('Weixin/Cms/read',array('id'=>$val['id']))}">{tp#$val.title}</option>
+                                </volist>
+                            </volist>
+                        </select>
+                        </p>
+                    <p>
+                      <input type="submit" value="  保 存 图 文  " class="button">
+                    </p>
+                        </div>
+                    </div>
+        </div> 
+    </form>
+    
+    
+    <div id='newslist' class="content-box column-right-" <eq name="nrs.type" value="1">style="display:none"</eq>>            
+                <div class="content-box-header">
+                    <h4 style="cursor: s-resize;">图文列表</h4>
+                </div>
+                <div class="content-box-content" style="display: block;">
+                    <div class="tab-content default-tab" style="display: block;">
+             <table style='width:100%' border=''>
+              <thead>
+                <tr>
+                   <th  width='5%'>ID</th> 
+                   <th  width='15%'>图文标题</th>
+                   <th  width='20%'>图文描述</th>
+                   <th  width='20%'>图文图片</th>
+                   <th  width='20%'>图文链接</th>
+                   <th  width='20%'>操作</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <volist name="nrs.conf" id="v" key="k">
+                    <tr>
+                      <td>{tp#$k}</td>  
+                      <td><a href="#" title="title">{tp#$v.Title}</a></td>
+                      <td>{tp#$v.Description}</td>
+                      <td>{tp#$v.PicUrl}</td>
+                      <td><textarea style="width:200px;overflow:auto">{tp#$v.Url}</textarea></td>
+                      <td>
+                        <a class="btn btn-success" href="{tp#:U('newsEdit',array('id'=>I('get.id'),'tid'=>$k))}" title="Edit">编辑</a>
+                         <a class="btn btn-danger" href="{tp#:U('newsdelrep',array('id'=>I('get.id'),'tid'=>$k))}" onClick="return confirm('是否将此菜单删除?')" title="Delete">删除</a> 
+                      </td>
+                    </tr>
+                </volist>
+              </tbody>             
+            </table>
+                    </div>
+                </div>
+    </div>     
+    
+    <!--图文预览-->
+    <if condition="($nrs.type eq 0) and ($nrs.conf neq '')">
+      <div  class="content-box">
+           <div class="content-box-header">
+                <h4 style="cursor: s-resize;">图文预览</h4>
+            </div>
+          <div class="content-box-content" style="display: block;">
+              <php>
+                  $len=count($nrs['conf']);
+              </php>
+              <assign name="len" value="$len" />
+              <if condition='$len eq 1'>
+              <!--单图文-->
+              <div style="border:1px solid #CCC;width:30%;float: left">
+                  <p style="text-align: center;font-weight:700 ">{tp#$nrs['conf'][0]['Title']}</p>
+                  <p><img src="{tp#$nrs['conf'][0]['PicUrl']}" style="width: 100%;height:140px;"></p>
+                  <p style="text-align: center">{tp#$nrs['conf'][0]['Description']}</p>
+              </div>
+              <elseif condition='$len gt 1'/>
+              <!--单图文-->
+              <!--多图文-->
+              <div style="border:1px solid #CCC;width:30%;">
+                  <div>
+                      <img src="{tp#$nrs['conf'][0]['PicUrl']}" style="width: 100%;height:120px;">
+                      <div style="margin-top: -25px;color:whitesmoke;background: #000;opacity: 0.6;padding: 5px 10px;">{tp#$nrs['conf'][0]['Title']}</div>
+                  </div>
+                  <volist name='nrs.conf' id='item' offset='1'>
+                  <div style="border-top: 1px solid #CCC;padding:5px;">
+                     {tp#$item['Title']}
+                     <img src="{tp#$item['PicUrl']}" style="width: 60px;height: 60px;float: right;vertical-align: middle;"/>
+                     <div class="clear" id="bef"></div>
+                  </div>
+                  </volist>
+              </div>
+              <!--多图文-->
+              </if>
+              
+              <div class="clear" id="bef"></div>
+          </div>
+      </div>
+    </if>
+      <!--图文预览-->
+    
+    <div class="clear" id="bef"></div>
+ <!--kindeditor-->
+<link rel="stylesheet" href="/plugins/kindeditor/themes/default/default.css" />
+<script charset="utf-8" src="/plugins/kindeditor/kindeditor-min.js"></script>
+<script charset="utf-8" src="/plugins/kindeditor/lang/zh_CN.js"></script>
+<!--kindeditor-->     
+      
+<script>
+$(function(){
+  $(".text-radio").click(function(){
+    var ckv = $(".text-radio:checked").val();
+    if(ckv==1){
+      $(".column-right").css("display","none");
+      $(".column-left").css("display","none");
+    }else{
+      $(".column-right").css("display","");
+      $(".column-left").css("display","");
+    }
+  });
+  $('.selfurl').change(function(){
+	  $("input[name='url']").val($(this).val());
+  });
+});
+//单图上传
+KindEditor.ready(function(K) {
+	var editor = K.editor({
+		allowFileManager : true
+	});
+	K('#image1').click(function() {
+		editor.loadPlugin('image', function() {
+			editor.plugin.imageDialog({
+				imageUrl : K('#url1').val(),
+				clickFn : function(url, title, width, height, border, align) {
+					K('#url1').val(url);
+					editor.hideDialog();
+				}
+			});
+		});
+	});
+});
+</script>
+</block>

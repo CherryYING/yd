@@ -1,0 +1,139 @@
+<extend name="Index:base" />
+<block name="content-title"><h4></h4></block>
+<block name="content">
+			 
+           <div class="content-box column-left">
+          	<div class="content-box-header"><h4>今日业务量</h4></div>
+          	<table>
+            	<tbody>
+                <tr><th>有效订单：</th><th>20</th></tr>
+                <tr><th>已付款订单：</th><th>10</th></tr>
+                <tr><th>未付款订单：</th><th>10</th></tr>
+                <tr><th>等待发货：</th><th>10</th></tr>
+                </tbody>
+            </table>
+          </div>
+          
+           <div class="content-box column-right">
+          	<div class="content-box-header"><h4>今日注册统计</h4></div>
+          	<table>
+            	<tbody>
+                <tr><th>今日注册人数：</th><td>10</td></tr>
+                </tbody>
+            </table>
+          </div>
+          
+          <div class="clear"></div>
+
+			<div class="content-box column-left">
+                <div class="content-box-header"><h4>最新订单</h4></div>
+                <table>
+                    <thead>
+                    <tr><th>订单编号</th><th>订单金额</th><th>下单时间</th></tr>
+                    </thead>
+                </table>
+              </div>
+			
+            <div class="content-box column-right">
+                <div class="content-box-header"><h4>商品信息</h4></div>
+                <table>
+                    <tbody>
+                    <tr><th>在架商品：</th><th>20件</th></tr>
+                    <tr><th>下架商品：</th><th>10件</th></tr>
+                    <tr><th>最新上架：</th><th>10件</th></tr>
+                    <tr><th>热卖商品：</th><th>10件</th></tr>
+                    </tbody>
+                </table>
+            </div>
+              
+			<div class="content-box column-right" style="display:none">
+            	<div class="content-box-header"><h4>服务器信息</h4></div>
+                <table>
+                <tbody>
+                  <tr>
+                    <th>操作系统：</th>
+                    <td>
+                    <?php echo php_uname('s')?>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>PHP运行方式：</th>
+                    <td>
+                    <?php echo php_sapi_name();?>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>系统运行环境：</th>
+                    <td>
+                    <?php echo $_SERVER["SERVER_SOFTWARE"];?>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>系统默认时区：</th>
+                    <td>
+                        <?php echo date_default_timezone_get();?>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>北京时间：</th>
+                    <td>
+                        <?php echo gmdate("Y年m月d日 H:i:s",time()+8*3600);?>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>上传限制：</th>
+                    <td>
+                    <?php echo ini_get('upload_max_filesize');?>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>代码最大限制时间：</th>
+                    <td>
+                    <?php echo ini_get('max_execution_time').'秒';?>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>服务器域名【IP】：</th>
+                    <td>
+                    <?php echo $_SERVER['HTTP_HOST'].'【'.gethostbyname($_SERVER['SERVER_NAME']).'】';?>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>硬盘剩余空间：</th>
+                    <td>
+                        <?php echo round((@disk_free_space(".")/(1024*1024)),2).'M';?>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>magic_quotes_gpc：</th>
+                    <td>
+                    <?php if(get_magic_quotes_gpc()===1):?>
+                    开启
+                    <?php else:?>
+                    关闭
+                    <?php endif;?>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>magic_quotes_runtime：</th>
+                    <td>
+                    <?php if(magic_quotes_runtime()===1):?>
+                    开启
+                    <?php else:?>
+                    关闭
+                    <?php endif;?>
+                    </td>
+                  </tr>
+                   
+                </tbody>
+              </table>
+          </div>
+          
+          <div class="clear"></div>
+<script>
+$(function(){
+	$("#main-box>.content-box-header").css('display','none');
+	$("#main-box").css("border-top",'1px');
+});
+</script>         
+</block>  

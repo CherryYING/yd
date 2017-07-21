@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="format-detection" content="telephone=no">
+<title>{tp#$shop['nickname']|default='---'}的微店 - {tp#$webinfo['web_name']}</title>
+<meta name="keywords" content="{tp#$webinfo['web_key']}">
+<meta name="description" content="{tp#$webinfo['web_descrip']}">
+
+<meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-touch-fullscreen" content="yes">
+<!-- <meta name="full-screen" content="yes"> -->
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="address=no">
+<link rel="icon" href="__PUBLIC__/images/logo.jpg" type="image/x-icon">
+<link rel="apple-touch-icon-precomposed" href="__PUBLIC__/images/logo.jpg">
+<link rel="apple-touch-startup-image" href="__PUBLIC__/images/apple-touch-startup.png" media="(device-height:568px)">
+<link rel="stylesheet" href="__PUBLIC__/css/style.css">
+<link rel="stylesheet" href="__PUBLIC__/css/shop.css">
+<link rel="stylesheet" href="__PUBLIC__/css/iconfont.css">
+<script type="text/javascript" src="__PUBLIC__/js/jquery.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/jquery.urlparam.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/alert.js"></script>
+<style type="text/css">
+
+#windowcenter {
+	width:290px;
+	position:fixed;
+	display:none;
+	bottom:30px;
+	left:50%;
+	 z-index:9999;
+	margin-left:-145px;
+	padding:2px;
+	border-radius:3px;
+	-webkit-border-radius:3px;
+	-moz-border-radius:3px;
+	background-color: #ffffff;
+	-webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	-moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	-o-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	font:14px/1.5 Microsoft YaHei,Helvitica,Verdana,Arial,san-serif;
+}
+.window .title {
+	background-color: #2BB2A3;
+	line-height: 26px;
+  padding: 5px 5px 5px 10px;
+	color:#ffffff;
+	text-shadow:0px 1px 1px #14544D;
+	font-size:16px;
+	border-radius:3px 3px 0 0;
+	-webkit-border-radius:0.5em 0.5em 0 0;
+	-moz-border-radius:0.5em 0.5em 0 0;
+	
+}
+.window .content {
+	/*min-height:100px;*/
+	overflow:auto;
+	padding:10px;
+	background: linear-gradient(#FBFBFB, #EEEEEE) repeat scroll 0 0 #FFF9DF;
+    color: #222222;
+    text-shadow: 0 1px 0 #FFFFFF;
+	border-radius: 0 0 0.6em 0.6em;
+	-webkit-border-radius: 0 0 0.6em 0.6em;
+	-moz-border-radius: 0 0 0.6em 0.6em;
+}
+.window #txt {
+	min-height:30px;font-size:16px; line-height:22px;
+}
+.window #windowclosebutton {
+	margin-top:10px;
+}
+.window .btn {
+	height:40px;
+	line-height:40px;
+}
+input::-moz-placeholder, textarea::-moz-placeholder { color: #999;}
+.flex{
+	display:box;
+	display:-moz-box;
+	display:-webkit-box;
+}
+.window .title .close {
+	float:right;
+	background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACTSURBVEhL7dNtCoAgDAZgb60nsGN1tPLVCVNHmg76kQ8E1mwv+GG27cestQ4PvTZ69SFocBGpWa8+zHt/Up+IN+MhgLlUmnIE1CpBQB2COZibfpnXhHFaIZkYph0SOeeK/QJ8o7KOek84fkCWSBtfL+Ny2MPpCkPFMH6PWEhWhKncIyEk69VfiUuVhqJefds+YcwNbEwxGqGIFWYAAAAASUVORK5CYII=");
+	width:26px;
+	height:26px;
+	display:block;	
+}
+.confirm-box{
+    position: fixed;
+    top:50%;
+    left:50%;
+    padding:0px 15px;
+    width:220px;
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+    box-sizing:border-box;
+    background-color: rgba(0, 0, 0, 0.8);
+    color:#FFFFFF;
+    border-radius: 2px;
+    margin-left: -110px;
+    margin-top:-55px;
+    z-index:1000001;
+}
+.confirm-box .confirm-box-txt{
+    text-align: center;
+    margin:20px auto;
+}
+.confirm-box .confirm-box-btns{
+    width:190px;
+    padding-bottom:10px;
+    text-align: center;
+}
+.confirm-box .confirm-box-btns a{
+    background-color: #FFFFFF;
+    display:inline-block;
+    border-radius: 2px;
+    margin:5px;
+    text-align: center;
+    width:80px;
+    height:30px;
+    line-height: 30px;
+    color:#444444;
+}
+.confirm-mash{
+    position: fixed;
+    left:0px;
+    top:0px;
+    right:0px;
+    bottom:0px;
+    background-color: rgba(255,255,255,0.3);
+    z-index:1000000;
+}
+.label-F60{background:#F60;color:#FFF;padding:0 3px;font-size:12px}
+</style>
+<style>
+.j-guide{z-index:9999;position: fixed;top: 0;left: 0;width:100%;height:100%;background-color: rgba(0, 0, 0, 0.65);text-align: center;}
+</style>
+
+</head>
+<body class="">
+
+<div class="window" id="windowcenter">
+	<div id="title" class="title"><span class="close" id="alertclose"></span><span class="tit_txt">消息提醒</span></div>
+	<div class="content">
+	 <div id="txt"></div>
+	 <input type="button" value="确定" id="windowclosebutton" name="确定" class="btn btn-block">	
+	</div>
+</div>
+
+<script type="text/javascript" src="__PUBLIC__/js/tips.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/api.js"></script>
+
+
+<div class="head_nav">
+	<div class="head_wrapper">
+			<a href="{tp#:U('Weixin/Index/index')}" class="head_logo"></a>
+				<a href="#" class="icon user"><i class="iconfont icon-share"></i></a>
+				<a href="{tp#:U('Index/cart')}" class="icon cart" id="cart">
+				<i class="iconfont icon-gouwuche"></i>
+				</a>
+				<div class="head_txt"> {tp#$shop['nickname']|default='易道云商'}的微店 </div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+
+var previous = function()
+{
+	if (typeof (navigator.app) !== "undefined")
+	{
+		navigator.app.backHistory();
+	}
+	else
+	{
+		window.history.back();
+	}
+}
+$(function()
+{
+	
+	$(".user").click(function(){
+		$(".j-guide").show();
+	});
+	
+	$(".j-guide").click(function(){
+		$(this).hide();
+	});
+	
+	
+	$("input[type='checkbox'],input[type='radio']").live('click', function()
+	{
+		setbg()
+	});
+	setbg();
+
+	//设置label背景
+	function setbg()
+	{
+		$(":checkbox").parent("label").removeClass('on');
+		$(":checkbox[checked]").parent("label").addClass('on');
+		$(":radio").parent("label").removeClass('on');
+		$(":radio[checked]").parent("label").addClass('on');
+	}
+});
+</script>
+<script type="text/javascript">
+$(function()
+{
+    if(typeof Swiper == 'undefined')
+    {
+        $.getScript('__PUBLIC__/js/swiper.min.js').done(function()
+        {
+            var mySwiper  = new Swiper('#ads_pos19',
+            {
+                'pagination':'.pagination'
+            });
+        });
+    }
+    else
+    {
+        var mySwiper  = new Swiper('#ads_pos19',
+        {
+            'pagination':'.pagination'
+        });
+    }
+});
+</script>
+
+<div class="top_img">
+    <div id="ads_pos19" class="ads swiper-container swiper-container-horizontal" style="overflow:hidden;">
+    <div class="swiper-wrapper">
+    	<volist name="slide" id="item">
+        <div class="swiper-slide swiper-slide-active" style="width: 640px;">
+            <a href="javascript:void(0);"><img style="width:100%;height:auto;" src="{tp#$item['spic']}"></a>
+        </div>
+        </volist>
+
+		<div class="clear"></div>
+    </div>
+    <div class="pagination pagination_index"><span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span><span class="swiper-pagination-bullet"></span><span class="swiper-pagination-bullet"></span><span class="swiper-pagination-bullet"></span></div>
+</div>
+
+</div>
+
+
+<div id="module_company" class="mod mod_shop " style="background:url('__PUBLIC__/images/wshop.jpg')">
+    <div class="text_left">
+        <div class="logo"><img src="{tp#$shop['headimgurl']}" alt="{tp#$shop['nickname']}" onerror="this.src='__PUBLIC__/images/no-pic.png'"></div>
+
+        <div class="shop_info">
+            <p class="shop_name nowrap">{tp#$shop['nickname']}的微店</p>
+            <!--<p>
+                <a class="tag " href="javascript:void(0);">企业认证</a>
+            </p>-->
+        </div>
+        <div class="clear"></div>
+	</div>
+</div>
+
+<script type="text/javascript">
+$(function()
+{
+    $('#shop_notice .down_arrow').click(function()
+    {
+        if(!$('#shop_notice').hasClass('open'))
+        {
+            $('#shop_notice').addClass('open');
+            $(this).css('transform','rotate(180deg)');
+        }
+        else
+        {
+            $('#shop_notice').removeClass('open');
+            $(this).css('transform','rotate(0deg)');
+        }
+    });
+})
+</script>
+<section class="mod maincontent-goods">
+        <div class="cate-tit">
+        <span class="cate-tit-title">店主推荐</span>
+<!--        <a href="{tp#:U('product_list',array('sid'=>$shop['id']))}" class="cate-tit-more">
+        <i class="icon-qianwang"></i></a>-->
+    </div>
+    <ul class="good-list-shop ">
+    	<volist name="list" id="item">
+            <li>
+                <a href="{tp#:U('Index/product',array('id'=>$item['id']))}">
+                    <div class="menubtn">
+                        <img src="{tp#$item['spic']}" onerror="this.src='__PUBLIC__/images/no-pic.png'">
+                        <div class="menuinfo">
+                            <p class="menutitle-name">{tp#$item['name']}</p>
+                            <div class="i_li_bottom">
+                                <span>销量{tp#$item['sale_num']}</span>
+                                <!--<span class="discount"></span>-->
+                                <span class="discount">佣金{tp#$item['yongjin']/4}</span>
+                            </div>
+                            <div class="price"><span>￥{tp#$item['price']}</span><del>￥{tp#$item['market_price']}</del></div>
+                        </div>
+                  </div>
+                </a>
+            </li>
+         </volist>   
+    </ul>
+    
+    <p id="page">{tp#$page}</p>
+    </section>
+	
+
+<div style="clear:both"></div>
+<div id="foot-nav" class="foot-nav" style="">
+    <a href="{tp#:U('Index/index')}">
+        <i class="icon-dianpu"></i>
+          易道云商
+    </a>
+    <a href="{tp#:U('Index/product_list')}" _class="classify ">
+        <i class="icon-fenlei"></i>
+        全部商品
+    </a>
+    <a href="{tp#:U('Index/cart')}">
+        <i class="icon-faxian"></i>
+        购物车
+    </a>
+    <a href="{tp#:U('Ucenter/index')}">
+        <i class="icon-liuyan"></i>
+        个人中心
+    </a>
+<!--	<a id="fenxiao" href="javascript:void(0);">
+    <i class="icon-xihuan"></i>
+    分销本店
+    </a>-->
+
+</div>
+
+
+<div id="classifyPanel" style="display:none;">
+    <div class="wrap">
+        <div class="search_wrap">
+            <div class="search_input_wrap">
+                <input type="input" placeholder="请输入商品名称" class="search">
+                <em class="search_clear"></em>
+            </div>
+            <a href="javascript:void(0);" class="search_btn">搜索</a>
+            <div class="clear"></div>
+        </div>
+          <div class="class_list">
+            <h3>商品分类</h3>
+            <div id="classListScrollWrapper">
+                <ul>
+                    <li><a href="javascript:void(0);" data-id="1563" data-name="#"><em></em><span>开米涤王内衣洗衣液</span></a></li>
+
+                </ul>
+            </div>
+        </div>
+                
+    </div>
+    <div class="classify_arrow"></div>
+    <div class="mask_area"></div>
+</div>
+
+
+<div class="j-guide"  style="display:none;">
+    <!--<span class="j-close-gd glyphicon glyphicon-remove close" style="font-size:20px;color:#FFF"></span>-->
+    <span class="guide-arrow"></span>
+    <div class="guide-info">
+          <p><span><img src="__PUBLIC__/images/guide-yellow.png" style="width:90%"></span></p>
+    </div>
+</div>
+<script type="text/javascript">
+$(function()
+{
+    $("#myphone").attr('href',$(".tel").attr('href'));
+    $('#foot-nav .classify').click(function()
+    {
+        $('#classifyPanel').fadeIn();
+        $('#classifyPanel').addClass('show_panel');
+        $('html,body').css('overflow','hidden');
+    });
+    $('#classifyPanel .mask_area').click(function()
+    {
+        $('#classifyPanel').removeClass('show_panel').fadeOut();
+        $('html,body').css('overflow','auto');
+    });
+
+});
+</script>
+</body>
+</html>

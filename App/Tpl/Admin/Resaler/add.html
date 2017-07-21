@@ -1,0 +1,32 @@
+<extend name="RBAC:base" />
+<block name="content-title">
+<h4>用户管理</h4>  
+</block>
+<block name="content">
+<div class="tab-content default-tab" id="tab1">
+            <form method="post" action="{tp#:U('add')}">
+              <fieldset>
+              	<p>
+              		用户姓名：<input name="uname"  class="text-input small-input"/>
+              	</p>
+              	<p>
+              		用户电话：<input name="utel"  class="text-input small-input"/>
+              	</p>
+              	<p>
+              		推荐ID　：<input name="ufuid" value="0" class="text-input small-input"/>
+              	</p>              	         	
+                <p>
+                    充值金额：<input type="text" name="ufen" id="small-input" class="text-input small-input"/> 
+                </p>
+                <p>
+                    用户备注：<textarea class="textarea" name="ubeizhu" cols="30"></textarea> 
+                </p>               
+                <p>
+                  <input type="submit" value="  提 交  " class="button">
+                  <a href="{tp#:U('index')}" class='btn'>取消</a>
+                </p>
+              </fieldset>
+              <div class="clear"></div>
+            </form>
+</div>
+</block>

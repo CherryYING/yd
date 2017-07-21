@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="format-detection" content="telephone=no">
+<title>{tp#$info['title']} - {tp#$webinfo['web_name']}</title>
+<meta name="keywords" content="{tp#$info['title']}">
+<meta name="description" content="{tp#$info['title']}">
+<meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-touch-fullscreen" content="yes">
+<!-- <meta name="full-screen" content="yes"> -->
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="address=no">
+<link rel="icon" href="__PUBLIC__/images/logo.jpg" type="image/x-icon">
+<link rel="apple-touch-icon-precomposed" href="__PUBLIC__/images/logo.jpg">
+<link rel="apple-touch-startup-image" href="__PUBLIC__/images/apple-touch-startup.png" media="(device-height:568px)">
+<link rel="stylesheet" href="__PUBLIC__/css/style.css">
+<link rel="stylesheet" href="__PUBLIC__/css/icomoon.css">
+<script type="text/javascript" src="__PUBLIC__/js/jq.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/jquery.urlparam.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/alert.js"></script><style type="text/css">
+
+#windowcenter {
+	width:290px;
+	position:fixed;
+	display:none;
+	bottom:30px;
+	left:50%;
+	 z-index:9999;
+	margin-left:-145px;
+	padding:2px;
+	border-radius:3px;
+	-webkit-border-radius:3px;
+	-moz-border-radius:3px;
+	background-color: #ffffff;
+	-webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	-moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	-o-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	font:14px/1.5 Microsoft YaHei,Helvitica,Verdana,Arial,san-serif;
+}
+.window .title {
+	background-color: #2BB2A3;
+	line-height: 26px;
+  padding: 5px 5px 5px 10px;
+	color:#ffffff;
+	text-shadow:0px 1px 1px #14544D;
+	font-size:16px;
+	border-radius:3px 3px 0 0;
+	-webkit-border-radius:0.5em 0.5em 0 0;
+	-moz-border-radius:0.5em 0.5em 0 0;
+	
+}
+.window .content {
+	/*min-height:100px;*/
+	overflow:auto;
+	padding:10px;
+	background: linear-gradient(#FBFBFB, #EEEEEE) repeat scroll 0 0 #FFF9DF;
+    color: #222222;
+    text-shadow: 0 1px 0 #FFFFFF;
+	border-radius: 0 0 0.6em 0.6em;
+	-webkit-border-radius: 0 0 0.6em 0.6em;
+	-moz-border-radius: 0 0 0.6em 0.6em;
+}
+.window #txt {
+	min-height:30px;font-size:16px; line-height:22px;
+}
+.window #windowclosebutton {
+	margin-top:10px;
+}
+.window .btn {
+	height:40px;
+	line-height:40px;
+}
+input::-moz-placeholder, textarea::-moz-placeholder { color: #999;}
+.flex{
+	display:box;
+	display:-moz-box;
+	display:-webkit-box;
+}
+.window .title .close {
+	float:right;
+	background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACTSURBVEhL7dNtCoAgDAZgb60nsGN1tPLVCVNHmg76kQ8E1mwv+GG27cestQ4PvTZ69SFocBGpWa8+zHt/Up+IN+MhgLlUmnIE1CpBQB2COZibfpnXhHFaIZkYph0SOeeK/QJ8o7KOek84fkCWSBtfL+Ny2MPpCkPFMH6PWEhWhKncIyEk69VfiUuVhqJefds+YcwNbEwxGqGIFWYAAAAASUVORK5CYII=");
+	width:26px;
+	height:26px;
+	display:block;	
+}
+.confirm-box{
+    position: fixed;
+    top:50%;
+    left:50%;
+    padding:0px 15px;
+    width:220px;
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+    box-sizing:border-box;
+    background-color: rgba(0, 0, 0, 0.8);
+    color:#FFFFFF;
+    border-radius: 2px;
+    margin-left: -110px;
+    margin-top:-55px;
+    z-index:1000001;
+}
+.confirm-box .confirm-box-txt{
+    text-align: center;
+    margin:20px auto;
+}
+.confirm-box .confirm-box-btns{
+    width:190px;
+    padding-bottom:10px;
+    text-align: center;
+}
+.confirm-box .confirm-box-btns a{
+    background-color: #FFFFFF;
+    display:inline-block;
+    border-radius: 2px;
+    margin:5px;
+    text-align: center;
+    width:80px;
+    height:30px;
+    line-height: 30px;
+    color:#444444;
+}
+.confirm-mash{
+    position: fixed;
+    left:0px;
+    top:0px;
+    right:0px;
+    bottom:0px;
+    background-color: rgba(255,255,255,0.3);
+    z-index:1000000;
+}
+</style>
+</head>
+
+<body>
+
+<div class="window" id="windowcenter">
+	<div id="title" class="title"><span class="close" id="alertclose"></span><span class="tit_txt">消息提醒</span></div>
+	<div class="content">
+	 <div id="txt"></div>
+	 <input type="button" value="确定" id="windowclosebutton" name="确定" class="btn btn-block">	
+	</div>
+</div>
+
+<script type="text/javascript" src="__PUBLIC__/js/tips.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/geo.js"></script>
+
+
+<div class="header">
+	<a href="javascript:void(0);" onclick="previous();" class="topnav topnav-left"><i class="icon-arrow-left2"></i></a>
+	<a href="javascript:void(0);" entry="dropdown" class="topnav topnav-right"><i class="icon-list"></i></a>
+	<div id="nav-dropdown" class="nav-dropdown" style="">
+		<include file="Public:nav_dropdown"/>
+	</div>
+	<span class="header_toptitle">{tp#$info['title']}</span>
+	<div class="clear"></div>
+</div>
+
+<!--<a class="fix-btn" href="javascript:history.go(-1);"></a>-->
+
+<style type="text/css">
+
+.qrcode_box{
+	position: fixed;
+	top:0px;
+	bottom:0px;
+	left:0px;
+	right:0px;
+	color:#FFFFFF;
+	z-index: 1000000000;
+	background-color: rgba(0,0,0,0.8);
+}
+.qrcode_box #qrcode_close{
+	position: absolute;
+	right:5px;
+	top:5px;
+	font-size: 20px;
+}
+.qrcode_box  .qrcode{
+	margin-top:120px;
+	text-align: center;
+	font-size: 16px;
+	line-height: 30px;
+}
+.qrcode_box  .qrcode img{
+	width:200px;
+	height:200px;
+}
+.fix-btn{
+	position: fixed;
+    z-index: 999;
+    top: 12px;
+    right: 12px;
+    height: 40px;
+    width: 40px;
+    border-radius: 40px;
+    background: #FFF url("__PUBLIC__/images/close.png") no-repeat scroll 10px 10px / 20px auto;
+    box-shadow: 1px 1px 5px #AAAAAA;
+}
+</style>
+<script type="text/javascript">
+$("#aouth_login_btn_close").click(function()
+{
+	$("#fix_aouth_login").fadeOut();
+});
+$('#show-qrcode').click(function()
+{
+	$('#qrcode_box').show();
+	$('#qrcode_box #qrcode_close').click(function()
+	{
+		$('#qrcode_box').hide();
+	});
+});
+</script>
+<script type="text/javascript">
+
+var previous = function()
+{
+	if (typeof (navigator.app) !== "undefined")
+	{
+		navigator.app.backHistory();
+	}
+	else
+	{
+		window.history.back();
+	}
+}
+$(function()
+{
+	$('.topnav[entry=dropdown]').click(function()
+	{
+		$('#nav-dropdown').slideToggle();
+	});
+	document.onclick=function(e)
+	{
+		var e=e?e:window.event;
+		var tar = e.srcElement||e.target;
+		if($(tar).attr('id') != "nav-dropdown" && $(tar).parents('#nav-dropdown').size() == 0 && (!$(tar).hasClass('topnav') || $(tar).attr('entry') != "dropdown") && $(tar).parents('.topnav[entry=dropdown]').size() == 0)
+		{
+			$('#nav-dropdown').slideUp();
+		}
+	}
+	$("input[type='checkbox'],input[type='radio']").live('click', function()
+	{
+		setbg()
+	});
+	setbg();
+	//设置label背景
+	function setbg()
+	{
+		$(":checkbox").parent("label").removeClass('on');
+		$(":checkbox[checked]").parent("label").addClass('on');
+		$(":radio").parent("label").removeClass('on');
+		$(":radio[checked]").parent("label").addClass('on');
+	}
+});
+</script>
+<article class="article stat">
+    <div class="arc_top stat">
+        <h1>{tp#$info['title']}</h1>
+        <p>{tp#$info['posttime']|date='Y-m-d',###} &nbsp;&nbsp;&nbsp;&nbsp; <a href="#">{tp#$webinfo['web_name']}</a></p>
+    </div>
+    <div id="arc_body" class="arc_body">
+      {tp#$info['content']|htmlspecialchars_decode}
+    </div>
+   <!-- <div class="arc_body" style="text-align:center;">
+    <p>请长按下面的二维码，加小编为好友！</p>
+	<img src="__PUBLIC__/images/5779_201411222246093905.jpg" alt="二维码" id="img_code">
+    <div class="alert"><a class="btn btn-block" id="my_qrcode" style="line-height:40px;" href="javascript:;">换我的二维码</a>
+    </div>-->
+</div>
+
+<div class="article_stat">
+	<p>阅读 <span id="stat_readnum">{tp#$info['hits']}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+    <!--<i class="icon-thumbs-o-up" id="arc_vote"></i><span id="like_num">{tp#$info['hits']}</span>-->
+    </p>
+</div>
+
+</article>
+<!--<div class="relation">
+    <div class="relation_tit">
+        <span>相关阅读</span>
+    </div>
+    <ul>
+             
+                <li>
+            <a href="http://www.jiudingvip.com/3g/news.php?id=3649">九鼎云店，让开店像开电视一样，简单快捷 ，开店与管理秒掌握</a>
+        </li>
+                <li class="relation_more">
+            <a href="http://www.jiudingvip.com/3g/newslist.php">点击查看更多精彩文章&gt;&gt;</a>
+        </li>
+    </ul>
+</div>-->
+<script type="text/javascript" src="__PUBLIC__/js/face.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/idangerous.swiper.js"></script>
+<div style="height:50px;"></div>
+</body>
+</html>

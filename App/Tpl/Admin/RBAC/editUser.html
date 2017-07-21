@@ -1,0 +1,99 @@
+<extend name="base" />
+<block name="jq"><script type="text/javascript" src="__PUBLIC__/Js/jquery.min.js"></script></block>
+<block name="content-title">
+<h4>修改账号</h4>  
+<a class="btn align-right" style="margin:5px 10px;" href="{tp#:U('index')}">返回</a>
+</block>
+<block name="content">
+<div class="tab-content default-tab" id="tab1">
+<link href="/plugins/ueditor/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" charset="utf-8" src="/plugins/ueditor/umeditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="/plugins/ueditor/umeditor.min.js"></script>
+<script type="text/javascript" src="/plugins/ueditor/lang/zh-cn/zh-cn.js"></script>
+
+<script language="text/javascript" type="text/javascript" src="/Public/Xcwl/DatePicker/WdatePicker.js"></script>	
+            <form method="post" action="{tp#:U('Admin/RBAC/editUserHandle')}">
+              <fieldset>
+                <p>
+                    用户账号：【 <b>{tp#$urs.username}</b> 】
+                </p>
+                <p>
+                    密　　码：<input type="text" name="password" id="small-input" class="text-input small-input" >
+                    <span class="input-notification success png_bg">不修改请留空！</span>
+                </p>
+                <p>
+                    所属角色：<select class="small-input" name="role_id">
+                    <option value="">请选择</option>
+                  <volist name="role" id="v">
+                    <option value="{tp#$v['id']}" <if condition="$v['id'] eq $urs['urid']">selected</if>>{tp#$v['name']}({tp#$v['remark']})</option>
+                  </volist>
+                  </select> 
+                </p>
+                <p>
+                    是否开启：<input type="radio" name="lock" value="0" <if condition="$urs['lock'] eq 0">checked</if>/>&nbsp;开启&nbsp;
+                              <input type="radio" name="lock" value="1" <if condition="$urs['lock'] eq 1">checked</if>/>&nbsp;关闭&nbsp;
+                </p>
+                <p>
+                  <input type="hidden" name="id" value="{tp#$urs.id}"> 
+                  <input type="hidden" name="username" value="{tp#$urs.username}"> 
+                  <input type="submit" value="  提 交  " class="button">
+                </p>
+              </fieldset>
+              <div class="clear"></div>
+            </form>
+</div>
+<script type="text/javascript">
+$(function(){
+	var cnmsg = {
+	required: "必填项",
+	email: "请输入正确的电子邮件",
+	url: "请输入合法的网址",
+	maxlength: jQuery.format("长度最多是 {0} 的字符串"),
+	minlength: jQuery.format("长度最少是 {0} 的字符串"),
+	max: jQuery.format("请输入一个最大为 {0} 的值"),
+	min: jQuery.format("请输入一个最小为 {0} 的值")};
+	jQuery.extend(jQuery.validator.messages, cnmsg);	
+	$("#form1").validate({						  
+		rules: {
+			truename: {
+				required: true,
+				minlength:2,
+				maxlength:4
+			},
+			phone: {
+				required: true,
+				minlength: 8,
+				maxlength:12
+			},
+			address: {
+				required: true,
+				minlength: 2,
+				maxlength:50
+			},
+			education: {
+				required: true,
+			},
+			job: {
+				required: true,
+			},
+			jobtitle: {
+				required: true,
+				minlength: 2,
+				maxlength:4
+			},
+			email: {
+				required: true,
+				email: true,
+				maxlength:30
+			},
+			introduce: {
+				required: true,
+				minlength:20
+			}
+			
+		}
+	})
+});
+</script>
+</block>
+

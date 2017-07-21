@@ -1,0 +1,164 @@
+<extend name="RBAC:base" />
+<block name="jq"><script type="text/javascript" src="__PUBLIC__/Js/jquery.min.js"></script></block>
+<block name="content-title">
+<h4>编辑商品信息</h4>  
+<a style="margin:5px 10px;" class="btn align-right" href="{tp#:U('index')}">返回列表</a>
+</block>
+<block name="content">
+<div class="tab-content default-tab" id="tab1">
+    <form method="post" action="{tp#:U('edit',array('id'=>I('get.id')))}">
+      <fieldset>
+        <p>
+            商品名称：<input value="{tp#$info.name}" placeholder="商品名称"  required type="text" name="name"  class="text-input small-input"> 
+        </p>
+        <p>
+            商品简介：<input value="{tp#$info.descrip}" placeholder="商品简介"  required type="text" name="descrip"  class="text-input small-input"> 
+        </p>
+         <p>
+            是否上架：<select name="is_sale">
+                        <option value='1' <eq name='info.is_sale' value='1'>selected</eq> >上架</option>
+                        <option value='2' <eq name='info.is_sale' value='2'>selected</eq> >下架</option>
+                    </select>
+        </p>
+        <p>
+            标　　签：<input type="checkbox" name="is_tui" style="vertical-align: middle;" value='1' <eq name="info.is_tui" value="1">checked</eq> />推荐
+                    <input value='1'  type="checkbox" name="is_hot" style="vertical-align: middle" <eq name="info.is_hot" value="1">checked</eq> />热销
+                    <input value='1'  type="checkbox" name="is_active" style="vertical-align: middle" <eq name="info.is_active" value="1">checked</eq> />活动
+        </p>
+       <!-- <p>
+            所属分类：<volist name="categorys" id="val">
+            <input name='cid[]' type='checkbox' value="{tp#$val.id}" <if condition="in_array($val['id'],explode(',',$info['cid']))">checked</if> >{tp#$val.name}
+            </volist>
+        </p>
+        <p>
+            所属品牌：<select name="bid"><option vlaue="">-选择品牌-</option>
+            <volist name="brands" id="val"><option value="{tp#$val.id}" <eq name="val.id" value="$info.bid">selected</eq> >{tp#$val.name}</option></volist>
+            </select>  
+        </p>
+         <p>
+            规　　格：<input  value="{tp#$info.standard}"  required type="text" name="standard"  class="text-input small-input"> 
+        </p>
+        <p>
+             销　　量：<input value="{tp#$info.sale_num}" placeholder="库存数量"  required type="text" name="sale_num"  class="text-input small-input num"> 
+        </p>-->
+        <p>
+            库存数量：<input value="{tp#$info.store_num}" placeholder="库存数量"  required type="text" name="store_num"  class="text-input small-input num"> 
+        </p>
+        <p>
+            市场价格：<input value="{tp#$info.market_price}" placeholder="市场价格"  required type="text" name="market_price"  class="text-input small-input num"> 元
+        </p>
+        <p>
+            兑换价格：<input value="{tp#$info.price}" placeholder="零售价格"  required type="text" name="price"  class="text-input small-input num"> 积分
+        </p>
+        <p>
+            缩 略 图：
+            <input readonly name="spic" type="text" id="url1" value="{tp#$info.spic}" class="text-input small-input"/> 
+            <input type="button" id="image1" value="选择图片" class="button"/>
+            <php>
+            $picurl=base64_encode($info['spic']);
+            </php>
+            <a rel="modal" title="点击查看大图" href="{tp#:U('show_img',array('picurl'=>$picurl))}"><img id="thumb" src="{tp#$info.spic|get_thumb=###}" style="width:100px;height:60px;vertical-align:middle">
+            </a>
+        </p>
+        <p>
+            商品介绍：<textarea id="myEditor" name="content"  style="height:300px;">{tp#$info.content|htmlspecialchars_decode|stripslashes}</textarea>
+
+        </p>
+        <p>
+          <input type="submit" value="  提 交  " class="button">
+        </p>
+      </fieldset>
+      <div class="clear"></div>
+    </form>
+</div>
+<script>
+$('.add-color').click(function(){
+	if($('.option').length>=10){
+		alert('最多只能增加10个');
+		return false;
+	}	
+	var html='<span class="option"><input required name="color[]"  class="text-input small" /><i class="fa fa-minus-circle fa-lg remove" style="color:#BC1313"></i></span>';
+	$(this).before(html+'&nbsp;&nbsp;');
+});
+$('.remove').live('click',function(){
+	$(this).parent(".option").remove();
+});
+
+$('.add-size').click(function(){
+	if($('.option').length>=10){
+		alert('最多只能加10个');
+		return false;
+	}	
+	var html='<span class="option"><input required name="size[]"  class="text-input small" /><i class="fa fa-minus-circle fa-lg remove" style="color:#BC1313"></i></span>';
+	$(this).before(html+'&nbsp;&nbsp;');
+});
+
+</script>
+<!--kindeditor-->
+<link rel="stylesheet" href="/plugins/kindeditor/themes/default/default.css" />
+<script charset="utf-8" src="/plugins/kindeditor/kindeditor-min.js"></script>
+<script charset="utf-8" src="/plugins/kindeditor/lang/zh_CN.js"></script>
+<!--kindeditor-->
+<script>
+	$(function(){
+		$(".num").keyup(function(){
+			if(isNaN($(this).val())){
+				$(this).val('');
+			}
+		});		  
+	});
+	KindEditor.ready(function(K) {
+		//初始化编辑器
+		var editor1 = K.create('textarea[name="content"]', {
+			cssPath : '/plugins/kindeditor/plugins/code/prettify.css',
+			uploadJson : '/plugins/kindeditor/php/upload_json.php',
+			fileManagerJson : '/plugins/kindeditor/php/file_manager_json.php',
+			allowFileManager : true,
+			afterCreate : function() {}
+		});
+		prettyPrint();
+	});
+	/*$(function() {
+		var editor = KindEditor.create('textarea[name="content"]');
+	});*/
+	//单图上传
+	KindEditor.ready(function(K) {
+		var editor = K.editor({
+			allowFileManager : true
+		});
+		K('#image1').click(function() {
+			editor.loadPlugin('image', function() {
+				editor.plugin.imageDialog({
+					imageUrl : K('#url1').val(),
+					clickFn : function(url, title, width, height, border, align) {
+						K('#url1').val(url);
+						//var img = url.replace(/(\*)\./,"thumb_$1"); 
+						K('#thumb').attr('src',url);
+						editor.hideDialog();
+					}
+				});
+			});
+		});
+	});
+	//批量上传图片
+	KindEditor.ready(function(K) {
+		var editor = K.editor({
+			allowFileManager : true
+		});
+		K('#J_selectImage').click(function() {
+			editor.loadPlugin('multiimage', function() {
+				editor.plugin.multiImageDialog({
+					clickFn : function(urlList) {
+						var div = K('#J_imageView');
+						div.html('');
+						K.each(urlList, function(i, data) {
+							div.append('<img src="' + data.url + '">');
+						});
+						editor.hideDialog();
+					}
+				});
+			});
+		});
+	});
+</script>
+</block>

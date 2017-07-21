@@ -1,0 +1,29 @@
+<extend name="RBAC:base" />
+<block name="jq"><script type="text/javascript" src="__PUBLIC__/Js/jquery.min.js"></script></block>
+<block name="content-title">
+<h4><if condition="I('get.id') gt 0">[修改]<else/>[新增]</if>模型</h4>  
+</block>
+<block name="content">
+<div class="tab-content default-tab" id="tab1">
+<link href="/plugins/ueditor/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" charset="utf-8" src="/plugins/ueditor/umeditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="/plugins/ueditor/umeditor.min.js"></script>
+<script type="text/javascript" src="/plugins/ueditor/lang/zh-cn/zh-cn.js"></script>	
+            <form method="post" action="{tp#:U('addModelhandle',array('id'=>I('get.id')))}">
+              <fieldset>
+                <p>
+                    模型名称：<input type="text" name="title" id="small-input" class="text-input small-input" value="{tp#$nrs.title}"> 
+                </p>
+                <p>
+                    模型标识：<input type="text" name="name" id="small-input" class="text-input small-input" value="{tp#$nrs.name}"> 
+                </p>                
+               
+
+                <p>
+                  <input type="submit" value="  提 交  " class="button">
+                </p>
+              </fieldset>
+              <div class="clear"></div>
+            </form>
+</div>
+</block>

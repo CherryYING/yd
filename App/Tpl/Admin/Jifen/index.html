@@ -1,0 +1,65 @@
+<extend name="RBAC:base" />
+<block name="content-title">
+<h4>商品列表</h4> 
+<a style="margin:6px 10px;float:right" class="btn" href="{tp#:U('add')}">新增</a> 
+</block>
+<block name="content">
+          <div class="tab-content default-tab" id="tab1">
+            <div class="notification png_bg" id="dmsg" style="display:none;">
+              <a href="#" class="close"><img src="__PUBLIC__/Images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
+              <div>
+                msg.
+              </div>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                   <th>商品ID</th>
+                   <th>商品名称</th>
+                   <th>缩略图</th>
+                   <th>兑换价格</th>
+                   <th>库存</th>
+<!--                   <th>推荐类型</th>-->
+                   <th>是否上架</th>
+                   <th>操作</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <volist name="list" id="v">
+                    <tr>
+                      <td>【{tp#$v.id}】</td>
+                      <td><a title="点击查看" href="{tp#:U('edit',array('id'=>$v['id']))}">{tp#$v.name}</a></td>
+                      <php>$picurl=base64_encode($v['spic']);</php>
+                      <td><a title="点击查看大图" rel='modal' href="{tp#:U('Index/show_img',array('picurl'=>$picurl))}">
+                      <img src="{tp#$v.spic|get_thumb=###}" class="thumb"></a></td>
+                      <td>{tp#$v.price} 积分</td>
+                       <td>{tp#$v.store_num}</td>
+<!--                       <td>
+                          <eq name="v.is_tui" value="1"><a class='btn' title="推荐">推</a></eq>
+                          <eq name="v.is_hot" value="1"><a class='btn' title="热销">热</a></eq>
+                          <eq name="v.is_active" value="1"><a class='btn' title='活动'>活</a></eq>
+                      </td>-->
+                      <td><a title="快速上下架" class='btn' href="{tp#:U('up2down',array('id'=>$v['id']))}">
+                      <eq name='v.is_sale' value='1'>上架<else/><font color="red">下架</font></eq></a></td>
+                      <td align="center">
+                         <a class="btn btn-success" href="{tp#:U('edit',array('id'=>$v['id']))}">编辑</a>
+                         <a class="btn btn-danger" href="{tp#:U('del',array('id'=>$v['id']))}" onClick="return confirm('是否删除?')">删除</a> 
+                      </td>
+                    </tr>
+                </volist>
+              </tbody>
+
+              <tfoot>
+                <tr>
+                  <td colspan="7">
+                    <div class="pagination">
+						{tp#$show}
+                    </div>
+                    <div class="clear"></div>
+                  </td>
+                </tr>
+              </tfoot>              
+            </table>
+          </div> <!-- End #tab1 -->  
+</block>  

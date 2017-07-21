@@ -1,0 +1,61 @@
+<extend name="RBAC:base" />
+<block name="content-title">
+<h4>分配服务区域</h4>  
+</block>
+<block name="content">
+<script type='text/javascript'>
+$(function(){
+	$('input[level=1]').click(function(){
+		var inputs=$(this).parents('.app').find('input');
+		$(this).attr('checked') ? inputs.attr('checked','checked') : inputs.removeAttr('checked');
+	});
+	$('input[level=2]').click(function(){
+		var inputs=$(this).parents('dl').find('input');
+		$(this).attr('checked') ? inputs.attr('checked','checked') : inputs.removeAttr('checked');
+	});
+	$(".province").click(function(){
+		$(this).siblings('dl').slideToggle();
+	});
+});
+</script>
+	<link rel='stylesheet' href='__PUBLIC__/Css/node.css'>
+          <div class="tab-content default-tab" id="tab1">
+            <table>
+              <tbody>
+              	<div id="wrap">
+              		<form action="{tp#:U('area_edit',array('id'=>I('get.id')))}" method='post'>
+<a href="{tp#:U('index')}" class='button'>返回</a>&nbsp;&nbsp;&nbsp;
+<input type="submit" value=' 保存修改 ' class="button" />
+		
+		<volist name="province" id="pro">
+			<div class='app'>
+				<p class="province" style="cursor:pointer">
+					<strong>{tp#$pro['region_name']}</strong>
+					<input type="checkbox" name='area_list[]' value='{tp#$pro.id}' level='1' <if condition="in_array($pro['id'],$area_list)">checked='checked'</if>/>
+				</p>
+				<volist name="pro.city" id="city">
+					<dl style="display:none;">
+						<dt>
+							<strong>{tp#$city.region_name}</strong>
+							<input type='checkbox' name='area_list[]' value='{tp#$city.id}' level='2' <if condition="in_array($city['id'],$area_list)">checked='checked'</if>/>
+						</dt>
+						<volist name="city.county" id="county">
+							<dd>
+								<span>{tp#$county.region_name}</span>
+								<input type='checkbox' name='area_list[]' value='{tp#$county.id}' level='3' <if condition="in_array($county['id'],$area_list)">checked='checked'</if>/>
+							</dd>
+						</volist>
+					</dl>
+					
+				</volist>
+			</div>		
+		
+		</volist>
+	
+	</form>
+
+</div>
+              </tbody>             
+            </table>
+          </div> <!-- End #tab1 -->  
+</block>

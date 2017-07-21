@@ -1,0 +1,164 @@
+<extend name="RBAC:base" />
+<block name="jq"><script type="text/javascript" src="__PUBLIC__/Js/jquery.min.js"></script></block>
+<block name="content-title">
+<h4>设置代理</h4>
+<a href="{tp#:U('index')}" style="font-weight: 700;margin:5px 10px;" class="btn align-right">返回</a>
+</block>
+<block name="content">
+<div class="tab-content default-tab" id="tab1">		
+<form method="post" action="{tp#:U('agent_set_b')}" enctype="multipart/form-data">
+    <fieldset>
+    <p>
+        地区：<select requried name="area_id">
+        <option value="">-选择地区-</option>
+        </select>
+        <input type="text" id="area_name"  class="text-input small-input" placeholder="地区名称">
+        <a class="btn" id="btn-area">查找</a>
+    </p>
+    <p>
+        会员：<select requried name="uid">
+        <option value="">-选择会员-</option>
+        </select>
+        	<input type="text" id="user"  class="text-input small-input" placeholder='会员ID、昵称、姓名'>
+        <a class="btn" id="btn-user">查找</a>    
+    </p>
+   
+    <p class="form-actions">
+            <input type="button" value="提 交" class="button" id="btn-sub">
+    </p>
+    </fieldset>
+	<div class="clear"></div>
+</form>
+</div>
+<!--kindeditor-->
+<link rel="stylesheet" href="/plugins/kindeditor/themes/default/default.css" />
+<script charset="utf-8" src="/plugins/kindeditor/kindeditor-min.js"></script>
+<script charset="utf-8" src="/plugins/kindeditor/lang/zh_CN.js"></script>
+<!--kindeditor-->
+<script>
+$(function(){
+	$("#btn-sub").click(function(){
+		var post_data={};
+		post_data.uid=$.trim($("[name='uid']").val());
+		post_data.area_id=$.trim($("[name='area_id']").val());
+		if(post_data.uid==''){
+			alert('请选择代理会员');
+			return false;	
+		}
+		if(post_data.area_id==''){
+			alert('请选择代理区域');
+			return false;	
+		}
+		$.post("{tp#:U('Ajax/agent_b_set')}",post_data,function(json){
+			alert(json.msg);
+			if(json.errcode==0){
+				location.href="{tp#:U('agent_b_list')}"
+			}
+		},'json')
+	});
+	
+	$("#btn-area").click(function(){
+		if($.trim($("#area_name").val())==''){
+			alert("请输入地区名称");
+		}else{
+			var post_data={};
+			post_data.area_name=$.trim($("#area_name").val());
+			$.post("{tp#:U('Ajax/search_area')}",post_data,function(json){
+				console.log(json);
+				if(json.errcode==0){
+					var option='';
+					$(json.data).each(function(i, obj) {
+                        option+='<option value='+obj.id+'>'+obj.region_name+'</option>';
+                    });
+					$("[name='area_id']").html(option);
+				}
+			},'json');
+		}
+	});
+	
+	$("#btn-user").click(function(){
+		if($.trim($("#user").val())==''){
+			alert('搜索关键字');
+		}else{
+			var post_data={};
+			post_data.user=$.trim($("#user").val());
+			$.post("{tp#:U('Ajax/search_user')}",post_data,function(json){
+				console.log(json);
+				if(json.errcode==0){
+					var option='';
+					$(json.data).each(function(i, obj) {
+                        option+='<option value='+obj.id+'>['+obj.id+']'+obj.name+'['+obj.nickname+']</option>';
+                    });
+					$("[name='uid']").html(option);
+				}
+			},'json');
+		}
+	});
+
+	$("form").submit(function(){
+		if($("[name='area_id']").val()==''){
+			alert('请选择地区');
+			return false;;
+		}
+		if($("[name='uid']").val()==''){
+			alert('请选择会员');
+			return false;;
+		}
+		
+	});
+});
+
+
+
+	KindEditor.ready(function(K) {
+		//初始化编辑器
+		var editor1 = K.create('textarea[name="content"]', {
+			cssPath : '/plugins/kindeditor/plugins/code/prettify.css',
+			uploadJson : '/plugins/kindeditor/php/upload_json.php',
+			fileManagerJson : '/plugins/kindeditor/php/file_manager_json.php',
+			allowFileManager : true,
+			afterCreate : function() {}
+		});
+	});
+	/*$(function() {
+		var editor = KindEditor.create('textarea[name="content"]');
+	});*/
+	//单图上传
+	KindEditor.ready(function(K) {
+		var editor = K.editor({
+			allowFileManager : true
+		});
+		K('#image1').click(function() {
+			editor.loadPlugin('image', function() {
+				editor.plugin.imageDialog({
+					imageUrl : K('#url1').val(),
+					clickFn : function(url, title, width, height, border, align) {
+						K('#url1').val(url);
+						editor.hideDialog();
+					}
+				});
+			});
+		});
+	});
+	//批量上传图片
+	KindEditor.ready(function(K) {
+		var editor = K.editor({
+			allowFileManager : true
+		});
+		K('#J_selectImage').click(function() {
+			editor.loadPlugin('multiimage', function() {
+				editor.plugin.multiImageDialog({
+					clickFn : function(urlList) {
+						var div = K('#J_imageView');
+						div.html('');
+						K.each(urlList, function(i, data) {
+							div.append('<img src="' + data.url + '">');
+						});
+						editor.hideDialog();
+					}
+				});
+			});
+		});
+	});
+</script>
+</block>

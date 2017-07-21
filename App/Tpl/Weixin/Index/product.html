@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="format-detection" content="telephone=no">
+<title>{tp#$info['name']} - {tp#$webinfo['web_name']}</title>
+<meta name="keywords" content="{tp#$webinfo['web_key']}">
+<meta name="description" content="{tp#$webinfo['web_descrip']}">
+<meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-touch-fullscreen" content="yes">
+<!-- <meta name="full-screen" content="yes"> -->
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="address=no">
+<link rel="icon" href="__PUBLIC__/images/logo.jpg" type="image/x-icon">
+<link rel="apple-touch-icon-precomposed" href="__PUBLIC__/images/favicon.png">
+<link rel="apple-touch-startup-image" href="__PUBLIC__/images/apple-touch-startup.png" media="(device-height:568px)">
+<link rel="stylesheet" href="__PUBLIC__/css/style.css">
+<link rel="stylesheet" href="__PUBLIC__/css/shop.css">
+<!--<link rel="stylesheet" href="__PUBLIC__/css/iconfont.css">-->
+<link rel="stylesheet" href="__PUBLIC__/css/icomoon.css">
+
+<script type="text/javascript" src="__PUBLIC__/js/jquery.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/jquery.urlparam.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/alert.js"></script><style type="text/css">
+
+#windowcenter {
+	width:290px;
+	position:fixed;
+	display:none;
+	bottom:30px;
+	left:50%;
+	 z-index:9999;
+	margin-left:-145px;
+	padding:2px;
+	border-radius:3px;
+	-webkit-border-radius:3px;
+	-moz-border-radius:3px;
+	background-color: #ffffff;
+	-webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	-moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	-o-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	font:14px/1.5 Microsoft YaHei,Helvitica,Verdana,Arial,san-serif;
+}
+.window .title {
+	background-color: #2BB2A3;
+	line-height: 26px;
+  padding: 5px 5px 5px 10px;
+	color:#ffffff;
+	text-shadow:0px 1px 1px #14544D;
+	font-size:16px;
+	border-radius:3px 3px 0 0;
+	-webkit-border-radius:0.5em 0.5em 0 0;
+	-moz-border-radius:0.5em 0.5em 0 0;
+	
+}
+.window .content {
+	/*min-height:100px;*/
+	overflow:auto;
+	padding:10px;
+	background: linear-gradient(#FBFBFB, #EEEEEE) repeat scroll 0 0 #FFF9DF;
+    color: #222222;
+    text-shadow: 0 1px 0 #FFFFFF;
+	border-radius: 0 0 0.6em 0.6em;
+	-webkit-border-radius: 0 0 0.6em 0.6em;
+	-moz-border-radius: 0 0 0.6em 0.6em;
+}
+.window #txt {
+	min-height:30px;font-size:16px; line-height:22px;
+}
+.window #windowclosebutton {
+	margin-top:10px;
+}
+.window .btn {
+	height:40px;
+	line-height:40px;
+}
+input::-moz-placeholder, textarea::-moz-placeholder { color: #999;}
+.flex{
+	display:box;
+	display:-moz-box;
+	display:-webkit-box;
+}
+.window .title .close {
+	float:right;
+	background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACTSURBVEhL7dNtCoAgDAZgb60nsGN1tPLVCVNHmg76kQ8E1mwv+GG27cestQ4PvTZ69SFocBGpWa8+zHt/Up+IN+MhgLlUmnIE1CpBQB2COZibfpnXhHFaIZkYph0SOeeK/QJ8o7KOek84fkCWSBtfL+Ny2MPpCkPFMH6PWEhWhKncIyEk69VfiUuVhqJefds+YcwNbEwxGqGIFWYAAAAASUVORK5CYII=");
+	width:26px;
+	height:26px;
+	display:block;	
+}
+.confirm-box{
+    position: fixed;
+    top:50%;
+    left:50%;
+    padding:0px 15px;
+    width:220px;
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+    box-sizing:border-box;
+    background-color: rgba(0, 0, 0, 0.8);
+    color:#FFFFFF;
+    border-radius: 2px;
+    margin-left: -110px;
+    margin-top:-55px;
+    z-index:1000001;
+}
+.confirm-box .confirm-box-txt{
+    text-align: center;
+    margin:20px auto;
+}
+.confirm-box .confirm-box-btns{
+    width:190px;
+    padding-bottom:10px;
+    text-align: center;
+}
+.confirm-box .confirm-box-btns a{
+    background-color: #FFFFFF;
+    display:inline-block;
+    border-radius: 2px;
+    margin:5px;
+    text-align: center;
+    width:80px;
+    height:30px;
+    line-height: 30px;
+    color:#444444;
+}
+.confirm-mash{
+    position: fixed;
+    left:0px;
+    top:0px;
+    right:0px;
+    bottom:0px;
+    background-color: rgba(255,255,255,0.3);
+    z-index:1000000;
+}
+.well{margin:15px 5px;height:auto}
+.lable{border:1px solid red;padding:5px;border-radius:3px;margin:5px}
+.red{color:red}
+select{border:1px solid #FFF !important;padding:8px 3px;}
+.label-F60{background:#F60;color:#FFF;padding:5px 3px;font-size:12px;}
+#goods-detail p img{width:auto !important}
+
+iframe{width:100% !important;height:200px;}
+#J_MainWrap{margin:0 !important}
+
+</style>
+<script src="__PUBLIC__/js/share.js"></script>
+<link rel="stylesheet" href="__PUBLIC__/css/share_style1_16.css">
+
+</head>
+<body class="">
+
+<div class="window" id="windowcenter">
+	<div id="title" class="title"><span class="close" id="alertclose"></span><span class="tit_txt">消息提醒</span></div>
+	<div class="content">
+	 <div id="txt"></div>
+	 <input type="button" value="确定" id="windowclosebutton" name="确定" class="btn btn-block">	
+	</div>
+</div>
+
+<script type="text/javascript" src="__PUBLIC__/js/tips.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/api.js"></script>
+
+
+<div class="head_nav">
+	<div class="head_wrapper">
+			<a href="javascript:void(0);" onclick="previous();" class="icon back"><i class="iconfont icon-fanhui"></i></a>
+			<a href="{tp#:U('Weixin/Index/index')}" class="head_logo"></a>
+            <a href="{tp#:U('Ucenter/index')}" class="icon user">
+            <i class="icon-user"></i>
+            </a>
+            <a href="{tp#:U('cart')}" class="icon cart" id="cart">
+            <i class="icon-cart3"></i>
+            </a>
+            <div class="head_txt">{tp#$info['name']}</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+var previous = function()
+{
+	if (typeof (navigator.app) !== "undefined")
+	{
+		navigator.app.backHistory();
+	}
+	else
+	{
+		window.history.back();
+	}
+}
+$(function()
+{
+	
+	//关闭下单按钮
+	$(".goods_icon_box").click(function(){
+		$("#goods_attr_wrapper").animate({maxHeight:'0',height:'0'});
+		$("#container").show();
+	});
+		
+	$("input[type='checkbox'],input[type='radio']").live('click', function()
+	{
+		setbg()
+	});
+	setbg();
+	//设置label背景
+	function setbg()
+	{
+		$(":checkbox").parent("label").removeClass('on');
+		$(":checkbox[checked]").parent("label").addClass('on');
+		$(":radio").parent("label").removeClass('on');
+		$(":radio[checked]").parent("label").addClass('on');
+	}
+});
+</script>
+<script type="text/javascript" src="__PUBLIC__/js/countdown.js"></script>
+<div id="container">
+<div id="slider" class="swiper-container desc-container">
+	<div class="swiper-wrapper">
+        <div class="swiper-slide" style="width:100% !important;">
+            <img src="{tp#$info['spic']}" alt="">
+        </div>
+    </div>
+	<div class="pagination"></div>
+</div>
+<section class="section_box" style="margin-top:0px;">
+		<!--<div class="countdown tc" entry="countdown" data-start="1464159095" data-time="1472107901"></div>-->
+		<div class="buy-desc">
+		<h1 class="goods-name">{tp#$info['name']}</h1>
+		<div class="buy-price">
+            <span class="price taobao-color is_promotion"><b>{tp#$info['price']}</b>元</span>&nbsp;
+            <del>{tp#$info['market_price']}元</del> | 	
+            <span>销量{tp#$info['sale_num']}</span> | 
+            <span>已浏览{tp#$info['hits']}</span> |				
+        </div>
+        
+        <div class="buy-price">
+            <if condition="$info['yongjin'] gt 0"><span class="label-F60">佣金&yen;{tp#$info['yongjin']/4}</span></if>
+            <span class="label-F60">可使用{tp#$info['money_cloud']}云金币</span>		
+        </div>
+        
+	</div>
+<!--	<ul class="btn-line">
+    
+		<li>
+			<a href="javascript:void(0);" entry="share" class="btn btn-weak btn-block"><i class="icon-share"></i> 分享</a>
+		</li>
+        
+        <li>
+            <a href="javascript:addCollect();" entry="collect" id="addCollect" class="btn  btn-weak  btn-block"><i class="icon-star-o"></i> 收藏</a>
+        </li>
+	
+	</ul>-->
+	
+</section>
+<div id="goods_desc">
+	<section class="section_box">
+	<div class="tit">商品介绍</div>
+	<div id="goods-detail" class="section_body goods-detail">
+    {tp#$info['video']|htmlspecialchars_decode|stripslashes}
+    {tp#$info['content']|htmlspecialchars_decode|stripslashes}
+    </div>
+	</section>
+	<!--<a href="#goods_desc" class="view_more">查看商品描述</a>-->
+</div>
+<ul id="store-list" class="store-list" <if condition="empty($shop)">style="display:none"</if> >
+    <li class="store-item company-mess">
+        <section class="section_box">
+        	<div class="tit">商家信息</div>
+            <div class="store-top section_body company-mess">
+                <p>{tp#$shop['shop_name']}&nbsp;<span class="renzheng">已认证</span>
+                <!--<a class="renzheng" style="margin-left:10px;background:#0AC8AB;" href="#">查看认证信息</a>-->
+                </p>
+                <p></p>
+            </div>
+            <div class="level copy_box">
+               本商家经过<b>{tp#$webinfo['web_name']}</b>资格认证，
+            可以放心购买！<br>
+             </div>
+                            
+                            
+	    	<!--<div class="dianping">
+	    		<span class="dianping-fen">描述相符<span class="dianping-score">5分</span>&nbsp;<span class="dianping-level">高</span></span><span class="dianping-fen">物流服务<span class="dianping-score">5分</span>&nbsp;<span class="dianping-level">高</span></span><span class="dianping-fen">服务态度<span class="dianping-score">5分</span>&nbsp;<span class="dianping-level">高</span></span>
+	    	</div>-->
+            
+            
+            <div class="store-foot">
+                <ul class="store-foot-nav">
+                    <li><a href="{tp#:U('Agent/shop',array('id'=>$shop['id']))}"><i class="icon-dianpu"></i>商家微店</a></li>
+                    <li>
+                    <if condition="is_weixin()">
+                    <a href="tel:{tp#$shop['shop_tel']}"><i class="icon-dianhua"></i>{tp#$shop['shop_tel']}</a>
+                    <else/>
+                    {tp#$shop['shop_tel']}
+                    </if>
+                    </li>
+    			</ul>
+            </div>
+            
+        </section>
+    </li>
+</ul>
+<section class="section_box" style="display:none">
+	<div class="tit">评论</div>
+    <ul class="comment-newlist" id="comment-newlist">
+    <li style="margin-bottom:10px;">
+        <p>暂无产品评论~~~</p>
+    </li>
+</ul>
+</section>
+<div class="tbfix">
+	<ul>
+		<li><a href="{tp#:U('cart')}"><span class="cart_num_tips none" id="cart_count_tips" style="display:block">0</span><i class="icon-cart3"></i><label>购物车</label></a></li>
+		<li><a href="javascript:addCollect();" id="addLike"><i id="icon-star-o-color" class="icon-star-o"></i><label>收藏</label></a></li>
+		<li><a id="add_cart" href="javascript:;" entry="cart">加入购物车</a></li>
+		<li><a id="quick_buy" href="javascript:;" entry="buy">立即购买</a></li>
+	</ul>
+</div>
+</div>
+<!--<div class="goods_attr_mask" id="goods_attr_mask"></div>-->
+<div class="goods_attr_wrapper" id="goods_attr_wrapper">
+	<div class="goods_attr_subwrapper">
+		<form action="#" id="orderform" method="POST">
+			<div class="goods_one">
+				<div class="goods_oneimg"><img src="{tp#$info['spic']}" alt="{tp#$info['name']}"></div>
+				<div class="goods_onetip">
+					<dl>
+						<dd class="goods_onetip_price">￥<span id="goods_onetip_price">{tp#$info['price']}</span>元</dd><dd>(库存<span id="goods_stock">{tp#$info['store_num']}</span>)</dd>
+                        <dd></dd>
+					</dl>
+				</div>
+				<div class="goods_close" id="goods_close">
+					<div class="goods_icon_box">
+						<div class="goods_line_left"></div>
+						<div class="goods_line_right"></div>
+					</div>
+				</div>
+			</div>
+			<ul id="cartinfo" style="display:none;">
+				<dt>订单总计</dt>
+				<li class="ccbg2" id="emptyLii">
+                <!--已选：<span id="totalNum">1</span>份，-->
+                <!--运费：<span id="totalFee">0</span>元，-->
+                单价：￥<span id="totalPrice">{tp#$info['price']}</span>元</li>
+			</ul>
+			<div id="goods_attr" class="goods_attr">
+					<div class="buy_num">
+					<span class="buy_num_title">购买数量：</span>
+					<div class="buy_num_1">
+						<span class="goods_num_dec"></span>
+					</div>
+                    <div class="buy_num_2">
+						<span>1</span>
+						<input type="hidden" id="goods_num" value="1" name="goods_num">
+					</div>
+                    <div class="buy_num_3">
+						<span class="goods_num_dec"></span>
+						<span class="goods_num_inc"></span>
+					</div>
+				</div>
+			</div>
+            
+            <if condition="!empty($norm_list)">
+            <div class="well">
+            &nbsp;产品规格：
+            <select id="norm">
+            <option value="">-选择产品规格-</option>
+            <volist name="norm_list" id="item">
+            <option value="{tp#$item['id']}" goods_norm="{tp#$item['title']}" goods_price="{tp#$item['price']}">{tp#$item['title']}</option>
+            </volist>
+            </select>
+            </div>
+            </if>
+		</form>
+		<div class="h40"></div>
+	</div>
+	<a href="javascript:;" class="goods_attr_btn" entry="add_cart">确认</a>
+</div>
+<div id="mcover" onclick="document.getElementById(mcover).style.display=none;">
+	<img src="__PUBLIC__/images/guide.png">
+</div>
+<div id="share_box" class="share_box none">
+	<div class="bdsharebuttonbox bdshare-button-style1-16" data-bd-bind="1465269387351">
+		<a href="javascript:void(0);" class="btn btn-weak btn-block bds_tqq">分享朋友（圈）</a>
+	</div>
+	<a href="javascript:void(0);" id="close-share" class="btn btn-weak btn-block">取消</a>
+</div>
+<div id="share_mask" class="share_mask none"></div>
+
+<script src="__PUBLIC__/js/swiper.min.js"></script>
+<script type="text/javascript">
+
+//收藏
+function addCollect()
+{
+	uid = "{tp#$user_id}";
+	goods_id = "{tp#$info['id']}";
+		$.ajax(
+		{
+			url: "{tp#:U('Ajax/goods_collect')}",
+			data:
+			{
+				uid : uid,
+				gid :goods_id
+			},
+			type:'POST',
+			dataType: 'json',
+			beforeSend:function()
+			{
+				if(parseInt(uid) <= 0)
+				{
+					alert('请先登录');
+				}
+			},
+			success:function(json)
+			{
+				if(json.code == 1)
+				{
+					$("#addCollect").removeClass('btn-weak');
+					$("#addCollect").html('<i class="icon-star-o"></i> 已收藏');
+					show_tips('已收藏');
+				}else{
+					$("#addCollect").addClass('btn-weak');
+					$("#addCollect").html('<i class="icon-star-o"></i> 收藏');
+					show_tips('已取消收藏');
+				}
+				
+			}
+		});
+}
+
+$(function()
+{
+	var is_quick_buy = 0;			//0加入购物车;1立即购买
+	//快速购买
+	$('[entry="buy"]').click(function()
+	{
+		$("#goods_attr_wrapper").animate({maxHeight:'100%',height:'100%'});
+		$("#goods_attr_mask").show();
+		$(".goods_attr_btn").css('display','block');
+		$("#cartinfo").show();
+		$(".consignee-form").show();
+		is_quick_buy = 1;
+		$("#container").hide();
+	});
+	//加入购物车
+	$('[entry="cart"]').click(function(){
+		$("#goods_attr_wrapper").animate({maxHeight:'100%',height:'100%'});
+		$("#goods_attr_mask").show();
+		$(".goods_attr_btn").css('display','block');
+		$("#cartinfo").show();
+		$(".consignee-form").show();
+		$("#container").hide();
+	});
+	$(".buy_num_3").click(function()
+	{
+		var goodsnum = parseInt($("#goods_stock").text());
+		var currentnum = parseInt($('.buy_num_2 span').text());
+		if(currentnum >= goodsnum)
+		{
+			$('.buy_num_2 span').text(goodsnum);
+			return false;
+		}
+		currentnum = currentnum + 1;
+		$('.buy_num_2 span').text(currentnum);
+		$("#goods_num").val(currentnum);
+		if(is_quick_buy == 1)
+		{
+			refresh_money();
+		}
+		return false;
+	});
+	$(".buy_num_1").click(function()
+	{
+		var currentnum = parseInt($('.buy_num_2 span').text());
+		if(currentnum <= 1)
+		{
+			$('.buy_num_2 span').text(1);
+			return false;
+		}
+		currentnum = currentnum - 1;
+		$('.buy_num_2 span').text(currentnum);
+		$("#goods_num").val(currentnum);
+		if(is_quick_buy == 1)
+		{
+			refresh_money();
+		}
+		return false;
+	});
+	
+	//选择属性
+	var goods_price="{tp#$info['price']}";
+	var goods_norm_id=0;
+	var goods_norm;
+	$("#norm").bind('change',function(){
+		goods_price=$("#norm option:selected").attr('goods_price');			//价格
+		$("#totalPrice").text(goods_price);
+		$("#goods_onetip_price").text(goods_price);
+		goods_norm_id=$(this).val();										//属性id	
+		//goods_norm=$("#norm option:selected").attr('goods_norm');			//属性名称
+	});
+	
+	//确定按钮
+	$('[entry="add_cart"]').click(function()
+	{
+		var norm_list="{tp#$norm_list|count}";
+		if(parseInt(norm_list) > 0)
+		{
+			if(goods_norm_id==0)
+			{
+				show_tips('没有选择商品属性','sad');
+				return false;
+			}
+		}
+		var post_data = {
+			'goods_id': "{tp#$info['id']}",
+			'goods_nums': $("#goods_num").val(),
+			'goods_price': goods_price,
+			'goods_norm': goods_norm_id,
+		};
+		
+		
+		$.ajax(
+			{
+				url: "{tp#:U('Ajax/addcart')}",
+				data: post_data,
+				dataType: 'json',
+				type: 'POST',
+				beforeSend: function()
+				{
+					
+				},
+				success:function(json)
+				{
+					if(is_quick_buy == 1)			//立即购买；跳转到购物车
+					{
+						window.location.href = "{tp#:U('Index/cart')}";
+					}
+					else
+					{
+						show_tips(json.msg);
+						$(".goods_icon_box").click();
+					}
+				}
+			});
+		
+
+	});
+});
+</script>
+<script type="text/javascript">
+$(function()
+{
+	var mySwiper  = new Swiper('#slider',
+	{
+		'pagination':'.pagination'
+	});
+	$('[entry=countdown]').each(function()
+	{
+        var starttime = $(this).attr('data-start') - Math.round(new Date().getTime()/1000);
+		var time = $(this).attr('data-time') - Math.round(new Date().getTime()/1000);
+		if(time > 8640000)
+		{
+			$(this).text('长期有效');
+		}
+		else
+		{
+            if(starttime > 0)
+            {
+                time = starttime;
+            }
+			$(this).countdown(
+			{
+                format:'HMS',
+				until:time,
+                expiryText: '活动已过期',
+                alwaysExpire: true,
+				layout: '<span>{hn}</span>时<span>{mn}</span>分<span>{sn}</span>秒'
+			});
+		}
+	});
+	$('[entry=share]').click(function()
+	{
+		$('#share_box').removeClass('none');
+		$('#share_mask').removeClass('none');
+		$('#close-share').bind('click',function()
+		{
+			$('#share_mask').addClass('none');
+			$('#share_box').addClass('none');
+		});
+	});
+	var pics = [];
+	$('#goods-detail img').each(function()
+	{
+		pics.push($(this).attr('src'));
+	});
+	$('#goods-detail img').click(function()
+	{
+		var cur = $(this).attr('src');
+		wx.previewImage({
+			current: cur,
+			urls: pics
+		});
+	});
+});
+</script>
+
+</body>
+
+</html>

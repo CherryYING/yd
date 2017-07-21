@@ -1,0 +1,70 @@
+<extend name="RBAC:base" />
+<block name="content-title">
+<h4>云金币明细</h4>  
+</block>
+<block name="content">
+          <div class="tab-content default-tab" id="tab1">
+            <div class="notification png_bg success" id="dmsg" style="display:none;">
+              <a href="#" class="close"><img src="__PUBLIC__/Images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
+              <div>
+                #
+              </div>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                   <th>ID</th>
+                   <th>用户</th>
+                   <th>收入/支出</th>
+                   <th>收支类型</th>
+                   <th>云金币</th>
+                   <th>订单编号</th>
+                   <th>时间</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <volist name="list" id="item">
+                    <tr>
+                      <td>【{tp#$item.id}】</td>
+                      <td>
+                      <a href="{tp#:U('Wxusers/edit',array('id'=>$item['uid']))}" target="_blank">
+                      【{tp#$item.user.id}】{tp#$item.user.nickname}
+                      </a>
+                      </td>
+                      <td>
+                      <b>
+                      <eq name="item.type" value="1">
+                      <font color="green">收入</font>
+                      <else/>
+                      <font color="red">支出</font>
+                      </eq>
+                      </b>
+                      </td>
+                      <td>
+                      {tp#$item.remark|default='---'}
+                      </td>
+                      <td style="color:red;font-weight:700">{tp#$item.amount}  云金币</td>
+                      <td><a _href="{tp#:U('Order/edit',array('id'=>$item['order_id']))}" target="_blank">
+                      {tp#$item.order.out_trade_no}
+                      </a></td>
+                      <td>{tp#$item.posttime|date='Y-m-d H:i:s',###}</td>
+                    </tr>
+                </volist>
+              </tbody>
+
+              <tfoot>
+                <tr>
+                  <td colspan="7">
+                    <div class="bulk-actions align-left">
+                    </div>
+                    <div class="pagination">
+                      {tp#$show}
+                    </div>
+                    <div class="clear"></div>
+                  </td>
+                </tr>
+              </tfoot>              
+            </table>
+          </div> <!-- End #tab1 -->  
+</block>  

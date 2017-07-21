@@ -1,0 +1,192 @@
+<extend name="User:base" />
+<block name="jq"><script type="text/javascript" src="__PUBLIC__/Js/jquery.min.js"></script></block>
+<block name="content-title">
+<h4>店铺信息</h4>  
+</block>
+<block name="content">
+<div class="tab-content default-tab" id="tab1">	
+    <form method="post" action="{tp#:U('shop')}">
+    	
+        <p>
+            店铺状态：<if condition="$info['shop_status'] eq 1">
+            	<a class="btn">已审核</a>
+            <else/>
+            	<a class="btn-danger">未审核</a>
+            </if>
+        </p>
+        <p>
+            店铺ID&nbsp;&nbsp;&nbsp;：【{tp#$sid}】
+        </p>
+     	<p>
+            店铺名称：<input required type="text" name="shop_name"  class="text-input small-input" placeholder='店铺名称' value="{tp#$info['shop_name']}"/>
+        </p>
+        
+        <p>
+            店铺商标：<input required name="shop_logo" type="text" id="url1" value="{tp#$info['shop_logo']}" class="text-input small-input" placeholder="店铺商标图片"/> 
+    		<input type="button" id="image1" value="选择图片" class="button"/>
+            <if condition="!empty($info['shop_logo'])">
+            <img src="{tp#$info['shop_logo']}" class="thumb"/>
+            </if>
+        </p>
+        
+        <p>
+            营业执照：<input required name="shop_license" type="text" id="url2" value="{tp#$info['shop_license']}" class="text-input small-input" placeholder="营业执照"/> 
+    		<input type="button" id="image2" value="选择图片" class="button"/>
+            <if condition="!empty($info['shop_license'])">
+            <img src="{tp#$info['shop_license']}" class="thumb"/>
+            </if>
+        </p>
+        <p>
+            身份证正面：<input required name="idcard_img1" type="text" id="url3" value="{tp#$info['idcard_img1']}" class="text-input small-input" placeholder="身份证正面"/> 
+    		<input type="button" id="image3" value="选择图片" class="button"/>
+            <if condition="!empty($info['idcard_img1'])">
+            <img src="{tp#$info['idcard_img1']}" class="thumb"/>
+            </if>
+        </p>
+        <p>
+            身份证背面：<input required name="idcard_img2" type="text" id="url4" value="{tp#$info['idcard_img2']}" class="text-input small-input" placeholder="身份证背面"/> 
+    		<input type="button" id="image4" value="选择图片" class="button"/>
+            <if condition="!empty($info['idcard_img2'])">
+            <img src="{tp#$info['idcard_img2']}" class="thumb"/>
+            </if>
+        </p>
+        
+        <p>
+            客服电话：<input required type="text" name="shop_tel"  class="text-input small-input number" placeholder='客服电话' value="{tp#$info['shop_tel']}"/>
+        </p>
+        
+        <p>
+            电子邮箱：<input required type="text" name="shop_email"  class="text-input small-input" placeholder='电子邮箱' value="{tp#$info['shop_email']}"/>
+        </p>
+        <p>
+            店铺地址：<input required type="text" name="shop_address"  class="text-input small-input" placeholder='店铺地址' value="{tp#$info['shop_address']}"/>
+        </p>
+        <p>
+            店铺简介：<textarea placeholder="店铺简介" class="v-middle" name="shop_introduce">{tp#$info['shop_introduce']}</textarea>
+        </p>
+        <p>
+            <font color='red'>更多资质</font>：<textarea placeholder="相关图片" class="v-middle editor" name="shop_descript">{tp#$info['shop_descript']|htmlspecialchars_decode}</textarea>
+            <font color="red">相关资质图片均可上传</font>
+        </p>
+        
+        <p>
+          <input type="submit" value="提 交" class="button">
+        </p>
+      <div class="clear"></div>
+    </form>
+</div>
+
+<!--kindeditor-->
+<link rel="stylesheet" href="/plugins/kindeditor/themes/default/default.css" />
+<script charset="utf-8" src="/plugins/kindeditor/kindeditor-min.js"></script>
+<script charset="utf-8" src="/plugins/kindeditor/lang/zh_CN.js"></script>
+<!--kindeditor-->
+<script>
+	KindEditor.ready(function(K) {
+		//初始化编辑器
+		var editor1 = K.create('textarea.editor', {
+			cssPath : '/plugins/kindeditor/plugins/code/prettify.css',
+			uploadJson : '/plugins/kindeditor/php/upload_json.php',
+			fileManagerJson : '/plugins/kindeditor/php/file_manager_json.php',
+			allowFileManager : true,
+			afterCreate : function() {}
+		});
+	});
+	/*$(function() {
+		var editor = KindEditor.create('textarea[name="content"]');
+	});*/
+	//单图上传
+	KindEditor.ready(function(K) {
+		var editor = K.editor({
+			allowFileManager : true
+		});
+		K('#image1').click(function() {
+			editor.loadPlugin('image', function() {
+				editor.plugin.imageDialog({
+					imageUrl : K('#url1').val(),
+					clickFn : function(url, title, width, height, border, align) {
+						K('#url1').val(url);
+						editor.hideDialog();
+					}
+				});
+			});
+		});
+	});
+	//单图上传
+	KindEditor.ready(function(K) {
+		var editor = K.editor({
+			allowFileManager : true
+		});
+		K('#image2').click(function() {
+			editor.loadPlugin('image', function() {
+				editor.plugin.imageDialog({
+					imageUrl : K('#url2').val(),
+					clickFn : function(url, title, width, height, border, align) {
+						K('#url2').val(url);
+						editor.hideDialog();
+					}
+				});
+			});
+		});
+	});
+	
+	
+	//单图上传
+	KindEditor.ready(function(K) {
+		var editor = K.editor({
+			allowFileManager : true
+		});
+		K('#image3').click(function() {
+			editor.loadPlugin('image', function() {
+				editor.plugin.imageDialog({
+					imageUrl : K('#url3').val(),
+					clickFn : function(url, title, width, height, border, align) {
+						K('#url3').val(url);
+						editor.hideDialog();
+					}
+				});
+			});
+		});
+	});
+	
+	//单图上传
+	KindEditor.ready(function(K) {
+		var editor = K.editor({
+			allowFileManager : true
+		});
+		K('#image4').click(function() {
+			editor.loadPlugin('image', function() {
+				editor.plugin.imageDialog({
+					imageUrl : K('#url4').val(),
+					clickFn : function(url, title, width, height, border, align) {
+						K('#url4').val(url);
+						editor.hideDialog();
+					}
+				});
+			});
+		});
+	});
+	
+	//批量上传图片
+	KindEditor.ready(function(K) {
+		var editor = K.editor({
+			allowFileManager : true
+		});
+		K('#J_selectImage').click(function() {
+			editor.loadPlugin('multiimage', function() {
+				editor.plugin.multiImageDialog({
+					clickFn : function(urlList) {
+						var div = K('#J_imageView');
+						div.html('');
+						K.each(urlList, function(i, data) {
+							div.append('<img src="' + data.url + '">');
+						});
+						editor.hideDialog();
+					}
+				});
+			});
+		});
+	});
+</script>
+</block>
+

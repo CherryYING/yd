@@ -1,0 +1,71 @@
+<extend name="RBAC:base" />
+<block name="content-title">
+<h4>系统信息设置</h4>  
+</block>
+<block name="content">
+<div class="tab-content default-tab" id="tab1">
+            <form method="post" action="{tp#:U('index')}">
+             	<p>
+                   网站标题　　：<input type="text" name="web_name"  class="text-input small-input" value="{tp#$conf.web_name}"> 
+                </p>
+                <p>
+                   网站描述　　：<input type="text" name="web_descrip"  class="text-input medium-input" value="{tp#$conf.web_descrip}"> 
+                </p>
+                <p>
+                   网站关键字　：<input type="text" name="web_key"  class="text-input medium-input" value="{tp#$conf.web_key}"> 
+                </p>             
+                <p>
+                   网站备案号　：<input type="text" name="web_beian"  class="text-input small-input" value="{tp#$conf.web_beian}"> 
+                </p>      
+                 <p>
+                   联系电话　　：<input type="text" name="phone"  class="text-input small-input" value="{tp#$conf.phone}"> 
+                </p>        
+                <p>
+                   电子邮箱　　：<input type="text" name="email"  class="text-input small-input" value="{tp#$conf.email}"> 
+                </p>   
+				<p>
+                   版权信息　　：<input type="text" name="copyright"  class="text-input small-input" value="{tp#$conf.copyright}"> 
+                </p>   			
+            
+               <p>
+                  <input type="submit" value="保存设置" class="button">
+                </p>
+              <div class="clear"></div>
+            </form>
+</div>
+<!--kindeditor-->
+<link rel="stylesheet" href="/plugins/kindeditor/themes/default/default.css" />
+<script charset="utf-8" src="/plugins/kindeditor/kindeditor-min.js"></script>
+<script charset="utf-8" src="/plugins/kindeditor/lang/zh_CN.js"></script>
+<!--kindeditor-->
+<script>
+//单图上传
+	KindEditor.ready(function(K) {
+		var editor = K.editor({
+			allowFileManager : true
+		});
+		K('#image1').click(function() {
+			editor.loadPlugin('image', function() {
+				editor.plugin.imageDialog({
+					imageUrl : K('#url1').val(),
+					clickFn : function(url, title, width, height, border, align) {
+						K('#url1').val(url);
+						editor.hideDialog();
+					}
+				});
+			});
+		});
+		K('#image2').click(function() {
+			editor.loadPlugin('image', function() {
+				editor.plugin.imageDialog({
+					imageUrl : K('#url1').val(),
+					clickFn : function(url, title, width, height, border, align) {
+						K('#url2').val(url);
+						editor.hideDialog();
+					}
+				});
+			});
+		});
+	});
+</script>
+</block>

@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>注册-{tp#$webinfo['web_name']}</title>
+<link href="__PUBLIC__/css/css.css" rel="stylesheet" type="text/css">
+<link href="__PUBLIC__/css/zzsc.css" type="text/css" rel="stylesheet" />
+<!--<link href="__PUBLIC__/css/layout.css" rel="stylesheet" type="text/css">-->
+<script type="text/javascript" src="__PUBLIC__/js/jquery.js"></script>
+</head>
+<body>
+<link href="__PUBLIC__/css/base1.css" rel="stylesheet" type="text/css">
+
+<link href="__PUBLIC__/css/home_login.css" rel="stylesheet" type="text/css">
+
+
+<link href="__PUBLIC__/css/demo.css" rel="stylesheet"  type="text/css" media="all" />
+
+<style>
+#content{
+		margin:30px auto;text-align:left;
+}
+
+#content p{line-height:24px !important;font-size:16px !important;text-align:left !important}
+
+.leftbar{float:left;width:25%;height:auto;margin:0 20px 0 0;}
+.tab{border:1px solid #E22B41;height:200px;border-radius:1px;}
+.tab .alt{line-height:18px;padding:10px;text-align:left;font-weight:900 !important}
+.tab .alt:hover{background:#E22B41 !important;color:#FFF;}
+.rightbar{float:left;width:70%;height:auto;}
+</style>
+<script type="text/javascript">
+<!--
+var timeout         = 500;
+var closetimer		= 0;
+var ddmenuitem      = 0;
+
+// open hidden layer
+function mopen(id)
+{	
+	// cancel close timer
+	mcancelclosetime();
+
+	// close old layer
+	if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+	// get new layer and show it
+	ddmenuitem = document.getElementById(id);
+	ddmenuitem.style.visibility = 'visible';
+
+}
+// close showed layer
+function mclose()
+{
+	if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+}
+
+// go close timer
+function mclosetime()
+{
+	closetimer = window.setTimeout(mclose, timeout);
+}
+
+// cancel close timer
+function mcancelclosetime()
+{
+	if(closetimer)
+	{
+		window.clearTimeout(closetimer);
+		closetimer = null;
+	}
+}
+
+// close layer when click-out
+document.onclick = mclose; 
+// -->
+</script>
+<include file="Public:top"/>
+
+<div class="main">
+	<div class="leftbar">
+    	<div class="tab">
+        	<p class="alt">关于我们</p>
+            
+            <p class="alt">新手上路</p>
+            
+            <p class="alt">配送范围</p>
+            
+            <p class="alt">售后服务</p>
+        </div>
+    </div>
+	
+    <div class="rightbar">
+       <h3><b>{tp#$info['title']}</b></h3>
+       <div id="content">
+       {tp#$info['content']|htmlspecialchars_decode|stripslashes}
+       </div>
+   </div>
+</div>
+<script type="text/javascript" src="__PUBLIC__/js/jquery.poshytip.min.js" charset="utf-8"></script>
+<include file="Public:foot"/>
+</body>
+</html>

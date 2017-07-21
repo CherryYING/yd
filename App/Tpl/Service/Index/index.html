@@ -1,0 +1,63 @@
+<extend name="User:base" />
+<block name="content-title"><h4></h4></block>
+<block name="content">
+			 
+          <div class="content-box column-left">
+          	<div class="content-box-header"><h4>今日订单统计</h4></div>
+          	<table>
+            	<tbody>
+                <tr><th>已付款订单：</th><th>10</th></tr>
+                <tr><th>未付款订单：</th><th>10</th></tr>
+                <tr><th>等待发货：</th><th>10</th></tr>
+                <tr><th>已发货：</th><th>10</th></tr>
+                <tr><th>已签收：</th><th>10</th></tr>
+                </tbody>
+            </table>
+          </div>
+          
+           <div class="content-box column-right">
+                <div class="content-box-header"><h4>当月订单统计</h4></div>
+                <table>
+                    <tbody>
+                    <tr><th>已付款订单：</th><th>10</th></tr>
+                    <tr><th>未付款订单：</th><th>10</th></tr>
+                    <tr><th>等待发货：</th><th>10</th></tr>
+                    <tr><th>已发货：</th><th>10</th></tr>
+                    <tr><th>已签收：</th><th>10</th></tr>
+                    </tbody>
+                </table>
+            </div>
+          
+          <div class="clear"></div>
+
+			 <div class="content-box column-left">
+                <div class="content-box-header"><h4>最新订单</h4></div>
+                <table>
+                    <thead>
+                    <tr><th>订单编号</th><th>订单金额</th><th>下单时间</th></tr>
+                    </thead>
+                </table>
+              </div>
+              
+              <div class="content-box column-right">
+                    <div class="content-box-header"><h4>商品统计</h4></div>
+                    <table>
+                        <tbody>
+                        <tr><th>在架商品：</th><th>20件</th></tr>
+                        <tr><th>下架商品：</th><th>10件</th></tr>
+                        </tbody>
+                    </table>
+              </div>
+			
+           
+              
+			
+          
+          <div class="clear"></div>
+<script>
+$(function(){
+	$("#main-box>.content-box-header").css('display','none');
+	$("#main-box").css("border-top",'1px');
+});
+</script>         
+</block>  

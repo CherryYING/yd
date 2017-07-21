@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<title>{tp#$webinfo.web_name}</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/dist/css/base.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/dist/css/layout-theme.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/assets/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/dist/css/font.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<script src="__PUBLIC__/js/jquery.1-7-1.js"></script>
+</head>
+
+<body class="page">
+<svg display="none" width="0" height="0" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs>
+  <symbol id="icon-left" viewBox="0 0 1024 1024">
+    <path class="path1" d="M711.219 891.802c13.722 13.926 13.722 36.301 0 50.125s-35.891 13.875-49.613 0l-400.896-404.89c-13.722-13.824-13.722-36.198 0-50.125l400.896-404.89c13.722-13.824 35.891-13.824 49.613 0 13.722 13.875 13.722 36.301 0 50.125l-365.619 379.853 365.619 379.802z"></path>
+  </symbol>
+</defs>
+</svg>
+<header class="header index search">
+  <div class="searchbar">
+    <div style="position:relative">
+      <input id="keyword" class="search" placeholder="请输入关键字" type="text" style="vertical-align:middle;color:#666;padding:0 10px;line-height:40px;width:98%">
+      <div style="position:absolute;right:2rem;top:0rem;"> 
+      <a class="btn" id="so"> <i class="fa fa-search color_999"></i> </a> 
+      </div>
+    </div>
+  </div>
+  <a href="{tp#:U('Index/index')}" class="btn_cancel text-right">取消</a> </header>
+<div class="index_search"> 
+<span class="pull-left">
+<i class="fa fa-clock-o"></i><font class="font22">历史搜索</font>
+</span>
+<span class="pull-right">
+<!--<a href="#"><i class="fa fa-trash-o"></i><font class="font22">清除</font></a>-->
+</span>
+  <div class="clearfix"></div>
+  <div class="">
+  <volist name="list" id="item" offset='0' length='6'>
+  <a href="#" class="btn btn-lg btn_grew keyword">{tp#$item}</a>
+<!--  <a href="#" class="btn btn-lg btn_grew active">儿童空调</a>
+  <a href="#" class="btn btn-lg btn_grew">变频柜机</a>
+  <a href="#" class="btn btn-lg btn_grew">挂机</a>-->
+  </volist>
+  </div>
+  <span class="pull-left mt25">
+  <i class="fa fa-fire"></i>
+  <font class="font22">热门搜索</font>
+  </span>
+  
+  <div class="clearfix"></div>
+  
+  <div class=" width_auto">
+  <a href="#" class="btn btn-lg btn_grew keyword">1.5匹挂机</a>
+  <a href="#" class="btn btn-lg btn_grew keyword">2匹挂机</a>
+  <a href="#" class="btn btn-lg btn_grew keyword">1匹变频柜机</a>
+  <a href="#" class="btn btn-lg btn_grew keyword">挂机</a>
+  <a href="#" class="btn btn-lg btn_grew keyword">1.5匹定频挂机</a>
+  <a href="#" class="btn btn-lg btn_grew keyword">柜机</a>
+  </div>
+</div>
+<include file="Public:footbar"/>
+</body>
+<script>
+$(function(){
+	$("#so").click(function(){
+		var keyword=$("#keyword").val();
+		if(keyword==''){
+			alert('请输入搜索关键字');
+		}else{
+			location.href="{tp#:U('product_list')}&"+'keyword='+keyword;
+		}
+	});
+	$(".keyword").click(function(){
+		location.href="{tp#:U('product_list')}&keyword="+$(this).text();
+	});
+});
+</script>
+</html>

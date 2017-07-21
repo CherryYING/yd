@@ -1,0 +1,203 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>首页-{tp#$webinfo['web_name']}</title>
+
+<link href="__PUBLIC__/css/css.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.8.2.min.js"></script>
+<style>
+.title{float:left !important;padding:0 20px;color:#FFFFFF !important;font-weight:700}
+</style>
+<script type="text/javascript">
+<!--
+var timeout         = 500;
+var closetimer		= 0;
+var ddmenuitem      = 0;
+
+// open hidden layer
+function mopen(id)
+{	
+	// cancel close timer
+	mcancelclosetime();
+
+	// close old layer
+	if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+	// get new layer and show it
+	ddmenuitem = document.getElementById(id);
+	ddmenuitem.style.visibility = 'visible';
+
+}
+// close showed layer
+function mclose()
+{
+	if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+}
+
+// go close timer
+function mclosetime()
+{
+	closetimer = window.setTimeout(mclose, timeout);
+}
+
+// cancel close timer
+function mcancelclosetime()
+{
+	if(closetimer)
+	{
+		window.clearTimeout(closetimer);
+		closetimer = null;
+	}
+}
+
+// close layer when click-out
+document.onclick = mclose; 
+// -->
+</script>
+<script type="text/javascript" src="__PUBLIC__/js/jquery.min.js"></script>
+<script type="text/javascript">
+
+var intDiff = parseInt(60);//倒计时总秒数量
+
+function timer(intDiff){
+	window.setInterval(function(){
+	var day=0,
+		hour=0,
+		minute=0,
+		second=0;//时间默认值		
+	if(intDiff > 0){
+		day = Math.floor(intDiff / (60 * 60 * 24));
+		hour = Math.floor(intDiff / (60 * 60)) - (day * 24);
+		minute = Math.floor(intDiff / 60) - (day * 24 * 60) - (hour * 60);
+		second = Math.floor(intDiff) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60);
+	}
+	if (minute <= 9) minute = '0' + minute;
+	if (second <= 9) second = '0' + second;
+	$('#day_show').html(day+"天");
+	$('#hour_show').html('<s id="h"></s>'+hour+'时');
+	$('#minute_show').html('<s></s>'+minute+'分');
+	$('#second_show').html('<s></s>'+second+'秒');
+	intDiff--;
+	}, 1000);
+} 
+
+$(function(){
+	timer(intDiff);
+});	
+</script>
+
+<link href="__PUBLIC__/css/zzsc.css" type="text/css" rel="stylesheet" />
+<script src="__PUBLIC__/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+ $(".imgtext").hide();
+ $(".zzsc").hover(function(){
+  $(".imgtext",this).slideToggle(500);
+ });
+});
+</script>
+</head>
+
+<body>
+<!--top01 最顶部-->
+<include file="Public:top"/>
+
+<div class="main">
+<!--banner-->
+     <div class="banner">
+           <div id="demo01" class="flexslider">
+	          <ul class="slides">
+                <volist name="slide" id="item">
+                <li><div class="img"><img src="{tp#$item['spic']}" width="1080" height="446"/></div></li>
+                </volist>  
+	          </ul>
+           </div>
+<script type="text/javascript" src="__PUBLIC__/js/slider.js"></script> 
+<script type="text/javascript">
+$(function(){
+
+	$('#demo01').flexslider({
+		animation: "slide",
+		direction:"horizontal",
+		easing:"swing"
+	});
+	
+	
+	
+});
+</script>
+     </div>
+     <!--品牌专区-->
+     <div class="pp">
+       
+           <table width="98%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                  	<volist name="shop" id="item" offset='0' length='6'>
+                    <td><a href="{tp#:U('shop',array('id'=>$item['id']))}"><img src="{tp#$item['shop_logo']}"></a></td>
+                    </volist>
+<!--                    <td><a href=""><img src="__PUBLIC__/img/pinpai/pp2.jpg"></a></td>
+                    <td><a href=""><img src="__PUBLIC__/img/pinpai/pp3.jpg"></a></td>
+                    <td><a href=""><img src="__PUBLIC__/img/pinpai/pp4.jpg"></a></td>
+                    <td><a href=""><img src="__PUBLIC__/img/pinpai/pp6.jpg"></a></td>-->
+                  </tr>
+                  <tr>
+                  	<volist name="shop" id="item" offset='6' length='6'>
+                    <td><a href="{tp#:U('shop',array('id'=>$item['id']))}"><img src="{tp#$item['shop_logo']}"></a></td>
+                    </volist>
+                    <!--<td><a href=""><img src="__PUBLIC__/img/pinpai/pp5.jpg" style="margin-bottom:0px"></a></td>
+                    <td><a href=""><img src="__PUBLIC__/img/pinpai/pp7.jpg" style="margin-bottom:0px"></a></td>
+                    <td><a href=""><img src="__PUBLIC__/img/pinpai/pp4.jpg" style="margin-bottom:0px"></a></td>
+                    <td><a href=""><img src="__PUBLIC__/img/pinpai/pp1.jpg" style="margin-bottom:0px"></a></td>
+                    <td><a href=""><img src="__PUBLIC__/img/pinpai/pp2.jpg" style="margin-bottom:0px"></a></td>-->
+                  </tr>
+         </table>
+
+     </div>
+      <!--抢购专区-->
+     <volist name="class" id="item">
+	 <div class="qg">
+         <div class="qg-t" style="background:url('__PUBLIC__/images/title-bg.jpg');">
+		 <span class='title'>{tp#$item['name']}</span>
+		 <span><a href="{tp#:U('Index/product_list',array('cid'=>$item['id']))}">+更多</a></span>
+		 </div>
+         <div class="qg-r">
+              <ul>
+			  
+			  	<volist name="item['goods']" id="val">
+                  <li <eq name="key" value="3">style="margin-right:0"</eq>>
+                      <ul>
+                          <li><a href="{tp#:U('Index/product',array('id'=>$val['id']))}" title="{tp#$val['name']}">
+						  <img src="{tp#$val['spic']}" onerror="this.src='__PUBLIC__/images/no-pic.jpg'" title="{tp#$val['name']}" style="display:inline;"></a></li>
+                          <li>
+                             {tp#$val['name']}<br>
+                              <span class="price">￥{tp#$val['price']} </span> <span class="oldprice">￥{tp#$val['market_price']}</span><br>
+                              <span class="number">销量{tp#$val['sale_num']}件</span>
+                              <!--倒计时模块-->
+                                <!--<div style="float:right">
+                                 剩余时间：  
+                                  <span id="hour_show"><span style=" color:#000; font-weight:bold">1</span>时</span>
+                                  <span id="minute_show"><span style=" color:#000; font-weight:bold">20</span>分</span>
+                                  <span id="second_show"><span style=" color:#000; font-weight:bold">10</span>秒</span>
+                              </div>-->
+                         </li>
+                      </ul>
+                  </li>
+				</volist>
+ 
+              </ul>
+         </div>
+     </div>
+	 </volist>
+     <!--广告条-->
+     <div class="gg02">
+         <a href=""><img src="__PUBLIC__/img/gg02.jpg" border="0"></a>
+     </div>
+     
+    
+</div>
+ <!--bottom-->
+          <include file="Public:foot"/>
+ <!--bottom-->
+</body>
+</html>

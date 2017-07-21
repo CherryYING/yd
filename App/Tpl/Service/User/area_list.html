@@ -1,0 +1,60 @@
+<extend name="User:base" />
+<block name="content-title">
+<h4>服务区域</h4>  
+</block>
+<block name="content">
+<script type='text/javascript'>
+$(function(){
+	$('input[level=1]').click(function(){
+		var inputs=$(this).parents('.app').find('input');
+		$(this).attr('checked') ? inputs.attr('checked','checked') : inputs.removeAttr('checked');
+	});
+	$('input[level=2]').click(function(){
+		var inputs=$(this).parents('dl').find('input');
+		$(this).attr('checked') ? inputs.attr('checked','checked') : inputs.removeAttr('checked');
+	});
+	
+	$(".province").click(function(){
+		$(this).siblings('dl').slideToggle();
+	});
+});
+</script>
+	<link rel='stylesheet' href='__PUBLIC__/Css/node.css'>
+          <div class="tab-content default-tab" id="tab1">
+            <table>
+              <tbody>
+              	<div id="wrap">
+              		<form action="{tp#:U('area_edit',array('id'=>I('get.id')))}" method='post'>
+		
+		<volist name="areas" id="pro">
+			<div class='app'>
+				<p class="province" style="cursor:pointer">
+					<strong>{tp#$pro['region_name']}</strong>
+					
+				</p>
+				<volist name="pro.city" id="city">
+					<dl style="display:none;">
+						<dt>
+							<strong>{tp#$city.region_name}</strong>
+							
+						</dt>
+						<volist name="city.county" id="county">
+							<dd>
+								<span>{tp#$county.region_name}</span>
+								
+							</dd>
+						</volist>
+					</dl>
+					
+				</volist>
+			</div>		
+		
+		</volist>
+	
+	</form>
+
+</div>
+              </tbody>             
+            </table>
+          </div> <!-- End #tab1 -->  
+</block>

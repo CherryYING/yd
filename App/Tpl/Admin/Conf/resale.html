@@ -1,0 +1,107 @@
+<extend name="RBAC:base" />
+<block name="content-title">
+<h4>B网佣金分配比例</h4>  
+</block>
+<block name="content">
+<div class="tab-content default-tab" id="tab1">
+<div class="well">佣金基数为每款产品设置的分销佣金</div>
+<form method="post" action="{tp#:U('resale')}">
+    <p>
+       一级分销：<input type="text" name="parent_1"  class="text-input small-input number" value="{tp#$info['parent_1']}" placeholder="一级分销佣金百分比" required> %
+       <font color='red'>购买人的上一级用户</font>
+    </p>
+    <p>
+       二级分销：<input type="text" name="parent_2"  class="text-input small-input number" value="{tp#$info['parent_2']}" placeholder="二级分销佣金百分比" required> %
+       <font color='red'>购买人的上二级用户</font>
+    </p>  
+    <p>
+       三级分销：<input type="text" name="parent_3"  class="text-input small-input number" value="{tp#$info['parent_3']}" placeholder="三级分销佣金百分比" required> %
+       <font color='red'>购买人的上三级用户</font>
+    </p>
+    <p>
+       四级分销：<input type="text" name="parent_4"  class="text-input small-input number" value="{tp#$info['parent_4']}" placeholder="三级分销佣金百分比" required> %
+       <font color='red'>购买人的上四级用户</font>
+    </p>
+    <p>
+       产品推荐：<input type="text" name="product_recom"  class="text-input small-input number" value="{tp#$info['product_recom']}" placeholder="产品推荐奖" required> %
+       <font color='red'>产品上传人的上级用户</font>
+    </p>
+    <p>
+       城市代理：<input type="text" name="city_agent"  class="text-input small-input number" value="{tp#$info['city_agent']}" placeholder="城市代理" required> %
+       <font color='red'>城市代理佣金百分比</font>
+    </p> 
+    <p>
+       区县代理：<input type="text" name="county_agent"  class="text-input small-input number" value="{tp#$info['county_agent']}" placeholder="区县代理" required> %
+       <font color='red'>区县代理佣金百分比</font>
+    </p>                
+   <p>
+      <input type="submit" value="保存设置" class="button">
+    </p>
+  <div class="clear"></div>
+</form>
+
+	<fieldset class="block">
+       <legend class="legend">易道云商B网制度</legend>	
+       <p> 1. 三级分销，每级佣金 25%</p>
+       <p> 2. 第四级分红（第四级佣金）4%</p>
+       <p> 3. 加权分红5%，在用户在B网业绩达到10万元后，B网所有销售商品佣金提5%（若没有符合资格的会员，加权分红佣金沉淀到商城）</p>
+       <p> 4. 产品推荐奖励 3%，产品销售给上传该产品的用户的上一级提3%佣金</p>
+       <p> 5. 区代区域提成 5%，购买区代理权限后，B网所有商品发往该区（例：碑林区，雁塔区），给区代提5%佣金</p>
+       <p> 6. 市代区域提成5%，购买市代理权限后，B网所有商品发往该市（例：西安市，咸阳市），给区代提5%佣金</p>
+       <p> 7. 商家提现管理费 收取 3%</p>
+       <p> 8. 商家提现每笔手续费 收取 1元</p>
+       <p> 9. 会员B网提现，收取手续费1%
+       </p>
+</fieldset>
+<!--kindeditor-->
+<link rel="stylesheet" href="/plugins/kindeditor/themes/default/default.css" />
+<script charset="utf-8" src="/plugins/kindeditor/kindeditor-min.js"></script>
+<script charset="utf-8" src="/plugins/kindeditor/lang/zh_CN.js"></script>
+<!--kindeditor-->
+<script>
+$(function(){
+	$("form").submit(function(){
+		var parent_1=$("input[name='parent_1']").val();
+		var parent_2=$("input[name='parent_2']").val();
+		var parent_3=$("input[name='parent_3']").val();
+		if(parseFloat(parent_1)>100||parseFloat(parent_2)>100||parseFloat(parent_3)>100){
+			artDialog({content:'分佣百分比不能大于100%！', style:'alert', lock:false}, function(){});
+			return false;
+		}
+		
+		if(parseFloat(parent_1)+parseFloat(parent_2)+parseFloat(parent_3)>100){
+			artDialog({content:'三级分佣百分比之和不能大于100%！', style:'alert', lock:false}, function(){});
+			return false;
+		}
+	});
+})
+//单图上传
+	KindEditor.ready(function(K) {
+		var editor = K.editor({
+			allowFileManager : true
+		});
+		K('#image1').click(function() {
+			editor.loadPlugin('image', function() {
+				editor.plugin.imageDialog({
+					imageUrl : K('#url1').val(),
+					clickFn : function(url, title, width, height, border, align) {
+						K('#url1').val(url);
+						editor.hideDialog();
+					}
+				});
+			});
+		});
+		K('#image2').click(function() {
+			editor.loadPlugin('image', function() {
+				editor.plugin.imageDialog({
+					imageUrl : K('#url1').val(),
+					clickFn : function(url, title, width, height, border, align) {
+						K('#url2').val(url);
+						editor.hideDialog();
+					}
+				});
+			});
+		});
+	});
+</script>
+</block>

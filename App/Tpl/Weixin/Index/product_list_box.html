@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <title>商品列表</title>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/dist/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/dist/css/bootstrap-theme.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="__PUBLIC__/js/jquery.1-7-1.js"></script>
+</head>
+<style>
+.search{color:#666;line-height:35px;width:70%;border-radius:25px;border:1px solid #CCC;padding:0 10px;}
+.fz20{font-size:22px;}
+</style>
+<body class="page bg">
+    <header class="navbar po-re">
+        <div class="navbar-icon">
+            <a href="javascript:history.go(-1);">
+                <span class="glyphicon glyphicon-chevron-left">返回</span>
+			</a>
+		</div>
+        <span class="nav-title">{tp#$page_title|default='全部商品'}</span>
+   </header>
+	<div class="cj-filter text-center clearfix"> 
+		<div class="col-xs-2 <if condition='!isset($_GET["rank"])'>active</if>" onclick="javascript:location.href='{tp#:U('product_list',array('style'=>'box'))}'">默认</div>
+		<div class="col-xs-2 <eq name='Think.get.rank' value='sale_num'>active</eq>" onClick="javascript:location.href='{tp#:U('product_list',array('style'=>'box','id'=>I('get.id'),'rank'=>'sale_num'))}'">销量</div>
+		<div class="col-xs-2 <eq name='Think.get.rank' value='hits'>active</eq>" onClick="javascript:location.href='{tp#:U('product_list',array('style'=>'box','id'=>I('get.id'),'rank'=>'hits'))}'">人气</div>
+		<div class="col-xs-2 <eq name='Think.get.rank' value='price'>active</eq>" onClick="javascript:location.href='{tp#:U('product_list',array('style'=>'box','id'=>I('get.id'),'rank'=>'price'))}'">价格</div>
+		<div class="col-xs-2" onClick="location.href='{tp#:U('product_list')}'">
+        <img src="__PUBLIC__/images/icon-listh.png" width="20px;">
+        </div>
+	</div>
+    
+      <!--搜索框-->
+   <div class="cj-filter mt15"> 
+   		<div class="searchbar">
+            <div style="position:relative;padding:10px;">
+              <input id="keyword" class="search" placeholder="请输入关键字" type="text" value="{tp#:I('get.keyword')}"/>
+              <a class="btn" id="so">
+              <span class="glyphicon glyphicon-search fz20"></span>
+              <a href="{tp#:U('product_list')}">全部</a>
+              </a> 
+            </div>
+          </div>
+   </div>
+    <!--/搜索框-->
+    
+	<div class="container clearfix mt10">
+<volist name="list" id="item">
+		<div class="list-float clearfix" onClick="javascript:location.href='{tp#:U('product',array('id'=>$item['id']))}'">
+			<div class="list-f-pic"><img style="height:160px;" src="{tp#$item.spic|get_thumb}"></div>
+			<div class="list-f-info clearfix">
+				<h4 class="media-heading" style="height:auto;">{tp#$item.name|mb_substr=###,0,38,'utf-8'}...</h4>
+				<p><span class="jt-price"><i><em>&yen; {tp#$item.price}</em></i></span><span class="old-price f999999 mb5 mt10">市场价：&yen; {tp#$item.market_price}</span></p>
+			</div>		
+		</div>
+</volist>
+<span id="load-box"></span>        
+	</div>
+
+	
+
+<div class="text-center mt10 mb5">
+    <p id="load-more">
+    <!--<img  src="__PUBLIC__/images/icon-refres.png" width="20px;">-->
+     加载更多
+    </p>
+    <p><center><img id="loading" style="display:none" src="__PUBLIC__/images/loading.gif"></center></p>
+</div>
+   <!--底部导航-->
+    <include file="Public:footbar2"/>
+    <!--底部导航-->
+	
+</body>
+<script>
+$(function(){
+	//加载商品
+	//加载商品
+	$("#load-more").click(function(){
+		$("#loading").show('fast');
+		$(this).hide('fast');
+		var offset=$('#offset').val();
+		
+		var cid="{tp#:I('get.id')}";		//分类id
+		var rank="{tp#:I('get.rank')}";
+		
+		var post_data={};
+		if(cid!=''){
+			post_data.cid=cid;
+		}
+		if(rank!=''){
+			post_data.rank=rank;
+		}
+		post_data.offset=offset;				//从第几条开始查询					   
+		$.post("{tp#:U('Ajax/product_load')}",post_data,function(json){
+			$("#loading").hide();																			
+			if(json!=null){
+				$("#offset").val(parseInt($('#offset').val())+parseInt(json.length));
+				var html="";
+				$.each(json,function(i,obj){					 
+					html+='<div class="list-float clearfix" onclick="location.href=\'index.php?m=Index&a=product&id='+obj.id+'\'">';
+					html+='<div class="list-f-pic"><img src="'+obj.spic+'"></div>';
+					html+='<div class="list-f-info clearfix">';
+					html+='<h4 class="media-heading" style="height:auto;">'+obj.name+'</h4>';
+					html+='<p><span class="jt-price"><i><em>&yen; '+obj.market_price+'</em></i></span><span class="old-price f999999 mb5 mt10">市场价：&yen;'+obj.price+'</span></p>';
+					html+='</div>';
+					html+='</div>';
+				});
+				$("#load-box").append(html);
+				 html="";
+				 $("#load-more").show('fast');
+			}else{
+				alert('就这么多了!');	
+			}																			
+			
+		},'json');					
+	});
+});
+</script>
+<input id="offset" type="hidden" value="20"/>
+<script>
+$(function(){
+	$("#so").click(function(){
+		var keyword=$("#keyword").val();
+		if(keyword==''){
+			alert('请输入搜索关键字');
+		}else{
+			location.href="{tp#:U('product_list')}&"+'keyword='+keyword;
+		}
+	});
+	$(".keyword").click(function(){
+		location.href="{tp#:U('product_list')}&keyword="+$(this).text();
+	});
+});
+</script>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta name="format-detection" content="telephone=no">
+<title>设置账户信息 - {tp#$webinfo.web_name}</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/comman.css" media="all">
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/jquery_dialog.css" media="all">
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/style.css" media="all">
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/user2015.css" media="all">	
+<script> var SITE_URL="http://www.wdkl168.com/";</script>
+<script type="text/javascript" src="__PUBLIC__/js/jquery.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/js/jquery_dialog.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/js/common.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/js/jquery.json-1.3.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/js/user.js"></script> 	
+<script type="text/javascript" src="__PUBLIC__/js/jweixin-1.0.0.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/js/script.js"></script> 
+</head>
+<body>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/css.css" media="all">
+<div id="home">
+	<div id="header">
+		<div class="logo" style="height:28px; padding-top:10px; background:url(__PUBLIC__/images/xy.png) 10px 8px no-repeat"><span onclick=" history.go(-1);">&nbsp;</span></div>
+		<div class="shoptitle"><span>设置账户信息</span></div>
+		<!--right-->
+        <include file="Public:logoright"/>
+        <!--right-->
+	</div>
+</div>	
+<script type="text/javascript">
+function ajax_show_menu(){
+	$(".showmenu").toggle();
+}
+</script>
+<style type="text/css">
+.pw,.pwt{
+height:26px; line-height:normal;
+border: 1px solid #ddd;
+border-radius: 5px;
+background-color: #fff; padding-left:5px; padding-right:5px;
+-moz-border-radius:5px;/*仅Firefox支持，实现圆角效果*/
+-webkit-border-radius:5px;/*仅Safari,Chrome支持，实现圆角效果*/
+-khtml-border-radius:5px;/*仅Safari,Chrome支持，实现圆角效果*/
+border-radius:5px;/*仅Opera，Safari,Chrome支持，实现圆角效果*/
+}
+.pw{ width:90%;}
+.usertitle{
+height:22px; line-height:22px;color:#666; font-weight:bold; font-size:14px; padding:5px;
+border-radius: 5px;
+background-color: #ededed; padding-left:5px; padding-right:5px;
+-moz-border-radius:5px;/*仅Firefox支持，实现圆角效果*/
+-webkit-border-radius:5px;/*仅Safari,Chrome支持，实现圆角效果*/
+-khtml-border-radius:5px;/*仅Safari,Chrome支持，实现圆角效果*/
+border-radius:5px;/*仅Opera，Safari,Chrome支持，实现圆角效果*/
+}
+.btn-red{display:block;background:#e13935;cursor:pointer;width:110px; height:24px; line-height:24px; font-size:14px; color:#FFF; font-weight:bold; text-align:center;border-radius: 5px; overflow:hidden}
+</style>
+<div id="main" style="padding:10px; min-height:300px">
+<form name="USERINFO" id="USERINFO" action="" method="post">
+ <table width="100%" border="0" cellpadding="0" cellspacing="0" style="line-height:30px; padding:10px;">
+	<tbody>
+    <tr>
+		<td width="30%" align="right" style="padding-bottom:2px;"><b class="cr2">*</b>登录账户：</td>
+		<td width="70%" align="left" style="padding-bottom:2px;">
+		<input type="tel" value="{tp#$user_info.username}" id="mobile" class="pw number" style="padding-left:25px; background:url(__PUBLIC__/images/u.png) 3px center no-repeat" placeholder="请输入11位手机号码" maxlength='11'>
+        </td>
+	</tr>
+	
+	<tr>
+	<td width="30%" align="right" style="padding-bottom:2px;"><b class="cr2">*</b>登录密码：</td>
+    <td width="70%" align="left" style="padding-bottom:2px;">
+     <input type="password" id="password" class="pw" placeholder="输入登录密码" style="padding-left:25px; background:url(__PUBLIC__/images/p.png) 3px center no-repeat">
+    </td>
+  	</tr>
+    <td width="30%" align="right" style="padding-bottom:2px;"><b class="cr2">*</b>确认密码：</td>
+    <td width="70%" align="left" style="padding-bottom:2px;">
+     <input type="password" name="password2" class="pw" placeholder="确认登录密码" style="padding-left:25px; background:url(__PUBLIC__/images/p.png) 3px center no-repeat">
+    </td>
+  	</tr>
+    
+
+   <!-- <tr>
+	<td width="30%" align="right" style="padding-bottom:2px;"><b class="cr2">*</b>QQ：</td>
+    <td width="70%" align="left" style="padding-bottom:2px;">
+    <input type="text" value="{tp#$user_info.qq}" name="qq" class="pw number" style="padding-left:25px; background:url(__PUBLIC__/images/QQ.png) 3px center no-repeat" maxlength="15" placeholder="QQ">
+    </td>
+    </tr>-->
+
+   <tr>
+    <td align="center" style="padding-top:20px;" colspan="2">
+	<a _onclick="return update_user_info(1);" class="btn-red" id="btn-reg">确定修改</a>
+	</td>
+   </tr>
+   <tr>
+    <td align="center" colspan="2">
+	<span class="returnmes" style="color:#FF0000"></span>
+	</td>
+  </tr>
+</tbody>
+</table>
+</form>
+</div>
+<!--QUYU-->
+<div id="opquyu">
+	
+</div>
+<div id="opquyubox">
+	<!--商品分类导航-->
+    <include file="Public:category"/>
+   	<!--商品分类导航-->
+</div>
+
+<!--FOOTER-->
+<!--底部-->
+<include file="Public:footbar"/>
+<!--底部-->
+<script>
+$(function(){
+	$("#btn-reg").click(function(){
+		var post_data={};
+		post_data.username=$("#mobile").val();
+		post_data.password=$("#password").val();
+		password2=$("input[name='password2']").val();
+		
+		//post_data.qq=$("input[name='qq']").val();
+		
+		
+		if(post_data.username==''){
+			alert('请输入用户名（手机或邮箱）');
+			return false;
+		}
+		if(post_data.password==''){
+			alert('请输入密码');
+			return false;
+		}
+		if(password2==''){
+			alert('请确认密码');
+			return false;
+		}
+		if(post_data.password!=password2){
+			alert('两次密码输入不一致');
+			return false;
+		}
+		$.post("{tp#:U('Member/do_reg')}",post_data,function(errcode){
+			if(errcode==1){
+				alert('用户名已经存在！');
+			}else{
+				alert('设置成功!');
+				location.href="{tp#:U('Ucenter/info')}";
+			}
+		});
+	});	
+});
+</script>
+</html>

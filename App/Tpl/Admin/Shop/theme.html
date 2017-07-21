@@ -1,0 +1,53 @@
+<extend name="RBAC:base" />
+<block name="content-title">
+<h4>店铺主题管理</h4> 
+</block>
+<block name="content">
+          <div class="tab-content default-tab" id="tab1">
+            <div class="notification png_bg" id="dmsg" style="display:none;">
+              <a href="#" class="close"><img src="__PUBLIC__/Images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
+              <div>
+                msg.
+              </div>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                   <th>缩略图</th>
+                   <th>主题名称</th>
+                   <th>模板路径</th>
+                   <th>操作</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <volist name="list" id="v">
+                    <tr>
+                      <td>
+                      <php>$picurl=base64_encode($v['thumb']);</php>
+                      <a title="点击查看大图" rel='modal' href="{tp#:U('show_img',array('picurl'=>$picurl))}">
+                      	<img src="{tp#$v.thumb}" class="thumb"/>
+                      </a>
+                      </td>
+                      <td>{tp#$key}</td>
+                      <td>{tp#:C('SHOP_THEME')}{tp#$key}</td>
+                      <td><a class="btn">暂无操作</a></td>
+                    </tr>
+                </volist>
+              </tbody>
+
+              <tfoot>
+                <tr>
+                  <td colspan="3">
+                    <div class="bulk-actions align-left">
+                    </div>
+                    <div class="pagination">
+                      {tp#$show}
+                    </div>
+                    <div class="clear"></div>
+                  </td>
+                </tr>
+              </tfoot>              
+            </table>
+          </div> <!-- End #tab1 -->  
+</block>  

@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta name="format-detection" content="telephone=no">
+<title>确认兑换 -{tp#$webinfo.web_name}</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/comman.css" media="all">
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/jquery_dialog.css" media="all">
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/style.css" media="all">	
+<script> var SITE_URL="http://www.wdkl168.com/";</script>
+<script type="text/javascript" src="__PUBLIC__/js/jquery.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/js/jquery_dialog.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/js/common.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/js/jquery.json-1.3.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/js/goods.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/js/time.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/js/user.js"></script> 	
+<script type="text/javascript" src="__PUBLIC__/js/jweixin-1.0.0.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/js/script.js"></script> 
+</head>
+<body>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/css.css" media="all">
+
+<div id="home">
+	<div id="header">
+		<div class="logo" style="height:28px; padding-top:10px; background:url(__PUBLIC__/images/images/xy.png) 10px 8px no-repeat"><span onclick=" history.go(-1);">&nbsp;</span></div>
+		<div class="shoptitle"><span>确认兑换</span></div>
+		<!--logoright-->
+        <include file="Public:logoright"/>
+        <!--logoright-->
+	</div>
+</div>	
+<script type="text/javascript">
+function ajax_show_menu(){
+	$(".showmenu").toggle();
+}
+</script>
+<style type="text/css">
+.checkout{ background:#FFF;}
+.checkout p.title {
+background: #eaeaea;
+height: 27px;
+line-height: 27px;
+text-indent: 10px;
+width: 100%;
+color: #9a0000;
+font-weight: bold;
+margin: 10px 0px 0px 0px;
+border-bottom:2px solid #CCC
+}
+.checkout table {
+text-align: left;
+color: #5f5f5f;
+margin:0px;
+}
+.checkout td {
+line-height: 20px;
+padding: 3px 0px 5px 0px;
+}
+.checkout .userreddinfo td {
+line-height: 20px;
+padding: 2px 0px 2px 0px;
+}
+.checkout td label{ line-height:22px;}
+label{ cursor:pointer}
+.pw{ line-height:24px; height:24px;}
+.delcart{padding:2px 5px 2px 5px; color:#FF0000; cursor:pointer; position:absolute; right:1px; top:-3px; z-index:22; background:#fafafa; border:1px solid #ededed;border-radius:5px;}
+#btn-sub{margin-bottom:33px;width:100px; height:30px; line-height:30px; background:url(__PUBLIC__/images/buybut.jpg) 0px 0px no-repeat; font-size:20px; color:#FFFFFF; font-weight:bold; text-align:center; cursor:pointer}
+</style>
+<div id="main" style="padding:5px; padding-top:0px; min-height:300px">
+	<div class="checkout">
+	<form action="#" method="post">
+        <table border="0" cellpadding="0" cellspacing="0" style="width:100%;border-radius:5px; border:1px solid #ededed; margin-top:10px;display:none">
+          <tbody>
+          <tr>
+		  <td>
+		  <label style="padding-left:10px;"><input type="radio" name="userress_id" value="724" checked="checked">
+		  安徽安庆宜秀区我的地<br><span style="padding-left:26px;"></span>电话:18710950673&nbsp;联系人:我的</label>
+		  <p style="padding-left:26px;"><img src="__PUBLIC__/images/btu_up.gif" height="18" width="50" border="0" align="absmiddle" onclick="ressinfoop(724,showupdate,this)" style="cursor:pointer"></p>
+		  </td>
+		  </tr>
+		  		  		  <tr>
+		  <td><label style="padding-left:10px;"><input name="userress_id" type="radio" value="0">&nbsp;添加新收货地址</label></td>
+		  </tr>
+	  </tbody>
+      </table>
+		 		  
+		  	<table border="0" cellpadding="0" cellspacing="0" class="userreddinfo" style="width:100%;border-radius:5px; border:1px solid #ededed; margin-top:10px;display:block;" width="100%">
+			  <tbody><tr>
+				<td align="right">&nbsp;&nbsp;姓名：</td>
+				<td align="left">
+                <input type="text" value="{tp#$user_info['name']}" placeholder="收货人姓名" name="consignee" class="pw" style="width:240px;"> 
+				</td>
+			  </tr>
+				
+			  
+			   <tr>
+				<td align="right">&nbsp;&nbsp;区域：</td>
+				<td align="left">
+                <select name="province" id="province" _onchange="ger_ress(2,this,select_city)" class="pw">
+                             
+                </select>
+    
+                <select name="city" id="city" _onchange="ger_ress(3,this,select_district)" class="pw">
+                <option value="">-请选择-</option>
+                </select>
+    
+                <select name="district" id="district" class="pw">
+                <option value="">-请选择-</option>	                                                
+                </select>
+
+
+	</td>
+				
+			  </tr>
+			  <tr class="address_sh">
+				<td align="right">&nbsp;&nbsp;地址：</td>
+				<td align="left"><input type="text" value="" placeholder="详细地址" name="address" class="pw" style="width:240px;"></td>
+			  </tr>
+			  <!--<tr>
+				<td align="right">&nbsp;&nbsp;邮编：</td>
+				<td align="left"><input type="text" value="" placeholder="邮编" name="zipcode" class="pw" style="width:240px;"></td>
+			  </tr>-->
+			  <tr>
+				<td align="right">&nbsp;&nbsp;电话：</td>
+				<td align="left">
+                <input type="tel" value="" placeholder="联系电话" name="mobile" class="pw" style="width:240px;">
+                </td>
+			  </tr>
+<!--			  <tr>
+			  <td>&nbsp;</td>
+			  <td align="left" colspan="2"><img src="__PUBLIC__/images/btu_add.gif" alt="" style="cursor:pointer" onclick="ressinfoop(0,add,CONSIGNEE_ADDRESS)"></td>
+			  </tr>-->
+			</tbody></table>
+			
+			<table border="0" cellpadding="0" cellspacing="0" style="width:100%;border-radius:5px; border:1px solid #ededed; margin-top:10px;">
+		    			<tbody><tr>
+				<td style="width:80px; text-align:center; height:80px; padding:10px; padding-left:0px; padding-right:0px; overflow:hidden">
+					<img src="{tp#$info.spic|get_thumb}" onerror="this.src='__PUBLIC__/images/no-img.png'" border="0" style="width:78px; height:78px; border:1px solid #ededed; padding:1px; margin-left:5px;">
+				</td>
+				<td style="text-align:left;" valign="top">
+				<p style="padding-left:10px; position:relative">
+					{tp#$info.name}					
+                    <span class="delcart" onClick='location.href="{tp#:U('Index/jifen_product_list')}"'>删除</span>
+					</p>
+					<div class="item" style="height:24px; line-height:24px; padding-left:10px;">
+					兑换积分：&nbsp;<font color="red">{tp#$info.price}</font>&nbsp;积分<br>数量：&nbsp;1
+                    </div>
+				</td>
+			</tr>
+		</tbody></table>
+
+		
+		<!--<p>配送方式</p>-->
+		<table cellpadding="0" cellspacing="0" style="width:100%;border-radius:5px; border:1px solid #ededed; margin-top:10px;">
+			<tbody>
+            <tr style="display:none">
+				  <td align="right" width="22%"><span>支付方式：</span></td>
+				  <td align="left" width="78%">
+				  <table border="0" cellpadding="0" cellspacing="0" style="width:100%;">					
+                  <tbody>
+                  <tr>
+					  <td><label><span><input name="pay_id"  checked="checked" value="3" type="radio"></span><strong>支付宝</strong></label></td>
+					</tr>
+										<tr>
+					  <td><label><span><input name="pay_id"  value="4" type="radio"></span><strong>微信支付</strong></label></td>
+					</tr>
+										<tr>
+					  <td><label><span><input name="pay_id"  value="5" type="radio"></span><strong>货到付款</strong></label></td>
+					</tr>
+										<tr>
+					  <td><label><span><input name="pay_id"  value="6" type="radio"></span><strong>云支付</strong></label></td>
+					</tr>
+										<tr>
+					  <td><label><span><input name="pay_id"  value="7" type="radio"></span><strong>余额支付</strong></label></td>
+					</tr>
+					</tbody>
+                    </table>				  
+                    </td>
+			</tr>
+			<tr>
+				  <td align="right" width="22%"><span>配送方式：</span></td>
+				  <td align="left" width="78%">
+					<table border="0" cellpadding="0" cellspacing="0" style="width:100%;display:none">					<tbody><tr>
+					  <td><label><span style="padding-left:10px;"><input checked="checked" name="shipping_id" id="shipping_id" value="10" type="radio"></span><strong>中通快递</strong></label></td>
+					</tr>
+										<tr>
+					  <td><label><span style="padding-left:10px;"><input name="shipping_id" id="shipping_id" value="13" type="radio"></span><strong>客户自提</strong></label></td>
+					</tr>
+					</tbody></table>快递免邮
+				  </td>
+			</tr>
+			<tr>
+				<td align="right" width="22%">订单附言：</td>
+				<td>
+				<textarea class="pw" name="postscript" id="remark" style="width:96%; height:60px;resize:vertical"></textarea>
+                <span id="err-tips" style="color:red"></span>
+				</td>
+			</tr>
+		</tbody></table>
+		<div style="padding-left:5px;">
+			<p style="text-align:right; padding:25px; padding-right:5px; font-weight:bold">当前积分：<font color="red">{tp#$user_info['jifen']}</font>&nbsp;&nbsp;&nbsp;需要支付积分：<font color="red">{tp#$info.price}</font>&nbsp;&nbsp;&nbsp;
+			</p>
+			<p style="height:30px; line-height:30px; margin-top:10px;">
+			<input value="提交" type="button" align="absmiddle" id="btn-sub">
+			</p>
+	    </div>
+	</form>
+	</div>
+</div>
+
+<div style="height:20px;"></div>
+ 
+<script language="javascript" type="text/javascript">
+$("#btn-sub").click(function(){
+	var post_data={};
+	post_data.goods_id="{tp#$info['id']}";
+	post_data.goods_nums=1;					//数量
+	post_data.consignee=$("input[name='consignee']").val();
+	post_data.mobile=$("input[name='mobile']").val();
+	
+	post_data.province=$("#province").val();
+	post_data.city=$("#city").val();
+	post_data.district=$("#district").val();
+	
+	post_data.address=$("input[name='address']").val();
+	post_data.remark=$("#remark").val();
+	
+	//console.log(post_data);return false;
+	
+	if(post_data.consignee==''||typeof(post_data.consignee)==undefined){
+		$("#err-tips").text('请填写收货人');
+		return false;
+	}
+	
+	if(post_data.province==''||typeof(post_data.province)==undefined){
+		$("#err-tips").text('请填选择省份');
+		return false;
+	}
+	
+	if(post_data.city==''){
+		$("#err-tips").text('请填选择城市');
+		return false;
+	}
+	
+	if(post_data.district==''){
+		$("#err-tips").text('请填选择区县');
+		return false;
+	}
+	
+	if(post_data.mobile==''||typeof(post_data.mobile)==undefined){
+		$("#err-tips").text('请填写联系电话');
+		return false;
+	}
+	if(post_data.address==''||typeof(post_data.address)==undefined){
+		$("#err-tips").text('请填写详细地址');
+		return false;
+	}
+	
+	$.post("{tp#:U('Ajax/jifen_order')}",post_data,function(errcode){
+		if(errcode==1){
+			alert('可用积分不足！');
+		}else{
+			location.href="{tp#:U('Ucenter/jifen_order')}";
+		}
+	});
+	
+});
+
+
+$('.delcartid').click(function(){
+	if(confirm("确定移除吗")){
+		gid = $(this).attr('id');	
+		$(this).parent().parent().parent().remove();
+		
+		$.post('http://www.wdkl168.com/m/excart.php',{action:'ajax_remove_excargoods',gid:gid},function(data){
+			if(data=='1'){
+				window.location.reload(SITE_URL+'excart.php?type=checkout');
+			}
+		});
+	}
+	return false;
+});
+
+$('input[name="userress_id"]').live('click',function(){
+	var vv= $(this).val();
+	if(vv==0){
+	$('.userreddinfo').show();
+	}else{
+	$('.userreddinfo').hide();
+	}
+	//$('.userreddinfo').toggle();
+});
+
+function checkvar(){
+	pp = $('input[name="pay_id"]:checked').val(); 
+	if(typeof(pp)=='undefined' || pp ==""){
+		alert("请选择支付方式！");
+		return false;
+	}
+	
+	ss = $('input[name="shipping_id"]:checked').val(); 
+	if(typeof(ss)=='undefined' || ss ==""){
+		alert("请选择配送方式！");
+		return false;
+	}
+	
+	userress_id = $('input[name="userress_id"]:checked').val();
+	if(userress_id == '0' || userress_id == '' || typeof(userress_id)=='undefined'){
+			consignee = $('input[name="consignee"]').val(); 
+			if(typeof(consignee)=='undefined' || consignee ==""){
+				alert("收货人不能为空！");
+				return false;
+			}
+			
+			provinces = $('select[name="province"]').val();
+			if ( provinces == '0' )
+			{
+				alert("请选择收货地址！");
+				return false;
+			}
+			
+			city = $('select[name="city"]').val();
+			if ( city == '0' )
+			{
+				alert("请完整选择收货地址！");
+				return false;
+			}
+			
+			district = $('select[name="district"]').val();
+			if ( district == '0' )
+			{
+				alert("请完整选择收货地址！");
+				return false;
+			}
+			
+			shipping_id = $(':radio[name="shipping_id"]:checked').val();
+			if ( shipping_id == '6')
+			{
+				shop_id = $('select[name="shop_id"]').val();
+				if ( shop_id == '0' || shop_id == '' )
+				{
+					alert("此处暂无配送店,请选择送货上门。");
+					return false;
+				}
+			}
+			
+		
+			address = $('input[name="address"]').val(); 
+			if(typeof(address)=='undefined' || address ==""){
+				alert("详细地址不能为空！");
+				return false;
+			}
+			
+			zipcode = $('input[name="zipcode"]').val(); 
+			if(typeof(zipcode)=='undefined' || zipcode ==""){
+				alert("邮政编码有误！");
+				return false;
+			}
+			
+			mobile = $('input[name="mobile"]').val(); 
+			tel = $('input[name="tel"]').val(); 
+			if(mobile =="" && tel ==""){
+				alert("请输入手机或者电话号码！");
+				return false;
+			}
+	}	
+	
+	var arr = [];
+	$('input[name="userress_id"]:checked').each(function(){
+		arr.push($(this).val());
+	});
+	$('input[name="userress_ids"]').val(arr.join('+'));
+	if(arr.length<1){
+		alert("请选择收货地址");
+		return false;
+	}
+	return true;
+}
+
+</script>
+<script type="text/javascript">
+function ger_ress(type,obj,seobj){
+	parent_id = $(obj).val();
+	if(parent_id=="" || typeof(parent_id)=='undefined'){ return false; }
+	$.post(SITE_URL+'user.php',{action:'get_ress',type:type,parent_id:parent_id},function(data){
+		if(data!=""){
+			$(obj).parent().find('#'+seobj).html(data);
+			
+			if(type==5){ //村
+				
+				$(obj).parent().find('#'+seobj).show();
+				$(obj).parent().find('#select_peisong').hide();
+
+			}else if(type==4){ //城镇
+				$(obj).parent().find('#select_village').hide();
+				$(obj).parent().find('#select_village').html('<option value="0" >选择村</option>');
+				$(obj).parent().find('#select_peisong').hide();
+				$(obj).parent().find('#select_peisong').html('<option value="0" >选择配送店</option>');
+				$(obj).parent().find('#select_town').show();
+
+			}else if(type==3){ //区
+				$(obj).parent().find('#select_peisong').hide();
+				$(obj).parent().find('#select_peisong').html('<option value="0" >选择配送店</option>');
+				
+				$(obj).parent().find('#select_village').hide();
+				$(obj).parent().find('#select_village').html('<option value="0" >选择村</option>');
+				
+				$(obj).parent().find('#select_town').hide();
+				$(obj).parent().find('#select_town').html('<option value="0" >选择城镇</option>');
+				
+				$(obj).parent().find('#select_district').show();
+				
+			}else if(type==2){ //市
+				$(obj).parent().find('#select_peisong').hide();
+				$(obj).parent().find('#select_peisong').html('<option value="0" >选择配送店</option>');
+				
+				$(obj).parent().find('#select_village').hide();
+				$(obj).parent().find('#select_village').html('<option value="0" >选择村</option>');
+				
+				$(obj).parent().find('#select_town').hide();
+				$(obj).parent().find('#select_town').html('<option value="0" >选择城镇</option>');
+				
+				$(obj).parent().find('#select_district').hide();
+				$(obj).parent().find('#select_district').html('<option value="0" >选择区</option>');
+			}
+
+		}else{
+			alert(data);
+		}
+	});
+}
+//获取配送店
+
+function get_peisong(obj,seobj){
+//	village_id = $(obj).val();
+	village_id = $(obj).parent().find('select[name="village"]').val();
+	town_id = $(obj).parent().find('select[name="town"]').val();
+	district_id = $(obj).parent().find('select[name="district"]').val();
+
+	if(village_id=="" || typeof(village_id)=='undefined'){ return false; }
+	$.post(SITE_URL+'user.php',{action:'get_peisong',village_id:village_id,town_id:town_id,district_id:district_id,type:'ajax'},function(data){
+		if(data!=""){ 
+			$(obj).parent().find('#'+seobj).html(data);
+			
+			$(obj).parent().find('#'+seobj).show();
+			
+		}else{
+			$(obj).parent().find('#'+seobj).html('<option value="0" >此处暂无配送店</option>');
+			
+			$(obj).parent().find('#'+seobj).show();
+		}
+	});
+}
+</script>			
+<!--QUYU-->
+<div id="opquyu">
+	
+</div>
+<div id="opquyubox">
+	<!--商品分类导航-->
+    <include file="Public:category"/>
+   	<!--商品分类导航-->
+</div>
+
+<!--FOOTER-->
+<!--footbar-->
+<include file="Public/footbar"/>
+<!--footbar-->
+
+</body>
+</html>

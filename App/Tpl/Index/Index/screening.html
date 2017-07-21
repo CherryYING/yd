@@ -1,0 +1,622 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>无标题文档</title>
+
+<link href="css/css.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
+<script type="text/javascript">
+<!--
+var timeout         = 500;
+var closetimer		= 0;
+var ddmenuitem      = 0;
+
+// open hidden layer
+function mopen(id)
+{	
+	// cancel close timer
+	mcancelclosetime();
+
+	// close old layer
+	if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+	// get new layer and show it
+	ddmenuitem = document.getElementById(id);
+	ddmenuitem.style.visibility = 'visible';
+
+}
+// close showed layer
+function mclose()
+{
+	if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+}
+
+// go close timer
+function mclosetime()
+{
+	closetimer = window.setTimeout(mclose, timeout);
+}
+
+// cancel close timer
+function mcancelclosetime()
+{
+	if(closetimer)
+	{
+		window.clearTimeout(closetimer);
+		closetimer = null;
+	}
+}
+
+// close layer when click-out
+document.onclick = mclose; 
+// -->
+</script>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="js/showList.js" type="text/javascript"></script>
+<script type="text/javascript" src="js/script.js"></script>
+
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<!--top01 最顶部-->
+<div class="top01">
+   <div class="top01-m">
+       <ul>
+            <li>您好，欢迎来到爱家商城！ <a href="">请登录</a>  <a href="regest.html">免费注册</a></li>
+            <li>
+            <ul id="sddm">
+                  <li><a href="order.html">我的订单</a></li>
+                <li>
+                   <a href="#" onmouseover="mopen('m1')" onmouseout="mclosetime()"><img src="img/top/icon01.jpg"> 我的爱家</a>
+                   <div id="m1" onmouseover="mcancelclosetime()" onmouseout="mclosetime()">
+                      <a href="order.html">已购买的</a>
+                      <a href="collecting.html">我的收藏</a>
+                     
+                    </div>
+                </li>
+                <li>
+                   <a href="#" onmouseover="mopen('m2')" onmouseout="mclosetime()"><img src="img/top/icon01.jpg"> 服务中心</a>
+                   <div id="m2" onmouseover="mcancelclosetime()" onmouseout="mclosetime()">
+                      <a href="#">帮助中心</a>
+                      <a href="#">售后管理</a><!--连接到QQ-->
+                      
+                   </div>
+                   
+                </li>
+                <li><a href="">在线客服</a></li><!--连接到QQ-->
+                <li>
+                  <a href="#" onmouseover="mopen('m3')" onmouseout="mclosetime()"><img src="img/top/icon01.jpg"> 网站导航</a>
+                  <div id="m3" onmouseover="mcancelclosetime()" onmouseout="mclosetime()">
+                   
+                       <dl>
+                           <dt>购物</dt>
+                           <dd><a href="float.html">建材城</a></dd>
+                           <dd><a href="float.html">家具城</a></dd>
+                           <dd><a href="float.html">家居城</a></dd>
+                       </dl>
+                       <br>
+
+                       <dl>
+                           <dt><a href="decorate.html">装修汇</a></dt>
+                           
+                       </dl>
+                   </div>
+                </li>
+            </ul>
+            </li>
+        </ul>
+        
+    </div>
+</div>
+<div class="top02">
+  <div class="top02-m">
+         <!--顶部广告-->
+        <div class="gg01">
+          <center><a href=""><img src="img/top/gg01.jpg"></a></center>
+        </div>
+        <!--logo  搜索框-->
+        <div class="gg01">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td width="35%"><img src="img/top/logo.jpg" align="left"></td>
+                    <td width="43%">
+                        <div class="search">
+                           <form>
+                             <div class="searchnr">
+                                 <input name="search" type="text"  class="txt"   onfocus="if(this.value == '输入关键字搜索')this.value = ''" onblur="if(this.value == '')this.value='输入关键字搜索'" maxlength="20" value="输入关键字搜索"/>
+                             </div>
+                             <div class="searchbtn"><input type="image" id="submit" src="img/top/search/searchbtn.jpg" width="77" height="38" class="btn"></div>
+                           </form>
+                        </div>
+                         <span> 热门搜索：<a href="">衣橱</a> | <a href="">装修建材</a> | <a href="">地板</a> </span> 
+                    </td>
+                    <td width="22%"><img src="img/top/icon02.jpg" style=" width:63px; height:65px;"><img src="img/top/icon03.jpg"  style=" width:63px; height:65px;"><img src="img/top/icon04.jpg"  style=" width:63px; height:65px;"></td>
+                  </tr>
+            </table>
+           
+        </div>
+  </div>
+</div>
+<div class="nav">
+   <div class="navlist">
+      <ul>
+       <li><a  href="index.html">首页</a></li>
+       <li><a  href="snap up.html">抢购</a></li>
+       <li><a  href="float.html">建材城</a></li>
+       <li><a  href="float.html">家具城</a></li>
+       <li><a  href="float.html">家居城</a></li>
+       <li><a  href="decorate.html">装修汇</a></li>
+      
+     </ul>
+     <a href="shopcart.html"><img src="img/top/shopcar.jpg" width="172" height="43" border="0" style=" text-align:right"></a>
+   </div>
+</div>
+<div class="main">
+    <!--左侧产品列表-->
+        <div class="left">
+        <!--产品种类筛选-->
+             <div class="leftkind">
+                   <div class="operate">
+       
+        <ul id="J_navlist" style="margin:0px; padding:0px;">
+          <li >
+            <h3 >卫浴用具</h3>
+            <div class="list-item none">
+              <p ><a href="screening.html" target="_self">花洒</a></p>
+              <p ><a href="screening.html" target="_self">澡盆</a></p>
+              <p ><a href="screening.html" target="_self">浴室柜</a></p>
+              <p ><a href="screening.html" target="_self">坐便器</a></p>
+              <p ><a href="screening.html" target="_self">龙头</a></p>
+              <p ><a href="screening.html" target="_self">水槽</a></p>
+            </div>
+          </li>
+          <li >
+            <h3 >基础建材</h3>
+            <div class="list-item none">
+              <p ><a href="screening.html" target="_self">地板</a></p>
+              <p ><a href="screening.html" target="_self">瓷砖</a></p>
+              <p ><a href="screening.html" target="_self">乳胶漆</a></p>
+              <p ><a href="screening.html" target="_self">门窗</a></p>
+              <p ><a href="screening.html" target="_self">乳胶漆套装</a></p>
+              <p ><a href="screening.html" target="_self">门窗</a></p>
+            </div>
+          </li>
+          <li >
+            <h3 >灯具开关</h3>
+            <div class="list-item none">
+              <p ><a href="screening.html" target="_self">吸顶灯</a></p>
+              <p ><a href="screening.html" target="_self">开关</a></p>
+              <p ><a href="screening.html" target="_self">插座</a></p>
+              <p ><a href="screening.html" target="_self">光源</a></p>
+              
+            </div>
+          </li>
+          <li >
+            <h3 >厨卫电器</h3>
+            <div class="list-item none">
+              <p ><a href="screening.html" target="_self">油烟机</a></p>
+              <p ><a href="screening.html" target="_self">热水器</a></p>
+              <p ><a href="screening.html" target="_self">灶具</a></p>
+              <p ><a href="screening.html" target="_self">浴霸</a></p>
+            </div>
+          </li>
+          </ul>
+        <script type="text/javascript" language="javascript">
+			navList(12);
+		</script>
+             </div>
+        </div>
+        <!--推荐产品-->
+          <div class="tj">
+              <div class="tj-title"></div>
+              <div class="tj-nr">
+                    <ul>
+                        <li>
+                             <ul>
+                                 <li><a href="show.html"><img src="img/nylist/tjproduct/tj1.jpg" title="简约时尚两斗柜+五斗柜+电视柜" style="display:inline"></a></li>
+                                 <li>
+                                  【厅柜组合】简约时尚两斗柜+五斗柜+电视柜<br>
+                                   <span class="price">￥2500.00 </span>
+                                 </li>
+                             </ul>
+                        </li>
+                        <li>
+                             <ul>
+                                 <li><a href="show.html"><img src="img/nylist/tjproduct/tj2.jpg" title="简约时尚两斗柜+五斗柜+电视柜" style="display:inline"></a></li>
+                                 <li>
+                                  【厅柜组合】简约时尚两斗柜+五斗柜+电视柜<br>
+                                   <span class="price">￥300.00 </span>
+                                 </li>
+                             </ul>
+                        </li>
+                        <li>
+                             <ul>
+                                 <li><a href="show.html"><img src="img/nylist/tjproduct/tj3.jpg" title="简约时尚两斗柜+五斗柜+电视柜" style="display:inline"></a></li>
+                                 <li>
+                                  【厅柜组合】简约时尚两斗柜+五斗柜+电视柜<br>
+                                   <span class="price">￥2340.00 </span>
+                                 </li>
+                             </ul>
+                        </li>
+                        <li>
+                             <ul>
+                                 <li><a href="show.html"><img src="img/nylist/tjproduct/tj4.jpg" title="简约时尚两斗柜+五斗柜+电视柜" style="display:inline"></a></li>
+                                 <li>
+                                  【厅柜组合】简约时尚两斗柜+五斗柜+电视柜<br>
+                                   <span class="price">￥500.00 </span>
+                                 </li>
+                             </ul>
+                        </li>
+                        <li>
+                             <ul>
+                                 <li><a href="show.html"><img src="img/nylist/tjproduct/tj5.jpg" title="简约时尚两斗柜+五斗柜+电视柜" style="display:inline"></a></li>
+                                 <li>
+                                  【厅柜组合】简约时尚两斗柜+五斗柜+电视柜<br>
+                                   <span class="price">￥1205.00 </span>
+                                 </li>
+                             </ul>
+                        </li>
+                    </ul>
+              </div>
+          </div>
+         
+        </div>
+    <!--左侧产品列表-->
+     <!--右侧产品列表-->
+     <div  class="right">
+          <!--产品详细筛选-->
+               <div class="right-sx">
+               
+                     <ul class="select">
+                    <li  class="select-list" style="text-align:left; color:#E22B41; font-weight:bold; font-size:16px; font-family:microsoft yahei">沙发--产品筛选：</li>
+		<li class="select-list">
+			<dl id="select1">
+				<dt>产品品牌：</dt>
+				<dd class="select-all selected"><a href="#">全部</a></dd>
+				<dd><a href="#">豪美雅</a></dd>
+				<dd><a href="#">鑫益达</a></dd>
+				
+			</dl>
+		</li>
+		<li class="select-list">
+			<dl id="select2">
+				<dt>材 质：</dt>
+				<dd class="select-all selected"><a href="#">全部</a></dd>
+				<dd><a href="#">实木</a></dd>
+				<dd><a href="#">布艺沙发</a></dd>
+				<dd><a href="#">皮质沙发</a></dd>
+				
+			</dl>
+		</li>
+		<li class="select-list">
+			<dl id="select3">
+				<dt>尺 寸：</dt>
+				<dd class="select-all selected"><a href="#">全部</a></dd>
+				<dd><a href="#">100*200cm</a></dd>
+				<dd><a href="#">200*200cm</a></dd>
+				<dd><a href="#">100*150cm</a></dd>
+				<dd><a href="#">100*180cm</a></dd>
+			</dl>
+		</li>
+		<li class="select-result">
+			<dl>
+				<dt>已选条件：</dt>
+				<dd class="select-no">暂时没有选择过滤条件</dd>
+			</dl>
+		</li>
+	</ul>
+               </div>
+          <!--产品详细筛选-->
+          <!--产品展示-->
+              <div class="show">
+                    <ul>
+                        <li>
+                            <ul>
+                                <li>
+                                   <a href="show.html"><img src="img/nylist/show/show1.jpg" title="简约时尚两斗柜+五斗柜+电视柜" style="display:inline"></a>
+                                 </li>
+                                <li>
+                                    【厅柜组合】简约时尚两斗柜+五斗柜+电视柜<br>
+                                   <span class="price">￥1205.00 </span> <span class="number"  style="float:right">还剩余10套</span>  
+                                </li>
+                            </ul>
+                         </li>
+                          <li>
+                            <ul>
+                                <li>
+                                   <a href="show.html"><img src="img/nylist/show/show2.jpg" title="简约时尚两斗柜+五斗柜+电视柜" style="display:inline"></a>
+                                 </li>
+                                <li>
+                                    【厅柜组合】简约时尚两斗柜+五斗柜+电视柜<br>
+                                   <span class="price">￥1205.00 </span> <span class="number"  style="float:right">还剩余10套</span>  
+                                </li>
+                            </ul>
+                         </li>
+                          <li>
+                            <ul>
+                                <li>
+                                  <a href="show.html"> <img src="img/nylist/show/show3.jpg" title="简约时尚两斗柜+五斗柜+电视柜" style="display:inline"></a>
+                                 </li>
+                                <li>
+                                    【厅柜组合】简约时尚两斗柜+五斗柜+电视柜<br>
+                                   <span class="price">￥1205.00 </span> <span class="number"  style="float:right">还剩余10套</span>  
+                                </li>
+                            </ul>
+                         </li>
+                          <li>
+                            <ul>
+                                <li>
+                                  <a href="show.html"> <img src="img/nylist/show/show4.jpg" title="简约时尚两斗柜+五斗柜+电视柜" style="display:inline"></a>
+                                 </li>
+                                <li>
+                                    【厅柜组合】简约时尚两斗柜+五斗柜+电视柜...<br>
+                                   <span class="price">￥1205.00 </span> <span class="number" style="float:right">还剩余10套</span>  
+                                </li>
+                            </ul>
+                         </li> 
+                           <li>
+                            <ul>
+                                <li>
+                                   <a href="show.html"><img src="img/nylist/show/show5.jpg" title="简约时尚两斗柜+五斗柜+电视柜" style="display:inline"></a>
+                                 </li>
+                                <li>
+                                    【厅柜组合】简约时尚两斗柜+五斗柜+电视柜<br>
+                                   <span class="price">￥1205.00 </span> <span class="number" style="float:right" >还剩余10套</span>  
+                                </li>
+                            </ul>
+                         </li> 
+                           <li>
+                            <ul>
+                                <li>
+                                   <a href="show.html"><img src="img/nylist/show/show6.jpg" title="简约时尚两斗柜+五斗柜+电视柜" style="display:inline"></a>
+                                 </li>
+                                <li>
+                                    【厅柜组合】简约时尚两斗柜+五斗柜+电视柜<br>
+                                   <span class="price">￥1205.00 </span> <span class="number" style="float:right">还剩余10套</span>  
+                                </li>
+                            </ul>
+                         </li> 
+                           <li>
+                            <ul>
+                                <li>
+                                   <a href="show.html"><img src="img/nylist/show/show7.jpg" title="简约时尚两斗柜+五斗柜+电视柜" style="display:inline"></a>
+                                 </li>
+                                <li>
+                                    【厅柜组合】简约时尚两斗柜+五斗柜+电视柜<br>
+                                   <span class="price">￥1205.00 </span> <span class="number" style="float:right">还剩余10套</span>  
+                                </li>
+                            </ul>
+                         </li> 
+                           <li>
+                            <ul>
+                                <li>
+                                   <a href="show.html"><img src="img/nylist/show/show8.jpg" title="简约时尚两斗柜+五斗柜+电视柜" style="display:inline"></a>
+                                 </li>
+                                <li>
+                                    【厅柜组合】简约时尚两斗柜+五斗柜+电视柜<br>
+                                   <span class="price">￥1205.00 </span> <span class="number"  style="float:right">还剩余10套</span>  
+                                </li>
+                            </ul>
+                         </li> 
+                           <li>
+                            <ul>
+                                <li>
+                                   <a href="show.html"><img src="img/nylist/show/show9.jpg" title="简约时尚两斗柜+五斗柜+电视柜" style="display:inline"></a>
+                                 </li>
+                                <li>
+                                    【厅柜组合】简约时尚两斗柜+五斗柜+电视柜<br>
+                                   <span class="price">￥1205.00 </span> <span class="number"  style="float:right">还剩余10套</span>  
+                                </li>
+                            </ul>
+                         </li> 
+                           <li>
+                            <ul>
+                                <li>
+                                   <a href="show.html"><img src="img/nylist/show/show10.jpg" title="简约时尚两斗柜+五斗柜+电视柜" style="display:inline"></a>
+                                 </li>
+                                <li>
+                                    【厅柜组合】简约时尚两斗柜+五斗柜+电视柜<br>
+                                   <span class="price">￥1205.00 </span> <span class="number"  style="float:right">还剩余10套</span>  
+                                </li>
+                            </ul>
+                         </li> 
+                          <li>
+                            <ul>
+                                <li>
+                                   <a href="show.html"><img src="img/nylist/show/show1.jpg" title="简约时尚两斗柜+五斗柜+电视柜" style="display:inline"></a>
+                                 </li>
+                                <li>
+                                    【厅柜组合】简约时尚两斗柜+五斗柜+电视柜<br>
+                                   <span class="price">￥1205.00 </span> <span class="number"  style="float:right">还剩余10套</span>  
+                                </li>
+                            </ul>
+                         </li>
+                          <li>
+                            <ul>
+                                <li>
+                                   <a href="show.html"><img src="img/nylist/show/show2.jpg" title="简约时尚两斗柜+五斗柜+电视柜" style="display:inline"></a>
+                                 </li>
+                                <li>
+                                    【厅柜组合】简约时尚两斗柜+五斗柜+电视柜<br>
+                                   <span class="price">￥1205.00 </span> <span class="number"  style="float:right">还剩余10套</span>  
+                                </li>
+                            </ul>
+                         </li>
+                          <li>
+                            <ul>
+                                <li>
+                                   <a href="show.html"><img src="img/nylist/show/show3.jpg" title="简约时尚两斗柜+五斗柜+电视柜" style="display:inline"></a>
+                                 </li>
+                                <li>
+                                    【厅柜组合】简约时尚两斗柜+五斗柜+电视柜<br>
+                                   <span class="price">￥1205.00 </span> <span class="number"  style="float:right">还剩余10套</span>  
+                                </li>
+                            </ul>
+                         </li>
+                          <li>
+                            <ul>
+                                <li>
+                                   <a href="show.html"><img src="img/nylist/show/show4.jpg" title="简约时尚两斗柜+五斗柜+电视柜" style="display:inline"></a>
+                                 </li>
+                                <li>
+                                    【厅柜组合】简约时尚两斗柜+五斗柜+电视柜<br>
+                                   <span class="price">￥1205.00 </span> <span class="number" style="float:right">还剩余10套</span>  
+                                </li>
+                            </ul>
+                         </li> 
+                           <li>
+                            <ul>
+                                <li>
+                                  <a href="show.html"> <img src="img/nylist/show/show5.jpg" title="简约时尚两斗柜+五斗柜+电视柜" style="display:inline"></a>
+                                 </li>
+                                <li>
+                                    【厅柜组合】简约时尚两斗柜+五斗柜+电视柜<br>
+                                   <span class="price">￥1205.00 </span> <span class="number" style="float:right" >还剩余10套</span>  
+                                </li>
+                            </ul>
+                         </li> 
+                          
+                    </ul>
+                    <br>
+                    <div class="jogger" style="margin-top:30px;"><span class="disabled"> < </span><span class="current">1</span><a href="#">2</a><a href="#">3</a><a href="#">4</a><a href="#">5</a><a href="#">6</a><a href="#">7</a>...<a href="#">199</a><a href="#">200</a><a href="#"> > </a></div>
+              </div>
+          <!--产品展示-->
+     </div>
+      <!--右侧产品列表-->
+      <div class="rx">
+           <div class="rx-title"></div>
+           <div class="rx-show">
+                <!--下面是向左滚动代码-->
+                    <div id="colee_left" style="overflow:hidden;width:1080px; float:left">
+                    <table cellpadding="0" cellspacing="0" border="0">
+                    <tr><td id="colee_left1" valign="top" align="center">
+                    <table cellpadding="2" cellspacing="0" border="0">
+                    <tr align="center">
+                    <td>
+                    <p><a href="show.html"><img src="img/nylist/rx/tj1.jpg"  title="简约时尚两斗柜+五斗柜+电视柜" style="display:inline"></a></p>
+                    【厅柜组合】简约时尚两斗柜+五斗柜+电视柜<br>
+                     <span class="price">￥1205.00 </span> <span class="number" style="float:right" >还剩余10套</span> 
+                    </td>
+                    <td><p><a href="show.html"><img src="img/nylist/rx/tj2.jpg"  title="简约时尚两斗柜+五斗柜+电视柜" style="display:inline"></a></p>
+                    【厅柜组合】简约时尚两斗柜+五斗柜+电视柜<br>
+                     <span class="price">￥1205.00 </span> <span class="number" style="float:right" >还剩余10套</span> 
+                    </td>
+                    <td><p><a href="show.html"><img src="img/nylist/rx/tj3.jpg"  title="简约时尚两斗柜+五斗柜+电视柜" style="display:inline"></a></p>
+                    【厅柜组合】简约时尚两斗柜+五斗柜+电视柜<br>
+                     <span class="price">￥1205.00 </span> <span class="number" style="float:right" >还剩余10套</span> 
+                    </td>
+                    <td><p><a href="show.html"><img src="img/nylist/rx/tj4.jpg"  title="简约时尚两斗柜+五斗柜+电视柜" style="display:inline"></a></p>
+                    【厅柜组合】简约时尚两斗柜+五斗柜+电视柜<br>
+                                   <span class="price">￥1205.00 </span> <span class="number" style="float:right" >还剩余10套</span> 
+                    </td>
+                    <td><p><a href="show.html"><img src="img/nylist/rx/tj5.jpg"  title="简约时尚两斗柜+五斗柜+电视柜" style="display:inline"></a></p>
+                    【厅柜组合】简约时尚两斗柜+五斗柜+电视柜<br>
+                                   <span class="price">￥1205.00 </span> <span class="number" style="float:right" >还剩余10套</span> 
+                    </td>
+                    <td><p><a href="show.html"><img src="img/nylist/rx/tj6.jpg"  title="简约时尚两斗柜+五斗柜+电视柜" style="display:inline"></a></p>
+                    【厅柜组合】简约时尚两斗柜+五斗柜+电视柜<br>
+                                   <span class="price">￥1205.00 </span> <span class="number" style="float:right" >还剩余10套</span> 
+                    </td>
+                    <td><p><a href="show.html"><img src="img/nylist/rx/tj1.jpg"  title="简约时尚两斗柜+五斗柜+电视柜" style="display:inline"></a></p>
+                    【厅柜组合】简约时尚两斗柜+五斗柜+电视柜<br>
+                                   <span class="price">￥1205.00 </span> <span class="number" style="float:right" >还剩余10套</span> 
+                    </td>
+                    </tr>
+                    </table>
+                    </td>
+                    <td id="colee_left2" valign="top"></td>
+                    </tr>
+                    </table>
+                    </div>
+                    <script>
+                    //使用div时，请保证colee_left2与colee_left1是在同一行上.
+                    var speed=30//速度数值越大速度越慢
+                    var colee_left2=document.getElementById("colee_left2");
+                    var colee_left1=document.getElementById("colee_left1");
+                    var colee_left=document.getElementById("colee_left");
+                    colee_left2.innerHTML=colee_left1.innerHTML
+                    function Marquee3(){
+                    if(colee_left2.offsetWidth-colee_left.scrollLeft<=0)//offsetWidth 是对象的可见宽度
+                    colee_left.scrollLeft-=colee_left1.offsetWidth//scrollWidth 是对象的实际内容的宽，不包边线宽度
+                    else{
+                    colee_left.scrollLeft++
+                    }
+                    }
+                    var MyMar3=setInterval(Marquee3,speed)
+                    colee_left.onmouseover=function() {clearInterval(MyMar3)}
+                    colee_left.onmouseout=function() {MyMar3=setInterval(Marquee3,speed)}
+                    </script>
+                    <!--向左滚动代码结束-->
+           </div>
+      </div>
+</div>
+ <!--bottom-->
+          <div class="bottom">
+              <div class="bottom-m">
+                   <div class="bottom-m1">
+                                <dl>
+                               <dt>新手上路</dt>
+                                <dd><a href="">注册新用户</a></dd>
+                               <dd><a href="">了解新产品工艺</a></dd>
+                                <dd><a href="">服务流程</a></dd>
+                                <dd><a href="">常见问题解答</a></dd>
+                                </dl>
+                          
+                               <dl>
+                               <dt>量房设计</dt>
+                                <dd><a href="">免费上门量尺寸</a></dd>
+                                <dd><a href="">电话预约</a></dd>
+                                <dd><a href="">在线咨询服务</a></dd>
+                                <dd><a href="">网络申请</a></dd>
+                                </dl>
+                           
+                                <dl>
+                                <dt>配送服务</dt>
+                                <dd><a href="">配送范围及运费</a></dd>
+                                <dd><a href="">商品验收及签收</a></dd>
+                               </dl> 
+                           
+                              <dl>
+                               <dt>售后保障</dt>
+                                <dd><a href="">咨询及投诉</a></dd>
+                                <dd><a href="">维修及安装</a></dd>
+                                <dd><a href="">购买延保服务</a></dd>
+                                <dd><a href="">退货申请</a></dd>
+                                 <dd><a href="">退货政策</a></dd>
+                                 </dl>
+                          
+                            <dl>
+                                <dt>商家服务</dt>
+                                <dd><a href="">商家帮助</a></dd>
+                                <dd><a href="">商家入驻</a></dd>
+                                <dd><a href="">新手指导</a></dd>
+                                <dd><a href="">培训中心</a></dd>
+                                 <dd><a href="">商家公告</a></dd>
+                          </dl>
+                        
+                         
+                       <img src="img/bottom/weixin.jpg" style="margin-left:20px">
+                       </div>
+                       <div class="bottom-m2">
+                           <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                              <tr>
+                                <td width="81%">
+                                    <a href="">关于我们</a> | <a href="">商业合作</a> | <a href="">联系我们</a> | <a href="">友情链接</a><br>
+                                    Copyright?2012 西安爱家商城 版权所有
+                                </td>
+                                <td width="19%">
+                                    联系电话：029-898889996<br>
+                                 地址：西安市高新区高新四路
+                                </td>
+                              </tr>
+                            </table>
+
+                       </div>
+              </div>
+          </div>
+ <!--bottom-->
+</body>
+</html>

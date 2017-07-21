@@ -1,0 +1,118 @@
+<extend name="RBAC:base" />
+<block name="content-title">
+<h4>微信模板消息</h4>  
+<a style="margin:5px 10px;" href="javascript:" class="btn align-right btn-edit">编辑</a> 
+</block>
+<block name="content">
+<style>
+.bg-gray{background:#CCC !important;}
+</style>
+<div class="tab-content default-tab" id="tab1">
+<form method="post" action="{tp#:U('tpl_msg')}">
+    <p>
+       订单提醒：<input readonly type="text" name="order_add"  class="text-input bg-gray medium-input" value="{tp#$info.order_add}" placeholder="订单提醒">
+       <font color="red">订单提交成功提醒</font> 
+    </p>
+    <p>
+       支付提醒：<input readonly type="text" name="order_pay"  class="text-input bg-gray medium-input" value="{tp#$info.order_pay}" placeholder="支付提醒">
+       <font color="red">订单支付成功提醒</font> 
+    </p>
+    <p>
+       订单状态：<input readonly type="text" name="order_status"  class="text-input bg-gray medium-input" value="{tp#$info.order_status}" placeholder="订单状态">
+       <font color="red">订单状态提醒</font> 
+    </p>
+    <p>
+        访客提醒：<input readonly type="text" name="visit"  class="text-input bg-gray medium-input" value="{tp#$info.visit}" placeholder="访问提醒"> 
+        <font color="red">访问提醒</font> 
+    </p>
+     <p>
+        消息提醒：<input readonly type="text" name="chat"  class="text-input bg-gray medium-input" value="{tp#$info.chat}" placeholder="消息提醒"> 
+        <font color="red">好友消息提醒</font> 
+    </p>
+    <p>
+       关注提醒：<input readonly type="text" name="subscribe"  class="text-input bg-gray medium-input" value="{tp#$info.subscribe}" placeholder="关注提醒"> 
+       <font color="red">邀请好友关注提醒</font> 
+    </p>
+    <p>
+       积分变更：<input readonly type="text" name="jifen_change"  class="text-input bg-gray medium-input" value="{tp#$info.jifen_change}" placeholder="积分变更通知"> 
+       <font color="red">积分变更通知</font> 
+    </p>
+     <p>
+        升级代理：<input readonly type="text" name="up_resaler"  class="text-input bg-gray medium-input" value="{tp#$info.up_resaler}" placeholder="升级代理商通知"> 
+       <font color="red">升级代理商通知</font> 
+    </p>
+    <p>
+       申请提现：<input readonly type="text" name="take_money"  class="text-input bg-gray medium-input" value="{tp#$info.take_money}" placeholder="申请提现">
+       <font color="red">申请提现提醒</font> 
+    </p>
+    <p>
+       提现到账：<input readonly type="text" name="take_money2"  class="text-input bg-gray medium-input" value="{tp#$info.take_money2}" placeholder="提现到账">
+       <font color="red">提现到账</font> 
+    </p>  
+    <p>
+       资金变动：<input readonly type="text" name="money_change"  class="text-input bg-gray medium-input" value="{tp#$info.money_change}" placeholder="资金变更">
+       <font color="red">资金变更提醒</font> 
+    </p>
+    
+    
+    <p>
+       商品销售：<input readonly type="text" name="product_sale_notice"  class="text-input bg-gray medium-input" value="{tp#$info.product_sale_notice}" placeholder="商品销售">
+       <font color="red">商品售出通知供货商</font> 
+    </p>  
+    
+    <p>
+       云金币变动：<input readonly type="text" name="money_cloud_change"  class="text-input bg-gray medium-input" value="{tp#$info.money_cloud_change}" placeholder="云金币变动">
+       <font color="red">云金币变动提醒</font> 
+    </p>
+    
+    <p>
+       优惠券通知：<input readonly type="text" name="coupon_notice"  class="text-input bg-gray medium-input" value="{tp#$info.coupon_notice}" placeholder="优惠券通知">
+       <font color="red">现金券过期通知</font> 
+    </p>            
+   <p>
+      <input type="submit" value="保存设置" class="button">
+    </p>
+  <div class="clear"></div>
+</form>
+</div>
+<script>
+$(".btn-edit").click(function(){
+	$("input[type='text']").removeAttr("readonly").removeClass('bg-gray');
+});
+</script>
+<!--kindeditor-->
+<link rel="stylesheet" href="/plugins/kindeditor/themes/default/default.css" />
+<script charset="utf-8" src="/plugins/kindeditor/kindeditor-min.js"></script>
+<script charset="utf-8" src="/plugins/kindeditor/lang/zh_CN.js"></script>
+<!--kindeditor-->
+<script>
+//单图上传
+	KindEditor.ready(function(K) {
+		var editor = K.editor({
+			allowFileManager : true
+		});
+		K('#image1').click(function() {
+			editor.loadPlugin('image', function() {
+				editor.plugin.imageDialog({
+					imageUrl : K('#url1').val(),
+					clickFn : function(url, title, width, height, border, align) {
+						K('#url1').val(url);
+						editor.hideDialog();
+					}
+				});
+			});
+		});
+		K('#image2').click(function() {
+			editor.loadPlugin('image', function() {
+				editor.plugin.imageDialog({
+					imageUrl : K('#url1').val(),
+					clickFn : function(url, title, width, height, border, align) {
+						K('#url2').val(url);
+						editor.hideDialog();
+					}
+				});
+			});
+		});
+	});
+</script>
+</block>

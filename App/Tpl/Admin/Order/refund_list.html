@@ -1,0 +1,97 @@
+<extend name="RBAC:base" />
+<block name="content-title">
+<h4>售后申请</h4>
+<!--<a style="float:right;margin:10px;" href="{tp#:U('add')}" class="btn">添加</a> -->
+</block>
+<block name="content">
+    <style>
+        select,input[type='text']{border-radius:3px;padding: 3px 5px;border:1px solid #CCC}
+    </style>
+          <div class="tab-content default-tab" id="tab1">
+          
+            <div class="notification success png_bg" id="dmsg" style="display:none">
+              <a href="#" class="close"><img src="__PUBLIC__/Images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
+              <div>
+                订单提示！
+              </div>
+            </div>
+            
+            <table>
+              <thead>
+                <tr>
+                   <th><input class="check-all" type="checkbox" /></th>
+                   <th>订单编号</th>
+                   <th>售后类型</th>
+                   <th width="120">商品信息</th>
+                   <th>收货人</th>
+                   <th>联系电话</th>
+                   <th>订单金额</th>
+                   <th>店铺处理结果</th>
+                   <th>平台处理结果</th>
+                   <th>申请时间</th>
+                   <th>操作</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <volist name="list" id="v">
+                <tr>
+                  <td><input type="checkbox" /></td>
+                  <td>{tp#$v['order']['out_trade_no']}</td>
+                  <td>
+                  <switch name="v.type">
+                  	<case value='1'>退款</case>
+                    <case value='2'>换货</case>
+                    <case value="3">其他</case>
+                  </switch>
+                  </td>
+                  <td>{tp#$v['goods']['goods_name']}x{tp#$v['goods']['goods_nums']}</td>
+                  <td>{tp#$v['order']['consignee']}</td>
+                  <td>{tp#$v['order']['mobile']}</td>
+                  <td><b>&yen; </b>{tp#$v['order']['total_fee']}</td>
+                  <td>
+                  <a class="">
+                  <switch name="v.shop_handle_status" >
+                      <case value='0'><font color='red'>等待处理</font></case>
+                      <case value='1'>已处理</case>
+                  </switch></a>
+                  </td>
+                  <td>
+                  <if condition="$v['type'] eq 1">
+                  <switch name="v.status" >
+                      <case value='0'><font color='red'>等待处理</font></case>
+                      <case value='1'><font color='green'>处理成功</font></case>
+                      <case value='2'>处理失败</case>
+                  </switch>
+                  </if>
+                  </td>
+                  <td>{tp#$v.posttime|date='y/m/d H/i',###}</td>
+                  <td>
+                    <a class="btn btn-success" href="{tp#:U('refund_detail',array('id'=>$v['id']))}">详情</a>
+                  </td>
+                </tr>
+                </volist>
+              </tbody>      
+            </table>
+             		<div class="pagination">
+                      {tp#$show}
+                    </div>
+                    <div class="clear"></div>
+          </div> <!-- End #tab1 -->  
+<script type='text/javascript'>
+  $(function(){
+	  $("#btn-so").click(function(){
+		  var key=$("select[name='key'] option:selected").val();
+		  var val=$("input[name='val']").val();
+		  if(val==''){
+			  //alert('请输入关键字！')
+			  artDialog({content:'请输入关键字！', style:'alert', lock:false}, function(){});
+		  }else{
+			  location.href="{tp#:U('index')}"+"&key="+key+'&val='+val;
+		  }
+		  
+	  });
+	  
+  })
+</script>
+</block>  

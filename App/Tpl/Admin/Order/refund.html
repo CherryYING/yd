@@ -1,0 +1,44 @@
+<extend name="RBAC:base" />
+<block name="content-title">
+<h4>立即退款</h4>  
+<a style="margin:5px 10px;" href="{tp#:U('refund_list')}" class="btn align-right">返回</a> 
+</block>
+<block name="content">
+<div class="tab-content default-tab" id="tab1">
+    <form method="post" action="<eq name='data.pay_way' value='1'>./wxpay/do/refund.php<else/>./wxpay/alipay_refund/refund.php</eq>">
+      <fieldset>
+		<p>
+            订单编号：{tp#$data.order_sn}
+        </p>      
+        <p>
+            退款通道：【<switch name="data.pay_way">
+            <case value='1'>微信支付</case>
+            <case value='2'>支付宝</case>
+            <case value='3'>银联支付</case>
+            </switch>
+            】
+        </p>
+        <p>
+            退款金额：<input name="refund_fee"  class="text-input small-input" value="{tp#$data.total_fee}"/> 元
+        </p>           
+        <p>
+          <input type="hidden" value="{tp#$data.id}" name="order_id"/>
+          <input type="submit" value="退 款" class="button">
+        </p>
+      </fieldset>
+      <div class="clear"></div>
+    </form>
+</div>
+<script>
+$(function(){
+	var total_fee="{tp#$data.total_fee}";
+	$("form").submit(function(){
+		var refund_fee=$("input[name='refund_fee']").val();
+		if(parseFloat(refund_fee)>parseFloat(total_fee)){
+			artDialog({content:'退款金额不能大于订单金额！', style:'alert', lock:false}, function(){});
+			return false;
+		}
+	});
+});
+</script>
+</block>

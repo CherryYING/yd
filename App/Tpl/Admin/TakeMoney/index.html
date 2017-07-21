@@ -1,0 +1,123 @@
+<extend name="RBAC:base" />
+<block name="content-title">
+<h4>提现申请</h4> 
+</block>
+<block name="content">
+          <div class="tab-content default-tab" id="tab1">
+          
+          <div class="warn">
+                为确保资金安全，所有提现（A网、B网）都要后台管理员的手动确认
+            </div>
+          
+          <div class="well">
+            搜索：
+                <select name="key">
+       				<option value="nickname"  <eq name="Think.get.key" value="nickname">selected</eq> >昵称</option>
+                	<option value="bank_owner"  <eq name="Think.get.key" value="bank_owner">selected</eq> >收款人</option>
+                    <option value="user_id" <eq name="Think.get.key" value="user_id">selected</eq> >会员UID</option>    
+                </select>
+                <input value="{tp#$Think.get.val}" name="val" type="text" class="text-input bg-gray small-input" placeholder="关键字"/>
+                
+                <input id='btn-so' type="button" value="搜索" class="button"/>
+                
+                <a  href="{tp#:U('index',array('p'=>I('get.p',1)))}">查看全部</a>
+            </div>
+            <table width='100%'>
+              <thead>
+                <tr>
+                   <th>id</th>
+                   <th>提现类型</th>
+                   <th width="80">申请用户</th>
+                   <th>提现方式</th>
+                   <th width="80">收款账户</th>
+                   <th>提现金额</th>
+                   <th>手续费</th>
+                   <th>实际到账</th>
+                   <th>申请日期</th>
+                   <th>处理状态</th>
+                   <th width="80">备注信息</th>
+                   <th>操作</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <volist name="list" id="v">
+                    <tr 
+                    <switch name="v['status']">
+                    <case value="0"></case>
+                    <case value="1">style="background:#D5FFCE"</case>
+                    <case value="2">style="background:#FADEDB"</case>
+                    </switch>
+                    >
+                      <td>【{tp#$v.id}】</td>	
+                      <!--<td><b>{tp#$v['money_type']|strtoupper}网提现</b></td>-->	
+                      <td><b>
+                      <switch name="v['money_type']">
+                      <case value="a">A网资金</case>
+                      <case value="b">B网资金</case>
+                      <case value="p">货款资金</case>
+                      </switch>
+                      </b></td>
+                      <td>
+                      
+                      <a title="查看" target="_blank" href="{tp#:U('Wxusers/edit',array('id'=>$v['user_id']))}">
+                      {tp#$v['user']['nickname']|default='---'}
+                      </a>
+                      
+                      </td>
+                      <td>
+                      <switch name="v.pay_way">
+                      <case value="1">银行卡</case>
+                      <case value="2">支付宝</case>
+                      <case value="3">微信红包</case>
+                      </switch>
+                      </td>
+                      <td>
+                      <switch name="v.pay_way">
+                      <case value="1">{tp#$v.bank_card}【{tp#$v.bank_name}】</case>
+                      <case value="2">{tp#$v.alipay}</case>
+                      <case value="3">{tp#$v.weixin}</case>
+                      </switch>
+                      </td>	
+                      <td><font color="red">&yen; {tp#$v['money']}</font></td>
+                      <td><font color="red">&yen; {tp#$v['handle_fee']}</font></td>
+                      <td><font color="red">&yen; {tp#$v['pay_money']}</font></td>
+                      <td>{tp#$v.apply_time|date='y/m/d H:i:s',###}</td>
+                      <td><b>{tp#$v.status|apply_status}</b></td>
+                      <td width="120">{tp#$v.remark}</td>
+                      <td>
+                         <a class='btn' href="{tp#:U('edit',array('id'=>$v['id']))}">详情</a>
+                         <a class='btn btn-danger' href="{tp#:U('del',array('id'=>$v['id']))}">删除</a>					
+                      </td>
+                    </tr>
+                </volist>
+              </tbody>    
+            </table>
+            <div class="pagination">
+              {tp#$show}
+            </div>
+          </div> <!-- End #tab1 -->  
+<script>
+$("#btn-so").click(function(){
+		  
+  var param='';//'&money_type='+"{tp#:I('get.money_type','b')}";
+  
+  var key=$("select[name='key'] option:selected").val();
+  var val=$("input[name='val']").val();
+ 
+  
+  if(key!=''&&val!=''){
+	 param+="&key="+key+'&val='+val;
+  }
+  
+  
+  if(param==''){
+	  alert('请输入搜索条件！')
+	  //artDialog({content:'请输入搜索条件！', style:'alert', lock:false}, function(){});
+  }else{
+	  location.href="{tp#:U('index')}"+param;
+  }
+  
+});
+</script>                  
+</block>  

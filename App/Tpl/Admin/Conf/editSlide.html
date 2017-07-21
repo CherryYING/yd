@@ -1,0 +1,90 @@
+<extend name="RBAC:base" />
+<block name="content-title">
+<style type="text/css">
+.btn-del{background-color:#C00;padding:5px;color:white;border-radius:3px;border:0;cursor:pointer}
+</style>
+<h4>首页幻灯设置</h4>  
+</block>
+<block name="content">
+<div class="tab-content default-tab" id="tab1">
+            <form method="post" action="{tp#:U('Admin/Conf/slideHandle')}">
+              <fieldset>
+                <div id='photo-area' style="height:auto;">
+                    <p>上传图片：</p>
+                    <form method="post" action="{tp#:U('Admin/Photo/upload')}" style="margin-left: 20px;">
+                    <div id="queue"></div>
+                        <input id="file_upload" name="file_upload" type="file" multiple="true">
+                    </form>
+                    <fieldset>
+                        <legend>图片列表</legend>
+                        <div id='preview'>
+                            <volist name='silde' id='val'>
+                                <p>
+                                 <php>$picurl=base64_encode(str_replace('thumb_','',$val['pic']));</php>
+                                <a title="查看原图" rel="modal" href="{tp#:U('Goods/show_img',array('picurl'=>$picurl))}">
+                                <img src='{tp#$val.pic}' style="width:80px;height:50px;vertical-align:middle;border-radius:3px;border:2px solid  #CCC;">&nbsp;
+                                </a>
+                                <input type='hidden' name='picurl[]' readonly='readonly' value='{tp#$val.pic}'>
+                                标题：<input placeholder='标题' type='text' name='title[]' style='width:300px' class='text-input' value='{tp#$val.title}'>
+                                链接：<input placeholder='链接地址' type='text' name='url[]' style='width:300px' class='text-input' value='{tp#$val.url}'>
+                               
+                                <input class='btn-del' type='button' value='删除' onclick='del(this)'>
+                                </p>
+                            </volist>
+                        </div>
+                    </fieldset>
+                </div>
+                
+                <p>
+                  <input type="submit" value="  保存设置  " class="button">
+                </p>
+              </fieldset>
+              <div class="clear"></div>
+            </form>
+</div>
+<!--uploadify-->
+<script src="/plugins/uploadify/jquery.uploadify.min.js" type="text/javascript"></script>
+<link href="/plugins/uploadify/uploadify.css" rel="stylesheet" type="text/css" >
+<!--uploadify-->
+<script type="text/javascript">
+function del(obj){
+	if(!confirm('确认删除?')){
+		return false;
+	}
+	$(obj).parent().remove();
+}
+
+
+$(function() {
+	$("#file_upload").uploadify({
+		'swf': '/plugins/uploadify/uploadify.swf',
+		'uploader': "{tp#:U('Ajax/upload')}",
+		'cancelImg': '/plugins/uploadify/uploadify-cancel.png',
+		'queueID': 'fileQueue',
+		'auto': true,
+		'multi': true,
+		'debug': false, //开启调试模式
+		'removeTimeout' : 1,//文件队列上传完成1秒后删除 
+		'method'   : 'post',//方法，服务端可以用$_POST数组获取数据
+		'buttonText' : '选择图片',//设置按钮文本
+		'width':'60',
+		'multi'    : true,//允许同时上传多张图片
+		'uploadLimit' : 10,//一次最多只允许上传10张图片
+		'fileTypeExts' : '*.gif; *.jpg; *.png',//允许上传的图片格式---注意前端判断过，后端必须要判断
+		'fileSizeLimit' : '2MB',//限制上传的图片不得超过200KB 
+		'onUploadSuccess' : function(file, data, response){
+			data=JSON.parse(data);
+			if(data.flag==false){
+				alert(data.msg);
+			}else{
+				$('#preview').append("<p><img src='"+data.url+"'  style='width:80px;height:60px;vertical-align:middle;border-radius:3px;border:2px solid  #CCC;'/><input type='hidden' name='picurl[]'  value='"+data.url+"'>&nbsp;&nbsp;标题：<input type='text' name='title[]' placeholder='标题' style='width:300px;vartical-align:top' class='text-input'>&nbsp;&nbsp;链接：<input type='text' name='url[]' placeholder='链接地址' style='width:300px;vartical-align:top' class='text-input'><input class='btn-del' type='button' value='删除' onclick='del(this)'></p>");
+			}
+			
+		},
+		'onUploadError':function(event, ID, fileObj, errorObj){
+			//alert(fileObj);
+		}
+	});
+});
+</script>	
+</block>

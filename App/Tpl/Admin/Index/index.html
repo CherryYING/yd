@@ -1,0 +1,194 @@
+<extend name="RBAC:base" />
+<block name="content-title"><h4></h4></block>
+<block name="content">
+		  <div class="content-box column-left">
+                <div class="content-box-header"><h4>商品信息</h4>
+                <a target="_blank" href="{tp#:U('Goods/index')}" style="margin:5px 10px;" class="btn align-right">查看</a>
+                </div>
+                <table>
+                    <tbody>
+                    <tr><th>在架商品：</th><th>【{tp#$count_info.sale_goods_total} 种】</th></tr>
+                    <tr><th>下架商品：</th><th>【{tp#$count_info.unsale_goods_total} 种】</th></tr>
+                    <tr><th>全部商品：</th><th>【{tp#$count_info['sale_goods_total']+$count_info['unsale_goods_total']} 种】</th></tr>
+                    <tr><th>自营商品：</th><th>【{tp#$count_info['self_goods_total']} 种】</th></tr>
+                    </tbody>
+                </table>
+            </div>	
+            
+          <div class="content-box column-right">
+          	<div class="content-box-header"><h4>会员统计</h4>
+            <!--<a href="{tp#:U('Wxusers/index')}" style="margin:5px 10px;" class="btn align-right">查看</a>-->
+            </div>
+          	<table>
+            	<tbody>
+                <tr>
+                <th>普通会员：</th><th>【{tp#$count_info.user_count}】 人</th>
+                <th><a target="_blank" href="{tp#:U('Wxusers/index')}">查看</a></th>
+                </tr>
+                <tr>
+                <th>市级代理：</th><th>【{tp#$count_info['agent_city_count']}】 人</th>
+                <th><a target="_blank" href="{tp#:U('Agent/user_list',array('role_id'=>2))}">查看</a></th>
+                </tr>
+                <tr>
+                <th>省级代理：</th><th>【{tp#$count_info['agent_province_count']}】 人</th>
+                <th><a target="_blank" href="{tp#:U('Agent/user_list',array('role_id'=>3))}">查看</a></th>
+                </tr>
+                <tr>
+                <th>全国代理：</th><th>【{tp#$count_info['agent_country_count']}】 人</th>
+                <th><a target="_blank" href="{tp#:U('Agent/user_list',array('role_id'=>4))}">查看</a></th>
+                </tr>
+                </tbody>
+            </table>
+          </div>
+          
+          
+          
+          <div class="clear"></div>
+
+			
+			<div class="content-box column-left">
+                <div class="content-box-header">
+                <h4>今日订单量</h4>
+                <a href="{tp#:U('Order/index')}" target="_blank" style="margin:5px 10px;" class="btn align-right">查看</a>
+                </div>
+                <table>
+                    <tbody>
+                    <tr><th>有效订单：</th><th>【{tp#$count_info.order_total}】</th></tr>
+                    <tr><th>已付款订单：</th><th>【{tp#$count_info.pay_order_total}】</th></tr>
+                    <tr><th>未付款订单：</th><th>【{tp#$count_info.unpay_order_total}】</th></tr>
+                    </tbody>
+                </table>
+            </div>
+            
+          
+          <div class="content-box column-right">
+            <div class="content-box-header"><h4>当月交易统计
+            <font style="color:red;font-size:14px;">[{tp#:date('Y年m月')}]
+            </font>
+            </h4>
+            <!--<a href="#" style="margin:5px 10px;" class="btn align-right">查看</a>-->
+            </div>
+            <table>
+                <tbody>
+                <tr>
+                <th>累计交易金额：</th><th style="color:red">【{tp#$count_info.order_total_fee|default=0}元】</th>
+                </tr>
+                <tr>
+                <th>已支付：</th><th>【{tp#$count_info.order_pay_count|default=0}单】</th>
+                </tr>
+                <tr>
+                <th>未支付：</th><th>【{tp#$count_info.order_no_pay_count|default=0}单】</th>
+                </tr>
+                </tbody>
+            </table>
+          </div>
+              
+
+ <div class="content-box column-left">
+                <div class="content-box-header">
+                <h4>未提现商铺</h4>
+                <a href="{tp#:U('Shop2/store')}" target="_blank" style="margin:5px 10px;" class="btn align-right">查看</a>
+                </div>
+                <table>
+                    <tbody>
+                    <tr><th>未提现的商铺：</th><th>【{tp#$count_info.num|default=0}】</th></tr>
+                    <tr><th>未提现金额：</th><th>【{tp#$count_info.yue|default=0}】</th></tr>
+                   
+                    </tbody>
+                </table>
+            </div>
+              
+			<div class="content-box column-right" style="display:none">
+            	<div class="content-box-header"><h4>服务器信息</h4></div>
+                <table>
+                <tbody>
+                  <tr>
+                    <th>操作系统：</th>
+                    <td>
+                    <?php echo php_uname('s')?>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>PHP运行方式：</th>
+                    <td>
+                    <?php echo php_sapi_name();?>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>系统运行环境：</th>
+                    <td>
+                    <?php echo $_SERVER["SERVER_SOFTWARE"];?>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>系统默认时区：</th>
+                    <td>
+                        <?php echo date_default_timezone_get();?>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>北京时间：</th>
+                    <td>
+                        <?php echo gmdate("Y年m月d日 H:i:s",time()+8*3600);?>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>上传限制：</th>
+                    <td>
+                    <?php echo ini_get('upload_max_filesize');?>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>代码最大限制时间：</th>
+                    <td>
+                    <?php echo ini_get('max_execution_time').'秒';?>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>服务器域名【IP】：</th>
+                    <td>
+                    <?php echo $_SERVER['HTTP_HOST'].'【'.gethostbyname($_SERVER['SERVER_NAME']).'】';?>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>硬盘剩余空间：</th>
+                    <td>
+                        <?php echo round((@disk_free_space(".")/(1024*1024)),2).'M';?>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>magic_quotes_gpc：</th>
+                    <td>
+                    <?php if(get_magic_quotes_gpc()===1):?>
+                    开启
+                    <?php else:?>
+                    关闭
+                    <?php endif;?>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>magic_quotes_runtime：</th>
+                    <td>
+                    <?php if(magic_quotes_runtime()===1):?>
+                    开启
+                    <?php else:?>
+                    关闭
+                    <?php endif;?>
+                    </td>
+                  </tr>
+                   
+                </tbody>
+              </table>
+          </div>
+          
+          <div class="clear"></div>
+          <div>
+          <iframe style="border:none;width:100%;height:500px;" src="{tp#:U('Index/charts')}"></iframe>
+          </div>
+<script>
+$(function(){
+	$("#main-box>.content-box-header").css('display','none');
+	$("#main-box").css("border-top",'1px');
+});
+</script>         
+</block>  

@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="format-detection" content="telephone=no">
+<title>个人中心-{tp#$webinfo.web_name}</title>
+<meta name="keywords" content="{tp#$webinfo.web_key}">
+<meta name="description" content="{tp#$webinfo.web_descrip}">
+
+<meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-touch-fullscreen" content="yes">
+<!-- <meta name="full-screen" content="yes"> -->
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="address=no">
+<link rel="icon" href="__PUBLIC__/images/logo.jpg" type="image/x-icon">
+<link rel="apple-touch-icon-precomposed" href="__PUBLIC__/images/logo.jpg">
+<link rel="apple-touch-startup-image" href="__PUBLIC__/images/apple-touch-startup.png" media="(device-height:568px)">
+<link rel="stylesheet" href="__PUBLIC__/css/style.css">
+<link rel="stylesheet" href="__PUBLIC__/css/icomoon.css">
+<script type="text/javascript" src="__PUBLIC__/js/jq.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/jquery.urlparam.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/alert.js"></script>
+<style type="text/css">
+/*.user_img{background:url('__PUBLIC__/images/head-banner.jpg') no-repeat;background-size:100%;color:#FFF !important}*/
+#windowcenter {
+	width:290px;
+	position:fixed;
+	display:none;
+	bottom:30px;
+	left:50%;
+	 z-index:9999;
+	margin-left:-145px;
+	padding:2px;
+	border-radius:3px;
+	-webkit-border-radius:3px;
+	-moz-border-radius:3px;
+	background-color: #ffffff;
+	-webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	-moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	-o-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	font:14px/1.5 Microsoft YaHei,Helvitica,Verdana,Arial,san-serif;
+}
+.window .title {
+	background-color: #2BB2A3;
+	line-height: 26px;
+  padding: 5px 5px 5px 10px;
+	color:#ffffff;
+	text-shadow:0px 1px 1px #14544D;
+	font-size:16px;
+	border-radius:3px 3px 0 0;
+	-webkit-border-radius:0.5em 0.5em 0 0;
+	-moz-border-radius:0.5em 0.5em 0 0;
+	
+}
+.window .content {
+	/*min-height:100px;*/
+	overflow:auto;
+	padding:10px;
+	background: linear-gradient(#FBFBFB, #EEEEEE) repeat scroll 0 0 #FFF9DF;
+    color: #222222;
+    text-shadow: 0 1px 0 #FFFFFF;
+	border-radius: 0 0 0.6em 0.6em;
+	-webkit-border-radius: 0 0 0.6em 0.6em;
+	-moz-border-radius: 0 0 0.6em 0.6em;
+}
+.window #txt {
+	min-height:30px;font-size:16px; line-height:22px;
+}
+.window #windowclosebutton {
+	margin-top:10px;
+}
+.window .btn {
+	height:40px;
+	line-height:40px;
+}
+input::-moz-placeholder, textarea::-moz-placeholder { color: #999;}
+.flex{
+	display:box;
+	display:-moz-box;
+	display:-webkit-box;
+}
+.window .title .close {
+	float:right;
+	background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACTSURBVEhL7dNtCoAgDAZgb60nsGN1tPLVCVNHmg76kQ8E1mwv+GG27cestQ4PvTZ69SFocBGpWa8+zHt/Up+IN+MhgLlUmnIE1CpBQB2COZibfpnXhHFaIZkYph0SOeeK/QJ8o7KOek84fkCWSBtfL+Ny2MPpCkPFMH6PWEhWhKncIyEk69VfiUuVhqJefds+YcwNbEwxGqGIFWYAAAAASUVORK5CYII=");
+	width:26px;
+	height:26px;
+	display:block;	
+}
+.confirm-box{
+    position: fixed;
+    top:50%;
+    left:50%;
+    padding:0px 15px;
+    width:220px;
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+    box-sizing:border-box;
+    background-color: rgba(0, 0, 0, 0.8);
+    color:#FFFFFF;
+    border-radius: 2px;
+    margin-left: -110px;
+    margin-top:-55px;
+    z-index:1000001;
+}
+.confirm-box .confirm-box-txt{
+    text-align: center;
+    margin:20px auto;
+}
+.confirm-box .confirm-box-btns{
+    width:190px;
+    padding-bottom:10px;
+    text-align: center;
+}
+.confirm-box .confirm-box-btns a{
+    background-color: #FFFFFF;
+    display:inline-block;
+    border-radius: 2px;
+    margin:5px;
+    text-align: center;
+    width:80px;
+    height:30px;
+    line-height: 30px;
+    color:#444444;
+}
+.confirm-mash{
+    position: fixed;
+    left:0px;
+    top:0px;
+    right:0px;
+    bottom:0px;
+    background-color: rgba(255,255,255,0.3);
+    z-index:1000000;
+}
+</style>
+</head>
+
+<body>
+
+<div class="window" id="windowcenter">
+	<div id="title" class="title">
+    <span class="close" id="alertclose"></span><span class="tit_txt">消息提醒</span>
+    </div>
+	<div class="content">
+	 <div id="txt"></div>
+	 <input type="button" value="确定" id="windowclosebutton" name="确定" class="btn btn-block">	
+	</div>
+</div>
+
+<script type="text/javascript" src="__PUBLIC__/js/tips.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/geo.js"></script>
+
+
+
+<div class="header">
+	<a href="javascript:void(0);" onclick="previous();" class="topnav topnav-left"><i class="icon-arrow-left2"></i></a>
+	<a href="javascript:void(0);" entry="dropdown" class="topnav topnav-right"><i class="icon-list"></i></a>
+	<div id="nav-dropdown" class="nav-dropdown" style="">
+		<include file="Public:nav_dropdown"/>
+	</div>
+	<span class="header_toptitle">会员中心</span>
+	<div class="clear"></div>
+</div>
+<script type="text/javascript">
+var previous = function()
+{
+	if (typeof (navigator.app) !== "undefined")
+	{
+		navigator.app.backHistory();
+	}
+	else
+	{
+		window.history.back();
+	}
+}
+$(function()
+{
+	$('.topnav[entry=dropdown]').click(function()
+	{
+		$('#nav-dropdown').slideToggle();
+	});
+	document.onclick=function(e)
+	{
+		var e=e?e:window.event;
+		var tar = e.srcElement||e.target;
+		if($(tar).attr('id') != "nav-dropdown" && $(tar).parents('#nav-dropdown').size() == 0 && (!$(tar).hasClass('topnav') || $(tar).attr('entry') != "dropdown") && $(tar).parents('.topnav[entry=dropdown]').size() == 0)
+		{
+			$('#nav-dropdown').slideUp();
+		}
+	}
+	$("input[type='checkbox'],input[type='radio']").live('click', function()
+	{
+		setbg()
+	});
+	setbg();
+
+	//设置label背景
+	function setbg()
+	{
+		$(":checkbox").parent("label").removeClass('on');
+		$(":checkbox[checked]").parent("label").addClass('on');
+		$(":radio").parent("label").removeClass('on');
+		$(":radio[checked]").parent("label").addClass('on');
+	}
+});
+</script>
+<div class="user_img">
+  <img src="{tp#$user_info['headimgurl']}">
+  <div class="user_info">
+    <p class="uname">{tp#$user_info['nickname']}
+    <!--<a class="goods-comment-btn" id="syn_weixin" href="javascript:;">同步微信</a>-->
+    </p>
+    <p class="uname_money" style="line-height:25px;">会员ID：{tp#$user_info['id']} </p>
+     <p class="uname_money" style="line-height:25px;">会员帐号：{tp#$user_info['username']|default='您还不是商家'} </p> 
+    <p class="uname_money" style="line-height:25px;">会员等级：
+    	<switch name="user_info['role_id']">
+            <case value="1">普通会员</case>
+            <case value="2"><font color="red">市级代理</font></case>
+            <case value="3"><font color="red">省级代理</font></case>
+            <case value="4"><font color="red">全国代理</font></case>
+        </switch>&nbsp;&nbsp;
+        <if condition="$user_info['role_id'] lt 4">
+        <!--<a href="{tp#:U('Agent/upgrade')}" class="goods-comment-btn">账户升级</a> --> 	
+        </if>
+    </p>
+    <!--<p class="uname_money">账户资金：<strong>￥{tp#$user_info['money']}元</strong>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;云金币：<strong>{tp#$user_info['money_cloud']}</strong></p>-->
+    
+  </div>
+</div>
+
+<dl class="list">
+    <dd>
+      <a href="{tp#:U('Index/wshop',array('id'=>$user_id))}" class="react more-icon">
+        <span class="list_icon"><i class="icon-th"></i></span>
+        <span class="all_order">个人微店</span>
+        <!--<span class="more_after">0</span>-->
+      </a>
+    </dd>
+    <dd>
+      <a href="{tp#:U('Ucenter/goods_manage')}" class="react more-icon">
+        <span class="list_icon"><i class="icon-thumbs-up"></i></span>
+        <span class="all_order">商品推荐</span>
+        <!--<span class="more_after">0</span>-->
+      </a>
+    </dd>
+</dl>
+
+<dl class="list">
+<dd>
+<a href="{tp#:U('Agent/set_account',array('id'=>$user_id))}" class="react more-icon">
+  <span class="list_icon"><i class="icon-cog"></i></span>
+  <span class="all_order">账号管理</span>
+</a>
+</dd>
+</dl>
+
+<if condition="$user_info['role_id'] eq 4">
+<dl class="list">
+  
+  <dd>
+    <a href="{tp#:U('Agent/shop',array('id'=>$user_id))}" class="react more-icon">
+      <span class="list_icon"><i class="icon-home"></i></span>
+      <span class="all_order">我的店铺</span>
+    </a>
+  </dd>
+  <dd>
+    <a href="{tp#:U('fund_p')}" class="react more-icon">
+      <span class="list_icon"><i class="icon-cny"></i></span>
+      <span class="all_order">我的货款</span>
+      <span class="more_after">&yen; {tp#$user_info['money_p']}</span>
+    </a>
+  </dd>  
+  
+</dl>
+</if>
+
+
+<dl class="list">
+    <dd>
+      <a href="{tp#:U('Plugin/chat_list')}" class="react more-icon">
+        <span class="list_icon"><i class="icon-list"></i></span>
+        <span class="all_order">消息中心</span>
+        <!--<span class="more_after">0</span>-->
+      </a>
+    </dd>
+</dl>
+
+<dl class="list">
+    <dd>
+      <a href="{tp#:U('order_list')}" class="react more-icon">
+        <span class="list_icon"><i class="icon-list"></i></span>
+        <span class="all_order">我的订单</span>
+        <!--<span class="more_after">0</span>-->
+      </a>
+    </dd>
+    <dd>
+      <a href="{tp#:U('order_refund_list')}" class="react more-icon">
+        <span class="list_icon"><i class="icon-list2"></i></span>
+        <span class="all_order">我的售后</span>
+      </a>
+    </dd>
+</dl>
+
+<dl class="list">
+	
+  <dd>
+    <a href="{tp#:U('take_money_list')}" class="react more-icon">
+      <span class="list_icon"><i class="icon-cny"></i></span>
+      <span class="all_order">提现记录</span>
+    </a>
+  </dd>
+    
+  <dd>
+    <a href="{tp#:U('fund_a')}" class="react more-icon">
+      <span class="list_icon"><i class="icon-cny"></i></span>
+      <span class="all_order">资金账户A</span>
+      <span class="more_after">&yen; {tp#$user_info['money_a']}</span>
+    </a>
+  </dd>   
+
+  <dd>
+    <a href="{tp#:U('fund')}" class="react more-icon">
+      <span class="list_icon"><i class="icon-cny"></i></span>
+      <span class="all_order">资金账户B</span>
+      <span class="more_after">&yen; {tp#$user_info['money']}</span>
+    </a>
+  </dd>
+  
+  <dd>
+    <a href="{tp#:U('cloud_coins')}" class="react more-icon">
+      <span class="list_icon"><i class="icon-gift"></i></span>
+      <span class="all_order">云金币</span>
+      <span class="more_after">{tp#$user_info['money_cloud']}</span>
+    </a>
+  </dd>
+  <dd>
+    <a href="{tp#:U('coupon_list')}" class="react more-icon">
+      <span class="list_icon"><i class="icon-stack"></i></span>
+      <span class="all_order">我的优惠券</span>
+    </a>
+  </dd>
+</dl>
+
+
+<dl class="list">
+  <dd>
+    <a href="{tp#:U('qrcode',array('parent_id'=>$user_id))}" class="react more-icon">
+      <span class="list_icon"><i class="icon-qrcode"></i></span>
+      <span class="all_order">我的二维码</span>
+    </a>
+  </dd>
+  
+  <dd>
+    <a href="{tp#:U('parents')}" class="react more-icon">
+      <span class="list_icon"><i class="icon-user4"></i></span>
+      <span class="all_order">我的分享人</span>
+    </a>
+  </dd>
+  <dd>
+    <a href="{tp#:U('team')}" class="react more-icon">
+      <span class="list_icon"><i class="icon-group"></i></span>
+      <span class="all_order">我的团队</span>
+    </a>
+  </dd>
+</dl>
+
+<dl class="list">
+  <dd>
+    <a href="{tp#:U('info')}" class="react more-icon">
+      <span class="list_icon"><i class="icon-user2"></i></span>
+      <span class="all_order">个人资料</span>
+    </a>
+  </dd>
+  <dd>
+    <a href="{tp#:U('bank_info')}" class="react more-icon">
+      <span class="list_icon"><i class="icon-money"></i></span>
+      <span class="all_order">银行卡</span>
+    </a>
+  </dd>
+</dl>
+
+<dl class="list">
+    <dd>
+  <a href="{tp#:U('address_list')}" class="react more-icon">
+    <span class="list_icon"><i class="icon-location"></i></span>
+    <span class="all_order">收货地址</span>
+    <!--<span class="more_after">0</span>-->
+  </a>
+</dd>
+<dd>
+  <a href="{tp#:U('goods_collect')}" class="react more-icon">
+    <span class="list_icon"><i class="icon-star4"></i></span>
+    <span class="all_order">我的收藏</span>
+    <!--<span class="more_after">0</span>-->
+  </a>
+</dd>
+  
+ 
+</dl>
+<a href="{tp#:U('Member/logout')}" class="btn btn-weak btn-block mt mb">退出登录</a>
+
+<footer class="footer">
+	<div class="footer-copyright">
+	    <div class="hr"></div>
+	    <span class="footer-copyright-text">{tp#$webinfo.copyright}</span>
+	</div>
+</footer>
+
+
+<div id="dialogLayer" style="top: 255px; left: 597px; display: none;">
+<i class="icon-check-circle"></i> 
+<b>信息更新成功~~~</b>
+</div>
+<div id="maskLayer" style="display: none;"></div>
+
+</body>
+</html>

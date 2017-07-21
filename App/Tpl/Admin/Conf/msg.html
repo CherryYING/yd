@@ -1,0 +1,58 @@
+<extend name="RBAC:base" />
+<block name="content-title">
+<h4>短信网关设置</h4>  
+</block>
+<block name="content">
+<div class="tab-content default-tab" id="tab1">
+            <form method="post" action="{tp#:U('msg')}">
+             	<p>
+                   网关地址：<input type="text" name="host"  class="text-input small-input" value="{tp#$info.host}" placeholder="短信网关地址" required> 
+                </p>
+                <p>
+                   账户名　：<input type="text" name="user"  class="text-input small-input" value="{tp#$info.user}" placeholder="账户名" required> 
+                </p>
+                <p>
+                   账户密码：<input type="text" name="pwd"  class="text-input small-input" value="{tp#$info.pwd}" placeholder="账户密码" required> 
+                </p>                   
+               <p>
+                  <input type="submit" value="保存设置" class="button">
+                </p>
+              <div class="clear"></div>
+            </form>
+</div>
+<!--kindeditor-->
+<link rel="stylesheet" href="/plugins/kindeditor/themes/default/default.css" />
+<script charset="utf-8" src="/plugins/kindeditor/kindeditor-min.js"></script>
+<script charset="utf-8" src="/plugins/kindeditor/lang/zh_CN.js"></script>
+<!--kindeditor-->
+<script>
+//单图上传
+	KindEditor.ready(function(K) {
+		var editor = K.editor({
+			allowFileManager : true
+		});
+		K('#image1').click(function() {
+			editor.loadPlugin('image', function() {
+				editor.plugin.imageDialog({
+					imageUrl : K('#url1').val(),
+					clickFn : function(url, title, width, height, border, align) {
+						K('#url1').val(url);
+						editor.hideDialog();
+					}
+				});
+			});
+		});
+		K('#image2').click(function() {
+			editor.loadPlugin('image', function() {
+				editor.plugin.imageDialog({
+					imageUrl : K('#url1').val(),
+					clickFn : function(url, title, width, height, border, align) {
+						K('#url2').val(url);
+						editor.hideDialog();
+					}
+				});
+			});
+		});
+	});
+</script>
+</block>

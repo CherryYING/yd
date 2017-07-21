@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{tp#$webinfo.web_name}</title>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/dist/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/dist/css/bootstrap-theme.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+</head>
+
+<body class="page bg">
+    <header class="navbar po-re">
+        <div class="navbar-icon">
+            <a href="{tp#:U('index')}">
+                <span class="glyphicon glyphicon-chevron-left">返回</span>
+			</a>
+		</div>
+        <span class="nav-title">销售订单管理</span>
+        <div class="navbar-home">
+            <!--<a href="#" class=" f14">
+                编辑
+            </a>-->
+        </div>
+   </header>
+   <div class="cj-filter text-center clearfix"> 
+    <if condition="$user_info['role_id'] eq 1">
+        <div class="col-xs-6" onClick="javascript:location.href='{tp#:U('order_list')}'">我的订单</div>
+        <div class="col-xs-6" onClick="javascript:location.href='{tp#:U('jifen_order')}'">积分兑换订单</div>
+    <else/>
+        <div class="col-xs-4 " onClick="javascript:location.href='{tp#:U('order_list')}'">我的订单</div>
+        <div class="col-xs-4" onClick="javascript:location.href='{tp#:U('jifen_order')}'">积分兑换订单</div>
+        <div class="col-xs-4 active" onClick="javascript:location.href='{tp#:U('sale_order')}'">销售订单</div>
+    </if>
+	</div>
+    
+<volist name="list" id="item">	  
+	<div class="media cj-list order-checkbox order-radio mt10"  data-toggle="buttons">
+		<p class="order-id-box">订单编号：{tp#$item.order_sn}
+        <span class="right"><eq name='item.pay_status' value='1'>已付款<else/>待付款</eq></span>
+        </p>
+		<a class="pull-left thumbnail" href="#">
+			<img class="media-object" src="{tp#$item['goods']['goods_spic']}">
+		</a>
+		<div class="media-body">
+			<a href="">
+				<h4 class="media-heading">{tp#$item['goods']['goods_name']}</h4>
+				<p class="f999999 mb5">单价：{tp#$item['goods']['goods_price']}</p>
+				<p class="f999999 mb5">数量：X{tp#$item['goods']['goods_nums']}</p>
+				<div class="comm-text-pricce f999999" style="width:100%;" >
+					<!--运费：<em class="fcff0000">0.00</em> -->
+                    <span  class="pull-right f14 fcff0000"><i><em>订单金额：&yen;{tp#$item.total_fee}</em></i></span>
+				</div> 
+			</a>
+		</div>
+<!--		<p class="bd-top"><a href="{tp#:U('order_detail',array('id'=>$item['id']))}" class="btn btn-default bran right btn-kuang-blue">查看订单</a></p>-->
+	</div>
+</volist>
+<if condition="count($list) eq 0">	
+<p><center>暂无相关数据</center></p>
+</if>
+
+<if condition="strlen($page) gt 1"><p id="page">{tp#$page}</p></if>
+
+</body>
+<style>
+#page{margin:10px;text-align:center;background:#0099FF;color:#FFF;padding:10px;}
+/*#page a{border:1px solid #0099FF;padding:5px;border-radius:18px;margin:0 20px;}*/
+#page a{border:1px solid #0099FF;color:#FFF;margin:0 10%}
+</style>
+</html>

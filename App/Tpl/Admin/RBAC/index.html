@@ -1,0 +1,89 @@
+<extend name="base" />
+<block name="content-title">
+<h4>管理员列表</h4>  
+<a class="btn align-right" style="margin:5px 10px;" href="{tp#:U('addUser')}">新增</a> 
+</block>
+<block name="content">
+         <div class="tab-content default-tab" id="tab1">
+            <div class="notification png_bg" id="dmsg" style="display:none;">
+              <a href="#" class="close"><img src="__PUBLIC__/Images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
+              <div>
+                msg.
+              </div>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                   <th><input class="check-all" type="checkbox" /></th>
+                   <th>ID</th>
+                   <th>用户名</th>
+                   <th>最后登录IP</th>
+                   <th>最后登录时间</th>
+                   <th>用户组</th>
+                   <!--<th>用户状态</th>-->
+                   <th>操作</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <volist name="list" id="v">
+                    <tr>
+                      <td><input type="checkbox" /></td>
+                      <td>{tp#$v.id}</td>
+                      <td><a href="#" title="title">{tp#$v.username}</a></td>
+                      <td>{tp#$v.loginip}</td>
+                      <td>{tp#$v.logintime|date='Y-m-d H:i:s',###}</td>
+                      <td><if condition='$v["username"] eq C("RBAC_SUPERADMIN")'>
+                        超级管理员
+                        <else/>
+                        {tp#$v.role.0.name}({tp#$v.role.0.remark})
+                        </if>
+                      </td>
+                      <!--<td>	
+                      		<if condition="$v['lock']">
+	                      		<a href='javascript:duanajax1("{tp#:U('Admin/RBAC/indexlock',array('id'=>$v['id']))}")' class="btn btn-danger" title="禁用状态">OFF</a>
+	                      	<else />
+	                      		<a href='javascript:duanajax1("{tp#:U('Admin/RBAC/indexlocked',array('id'=>$v['id']),0)}")' class="btn btn-success" title="开启状态">ON</a>
+                      		</if>
+                      </td>-->
+                      <td>
+                       <if condition="$v.id neq 1">
+                       	<a href="{tp#:U('editUser',array('id'=>$v['id']))}" class="btn btn-success" title="配置">编辑</a>
+                        <a href="{tp#:U('delUser',array('id'=>$v['id']))}" class="btn btn-danger" onClick="return confirm('确定要删除该用户？不可恢复！')" title="Delete">删除</a> 
+                        <else/>
+                         <a href="{tp#:U('editUser',array('id'=>$v['id']))}" class="btn btn-success">修改密码</a>
+                        </if>
+                      </td>
+                    </tr>
+                </volist>
+              </tbody>
+
+              <tfoot>
+                <tr>
+                  <td colspan="7">
+                   <!-- <div class="bulk-actions align-left">
+                      <select name="dropdown">
+                        <option value="option1">Choose an action...</option>
+                        <option value="option2">Edit</option>
+                        <option value="option3">Delete</option>
+                      </select>
+                      <a class="button" href="#">Apply to selected</a>
+                    </div>
+                    <div class="pagination">
+                      <a href="#" title="First Page">&laquo; First</a><a href="#" title="Previous Page">&laquo; Previous</a>
+                      <a href="#" class="number" title="1">1</a>
+                      <a href="#" class="number" title="2">2</a>
+                      <a href="#" class="number current" title="3">3</a>
+                      <a href="#" class="number" title="4">4</a>
+                      <a href="#" title="Next Page">Next &raquo;</a><a href="#" title="Last Page">Last &raquo;</a>
+                    </div>-->
+                    <div class="pagination">
+                    {tp#$pagestr}
+                    </div>
+                    <div class="clear"></div>
+                  </td>
+                </tr>
+              </tfoot>              
+            </table>
+          </div> <!-- End #tab1 -->  
+</block>          

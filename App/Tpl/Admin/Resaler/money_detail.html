@@ -1,0 +1,50 @@
+<extend name="RBAC:base" />
+<block name="content-title">
+<h4>【{tp#$user_info.nickname}】的资金明细</h4> 
+<a style="float:right;margin:10px;" href="javascript:history.go(-1);" class="btn">返回</a> 
+</block>
+<block name="content">
+          <div class="tab-content default-tab" id="tab1">
+            <table>
+              <thead>
+                <tr>
+                   <th>id</th>
+                   <th>来源订单</th>
+                   <th>来源买家</th>
+                   <th>金额</th>
+                   <th>描述</th>
+                   <th>时间</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <volist name="list" id="v">
+                    <tr>
+                      <td>【{tp#$v.id}】</td>	
+                      <td>订单号【{tp#$v.order_sn}】&nbsp;
+                      <a target="_blank" href="{tp#:U('Order/edit',array('id'=>$v['order_id']))}">查看订单</a></td>
+                      <td>【{tp#$v.buyer_nickname}】&nbsp;
+                      <a target="_blank" href="{tp#:U('Wxusers/uedit',array('id'=>$v['buyer_id']))}">查看买家</a></td>	
+                      <td><b>&yen; </b>{tp#$v.score}</td>
+                      <td>{tp#$v.descrip}</td>
+                      <td>{tp#$v.posttime|date='Y-m-d H:i:s',###}</td>
+                    </tr>
+                </volist>
+              </tbody>
+
+              <tfoot>
+                <tr>
+                  <td colspan="6">
+                    <div class="pagination">
+                      {tp#$page}
+                    </div>
+                    <div class="clear"></div>
+                  </td>
+                </tr>
+              </tfoot>              
+            </table>
+          </div> <!-- End #tab1 -->  
+<script>
+//artDialog({title:'来源订单', iframe:'http://www.baidu.com', width:640, height:320});//url参数其实就是iframe
+</script>
+</block>  

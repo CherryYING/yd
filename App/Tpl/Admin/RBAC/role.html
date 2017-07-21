@@ -1,0 +1,68 @@
+<extend name="base" />
+<block name="content-title">
+<h4>角色列表</h4>  
+<a class="btn align-right" style="margin:5px 10px;" href="{tp#:U('addRole')}">新增</a> 
+</block>
+<block name="content">
+          <div class="tab-content default-tab" id="tab1">
+            <div class="notification png_bg" id="dmsg" style="display:none;">
+              <a href="#" class="close"><img src="__PUBLIC__/Images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
+              <div>
+                msg.
+              </div>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                   <th><input class="check-all" type="checkbox" /></th>
+                   <th>ID</th>
+                   <th>角色名称</th>
+                   <th>角色描述</th>
+                   <th>开启状态</th>
+                   <th>操作</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <volist name="role" id="v">
+                    <tr>
+                      <td><input type="checkbox" /></td>
+                      <td>{tp#$v.id}</td>
+                      <td><a href="#" title="title">{tp#$v.name}</a></td>
+                      <td>{tp#$v.remark}</td>
+                      <td><if condition="$v['status']">开启<else />关闭</if></td>
+                      <td>
+                      	<a href="{tp#:U('editRole',array('id'=>$v['id']))}" class="btn btn-success">编辑</a>
+                        <a href="{tp#:U('access',array('rid'=>$v['id']))}" class="btn btn-success">配置权限</a>
+                        <a href="{tp#:U('delRole',array('id'=>$v['id']))}" class="confirm btn btn-danger">删除</a>
+                      </td>
+                    </tr>
+                </volist>
+              </tbody>
+
+              <tfoot>
+                <tr>
+                  <td colspan="6">
+                   <!-- <div class="bulk-actions align-left">
+                      <select name="dropdown">
+                        <option value="option1">Choose an action...</option>
+                        <option value="option2">Edit</option>
+                        <option value="option3">Delete</option>
+                      </select>
+                      <a class="button" href="#">Apply to selected</a>
+                    </div>
+                    <div class="pagination">
+                      <a href="#" title="First Page">&laquo; First</a><a href="#" title="Previous Page">&laquo; Previous</a>
+                      <a href="#" class="number" title="1">1</a>
+                      <a href="#" class="number" title="2">2</a>
+                      <a href="#" class="number current" title="3">3</a>
+                      <a href="#" class="number" title="4">4</a>
+                      <a href="#" title="Next Page">Next &raquo;</a><a href="#" title="Last Page">Last &raquo;</a>
+                    </div>-->
+                    <div class="clear"></div>
+                  </td>
+                </tr>
+              </tfoot>              
+            </table>
+          </div> <!-- End #tab1 -->  
+</block>  

@@ -1,0 +1,186 @@
+<extend name="RBAC:base" />
+<block name="content-title">
+<h4>代理订单管理</h4>
+<!--<a style="margin:5px 10px;" href="{tp#:U('export_excel')}" class="btn align-right">导出Excel</a> -->
+</block>
+<block name="content">
+		<style>
+            select,input[type='text']{border-radius:3px;padding: 6px 6px;border:1px solid #CCC}
+			.well{padding:10px;background:#F3F3F3;border-radius:3px;margin:10px 0;}
+        </style>
+          <div class="tab-content default-tab" id="tab1">
+          
+            <div class="notification success png_bg" id="dmsg" style="display:none">
+              <a href="#" class="close"><img src="__PUBLIC__/Images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
+              <div>
+                点击<b>“订单编号”</b>查看订单详情
+              </div>
+            </div>
+            
+            <p class="well">
+                搜索：
+                <select name="key">
+                    <option value="out_trade_no"  <eq name="Think.get.key" value="order_sn">selected</eq> >订单编号</option>
+                   <option value="id" <eq name="Think.get.key" value="id">selected</eq> >订单id</option>    
+                   <option value="uid" <eq name="Think.get.key" value="uid">selected</eq> >UID</option>
+                   <!--  <option value="mobile" <eq name="Think.get.key" value="mobile">selected</eq> >联系电话</option>-->    
+                </select>
+                <input value="{tp#$Think.get.val}" name="val" type="text" class="text-input bg-gray small-input" placeholder="关键字"/>
+                
+               <!--  下单时间：
+                <input value="{tp#$Think.get.begin_time}" name="begin_time" type="text" class="text-input bg-gray small-input" placeholder="起始时间" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"/> ~
+                <input value="{tp#$Think.get.end_time}" name="end_time" type="text" class="text-input bg-gray small-input" placeholder="截止时间" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"/>-->
+                
+                <input id='btn-so' type="button" value="搜索" class="button"/>
+               
+                &nbsp;&nbsp;&nbsp;
+                 <a class="btn <eq name='Think.get.pay_status' value='nopay'>btn-danger</eq>" href="{tp#:U('order_list',array('pay_status'=>'nopay'))}">未支付</a>
+                 <a class="btn <eq name='Think.get.pay_status' value='pay'>btn-success</eq>" href="{tp#:U('order_list',array('pay_status'=>'pay'))}">已支付</a>
+                 
+                  &nbsp;&nbsp;&nbsp;
+                <a  href="{tp#:U('order_list',array('p'=>I('get.p',1)))}">查看全部</a>
+                
+            </p>
+            <table>
+              <thead>
+                <tr>
+                   <th>订单ID</th>
+                   <th>订单编号</th>
+                   <th>代理等级</th>
+                   <th>姓名</th>
+                   <th>联系电话</th>
+                   <th>微信号</th>
+                   <!--<th>通信地址</th>-->
+                   <th>订单金额</th>
+                   <th>支付状态</th>
+                   <th>赠送云金币</th>
+                   <th>下单时间</th>
+                   <th>操作</th>
+                </tr>
+                
+              </thead>
+
+              <tbody>
+                <tr>
+                <td colspan="11" style="text-align:center;background:#F00;color:#FFF">
+                1、红色背景为异常订单；2、姓名为红色字体的会员账号存在异常，已被禁用
+                </td>
+                </tr>
+                <volist name="list" id="v">
+                <tr <eq name="v['errcode']" value='1'>style="background:#FADEDB"</eq>>
+                  <td>【{tp#$v['id']}】</td>
+                  <td>{tp#$v['out_trade_no']}</a>
+                  <td>
+                  <switch name="v['aid']">
+                  <case value="1">市级代理</case>
+                  <case value="2">省级代理</case>
+                  <case value="3">全国代理</case>
+                  </switch>
+                  </td>
+                  </td>
+                  <td>
+                  <a target="_blank" title="查看会员" href="{tp#:U('Wxusers/edit',array('id'=>$v['uid']))}">
+                  <eq name="v['user']['status']" value='2'>
+                  <font color="red">[{tp#$v['user']['id']}]{tp#$v['user']['name']}</font>
+                  <else/>
+                  [{tp#$v['user']['id']}]{tp#$v['user']['name']}
+                  </eq>
+                  
+                  </a>
+                  </td>
+                  <td>{tp#$v['user']['mobile']}</td>
+                  <td>{tp#$v['user']['weixin']}</td>
+                  <!--<td  width='120'>{tp#$v['user']['address']}</td>-->
+                  <td style="color:red"><b>&yen; </b>{tp#$v['total_fee']}</td>
+                  <td>
+                  	<!--<a class="btn" title="#" href="#">-->
+                    <switch name="v.pay_status">
+                    <case value="0"><font color='red'>未支付</font></case>
+                    <case value="1"><b><font color="green">已支付</font></b></case>
+                    </switch>
+                    <!--</a>-->
+                  </td>
+                  
+                  <td>
+                  <eq name="v['pay_status']" value='1'>
+                  {tp#$v['money_cloud']|default=0}
+                  <else/>
+                  0
+                  </eq>
+                  云金币
+                  </td>
+                  <td>{tp#$v['order_time']|date='Y/m/d H:i:s',###}</td>
+                  <td>
+                    <a class="btn btn-danger" onclick="return confirm('确定删除？')" href="{tp#:U('order_del',array('id'=>$v['id']))}">删除</a>
+                  </td>
+                </tr>
+                </volist>
+              </tbody>
+            
+            </table>
+            
+            <div class="pagination">
+              {tp#$show}
+            </div>
+            <div class="clear"></div> 
+            
+          </div> <!-- End #tab1 -->  
+<script type='text/javascript'>
+  $(function(){
+	 
+	  	$(document).keyup(function(event){
+			if(event.keyCode==13){
+				$("#btn-so").click();
+			}
+		});
+	  
+	  $("#btn-so").click(function(){
+		  
+		  var param='';
+		  
+		  var key=$("select[name='key'] option:selected").val();
+		  var val=$("input[name='val']").val();
+		  
+		  var begin_time=$("input[name='begin_time']").val();
+		  var end_time=$("input[name='end_time']").val();
+		  
+		 
+		  
+		  if(key!=''&&val!=''){
+			 param+="&key="+key+'&val='+val;
+		  }
+		  
+		  /*if(begin_time!=''){
+			   param+='&begin_time='+begin_time;
+		  }
+		  
+		  if(end_time!=''){
+			   param+='&end_time='+end_time;
+		  }*/
+		  
+		  if(param==''){
+			  alert('请输入搜索条件！')
+			  //artDialog({content:'请输入搜索条件！', style:'alert', lock:false}, function(){});
+		  }else{
+			  location.href="{tp#:U('order_list')}"+param;
+		  }
+		  
+	  });
+	  
+	  
+	   //订单退款
+	  $(".btn-refund").click(function(){
+			var post_data={};
+			post_data.id=$(this).attr('order_id');			//订单号
+			if(confirm('确定退款？')){
+				$.post("{tp#:U('Ajax/order_refund')}",post_data,function(data){
+					alert('操作成功');
+					location.reload();	
+				}); 
+			}
+			
+	  });
+	  
+  })
+</script>
+</block>  

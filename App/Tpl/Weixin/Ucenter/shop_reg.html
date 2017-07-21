@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<title>奥克斯空调</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/dist/css/base.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/dist/css/layout-theme.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/assets/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/dist/css/font.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<script src="__PUBLIC__/js/jquery.1-7-1.js"></script>
+</head>
+
+<body class="page">
+<svg display="none" width="0" height="0" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs>
+  <symbol id="icon-left" viewBox="0 0 1024 1024">
+    <path class="path1" d="M711.219 891.802c13.722 13.926 13.722 36.301 0 50.125s-35.891 13.875-49.613 0l-400.896-404.89c-13.722-13.824-13.722-36.198 0-50.125l400.896-404.89c13.722-13.824 35.891-13.824 49.613 0 13.722 13.875 13.722 36.301 0 50.125l-365.619 379.853 365.619 379.802z"></path>
+  </symbol>
+</defs>
+</svg>
+<style type="text/css">
+/*input{width:60% !important}*/
+</style>
+<header class="header"> 
+<a class="returnIco" href="{tp#:U('index')}">
+<svg class="icon icon-left">
+  <use xlink:href="#icon-left"></use>
+  </svg><code>返回</code></a>
+  <div class="pageTit">店铺注册</div>
+</header>
+<div class="_container">
+  <div class="warp100 shop">
+    <ul class="commen_list">
+      <li>
+      <!--AUX注册码-->
+        <input name="invite_code" type="text" placeholder="AUX注册码"/>
+      </li>
+      <li>
+      <!--店铺名称-->
+        <input name="shop_name" type="text" placeholder="店铺名称"/>
+      </li>
+      <li>
+      <!--联系人-->
+        <input name="linkman" type="text" placeholder="联系人姓名"/>
+      </li>
+      <li>
+      <!--联系电话-->
+        <input name="mobile" type="text" placeholder="联系电话"/>
+      </li>
+      <li>
+      <!--邮箱-->
+        <input name="email" type="text" placeholder="邮箱"/>
+      </li>
+      <li>
+      <!--用户名-->
+        <input name="username" type="text" placeholder="用户名"/>
+      </li>
+      <li>
+     <!-- 密码-->
+        <input name="password" type="text" placeholder="密码"/>
+      </li>
+    </ul>
+  </div>
+  <a class="btn btn-lg btn_blue width_auto mt25 btn-reg">保存</a> 
+  </div>
+  <br/>
+</body>
+<script>
+$(function(){
+	$(".btn-reg").click(function(){
+		var post_data=new Object();
+		post_data.parent_id="{tp#$parent_id}"			//父级id
+		post_data.invite_code=$("input[name='invite_code']").val();
+		post_data.shop_name=$("input[name='shop_name']").val();
+		post_data.linkman=$("input[name='linkman']").val();
+		post_data.mobile=$("input[name='mobile']").val();
+		post_data.email=$("input[name='email']").val();
+		post_data.username=$("input[name='username']").val();
+		post_data.password=$("input[name='password']").val();
+		if(post_data.invite_code==''){
+			alert('请填写注册码');
+			return false
+		}
+		if(post_data.shop_name==''){
+			alert('请填写店铺名称');
+			return false
+		}
+		if(post_data.linkman==''){
+			alert('请填写联系人');
+			return false
+		}
+		if(post_data.mobile==''){
+			alert('请填写手机号');
+			return false
+		}
+		if(post_data.email==''){
+			alert('请填写邮箱');
+			return false
+		}
+		if(post_data.username==''){
+			alert('请填写用户名');
+			return false
+		}
+		if(post_data.password==''){
+			alert('请填写登录密码');
+			return false
+		}
+		$.post("{tp#:U('Ajax/shop_reg')}",post_data,function(errcode){
+			if(errcode==1){
+				alert('用户名已经存在，请重新输入');
+			}else{
+				alert('开店成功!');
+				location.href="{tp#:U('Ucenter/index')}";
+			}
+		});
+	});
+});
+</script>
+</html>

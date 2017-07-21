@@ -1,0 +1,101 @@
+<extend name="RBAC:base" />
+<block name="content-title">
+<h4>网站信息设置</h4>  
+</block>
+<block name="content">
+<div class="tab-content default-tab" id="tab1">
+            <form method="post" action="{tp#:U('Admin/Conf/confHandle')}">
+             	<p>
+                   网站标题　　：<input type="text" name="web_name"  class="text-input small-input" value="{tp#$conf.web_name}"> 
+                </p>
+                <p>
+                   网站描述　　：<input type="text" name="web_descrip"  class="text-input medium-input" value="{tp#$conf.web_descrip}"> 
+                </p>
+                <p>
+                   网站关键字　：<input type="text" name="web_key"  class="text-input medium-input" value="{tp#$conf.web_key}"> 
+                </p>             
+                <p>
+                   网站备案号　：<input type="text" name="web_beian"  class="text-input small-input" value="{tp#$conf.web_beian}"> 
+                </p>      
+                 <p>
+                   联系电话　　：<input type="text" name="phone"  class="text-input small-input" value="{tp#$conf.phone}"> 
+                </p>        
+                <p>
+                   电子邮箱　　：<input type="text" name="email"  class="text-input small-input" value="{tp#$conf.email}"> 
+                </p>   
+				<p>
+                   版权信息　　：<input type="text" name="copyright"  class="text-input small-input" value="{tp#$conf.copyright}"> 
+                </p>   			
+            	<!--<p>
+                领奖金额　　：<input type="text" name="hd_prise"  class="text-input small-input" value="{tp#$conf.hd_prise}">元
+                <font color="silver">&nbsp;只有当赚取的金额达到【领奖金额】时才能领取相应奖品！</font>
+                </p>
+              	<p>
+                助力金额　　：<input type="text" name="hd_score"  class="text-input small-input" value="{tp#$conf.hd_score}">元
+                <font color="silver">&nbsp;得到一次助力赚取的充值金额</font>
+                </p>
+                <p>
+                活动规则　　：<input type="text" name="hd_join_url"  class="text-input small-input" value="{tp#$conf.hd_join_url}">
+                <font color="silver">&nbsp;我也要参与链接地址</font>
+                </p>
+                <p>
+                   活动标题　　：<input type="text" name="web_name"  class="text-input small-input" value="{tp#$conf.web_name}"> 
+                </p>
+                <p>
+                   活动说明　　：<input type="text" name="hd_descrip"  class="text-input small-input" value="{tp#$conf.hd_descrip}"> 
+                </p>
+                <p>
+                活动版权　　：<input type="text" name="web_beian"  class="text-input small-input" value="{tp#$conf.web_beian}"> 
+                </p>
+				<p>
+                活动页背景图：
+                <input readonly name="hd_bg" type="text" id="url1" value="{tp#$conf.hd_bg}" class="text-input small-input"/> 
+    <input type="button" id="image1" value="选择图片" class="button"/>
+                </p>
+                <p>
+                微信分享图片：
+                <input readonly name="hd_shareimg" type="text" id="url2" value="{tp#$conf.hd_shareimg}" class="text-input small-input"/> 
+    			<input type="button" id="image2" value="选择图片" class="button"/>
+                </p>-->
+               <p>
+                  <input type="submit" value="  保存设置  " class="button">
+                </p>
+              <div class="clear"></div>
+            </form>
+</div>
+<!--kindeditor-->
+<link rel="stylesheet" href="/plugins/kindeditor/themes/default/default.css" />
+<script charset="utf-8" src="/plugins/kindeditor/kindeditor-min.js"></script>
+<script charset="utf-8" src="/plugins/kindeditor/lang/zh_CN.js"></script>
+<!--kindeditor-->
+<script>
+//单图上传
+	KindEditor.ready(function(K) {
+		var editor = K.editor({
+			allowFileManager : true
+		});
+		K('#image1').click(function() {
+			editor.loadPlugin('image', function() {
+				editor.plugin.imageDialog({
+					imageUrl : K('#url1').val(),
+					clickFn : function(url, title, width, height, border, align) {
+						K('#url1').val(url);
+						editor.hideDialog();
+					}
+				});
+			});
+		});
+		K('#image2').click(function() {
+			editor.loadPlugin('image', function() {
+				editor.plugin.imageDialog({
+					imageUrl : K('#url1').val(),
+					clickFn : function(url, title, width, height, border, align) {
+						K('#url2').val(url);
+						editor.hideDialog();
+					}
+				});
+			});
+		});
+	});
+</script>
+</block>

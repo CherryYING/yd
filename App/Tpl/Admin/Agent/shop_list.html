@@ -1,0 +1,151 @@
+<extend name="RBAC:base" />
+<block name="content-title">
+<h4>店铺管理</h4> 
+<!--<a style="float:right;margin:10px;" href="{tp#:U('add')}" class="btn">添加</a> -->
+</block>
+<block name="content">
+          <div class="tab-content default-tab" id="tab1">
+          
+          <div class="notification success png_bg" id="dmsg" style="display:block">
+              <a href="#" class="close"><img src="__PUBLIC__/Images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
+              <div>
+                代理店铺管理地址：<a href="http://{tp#:I('server.HTTP_HOST')}/shop.php" target="_blank">http://{tp#:I('server.HTTP_HOST')}/shop.php</a>
+              </div>
+            </div>
+          
+           <p class="well">
+                搜索：
+                <select name="key">
+                	<option value="shop_name"  <eq name="Think.get.key" value="shop_name">selected</eq>>店铺名称</option>
+                    <option value="id"  <eq name="Think.get.key" value="id">selected</eq>>店铺ID</option>
+                    <option value="shop_tel"  <eq name="Think.get.key" value="shop_tel">selected</eq>>客服电话</option>
+                </select>
+                <input value="{tp#$Think.get.val}" name="val" type="text" class="text-input bg-gray small-input" placeholder="关键字"/>
+<!--                &nbsp;&nbsp;
+                注册时间：
+                <input value="{tp#$Think.get.begin_time}" name="begin_time" type="text" class="text-input bg-gray small-input" placeholder="起始时间" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/> ~
+                <input value="{tp#$Think.get.end_time}" name="end_time" type="text" class="text-input bg-gray small-input" placeholder="截止时间" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>
+                
+               
+                &nbsp;&nbsp;&nbsp;
+                <a href="{tp#:U('user_list',array('role_id'=>2))}" class="btn <eq name='Think.get.role_id' value='2'>btn-success</eq>" >市级</a>
+                &nbsp;&nbsp;&nbsp;
+                <a href="{tp#:U('user_list',array('role_id'=>3))}" class="btn <eq name='Think.get.role_id' value='3'>btn-success</eq>" >省级</a>
+                &nbsp;&nbsp;&nbsp;
+                <a href="{tp#:U('user_list',array('role_id'=>4))}" class="btn <eq name='Think.get.role_id' value='4'>btn-success</eq>">全国</a>
+                 &nbsp;&nbsp;&nbsp;-->
+                 <input id='btn-so' type="button" value="搜索" class="button"/>
+                <a  href="{tp#:U('shop_list',array('p'=>I('get.p',1)))}">查看全部</a>
+            </p>
+            <table width='100%'>
+              <thead>
+                <tr>
+                   <th>店铺ID</th>
+                   <th>店铺名称</th>
+                   <th>店铺商标</th>
+                   <th>上架商品</th>
+                   <th>下架商品</th>
+                   <th>注册时间</th>
+                   <th>审核状态</th>
+                   <th>货款余额</th>
+                   <th>登录账号</th>
+                   <th>操作</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <volist name="list" id="v">
+                    <tr>
+                      <td>【{tp#$v.id}】</td>
+                      <td width="100">
+                      <a target='_blank' href="{tp#:U('Weixin/Agent/shop',array('id'=>$v['id']))}" title="店铺首页">
+                      {tp#$v['shop_name']}
+                      </a>
+                      </td>		
+                      <td>
+                      <img src="{tp#$v['shop_logo']}" class="thumb" onerror="this.src='__PUBLIC__/Images/no-img.png'">
+                      </td>
+                      </td>
+					  <td>
+                      {tp#$v['goods_count1']|default=0}
+                      <a href="{tp#:U('Goods/index',array('sid'=>$v['id'],'is_sale'=>1))}" target="_blank">查看</a>
+                      </td>
+                      <td>
+                     {tp#$v['goods_count2']|default=0}
+                      <a href="{tp#:U('Goods/index',array('sid'=>$v['id'],'is_sale'=>1))}" target="_blank">查看</a>
+                      </td>
+                      <td>
+                      <eq name="v.posttime" value='0'>
+                      暂无
+                      <else/>{tp#$v.posttime|date='Y/m/d H:i:s',###}
+                      </eq>
+                      </td>
+                      <td>
+                      <eq name="v['shop_status']" value='1'>
+                      <a class="btn" href="{tp#:U('shop_status',array('id'=>$v['id'],'p'=>I('get.p',1)))}">已审核</a>
+                      <else/>
+                      <a class="btn btn-danger" href="{tp#:U('shop_status',array('id'=>$v['id'],'p'=>I('get.p',1)))}">未审核</a>
+                      </eq>
+                      </td>
+                      <td style="color:red"> &yen; {tp#$v['user']['money_p']} 元</td>
+                      <td>{tp#$v['user']['username']}</td>
+                      <td>
+                      <p>
+                       <a class='sbtn' target="_blank" href="{tp#:U('shop_edit',array('id'=>$v['id']))}">店铺信息</a>
+                       <a class='sbtn' target="_blank" href="{tp#:U('Wxusers/edit',array('id'=>$v['id']))}">店主信息</a>	
+                       </p>
+                       
+                       <p>
+                       <a target="_blank" class='sbtn' href="{tp#:U('Wxusers/pwd',array('id'=>$v['id']))}">密码重置</a>
+                       <a target="_blank" class='sbtn' href="{tp#:U('login_shop',array('id'=>$v['id']))}">商家后台</a>
+                       </p>	
+                      </td>
+                    </tr>
+                </volist>
+              </tbody>          
+            </table>
+            <div class="pagination">
+              {tp#$show}
+            </div>
+            <div class="clear"></div>
+          </div> <!-- End #tab1 -->  
+<style>
+	select,input[type='text']{border-radius:3px;padding:6px 5px;border:1px solid #CCC}
+</style>          
+<script>
+$(function(){
+	$(document).keyup(function(event){
+		if(event.keyCode==13){
+			$("#btn-so").click();
+		}
+	});
+	$("#btn-so").click(function(){
+		  var key=$("select[name='key'] option:selected").val();
+		  var val=$("input[name='val']").val();
+		  var begin_time=$("input[name='begin_time']").val();
+		  var end_time=$("input[name='end_time']").val();
+		  
+		  var param='';
+		  
+		  if(key!=''&&val!=''){
+			 param+="&key="+key+'&val='+val;
+		  }
+		  
+		 /* if(begin_time!=''){
+			   param+='&begin_time='+begin_time;
+		  }
+		  
+		  if(end_time!=''){
+			   param+='&end_time='+end_time;
+		  }*/
+		  
+		  if(param==''){
+			  alert('请输入搜索条件！')
+			 //artDialog({content:'请输入搜索条件！', style:'alert', lock:false}, function(){});
+		  }else{
+			  location.href="{tp#:U('shop_list')}"+param;
+		  }
+	});
+});
+</script>          
+</block>  

@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="format-detection" content="telephone=no">
+<title>购物车-{tp#$webinfo['web_name']}</title>
+<meta name="keywords" content="{tp#$webinfo['web_key']}">
+<meta name="description" content="{tp#$webinfo['web_descrip']}">
+
+<meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-touch-fullscreen" content="yes">
+<!-- <meta name="full-screen" content="yes"> -->
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="address=no">
+<link rel="icon" href="__PUBLIC__/images/logo.jpg" type="image/x-icon">
+<link rel="apple-touch-icon-precomposed" href="__PUBLIC__/images/favicon.png">
+<link rel="apple-touch-startup-image" href="__PUBLIC__/images/apple-touch-startup.png" media="(device-height:568px)">
+<link rel="stylesheet" href="__PUBLIC__/css/style.css">
+<link rel="stylesheet" href="__PUBLIC__/css/icomoon.css">
+<script type="text/javascript" src="__PUBLIC__/js/jq.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/jquery.urlparam.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/alert.js"></script><style type="text/css">
+
+#windowcenter {
+	width:290px;
+	position:fixed;
+	display:none;
+	bottom:30px;
+	left:50%;
+	 z-index:9999;
+	margin-left:-145px;
+	padding:2px;
+	border-radius:3px;
+	-webkit-border-radius:3px;
+	-moz-border-radius:3px;
+	background-color: #ffffff;
+	-webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	-moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	-o-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	font:14px/1.5 Microsoft YaHei,Helvitica,Verdana,Arial,san-serif;
+}
+.window .title {
+	background-color: #2BB2A3;
+	line-height: 26px;
+  padding: 5px 5px 5px 10px;
+	color:#ffffff;
+	text-shadow:0px 1px 1px #14544D;
+	font-size:16px;
+	border-radius:3px 3px 0 0;
+	-webkit-border-radius:0.5em 0.5em 0 0;
+	-moz-border-radius:0.5em 0.5em 0 0;
+	
+}
+.window .content {
+	/*min-height:100px;*/
+	overflow:auto;
+	padding:10px;
+	background: linear-gradient(#FBFBFB, #EEEEEE) repeat scroll 0 0 #FFF9DF;
+    color: #222222;
+    text-shadow: 0 1px 0 #FFFFFF;
+	border-radius: 0 0 0.6em 0.6em;
+	-webkit-border-radius: 0 0 0.6em 0.6em;
+	-moz-border-radius: 0 0 0.6em 0.6em;
+}
+.window #txt {
+	min-height:30px;font-size:16px; line-height:22px;
+}
+.window #windowclosebutton {
+	margin-top:10px;
+}
+.window .btn {
+	height:40px;
+	line-height:40px;
+}
+input::-moz-placeholder, textarea::-moz-placeholder { color: #999;}
+.flex{
+	display:box;
+	display:-moz-box;
+	display:-webkit-box;
+}
+.window .title .close {
+	float:right;
+	background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACTSURBVEhL7dNtCoAgDAZgb60nsGN1tPLVCVNHmg76kQ8E1mwv+GG27cestQ4PvTZ69SFocBGpWa8+zHt/Up+IN+MhgLlUmnIE1CpBQB2COZibfpnXhHFaIZkYph0SOeeK/QJ8o7KOek84fkCWSBtfL+Ny2MPpCkPFMH6PWEhWhKncIyEk69VfiUuVhqJefds+YcwNbEwxGqGIFWYAAAAASUVORK5CYII=");
+	width:26px;
+	height:26px;
+	display:block;	
+}
+.confirm-box{
+    position: fixed;
+    top:50%;
+    left:50%;
+    padding:0px 15px;
+    width:220px;
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+    box-sizing:border-box;
+    background-color: rgba(0, 0, 0, 0.8);
+    color:#FFFFFF;
+    border-radius: 2px;
+    margin-left: -110px;
+    margin-top:-55px;
+    z-index:1000001;
+}
+.confirm-box .confirm-box-txt{
+    text-align: center;
+    margin:20px auto;
+}
+.confirm-box .confirm-box-btns{
+    width:190px;
+    padding-bottom:10px;
+    text-align: center;
+}
+.confirm-box .confirm-box-btns a{
+    background-color: #FFFFFF;
+    display:inline-block;
+    border-radius: 2px;
+    margin:5px;
+    text-align: center;
+    width:80px;
+    height:30px;
+    line-height: 30px;
+    color:#444444;
+}
+.confirm-mash{
+    position: fixed;
+    left:0px;
+    top:0px;
+    right:0px;
+    bottom:0px;
+    background-color: rgba(255,255,255,0.3);
+    z-index:1000000;
+}
+</style>
+</head>
+
+<body>
+<div class="window" id="windowcenter">
+	<div id="title" class="title"><span class="close" id="alertclose"></span><span class="tit_txt">消息提醒</span></div>
+	<div class="content">
+	 <div id="txt"></div>
+	 <input type="button" value="确定" id="windowclosebutton" name="确定" class="btn btn-block">	
+	</div>
+</div>
+
+<script type="text/javascript" src="__PUBLIC__/js/tips.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/geo.js"></script>
+
+
+
+<div class="header">
+	<a href="javascript:void(0);" onclick="previous();" class="topnav topnav-left"><i class="icon-arrow-left2"></i></a>
+	<a href="javascript:void(0);" entry="dropdown" class="topnav topnav-right"><i class="icon-list"></i></a>
+	<div id="nav-dropdown" class="nav-dropdown" style="">
+		<include file="Public:nav_dropdown"/>
+	</div>
+	<span class="header_toptitle">购物车
+   <!-- （<span id="cart_num_tit">2</span>）-->
+    </span>
+	<div class="clear"></div>
+</div>
+<script type="text/javascript">
+var previous = function()
+{
+	if (typeof (navigator.app) !== "undefined")
+	{
+		navigator.app.backHistory();
+	}
+	else
+	{
+		window.history.back();
+	}
+}
+$(function()
+{
+	$('.topnav[entry=dropdown]').click(function()
+	{
+		$('#nav-dropdown').slideToggle();
+	});
+	document.onclick=function(e)
+	{
+		var e=e?e:window.event;
+		var tar = e.srcElement||e.target;
+		if($(tar).attr('id') != "nav-dropdown" && $(tar).parents('#nav-dropdown').size() == 0 && (!$(tar).hasClass('topnav') || $(tar).attr('entry') != "dropdown") && $(tar).parents('.topnav[entry=dropdown]').size() == 0)
+		{
+			$('#nav-dropdown').slideUp();
+		}
+	}
+	$("input[type='checkbox'],input[type='radio']").live('click', function()
+	{
+		setbg()
+	});
+	setbg();
+
+	//设置label背景
+	function setbg()
+	{
+		$(":checkbox").parent("label").removeClass('on');
+		$(":checkbox[checked]").parent("label").addClass('on');
+		$(":radio").parent("label").removeClass('on');
+		$(":radio[checked]").parent("label").addClass('on');
+	}
+});
+</script>
+<div id="goods-box" class="page-wrap">
+		<volist name="list" id="item">
+        <section class="section_box cart9-box">
+			<div class="goods-list">
+				<!--<div class="new-tit tit_cart9">
+                <span class="curr check-btn-sub"><i class="icon-checkmark"></i></span>易道云商
+                </div>-->
+				<div class="goods-item goods-manage" data-key="946493_0">
+					<!--<div class="check-choice">
+						<span class="check-btn curr" data-money="{tp#$item['goods_price']*$item['goods_nums']}">
+                        <i class="icon-checkmark"></i></span>
+					</div>-->
+					<div class="goods-img">
+						<img src="{tp#$item['spic']}" alt="{tp#$item['name']}">
+					</div>
+					<div class="goods-info">
+						<p class="cart-name">{tp#$item['name']}</p>
+                        <if condition="!empty($item['norm'])">
+                        <p style="line-height:25px;">属性：{tp#$item['norm']['title']}</p>
+                        </if>
+						<p>
+							现价：<span class="price"><b>{tp#$item['goods_price']}</b>元</span>
+						</p>
+					</div>
+                    <div class="clear"></div>
+                    <div class="cartgoods_num">
+                    	<div class="buy_num_1" data-num="-1" cart-key="{tp#$key}">
+                            <span class="goods_num_dec"></span>
+                        </div>
+                        <div class="buy_num_2">
+                            <span>{tp#$item['goods_nums']}</span>
+                            <input value="{tp#$item['goods_nums']}" data-id="{tp#$key}" data-spec="0" type="hidden">
+                        </div>
+                        <div class="buy_num_3" data-num="1" cart-key="{tp#$key}">
+                            <span class="goods_num_dec"></span>
+                            <span class="goods_num_inc"></span>
+                        </div>
+                        <a href="javascript:void(0);" class="delcartpro" entry="del" data-id="{tp#$item['goods_id']}" data-spec="0" cart_key="{tp#$key}" goods_id="{tp#$item.goods_id}" goods_norm="{tp#$item.goods_norm}">
+                        <i class="icon-trash-o"></i></a>
+                    </div>
+				</div>
+			</div>
+		</section>
+        </volist>
+        
+					
+				</div>
+<div class="h40"></div>
+<div class="tbfix-cart">
+	<ul>
+		<!--<li><i class="icon-checkmark" id="check-btn-all"></i>&nbsp;&nbsp;全选</li>-->
+		<li>合计：<span class="cart-money" id="cart-money">￥{tp#$total_price}</span>&nbsp;&nbsp;
+        <span class="nopayfee">不含运费</span>
+        </li>
+        <li style="display:block"></li>
+		<li><a _id="quick_buy" href="{tp#:U('cart2')}" entry="buy">下一步</a></li>
+	</ul>
+</div>
+<script type="text/javascript">
+
+$(function()
+{
+	//删除购物车
+	$("[entry='del']").click(function(){
+		if(confirm("确定移除吗？")){
+			var obj = $(this);
+			var cart_count = $('.mycarts').html();			//购物车中商品总数
+			
+			var post_data={}; 
+			post_data.goods_id=$(this).attr('goods_id');
+			post_data.goods_norm=$(this).attr('goods_norm');
+			post_data.goods_norm=$(this).attr('goods_norm');
+			post_data.cart_key=$(this).attr('cart_key');
+			
+			$.post("{tp#:U('Ajax/delcart')}",post_data,function(data){
+				if(data==1){
+					obj.parent().parent().parent().parent('section').remove();
+					number = $(obj).parent().parent().find('input[name="goods_number"]').val();
+					//$('.mycarts').html(parseInt(cart_count)-parseInt(number));
+				}																					
+			});
+			
+		}
+		return false;
+	});
+	
+	//判断是否勾选商品
+	$("#quick_buy").click(function()
+	{
+		size = $(".check-btn.curr").size();
+		if(size == 0)
+		{
+			show_tips('请选择商品','sad');
+		}
+		else
+		{
+			window.location.href = "#";
+		}
+	})
+	//重新计算总额
+	function reflashmoney()
+	{
+		totalmoney = 0;
+		choice_key = [];
+		j = 0;
+		$(".goods-item").each(function(i)
+		{
+			if($(this).find('.check-btn').hasClass('curr'))
+			{
+				my_price = parseFloat($(this).find('.check-btn').attr('data-money'), 2);
+				num      = parseInt($(this).find('input').val());
+				totalmoney += my_price * num;
+				choice_key[j] = $(this).attr('data-key');
+				j++;
+			}
+		});
+		if(choice_key.length == 0)
+		{
+			SetCookie('_cart_id_keys','');
+		}
+		else
+		{
+			var _cart_id_keys = choice_key.join(',');
+			SetCookie('_cart_id_keys',_cart_id_keys,1);
+		}
+		totalmoney = totalmoney.toFixed(2);
+		$("#cart-money").text('￥' + totalmoney);
+	}
+	//选择指定商品购买
+	$(".check-btn").click(function()
+	{
+		if($(this).hasClass('curr'))
+		{
+			$(this).removeClass('curr');
+			$(this).parents('.goods-list').find('.check-btn-sub').removeClass('curr');
+			$("#check-btn-all").removeClass('curr');
+		}
+		else
+		{
+			$(this).addClass('curr');
+		}
+		reflashmoney();
+	});
+	//选择指定商家
+	$(".check-btn-sub").click(function()
+	{
+		if($(this).hasClass('curr'))
+		{
+			$(this).removeClass('curr');
+			$(this).parent(".tit_cart9").siblings('.goods-item').find('.check-btn').removeClass('curr');
+			$("#check-btn-all").removeClass('curr');
+		}
+		else
+		{
+			$(this).addClass('curr');
+			$(this).parent(".tit_cart9").siblings('.goods-item').find('.check-btn').addClass('curr');
+		}
+		reflashmoney();
+	});
+	//全部选择商品
+	$("#check-btn-all").click(function()
+	{
+		if($(this).hasClass('curr'))
+		{
+			$(this).removeClass('curr');
+			$(".check-btn-sub,.check-btn").removeClass('curr');
+		}
+		else
+		{
+			$(this).addClass('curr');
+			$(".check-btn-sub,.check-btn").addClass('curr');
+		}
+		reflashmoney();
+	})
+	//减少、增加数量
+	$(".buy_num_1,.buy_num_3").click(function()
+	{
+		var act;
+		
+		var obj = $(this);
+		
+		var cart_key=obj.attr('cart-key');
+		
+		var del = parseInt(obj.attr('data-num'));
+		
+		var goods_nums_input=obj.siblings('.buy_num_2').children('span');
+		
+		var goods_nums=parseInt(goods_nums_input.text());
+
+		if(del==1){
+			act='add';
+			goods_nums+=1
+		}else{
+			act='dec';
+			goods_nums-=1
+		}
+
+        $.ajax({
+            type: 'POST',
+            url: "{tp#:U('Ajax/updatecart')}",
+            dataType: 'json',
+            data:
+            {
+				'act':act,
+				'cart_key': cart_key,
+            },
+            success: function (json){
+				goods_nums_input.text(goods_nums);
+				$("#cart-money").text('￥'+json.total_price);
+                if(goods_nums==0){
+					obj.parent().parent().parent().parent('section').remove();
+				}
+            },
+            error: function (textStatus) {}
+        });
+
+	});
+	$('.goods-item .actions dt').click(function()
+	{
+		if($(this).parent().hasClass('hover'))
+		{
+			$(this).parent().removeClass('hover');
+		}
+		else
+		{
+			$(this).parent().addClass('hover');
+		}
+	});
+	
+});
+function GetCookie(c_name)
+{
+    if (document.cookie.length > 0)
+    {
+        c_start = document.cookie.indexOf(c_name + "=")
+        if (c_start != -1)
+        {
+            c_start = c_start + c_name.length + 1;
+            c_end   = document.cookie.indexOf(";",c_start);
+            if (c_end == -1)
+            {
+                c_end = document.cookie.length;
+            }
+            return unescape(document.cookie.substring(c_start,c_end));
+        }
+    }
+    return null
+}
+
+function SetCookie(c_name,value,expiredays)
+{
+    var exdate = new Date();
+    exdate.setDate(exdate.getDate() + expiredays);
+    document.cookie = c_name + "=" +escape(value) + ((expiredays == null) ? "" : ";expires=" + exdate.toGMTString()) + ";path=/"; //
+}
+</script>
+
+</body>
+</html>

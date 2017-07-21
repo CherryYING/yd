@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="format-detection" content="telephone=no">
+<title>个人资料 - {tp#$webinfo['web_name']}</title>
+<meta name="keywords" content="{tp#$weninfo['web_key']}">
+<meta name="description" content="{tp#$weninfo['web_descrip']}">
+<meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-touch-fullscreen" content="yes">
+<!-- <meta name="full-screen" content="yes"> -->
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="address=no">
+<link rel="icon" href="__PUBLIC__/images/logo.jpg" type="image/x-icon">
+<link rel="apple-touch-icon-precomposed" href="__PUBLIC__/images/favicon.png">
+<link rel="apple-touch-startup-image" href="__PUBLIC__/images/apple-touch-startup.png" media="(device-height:568px)">
+<link rel="stylesheet" href="__PUBLIC__/css/style.css">
+<link rel="stylesheet" href="__PUBLIC__/css/icomoon.css">
+<!--<link rel="stylesheet" href="__PUBLIC__/css/shop.css">-->
+<script type="text/javascript" src="__PUBLIC__/js/jquery.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/jquery.urlparam.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/alert.js"></script><style type="text/css">
+
+#windowcenter {
+	width:290px;
+	position:fixed;
+	display:none;
+	bottom:30px;
+	left:50%;
+	 z-index:9999;
+	margin-left:-145px;
+	padding:2px;
+	border-radius:3px;
+	-webkit-border-radius:3px;
+	-moz-border-radius:3px;
+	background-color: #ffffff;
+	-webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	-moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	-o-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	font:14px/1.5 Microsoft YaHei,Helvitica,Verdana,Arial,san-serif;
+}
+.window .title {
+	background-color: #2BB2A3;
+	line-height: 26px;
+  padding: 5px 5px 5px 10px;
+	color:#ffffff;
+	text-shadow:0px 1px 1px #14544D;
+	font-size:16px;
+	border-radius:3px 3px 0 0;
+	-webkit-border-radius:0.5em 0.5em 0 0;
+	-moz-border-radius:0.5em 0.5em 0 0;
+	
+}
+.window .content {
+	/*min-height:100px;*/
+	overflow:auto;
+	padding:10px;
+	background: linear-gradient(#FBFBFB, #EEEEEE) repeat scroll 0 0 #FFF9DF;
+    color: #222222;
+    text-shadow: 0 1px 0 #FFFFFF;
+	border-radius: 0 0 0.6em 0.6em;
+	-webkit-border-radius: 0 0 0.6em 0.6em;
+	-moz-border-radius: 0 0 0.6em 0.6em;
+}
+.window #txt {
+	min-height:30px;font-size:16px; line-height:22px;
+}
+.window #windowclosebutton {
+	margin-top:10px;
+}
+.window .btn {
+	height:40px;
+	line-height:40px;
+}
+input::-moz-placeholder, textarea::-moz-placeholder { color: #999;}
+.flex{
+	display:box;
+	display:-moz-box;
+	display:-webkit-box;
+}
+.window .title .close {
+	float:right;
+	background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACTSURBVEhL7dNtCoAgDAZgb60nsGN1tPLVCVNHmg76kQ8E1mwv+GG27cestQ4PvTZ69SFocBGpWa8+zHt/Up+IN+MhgLlUmnIE1CpBQB2COZibfpnXhHFaIZkYph0SOeeK/QJ8o7KOek84fkCWSBtfL+Ny2MPpCkPFMH6PWEhWhKncIyEk69VfiUuVhqJefds+YcwNbEwxGqGIFWYAAAAASUVORK5CYII=");
+	width:26px;
+	height:26px;
+	display:block;	
+}
+.confirm-box{
+    position: fixed;
+    top:50%;
+    left:50%;
+    padding:0px 15px;
+    width:220px;
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+    box-sizing:border-box;
+    background-color: rgba(0, 0, 0, 0.8);
+    color:#FFFFFF;
+    border-radius: 2px;
+    margin-left: -110px;
+    margin-top:-55px;
+    z-index:1000001;
+}
+.confirm-box .confirm-box-txt{
+    text-align: center;
+    margin:20px auto;
+}
+.confirm-box .confirm-box-btns{
+    width:190px;
+    padding-bottom:10px;
+    text-align: center;
+}
+.confirm-box .confirm-box-btns a{
+    background-color: #FFFFFF;
+    display:inline-block;
+    border-radius: 2px;
+    margin:5px;
+    text-align: center;
+    width:80px;
+    height:30px;
+    line-height: 30px;
+    color:#444444;
+}
+.confirm-mash{
+    position: fixed;
+    left:0px;
+    top:0px;
+    right:0px;
+    bottom:0px;
+    background-color: rgba(255,255,255,0.3);
+    z-index:1000000;
+}
+</style>
+<script src="__PUBLIC__/js/common.js"></script>
+<script src="__PUBLIC__/js/share.js"></script>
+<link rel="stylesheet" href="__PUBLIC__/css/share_style1_16.css">
+
+</head>
+
+<body class="">
+
+
+<div class="window" id="windowcenter">
+	<div id="title" class="title"><span class="close" id="alertclose"></span><span class="tit_txt">消息提醒</span></div>
+	<div class="content">
+	 <div id="txt"></div>
+	 <input type="button" value="确定" id="windowclosebutton" name="确定" class="btn btn-block">	
+	</div>
+</div>
+
+
+
+<script type="text/javascript" src="__PUBLIC__/js/tips.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/api.js"></script>
+
+<div class="header">
+	<a href="javascript:void(0);" onclick="previous();" class="topnav topnav-left">
+    <i class="icon-arrow-left2"></i></a>
+	<a href="javascript:void(0);" entry="dropdown" class="topnav topnav-right"><i class="icon-list"></i></a>
+	<div id="nav-dropdown" class="nav-dropdown">
+		<include file="Public:nav_dropdown"/>
+	</div>
+	<span class="header_toptitle">个人资料</span>
+	<div class="clear"></div>
+</div>
+<script type="text/javascript" src="__PUBLIC__/js/countdown.js"></script>
+
+<div style="max-height: 100%; height: 100%;">
+	<div class="goods_attr_subwrapper">
+		<div class="consignee-form" style="">
+				<dl class="form-dl form-dl-9">
+			     
+					<dd>
+			            <div class="name">真实姓名：</div>
+			            <div class="input">
+			                <input name="name" id="name" placeholder="真实姓名" value="{tp#$user_info['name']}" type="text">
+			            </div>
+			            <div class="clear"></div>
+			        </dd>
+			        <dd>
+			            <div class="name">手机号码：</div>
+			            <div class="input">
+			                <input name="mobile" id="mobile" placeholder="手机号码" value="{tp#$user_info['mobile']}" type="tel">
+			            </div>
+			            <div class="clear"></div>
+			        </dd>
+                    <dd>
+			            <div class="name">微信号：</div>
+			            <div class="input">
+			                <input name="weixin" id="weixin" placeholder="微信号" value="{tp#$user_info['weixin']}" type="text">
+			            </div>
+			            <div class="clear"></div>
+			        </dd>
+                    <dd>
+			            <div class="name">支付宝：</div>
+			            <div class="input">
+			                <input name="alipay" id="alipay" placeholder="支付宝" value="{tp#$user_info['alipay']}" type="text">
+			            </div>
+			            <div class="clear"></div>
+			        </dd>
+			     
+			        <dd class="cur">
+			            <div class="name">通信地址：</div>
+			            <div class="input">
+			                <textarea name="address" id="address" placeholder="通信地址">{tp#$user_info['address']}</textarea>
+			            </div>
+			            <div class="clear"></div>
+			        </dd>
+				</dl>
+			</div>
+            
+		<div class="h40"></div>
+	</div>
+	<a href="javascript:;" class="goods_attr_btn" entry="btn-add" style="display: block;">确认</a>
+</div>
+
+
+<div id="share_mask" class="share_mask none"></div>
+<script type="text/javascript">
+
+var previous = function()
+{
+	if (typeof (navigator.app) !== "undefined")
+	{
+		navigator.app.backHistory();
+	}
+	else
+	{
+		window.history.back();
+	}
+}
+
+$(function(){
+	
+	$('.topnav[entry=dropdown]').click(function()
+	{
+		$('#nav-dropdown').slideToggle();
+	});
+	
+	$("[entry='btn-add']").click(function(){
+		var post_data={};
+		post_data.name=$.trim($("#name").val());
+		post_data.mobile=$.trim($("#mobile").val());
+		post_data.weixin=$.trim($("#weixin").val());
+		post_data.alipay=$.trim($("#alipay").val());
+		post_data.address=$.trim($("#address").val());
+		//console.log(post_data);return;
+		if(post_data.name==''){
+			show_tips('请填写真实姓名');
+			return false;	
+		}
+		if(post_data.mobile==''){
+			show_tips('请填写联系电话');
+			return false;	
+		}
+		if(post_data.weixin==''){
+			show_tips('请填写微信号');
+			return false;	
+		}
+		if(post_data.alipay==''){
+			show_tips('请填写支付宝');
+			return false;	
+		}
+		if(post_data.address==''){
+			show_tips('请填写通信地址');
+			return false;	
+		}
+		$.post("{tp#:U('Ajax/info_update')}",post_data,function(data){
+			show_tips('保存成功');
+		});
+		
+		
+	});
+});
+</script>
+<script src="__PUBLIC__/js/swiper.min.js"></script>
+
+
+
+</body>
+</html>

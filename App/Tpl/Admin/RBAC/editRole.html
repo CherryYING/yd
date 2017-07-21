@@ -1,0 +1,30 @@
+<extend name="base" />
+<block name="content-title">
+<h4>编辑角色</h4>  、
+<a class="btn align-right" style="margin:5px 10px;" href="{tp#:U('role')}">返回</a> 
+</block>
+<block name="content">
+<div class="tab-content default-tab" id="tab1">
+            <form method="post" action="{tp#:U('RBAC/editRole',array('id'=>I('get.id')))}">
+              <fieldset>
+                <p>
+                    角色名称：<input required type="text" name="name"  class="text-input small-input" value="{tp#$info.name}" /> 
+                    
+                    <!--<span class="input-notification success png_bg">Successful message</span>-->
+                </p>
+                <p>
+                    角色描述：<input type="text" name="remark"  class="text-input small-input" value="{tp#$info.remark}"> 
+                    <!--<span class="input-notification error png_bg">Error message</span>-->
+                </p>
+                <p>
+                    是否开启：<input type="radio" name="status" value="1" <eq name="info.status" value="1">checked="checked"</eq> />&nbsp;开启&nbsp;
+                              <input type="radio" name="status" value="0" <eq name="info.status" value="0">checked="checked"</eq>/>&nbsp;关闭&nbsp;
+                </p>
+                <p>
+                  <input type="submit" value="提 交" class="button">
+                </p>
+              </fieldset>
+              <div class="clear"></div>
+            </form>
+</div>
+</block>

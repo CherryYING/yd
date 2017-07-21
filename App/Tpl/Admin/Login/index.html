@@ -1,0 +1,140 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>{tp#$config.web_name}-管理中心登录</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="max-age=0" />
+<meta name="apple-touch-fullscreen" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<link rel="icon" href="__PUBLIC__/images/favicon.jpg" type="image/x-icon">
+<style>
+  *{margin:0;padding:0;background:transparent;font-size:100%;vertical-align:baseline;outline:none}
+  body{font:12px/1.62 'Helvetica Neue',Helvetica,Arial,Sans-serif;color:#fff;vertical-align:middle;word-wrap: break-word;outline:none;-webkit-text-size-adjust:none;background:#FFF url(__PUBLIC__/login/1.jpg) center top no-repeat; background-size:100%; }
+  body,html{overflow: hidden;overflow-y:auto;}
+  h1, h2, h3, h4, h5, h6{font-size:100%; font-weight:normal}
+  ul,li{ list-style:none}
+  a {color:#fff;text-decoration:none}
+  a:hover{color:#fff;text-decoration:underline}
+  em{font-style:normal}
+  q:before, q:after { content:'' }
+
+  .fn-clear:after {visibility: hidden;display: block;font-size: 0;content: " ";clear: both;height: 0;}
+  .fn-clear{*zoom:1;}
+  .box{position: absolute;left:50%;top:40%;width:600px;height:500px;margin:-210px 0 0 -300px; background:url(__PUBLIC__/login/bbgb.png);
+  	/*border: 1px solid #63F;*/
+	box-shadow:0 0 20px #63F;
+    -moz-border-radius: 15px;      /* Gecko browsers */
+    -webkit-border-radius: 15px;   /* Webkit browsers */
+    border-radius:15px;            /* W3C syntax */}
+  .success{background-image: url(__PUBLIC__/login/ico-ok.png);color:green;}
+  .logo{position: relative;width:386px;height:114px;background: url(__PUBLIC__/Images/logo.png) center center no-repeat;padding-right:90px;margin:20px auto;text-indent:-9999em;}
+  .slogan{position: absolute;right:-60px;top:0px;width:181px;height:81px;background: url(__PUBLIC__/login/ico-slogan.png) no-repeat;}
+  .row,.row-submit,.row-meta,.row-tips{width:284px;height:44px;margin:20px auto;}
+  .label{float:left;width:48px;height:44px;border-radius:6px 0 0 6px;cursor:pointer}
+  .ico-user{background:#235a7c url(__PUBLIC__/login/ico-user.png) center no-repeat;}
+  .ico-lock{background:#235a7c url(__PUBLIC__/login/ico-lock.png) center no-repeat;}
+  .row input{width:212px;height:20px;padding:12px;border:0 none;background:#fff;font-size:16px;line-height: 20px;border-radius:0 5px 5px 0;cursor:pointer}
+  .row-submit{margin-top:30px;}
+  .row-submit input{width:286px;height:48px;border:0 none;background:#ec4242;color:#fff;font-size:18px;line-height: 20px;border-radius:5px;cursor:pointer;box-shadow: 0 0 12px rgba(0,0,0,.5);}
+  .row-submit input:hover{background-color:#e95a5a;-webkit-transition:all 1s ease-out;transition:all 0.24s ease-out;box-shadow: 0 0 15px rgba(0,0,0,.5);}
+  .row-meta{position:relative;margin-top:-2px;font-size:14px;line-height: 1;}
+  .row-meta .tel{position: absolute;right:0;top:0;color:#f7f7f7;font-family: Georgia;}
+  .foot{text-align: center;color:#fff;font-size: 14px;}
+  .row-tips{width:248px;height:auto;background:#ffc;border:1px solid #fff100;border-radius:5px;color:#555;font-size: 14px;padding:8px 0 8px 36px;background-position:6px center;background-repeat:no-repeat;line-height:1.2}
+  .success{background-image: url(__PUBLIC__/login/ico-ok.png);color:green;}
+  .error{background-image: url(__PUBLIC__/login/ico-error.png);color:red;}
+  .animated{-webkit-animation-duration:1s;animation-duration:1s;-webkit-animation-fill-mode:both;animation-fill-mode:both;}.animated.hinge{-webkit-animation-duration:2s;animation-duration:2s;}
+  @-webkit-keyframes fadeInDown{0%{opacity:0;-webkit-transform:translateY(-20px);transform:translateY(-20px)}100%{opacity:1;-webkit-transform:translateY(0);transform:translateY(0)}}@keyframes fadeInDown{0%{opacity:0;-webkit-transform:translateY(-20px);-ms-transform:translateY(-20px);transform:translateY(-20px)}100%{opacity:1;-webkit-transform:translateY(0);-ms-transform:translateY(0);transform:translateY(0)}}.fadeInDown{-webkit-animation-name:fadeInDown;animation-name:fadeInDown;}
+  @-webkit-keyframes fadeInUp{0%{opacity:0;-webkit-transform:translateY(20px);transform:translateY(20px)}100%{opacity:1;-webkit-transform:translateY(0);transform:translateY(0)}}@keyframes fadeInUp{0%{opacity:0;-webkit-transform:translateY(20px);-ms-transform:translateY(20px);transform:translateY(20px)}100%{opacity:1;-webkit-transform:translateY(0);-ms-transform:translateY(0);transform:translateY(0)}}.fadeInUp{-webkit-animation-name:fadeInUp;animation-name:fadeInUp;}
+  /* Note: Design for a width of 320px */
+  @media only screen and (max-width: 767px) {
+    body{background-size: 100% 480px}
+    .row,.row-submit,.row-meta,.row-tips{width:236px;height:32px;margin:12px 0;}
+    .box{width:236px;height:340px;margin:-160px 0 0 -118px;}
+    .logo{width:194px;height:57px;background-size: 194px}
+    .slogan{right:-76px;top:-12px;background-size: 50%}
+    .label{width:32px;height:32px;border-radius:4px 0 0 4px}
+    .ico-user{background-size: 12px}
+    .ico-lock{background-size: 12px}
+    .row input{width:180px;padding:6px 12px;}
+    .row-submit{margin-top: 20px}
+    .row-submit input{width:236px;height:36px;}
+    .row-meta{position:relative;margin-top:-2px;font-size:13px;line-height: 1;}
+    .row-tips{width:234px;line-height: 32px;background-size:20px;font-size: 13px}
+  }
+</style>
+
+    <!--<script type='text/javascript' charset='utf-8' src='http://js.touclick.com/js.touclick?b=0242c8e2-b4f5-463f-a855-3699768e95ac&pf=api&v=v2-2'></script>
+    <script type="text/javascript">
+        var is_checked = false; //表示是否验证成功
+        function tou_submit()
+        {
+            if (is_checked === true)
+            {
+                return true;
+            }
+            else
+            {
+                window.TouClick.Start({
+                    website_key: '0242c8e2-b4f5-463f-a855-3699768e95ac',
+                    position_code: 0,//位置标记(范围：10<position_code<100 ,如不在此范围内,则为0)
+                    args: { 'this_form': this },//事件onInit、onLoading、onLoaded、onSuccess、onFail、onError 的共有第一参数
+                    captcha_style: { 'margin-left': '0px', 'margin-top': '50px' ,'top': '10%', 'left':'40%'},//设置验证码外框的css样式
+                    onSuccess: function (args, check_obj)
+                    {
+                        //check_obj = {'check_key':'','check_address':''} 二次验证口令check_key与二次验证地址check_address
+                        is_checked = true;
+                        //获取form对象
+                        var this_form = args.this_form;
+                        var hidden_input_key = document.createElement('input');
+                        hidden_input_key.name = 'check_key';
+                        hidden_input_key.value = check_obj.check_key;
+                        hidden_input_key.type = 'hidden';
+                        //将二次验证口令赋值到隐藏域
+                        this_form.appendChild(hidden_input_key);
+                        var hidden_input_address = document.createElement('input');
+                        hidden_input_address.name = 'check_address';
+                        hidden_input_address.value = check_obj.check_address;
+                        hidden_input_address.type = 'hidden';
+                        //将二次验证地址赋值到隐藏域
+                        this_form.appendChild(hidden_input_address);
+                        //再次执行 tou_submit 函数
+                        this_form.submit();
+                    },
+                    onError: function (args)
+                    {
+                        //启用备用方案
+                    }
+                });
+                return false;
+            }
+        }
+    </script>-->
+
+</head>
+<body>
+
+<div class="wrap">
+    <div class="box">
+        <h1 class="logo animated fadeInDown"><span class="slogan animated hingle fadeInDown"></span></h1>
+        <form id="credentials" class="animated fadeInUp" action="{tp#:U('Admin/Login/login',array('jump'=>I('get.jump')))}" method="post" onSubmit="return tou_submit.call(this)">
+            <div class="row">
+                 <label for="username" class="label ico-user"></label><input required type="text" id="username" name="username" placeholder="请输入用户名" accesskey="n"/>
+            </div>
+            <div class="row">
+                <label for="password" class="label ico-lock"></label><input required type="password" id="password" name="password" placeholder="请输入密码" accesskey=""/>
+            </div>
+            <div class="row-submit"><input type="submit" value="登录" /></div>
+        </form>
+        <div class="foot animated fadeInUp"><b>{tp#$config['web_name']} &copy;&nbsp;{tp#$config.web_name}</b></div>
+    </div>
+</div>
+<script>
+</script>
+</body>
+</html>
+
+

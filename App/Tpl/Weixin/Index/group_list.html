@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>精品团购-{tp#$webinfo.web_name}</title>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/dist/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/dist/css/bootstrap-theme.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/group.css">
+    <script src="__PUBLIC__/js/jquery.1-7-1.js"></script>
+</head>
+<style>
+.search{color:#666;line-height:35px;width:70%;border-radius:25px;border:1px solid #CCC;padding:0 10px;}
+.fz20{font-size:22px;}
+.col-xs-2{width:25% !important}
+</style>
+<body class="page bg">
+<header>
+    <a href="javascript:history.go(-1)" class="back back-gray">返回</a>
+    <div class="info">精品团购</div>
+</header>
+     
+<div class="cj-filter text-center clearfix">  
+    <div class="col-xs-2 <if condition='!isset($_GET["rank"])'>active</if>" onClick='location.href="{tp#:U('group_list')}"'>默认</div>
+    <div class="col-xs-2 <if condition='$_GET["rank"] eq "sale_num"'>active</if>"  onClick='location.href="{tp#:U('group_list',array('rank'=>sale_num))}"'>销量</div>
+    <div class="col-xs-2 <if condition='$_GET["rank"] eq "hits"'>active</if>" onClick='location.href="{tp#:U('group_list',array('rank'=>hits))}"'>人气</div>
+    <div class="col-xs-2 <if condition='$_GET["rank"] eq "price"'>active</if>" onClick='location.href="{tp#:U('group_list',array('rank'=>price))}"'>价格</div>
+   <!-- <div class="col-xs-2" onClick="location.href='/index.php?m=Index&a=product_list&style=box'">
+    <img src="__PUBLIC__/images/icon-lists.png" width="20px;">
+    </div>-->
+</div>
+    
+
+<!--搜索框-->
+<div class="cj-filter mt15"> 
+    <div class="searchbar">
+        <div style="position:relative;padding:10px;">
+          <input id="keyword" class="search" placeholder="请输入关键字" type="text" value=""/>
+          <a class="btn" id="so">
+          <span class="glyphicon glyphicon-search fz20"></span>
+          <a href="/index.php?m=Index&a=product_list">全部</a>
+          </a> 
+        </div>
+      </div>
+</div>
+<!--/搜索框-->
+    
+<div class="group-list">
+<volist name="list" id="item">
+  <a href="{tp#:U('Index/group_show',array('id'=>$item['id']))}" class="table-cell">
+       <div class="info">
+       <img src="{tp#$item.spic|get_thumb|default='__PUBLIC__/images/1-1.jpg'}">
+      </div>
+      <div class="sidebar">
+          <h3>{tp#$item.name}</h3>
+          <div class="sale-count">
+              <div class="f-r">
+                    
+                  <span class="price">
+                      <i>¥{tp#$item.group_price}</i><strong>¥{tp#$item.market_price}</strong>
+                  </span>
+                        
+              </div>
+              <div class="count">已售{tp#$item.sale_num}</div>
+          </div>
+      </div>
+  </a>
+</volist>      
+</div>
+<div style="clear:both"> </div>
+</div>
+
+<!--底部导航-->
+<include file="Public:footbar2"/>   
+<!--底部导航-->
+   
+</body>
+</html>

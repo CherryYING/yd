@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{tp#$webinfo.web_name}</title>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/dist/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/dist/css/bootstrap-theme.css">
+	<link rel="stylesheet" href="__PUBLIC__/dist/css/font-awesome.css">
+    
+    <!--星评字体-->
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/dist/css/font.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/assets/font-awesome/css/font-awesome.min.css">
+    <!--星评字体-->
+    
+    <!--[if IE 7]>
+    <link rel="stylesheet" href="__PUBLIC__/dist/css/font-awesome-ie7.css">
+    <![endif]-->
+	<link type="text/css" rel="stylesheet" href="__PUBLIC__/star/demo/css/demo.css">
+	<script type="text/javascript" src="__PUBLIC__/star/demo/js/jquery.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/star/lib/jquery.raty.min.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+</head>
+
+<body class="page bg">
+    <header class="navbar po-re">
+        <div class="navbar-icon">
+            <a href="javascript:history.go(-1);" class="left-back">
+                <span class="glyphicon glyphicon-chevron-left">返回</span>
+			</a>
+		</div>
+        <span class="nav-title">我的评价</span>
+   </header>
+<volist name="list" id="item">
+	   <div class="media cj-list order-checkbox order-radio"  data-toggle="buttons">
+			<a class="pull-left thumbnail" href="{tp#:U('Index/product',array('id'=>$item['goods_id']))}">
+				<img class="media-object" src="{tp#$item.goods_spic}">
+			</a>
+			<div class="media-body">
+					<h4 class="-media-heading">{tp#$item.goods_name}</h4>
+					<p class="f999999 mb5">{tp#$item.content}</p>
+					<!--<p class="f999999 mb5">数量：X{tp#$info.goods_nums}</p>-->
+					<div class="comm-text-pricce f999999" style="width:100%;" >
+						<em class="f16">
+                            <switch name="item.star">
+    <case value="5">
+    	<i class="fa fa-star color_orange"></i>
+        <i class="fa fa-star color_orange"></i>
+        <i class="fa fa-star color_orange"></i>
+        <i class="fa fa-star color_orange"></i>
+        <i class="fa fa-star color_orange"></i>
+    </case>
+    
+    <case value="4">
+    	<i class="fa fa-star color_orange"></i>
+        <i class="fa fa-star color_orange"></i>
+        <i class="fa fa-star color_orange"></i>
+        <i class="fa fa-star color_orange"></i>
+        <i class="fa fa-star color_ccc"></i>
+    </case>
+    
+    <case value="3">
+    	<i class="fa fa-star color_orange"></i>
+        <i class="fa fa-star color_orange"></i>
+        <i class="fa fa-star color_orange"></i>
+        <i class="fa fa-star color_ccc"></i>
+        <i class="fa fa-star color_ccc"></i>
+    </case>
+    
+    <case value="2">
+    	<i class="fa fa-star color_orange"></i>
+        <i class="fa fa-star color_orange"></i>
+        <i class="fa fa-star color_ccc"></i>
+        <i class="fa fa-star color_ccc"></i>
+        <i class="fa fa-star color_ccc"></i>
+    </case>
+    
+    <case value="1">
+    	<i class="fa fa-star color_orange"></i>
+       <i class="fa fa-star color_ccc"></i>
+        <i class="fa fa-star color_ccc"></i>
+        <i class="fa fa-star color_ccc"></i>
+        <i class="fa fa-star color_ccc"></i>
+    </case>
+    
+    <case value="0">
+    	<i class="fa fa-star color_ccc"></i>
+        <i class="fa fa-star color_ccc"></i>
+        <i class="fa fa-star color_ccc"></i>
+        <i class="fa fa-star color_ccc"></i>
+        <i class="fa fa-star color_ccc"></i>
+    </case>
+    
+    </switch>
+                        
+                        </em>
+					</div> 
+                    <p class="f999999">
+                     <span  class="pull-right f14"><i><em>{tp#$item.posttime|date='Y-m-d H:i:s',###}</em></i></span>
+                    </p>
+			</div>
+            
+	   </div>
+</volist>
+<if condition="count($list) eq 0">
+<p>
+<center>暂无评价记录</center>
+</p>
+</if>
+
+<if condition="strlen($page) gt 1"><p id="page">{tp#$page}</p></if>
+
+	  <!-- <div class="media cj-list">
+		   <p class="f14 pull-right">小计：<b class="fcff0000">&yen;{tp#$info['goods_price']*$info['goods_nums']}元</b></p>
+		   <div class="edit-comment mt15">
+				给商品评分
+				<div id="function-demo" class="target-star pull-right"></div>
+				<div id="function-hint" class="hint"></div>
+		   </div>
+		   <textarea id="content" style="width:100%; min-height:60px; margin-top:15px;" placeholder="写点什么吧！您的意见对其他买家有很大帮助"></textarea>
+	   </div>
+		<div class="text-center"><a id="btn-sub" class="btn btn-warning mb5 mt15">提交</a></div>
+		   -->
+	   
+<script type="text/javascript">
+	var star=5;
+    $(function() {
+      $.fn.raty.defaults.path = 'lib/img';
+      $('#function-demo').raty({
+	  	number: 5,//多少个星星设置
+		score: 5,//初始值是设置
+		targetType: 'hint',//类型选择，number是数字值，hint，是设置的数组值
+        path      : "__PUBLIC__/"+'star/demo/img',
+		hints     : ['差','','一般','','好'],
+        cancelOff : 'cancel-off-big.png',
+        cancelOn  : 'cancel-on-big.png',
+        size      : 24,
+        starHalf  : 'star-half-big.png',
+        starOff   : 'star-off-big.png',
+        starOn    : 'star-on-big.png',
+        target    : '#function-hint',
+        cancel    : false,
+        targetKeep: true,
+		targetText: '请选择评分',
+
+        click: function(score, evt) {
+          	//alert('' +  "\nscore: " + score + "\nevent: " + evt.type);
+			star=score;
+        }
+      });
+	  
+	  //提交评论
+	  $("#btn-sub").click(function(){
+			var post_data={};
+			post_data.id="{tp#:I('get.id')}";			//id
+			post_data.star=star;
+			post_data.content=$("#content").val();
+			if(post_data.content==''){
+				alert('请填写评论内容');
+				return false;
+			}
+			//console.log(post_data);
+			//return false;
+			$.post("{tp#:U('Ajax/goods_comment')}",post_data,function(json){
+				alert(json.msg);
+				location.href="{tp#:U('Ucenter/order_detail')}&id="+json.order_id;
+			},'json');
+			 
+	  });
+
+	  $('#function-demo1').raty({
+	  	number: 5,//多少个星星设置
+		score: 0,//初始值是设置
+		targetType: 'hint',//类型选择，number是数字值，hint，是设置的数组值
+        path      : "__PUBLIC__/"+'star/demo/img',
+		hints     : ['差','','一般','','好'],
+        cancelOff : 'cancel-off-big.png',
+        cancelOn  : 'cancel-on-big.png',
+        size      : 24,
+        starHalf  : 'star-half-big.png',
+        starOff   : 'star-off-big.png',
+        starOn    : 'star-on-big.png',
+        target    : '#function-hint',
+        cancel    : false,
+        targetKeep: true,
+		targetText: '请选择评分',
+
+        click: function(score, evt) {
+          alert('' +  "\nscore: " + score + "\nevent: " + evt.type);
+        }
+      });
+	  $('#function-demo2').raty({
+	  	number: 5,//多少个星星设置
+		score: 0,//初始值是设置
+		targetType: 'hint',//类型选择，number是数字值，hint，是设置的数组值
+        path      : "__PUBLIC__/"+'star/demo/img',
+		hints     : ['差','','一般','','好'],
+        cancelOff : 'cancel-off-big.png',
+        cancelOn  : 'cancel-on-big.png',
+        size      : 24,
+        starHalf  : 'star-half-big.png',
+        starOff   : 'star-off-big.png',
+        starOn    : 'star-on-big.png',
+        target    : '#function-hint',
+        cancel    : false,
+        targetKeep: true,
+		targetText: '请选择评分',
+
+        click: function(score, evt) {
+          alert('' +  "\nscore: " + score + "\nevent: " + evt.type);
+        }
+      });
+
+    });
+  </script>
+</body>
+<style>
+#page{margin:10px;text-align:center;background:#0099FF;color:#FFF;padding:10px;}
+/*#page a{border:1px solid #0099FF;padding:5px;border-radius:18px;margin:0 20px;}*/
+#page a{border:1px solid #0099FF;color:#FFF;margin:0 10%}
+</style>
+</html>

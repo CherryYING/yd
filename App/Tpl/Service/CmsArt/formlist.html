@@ -1,0 +1,57 @@
+<extend name="RBAC:base" />
+<block name="content-title">
+<h4>团购人员列表</h4>  
+</block>
+<block name="content">
+          <div class="tab-content default-tab" id="tab1">
+            <div class="notification png_bg" id="dmsg" style="display:none;">
+              <a href="#" class="close"><img src="__PUBLIC__/Images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
+              <div>
+                msg.
+              </div>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                   <th>ID</th>
+                   <th>姓名</th>
+                   <th>电话</th>
+                   <th>邮箱</th>
+                   <th>备注</th>
+                   <th>时间</th>
+                   <th>操作</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <volist name="formlist" id="v">
+                    <tr>
+                      <td>{tp#$v.id}</td>
+                      <td>{tp#$v.tname}</td>
+                      <td>{tp#$v.ttel}</td>
+                      <td>{tp#$v.temail}</td>
+                      <td>{tp#$v.tmsg}</td>
+                      <td>{tp#$v.ttime}</td>
+
+                      <td>    	
+                        <a class="btn btn-danger" href="{tp#:U('formdel',array('id'=>$v['id']))}" onClick="return confirm('确定要删除此信息?')" title="Delete">删除</a> 
+                      </td>
+                    </tr>
+                </volist>
+              </tbody>
+
+              <tfoot>
+                <tr>
+                  <td colspan="6">
+                    <div class="bulk-actions align-left">
+                    </div>
+                    <div class="pagination">
+                      {tp#$show}
+                    </div>
+                    <div class="clear"></div>
+                  </td>
+                </tr>
+              </tfoot>              
+            </table>
+          </div> <!-- End #tab1 -->  
+</block>  

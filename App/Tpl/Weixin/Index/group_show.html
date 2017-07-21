@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>精品团购详情-{tp#$webinfo.web_name}</title>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/dist/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/dist/css/bootstrap-theme.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+   	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/group.css">
+    <script src="__PUBLIC__/js/jquery.1-7-1.js"></script>
+</head>
+<body class="page bg">
+<header>
+    <a href="javascript:history.go(-1)" class="back back-gray">返回</a>
+    <div class="info">商品团购详情</div>
+</header>
+  
+ 
+ <!-- 团购信息 -->
+<div class="content group-info">
+    <div class="headbar">
+        <div id="slider" style="visibility: visible;">
+            <div class="swipe-wrap" style="width:100%; height: auto;">
+            <figure data-index="0" style="width:100%; left: 0px; transition: 300ms; -webkit-transition: 300ms; -webkit-transform: translate(0px, 0px) translateZ(0px);">
+                <img src="{tp#$info.spic|default='__PUBLIC__/images/thumb.jpg'}">
+            </figure>     
+            </div>
+        </div>
+        <div class="cont">
+            <h3>{tp#$info.name}</h3>
+            <p>{tp#$info.descript}</p>
+        </div>
+      
+    </div>
+    <div class="cost-box">
+    
+        <div class="buy-box">
+            <div class="price">¥</div>
+            <div class="price sum">{tp#$info.group_price}</div>
+            <div class="past Fix">
+                <div class="t">
+                    <span class="o-price">¥{tp#$info.market_price}</span>
+                </div>
+            </div>
+        
+        
+            <div class="last">
+            <a  class="buy-btn" goods_id="{tp#$info.id}" goods_price="{tp#$info.group_price}">立即购买</a>
+            </div>
+        </div>  
+                      
+        <div class="promo-detail-list">
+            <a href="javascript:void(0);" class="J_skip_app" data-id="13667097">
+                <div class="blo">
+                    <!--截至12月1日-->
+                    <div class="p-r"><p class="arrow-ent right"></p></div>
+                </div>
+            </a>
+        </div>
+     
+  </div>
+</div>
+
+<div class="detail-info group-detail change-detail"></div>
+
+    <div class="detail-info buy-know">
+        <div class="con">
+            <div class="detail-box">
+                <h3 class="tit">团购商品详情<i class="icon-comm buy"></i></h3>
+                <div class="detail-box">
+                    <div class="purchase-notes">
+                        <dl>    
+                            <dd>
+                                <p class="listitem">
+                                {tp#$info.content|stripcslashes|htmlspecialchars_decode}
+                                </p>
+                            </dd>
+                        </dl>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <a class="buy-now" goods_id="{tp#$info.id}" goods_price="{tp#$info.group_price}">
+        <span>立即购买</span>
+    </a>
+    
+	
+<!--底部导航-->
+<include file="Public:footbar2"/>
+<!--底部导航-->
+<style>
+.listitem img{width:100% !important;text-align:center !important}
+</style>
+<script>
+$(function(){
+	//立即购买
+	$(".buy-now,.buy-btn").click(function(){
+		var post_data={};
+		post_data.goods_id=$(this).attr('goods_id');
+		post_data.goods_price=$(this).attr('goods_price');
+		post_data.goods_nums=1;	
+		$.post("{tp#:U('Ajax/addcart')}",post_data,function(data){
+			location.href="{tp#:U('Index/cart')}";	
+		});
+	});
+});
+</script>
+</body>
+</html>

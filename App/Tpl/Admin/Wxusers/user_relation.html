@@ -1,0 +1,223 @@
+<extend name="RBAC:base" />
+<block name="content-title">
+<h4>用户关系</h4> 
+<a style="float:right;margin:5px 10px;" href="{tp#:U('index')}" class="btn">会员列表</a> 
+</block>
+<block name="content">
+<style>
+.panel-title{width:auto;background:#CCC;border-radius:0px 0px 0 0;text-align:left;color:#FFF;font-weight:700;border-left:4px solid #459300;padding:10px}
+.panel{border:1px dashed #ccc;padding:0 10px;}
+.panel .small{width:100px !important}
+</style>
+<div class="tab-content default-tab" id="tab1">
+<div class="warn">
+	背景为红的账户存在异常，已被禁用
+</div>
+<p class="panel-title">个人信息</p>
+<div class="block">
+<table width='100%'>
+   <thead>
+    <tr>
+      <th>用户UID</th>
+      <th>头像</th>
+      <th>昵称</th>
+      <th>会员等级</th>
+      <th>登录账户</th>
+      <th>资金账户（A）</th>
+      <th>资金账户（B）</th>
+      <th>云金币</th>
+      <th>注册时间</th>
+      <th>操作</th>
+    </tr>
+   </thead>
+    <tr <eq name="info['status']" value='2'>style="background:#FADEDB"</eq>>
+      <td>{tp#$info['id']}</td>
+      <td><img src="{tp#$info.headimgurl}" class="thumb" onerror="this.src='__PUBLIC__/Images/no-img.png'"/></td>
+      <td width='120'>{tp#$info['nickname']}</td>
+      <td>
+      <switch name="info['role_id']">
+      <case value="1">普通会员</case>
+      <case value="2"><font color="green">市级代理</font></case>
+      <case value="3"><font color="blue">省级代理</font></case>
+      <case value="4"><font color="red">全国代理</font></case>
+      </switch>
+      </td>
+      
+      <td>{tp#$info.username|default='---'}</td>
+      
+      <td><b>&yen;</b> {tp#$info['money_a']} 元</td>
+      <td><b>&yen;</b> {tp#$info['money']} 元</td>
+      <td><b>&yen;</b> {tp#$info['money_cloud']}</td>
+      <td>{tp#$info.posttime|date='y/m/d H:i',###}</td>
+      <td><a href="{tp#:U('edit',array('id'=>$info['id']))}">查看</a></td>
+    </tr>
+</table>
+</div>
+
+<div style="padding:10px;"></div>
+
+<if condition="!empty($parent)">
+<p class="panel-title">上级用户</p>
+<div class="block">
+<table width='100%'>
+   <thead>
+    <tr>
+      <th>用户UID</th>
+      <th>头像</th>
+      <th>用户关系</th>
+      <th>昵称</th>
+      <th>会员等级</th>
+      <th>资金账户（A）</th>
+      <th>资金账户（B）</th>
+      <th>云金币</th>
+      <th>注册时间</th>
+      <th>登录账户</th>
+      <th>操作</th>
+    </tr>
+   </thead>
+   <volist name="parent" id="item">
+    <tr <eq name="item['status']" value='2'>style="background:#FADEDB"</eq>>
+      <td>{tp#$item.id}</td>
+      <td><img src="{tp#$item.headimgurl}" class="thumb" onerror="this.src='__PUBLIC__/Images/no-img.png'"/></td>
+      <td>{tp#$item.relation}</td>
+      <td width='120'>{tp#$item.nickname}</td>
+      
+      <td>
+      <switch name="item['role_id']">
+      <case value="1">普通会员</case>
+      <case value="2"><font color="green">市级代理</font></case>
+      <case value="3"><font color="blue">省级代理</font></case>
+      <case value="4"><font color="red">全国代理</font></case>
+      </switch>
+      </td>
+      <td><b>&yen;</b> {tp#$item['money_a']} 元</td>
+      <td><b>&yen;</b> {tp#$item['money']} 元</td>
+      <td><b>&yen;</b> {tp#$item['money_cloud']}</td>
+      <td>{tp#$item.posttime|date='y/m/d H:i',###}</td>
+      <td>{tp#$item['username']|default='---'}</td>
+      <td><a href="{tp#:U('edit',array('id'=>$item['id']))}">查看</a></td>
+    </tr>
+    </volist>
+</table>
+</div>
+</if>
+
+
+
+<div style="padding:10px;"></div>
+
+
+<p class="panel-title">下级用户</p>
+
+<!--<iframe src="{tp#:U('Wxusers/son_list',array('id'=>$info['id']))}" style="width:100%;border:none;height:300px">
+</iframe>-->
+<table width='100%'>
+  <thead>
+    <tr>
+       <th>用户UID</th>
+       <th>头像</th>
+       <th>用户关系</th>
+       <th>昵称</th>
+       <th>会员类型</th>
+       <th>姓名</th>
+       <th>联系电话</th>
+       <th>注册时间</th>
+       <th>登录账户</th>
+       <th>操作</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <volist name="son_list" id="v">
+        <tr <eq name="v['status']" value='2'>style="background:#FADEDB"</eq>>
+          <td>【{tp#$v.id}】</td>	
+          
+          <td>
+          <img src="{tp#$v.headimgurl}" class='thumb' onerror="this.src='__PUBLIC__/Images/no-img.png'">
+          </td>
+		  
+          <td>{tp#$v.relation}</td>
+          <td width='120'>
+          {tp#$v.nickname}
+          </td>
+          <td>
+          <switch name="v.role_id">
+             <case value="1">普通会员</case>
+              <case value="2"><font color="green">市级代理</font></case>
+              <case value="3"><font color="blue">省级代理</font></case>
+              <case value="4"><font color="red">全国代理</font></case>
+          </switch>
+          </td>
+         
+          <td>
+          {tp#$v.name|default='---'}
+          </td>
+          <td>
+          {tp#$v.mobile|default='---'}
+          </td>
+         
+          <td>
+          <eq name="v.posttime" value='0'>
+          暂无
+          <else/>{tp#$v.posttime|date='y/m/d H:i:s',###}
+          </eq>
+          </td>
+          <td>
+          {tp#$v.username|default='---'}
+          </td>	
+          <td>
+             <a title="查看" href="{tp#:U('edit',array('id'=>$v['id']))}">查看</a>
+          </td>
+        </tr>
+    </volist>
+  </tbody>
+
+  <tfoot>
+    <tr>
+      <td colspan="10">
+        <div class="pagination">
+          {tp#$show}
+        </div>
+        <div class="clear"></div>
+      </td>
+    </tr>
+  </tfoot>              
+</table>
+
+
+</div> <!-- End #tab1 -->  
+<style>
+	select,input[type='text']{border-radius:3px;padding:3px 5px;border:1px solid #CCC}
+</style>          
+<script>
+$(function(){
+	$("#btn-so").click(function(){
+		  var key=$("select[name='key'] option:selected").val();
+		  var val=$("input[name='val']").val();
+		  var begin_time=$("input[name='begin_time']").val();
+		  var end_time=$("input[name='end_time']").val();
+		  
+		  var param='';
+		  
+		  if(key!=''&&val!=''){
+			 param+="&key="+key+'&val='+val;
+		  }
+		  
+		  if(begin_time!=''){
+			   param+='&begin_time='+begin_time;
+		  }
+		  
+		  if(end_time!=''){
+			   param+='&end_time='+end_time;
+		  }
+		  
+		  if(param==''){
+			  //alert('请输入关键字！')
+			  artDialog({content:'请输入搜索条件！', style:'alert', lock:false}, function(){});
+		  }else{
+			  location.href="{tp#:U('index')}"+param;
+		  }
+	});
+});
+</script>          
+</block>  

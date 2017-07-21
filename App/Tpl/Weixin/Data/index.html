@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-touch-fullscreen" content="yes">
+<link rel="stylesheet" href="__PUBLIC__/bootstrap/css/bootstrap.css">
+<title>代理订单列表</title>
+</head>
+
+<body>
+
+<table class="table">
+<tr>
+   <th>订单ID</th>
+   <th>订单编号</th>
+   <th>代理等级</th>
+   <th>姓名</th>
+   <th>联系电话</th>
+   <th>微信号</th>
+   <!--<th>通信地址</th>-->
+   <th>订单金额</th>
+   <th>支付状态</th>
+   <th>赠送云金币</th>
+   <th>下单时间</th>
+   <th>操作</th>
+</tr>
+	
+    <volist name="list" id="v">
+    <tr <eq name="v['errcode']" value='1'>style="background:#FADEDB"</eq>>
+      <td>【{tp#$v['id']}】</td>
+      <td>{tp#$v['out_trade_no']}</a>
+      <td>
+      <switch name="v['aid']">
+      <case value="1">市级代理</case>
+      <case value="2">省级代理</case>
+      <case value="3">全国代理</case>
+      </switch>
+      </td>
+      </td>
+      <td>
+      <a target="_blank" title="查看会员" href="{tp#:U('Wxusers/edit',array('id'=>$v['uid']))}">
+      <eq name="v['user']['status']" value='2'>
+      <font color="red">[{tp#$v['user']['id']}]{tp#$v['user']['name']}</font>
+      <else/>
+      [{tp#$v['user']['id']}]{tp#$v['user']['name']}
+      </eq>
+      
+      </a>
+      </td>
+      <td>{tp#$v['user']['mobile']}</td>
+      <td>{tp#$v['user']['weixin']}</td>
+      <td style="color:red"><b>&yen; </b>{tp#$v['total_fee']}</td>
+      <td>
+        <a class="btn" title="#" href="#">
+        <switch name="v.pay_status">
+        <case value="0"><font color='red'>未支付</font></case>
+        <case value="1"><b><font color="green">已支付</font></b></case>
+        <case value="2"><b><font color='red'>已退款</font></b></case>
+        </switch>
+        </a>
+      </td>
+      
+      <td>
+      <eq name="v['pay_status']" value='1'>
+      {tp#$v['money_cloud']|default=0}
+      <else/>
+      0
+      </eq>
+      云金币
+      </td>
+      <td>{tp#$v['order_time']|date='Y/m/d H:i:s',###}</td>
+      <td>
+        <a class="btn btn-danger" onclick="return confirm('确定删除？')" href="{tp#:U('order_del',array('id'=>$v['id']))}">删除</a>
+      </td>
+    </tr>
+    </volist>
+
+</table>
+
+</body>
+</html>

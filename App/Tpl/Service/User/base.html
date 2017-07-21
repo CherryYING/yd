@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>{tp#$config['web_name']}-店铺中心</title>
+  <link rel="shortcut icon" href="./favicon.ico"  type="image/x-icon" />
+  <link rel="stylesheet" href="__PUBLIC__/Css/reset.css" type="text/css" media="screen" />
+  <link rel="stylesheet" href="__PUBLIC__/Css/style.css" type="text/css" media="screen" />
+  <link rel="stylesheet" href="__PUBLIC__/Css/invalid.css" type="text/css" media="screen" /> 
+  <!--字体图标-->
+  <link rel="stylesheet" href="__PUBLIC__/fonts/font-awesome.min.css" type="text/css"/>  
+  <!--/字体图标-->
+  <block name="jq">
+	<script type="text/javascript" src="__PUBLIC__/Js/jquery-1.8.3.min.js"></script>
+  </block>
+  <script type="text/javascript" src="__PUBLIC__/Js/jquery-1.7.js"></script>
+  <script type="text/javascript" src="__PUBLIC__/Js/simpla.jquery.configuration.js"></script>
+  <script type="text/javascript" src="__PUBLIC__/Js/facebox.js"></script>
+  <script type="text/javascript" src="__PUBLIC__/Js/jquery.wysiwyg.js"></script>
+  <!--公共js-->
+  <script type="text/javascript" src="__PUBLIC__/Js/common.js"></script>
+  <!--公共js-->
+  <!--artdialog-->
+  <script type="text/javascript" src="__PUBLIC__/Js/artDialog/artDialog.js?skin=aero"></script>
+  <!--artdialog-->
+  <script type="text/javascript" src="__PUBLIC__/Js/datepicker/WdatePicker.js"></script>	
+</head>
+  <body>
+  <!--topbar-->
+  <div class='topbar'>
+      <h2 class='align-left'><a href="{tp#:U('Index/index')}" style="color:#FFF;font-size:20px">{tp#$config['web_name']}-店铺中心</a></h2>
+      <div  class='align-right' style="margin-right:20px;">
+      	<i id='user-curr' class="fa fa-user" style="font-size:30px;color:#FFF;cursor:pointer"></i>
+      </div>
+      <div class="clear"></div>
+      <div  class='align-right user-info'>
+      	<ul>
+        <li><b>账户名：{tp#:I('session.service_name')}</b></li>
+        <li><b>账户类型：全国代理商</b></li>
+        <li><i class="fa fa-power-off v-middle" style="font-size:20px;"></i>
+        &nbsp;&nbsp;<a href="{tp#:U('Login/logout')}" style="color:#666;font-weight:700">安全退出</a>
+        </li>
+        </ul>
+      </div>
+      <div class="clear"></div>
+  </div>
+  <!--topbar-->
+  
+  <div id="body-wrapper">
+    <block name="left"><include file="Index:left" /></block> <!-- 左侧列表 -->
+    <div id="main-content">
+    <block name="top">      
+      <ul class="shortcut-buttons-set" style="display:none">
+        <li><a class="shortcut-button" href="{tp#:U('Order/index')}"><span>
+          <img src="__PUBLIC__/Images/icons/order_48.png" alt="icon" /><br />
+          订单管理
+        </span></a></li>
+         <li><a class="shortcut-button" href="{tp#:U('Goods/index')}"><span>
+          <img src="__PUBLIC__/Images/icons/clock_48.png" alt="icon" /><br />
+          商品管理
+        </span></a></li>
+        <li><a class="shortcut-button" href="{tp#:U('Distributor/index')}"><span>
+          <img src="__PUBLIC__/Images/icons/config_48.png" alt="icon" /><br />
+          分销配置
+        </span></a></li>
+      	<li><a class="shortcut-button" href="{tp#:U('WechatText/index')}"><span>
+          <img src="__PUBLIC__/Images/icons/wx_48.png" alt="icon" />
+          <!--<i class="fa fa-weixin" style="font-size:48px;color:#0C3"></i> -->
+          <br />
+          微信回复设置
+        </span></a></li>
+        <li><a class="shortcut-button" href="{tp#:U('Wxusers/index')}"><span>
+          <img src="__PUBLIC__/Images/icons/wxfans.png" alt="icon" width='48' height='48'/>
+          <br />
+          微信用户管理
+        </span></a></li>
+        <li><a class="shortcut-button" href="{tp#:U('CmsArt/artlist')}"><span>
+          <img src="__PUBLIC__/Images/icons/pencil_48.png" alt="icon" /><br />
+          文章管理
+        </span></a></li>
+        <li><a rel="modal" class="shortcut-button" href="{tp#:U('WechatPub/get_wx_ip')}"><span>
+          <img src="__PUBLIC__/Images/icons/ip_red_48.png" alt="icon" /><br />
+          获取微信IP
+        </span></a></li>
+        <li><a rel="modal" class="shortcut-button" href="{tp#:U('Delcache/index')}" ><span>
+          <img src="__PUBLIC__/Images/icons/clear.png" alt="icon"><br>
+          清空缓存
+        </span></a></li>
+        <li><a rel="modal" class="shortcut-button" href="{tp#:U('Delcache/del_data')}" ><span>
+          <img src="__PUBLIC__/Images/icons/clear.png" alt="icon"><br>
+          清除测试数据
+        </span></a></li>
+        <div style='clear:both !important'></div>
+      </ul>
+    </block>
+      <div class="clear"></div> 
+      <div class="content-box" id="main-box">
+        <div class="content-box-header">
+          <block name="content-title"><h4>管理员列表</h4></block>
+          <div class="clear"></div>
+        </div>
+        <div class="content-box-content">
+          <block name="content">
+ 
+          </block>
+        </div> <!-- End .content-box-content -->
+      </div> <!-- End .content-box -->
+
+      <div class="clear"></div>
+      <div id="footer">
+        <block name="foot"> 
+        <small>
+            Copyright  &#169;  2015 {tp#$config['web_name']} 版权所有  | Powered by <a href="#">{tp#$config['web_name']}</a> | <a href="#">Top</a>
+        </small>
+      </block>
+      </div><!-- End #footer -->
+    </div> <!-- End #main-content -->
+  </div>
+</body>
+</html>

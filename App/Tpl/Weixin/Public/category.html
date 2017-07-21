@@ -1,0 +1,13 @@
+<!--<p><img src="__PUBLIC__/images/homeMenuTop.png" width="100%" /></p>-->
+<div style="line-height:26px;">
+    <h2 style="border-bottom:1px solid #ededed;">
+    <a href="{tp#:U('Index/jifen_product_list')}">积分兑换</a>
+    </h2>
+        
+    <volist name="cate_list" id="item">
+    <h2 style="border-bottom:1px solid #ededed;">
+    <a href="{tp#:U('Index/product_list',array('id'=>$item['id']))}">{tp#$item.name}</a></h2>
+    </volist>
+          
+    </div>
+<div style=" height:45px;"></div>

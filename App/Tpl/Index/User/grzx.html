@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+   <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>个人中心</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="cleartype" content="on">
+	<link rel="stylesheet" href="css/style.css"/>
+ 
+</head>
+<script type="text/javascript" src="css/area.js"></script>
+<script type="text/javascript" src="css/location.js"></script>
+<script type="text/javascript" src="css/jquery.min.js"></script>
+ 
+<body >
+<div class="site-header">
+	<strong class="tit-site-b">个人中心</strong>
+	<div class="gohome"><a textvalue="回到首页&gt;" title="" target="_self" href="javascript:history.go(-1);">返回&gt;</a></div>
+</div>
+<div class="container con_top" >
+	<ul style="margin-left:-35px;">
+    	<li>昵称: &nbsp;<input id="gr"  type="text" placeholder="请输入昵称" ></li>
+        <li>真实姓名:  &nbsp;<input id="gr"  type="text" placeholder="请输入姓名"  ></li>
+        <li>联系电话: &nbsp;<input id="gr"  type="text" placeholder="请输入手机号码" ></li>
+        <li><span>所在地区:</span> &nbsp;
+         <select id="loc_province" style="width:82px;"></select>
+          <select id="loc_city" style="width:82px;"></select>
+          <select id="loc_town" style="width:120px;"></select>
+          <input type="hidden" name="location_id" />
+<script type="text/javascript">
+$(document).ready(function() {
+	showLocation();
+});
+</script>
+		<div class="clear"></div>
+        </li>
+     </ul>
+     <div class="clear"></div>
+      <div class="btn" style="margin-top:45px;"><input value="保存" type="submit"></div>
+  </div>
+<div class="sitefooter">
+  <div class="container">  &nbsp; &nbsp; &nbsp; &nbsp;
+	Copyright© 2012 - 2014 <br/>
+	西安微云软件 版权所有
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="format-detection" content="telephone=no">
+<title>{tp#$page_title}-{tp#$webinfo['web_name']}</title>
+<meta name="keywords" content="{tp#$webinfo.web_keyword}">
+<meta name="description" content="{tp#$webinfo.web_descrip}">
+<meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-touch-fullscreen" content="yes">
+<!-- <meta name="full-screen" content="yes"> -->
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="address=no">
+<link rel="icon" href="__PUBLIC__/images/logo.jpg" type="image/x-icon">
+<link rel="apple-touch-icon-precomposed" href="__PUBLIC__/images/logo.jpg">
+<link rel="apple-touch-startup-image" href="__PUBLIC__/images/apple-touch-startup.png" media="(device-height:568px)">
+<link rel="stylesheet" href="__PUBLIC__/css/style.css">
+<link rel="stylesheet" href="__PUBLIC__/css/icomoon.css">
+<script type="text/javascript" src="__PUBLIC__/js/jq.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/jquery.urlparam.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/alert.js"></script>
+<style type="text/css">
+.label-F60{background:#F60;color:#FFF;padding:0 3px;font-size:12px}
+#windowcenter {
+	width:290px;
+	position:fixed;
+	display:none;
+	bottom:30px;
+	left:50%;
+	 z-index:9999;
+	margin-left:-145px;
+	padding:2px;
+	border-radius:3px;
+	-webkit-border-radius:3px;
+	-moz-border-radius:3px;
+	background-color: #ffffff;
+	-webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	-moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	-o-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	font:14px/1.5 Microsoft YaHei,Helvitica,Verdana,Arial,san-serif;
+}
+.window .title {
+	background-color: #2BB2A3;
+	line-height: 26px;
+  padding: 5px 5px 5px 10px;
+	color:#ffffff;
+	text-shadow:0px 1px 1px #14544D;
+	font-size:16px;
+	border-radius:3px 3px 0 0;
+	-webkit-border-radius:0.5em 0.5em 0 0;
+	-moz-border-radius:0.5em 0.5em 0 0;
+	
+}
+.window .content {
+	/*min-height:100px;*/
+	overflow:auto;
+	padding:10px;
+	background: linear-gradient(#FBFBFB, #EEEEEE) repeat scroll 0 0 #FFF9DF;
+    color: #222222;
+    text-shadow: 0 1px 0 #FFFFFF;
+	border-radius: 0 0 0.6em 0.6em;
+	-webkit-border-radius: 0 0 0.6em 0.6em;
+	-moz-border-radius: 0 0 0.6em 0.6em;
+}
+.window #txt {
+	min-height:30px;font-size:16px; line-height:22px;
+}
+.window #windowclosebutton {
+	margin-top:10px;
+}
+.window .btn {
+	height:40px;
+	line-height:40px;
+}
+input::-moz-placeholder, textarea::-moz-placeholder { color: #999;}
+.flex{
+	display:box;
+	display:-moz-box;
+	display:-webkit-box;
+}
+.window .title .close {
+	float:right;
+	background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACTSURBVEhL7dNtCoAgDAZgb60nsGN1tPLVCVNHmg76kQ8E1mwv+GG27cestQ4PvTZ69SFocBGpWa8+zHt/Up+IN+MhgLlUmnIE1CpBQB2COZibfpnXhHFaIZkYph0SOeeK/QJ8o7KOek84fkCWSBtfL+Ny2MPpCkPFMH6PWEhWhKncIyEk69VfiUuVhqJefds+YcwNbEwxGqGIFWYAAAAASUVORK5CYII=");
+	width:26px;
+	height:26px;
+	display:block;	
+}
+.confirm-box{
+    position: fixed;
+    top:50%;
+    left:50%;
+    padding:0px 15px;
+    width:220px;
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+    box-sizing:border-box;
+    background-color: rgba(0, 0, 0, 0.8);
+    color:#FFFFFF;
+    border-radius: 2px;
+    margin-left: -110px;
+    margin-top:-55px;
+    z-index:1000001;
+}
+.confirm-box .confirm-box-txt{
+    text-align: center;
+    margin:20px auto;
+}
+.confirm-box .confirm-box-btns{
+    width:190px;
+    padding-bottom:10px;
+    text-align: center;
+}
+.confirm-box .confirm-box-btns a{
+    background-color: #FFFFFF;
+    display:inline-block;
+    border-radius: 2px;
+    margin:5px;
+    text-align: center;
+    width:80px;
+    height:30px;
+    line-height: 30px;
+    color:#444444;
+}
+.confirm-mash{
+    position: fixed;
+    left:0px;
+    top:0px;
+    right:0px;
+    bottom:0px;
+    background-color: rgba(255,255,255,0.3);
+    z-index:1000000;
+}
+</style>
+</head>
+<body>
+<div class="window" id="windowcenter">
+	<div id="title" class="title"><span class="close" id="alertclose"></span><span class="tit_txt">消息提醒</span></div>
+	<div class="content">
+	 <div id="txt"></div>
+	 <input type="button" value="确定" id="windowclosebutton" name="确定" class="btn btn-block">	
+	</div>
+</div>
+
+<script type="text/javascript" src="__PUBLIC__/js/tips.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/geo.js"></script>
+
+
+<div class="header">
+	<a href="javascript:void(0);" onclick="previous();" class="topnav topnav-left"><i class="icon-arrow-left2"></i></a>
+	<a href="javascript:void(0);" entry="dropdown" class="topnav topnav-right"><i class="icon-list"></i></a>
+	<div id="nav-dropdown" class="nav-dropdown">
+		<include file="Public:nav_dropdown"/>
+	</div>
+	<span class="header_toptitle">{tp#$page_title}</span>
+	<div class="clear"></div>
+</div>
+<!--关注tips-->
+<include file="Public:sub_tips"/>
+<!--关注tips-->
+
+
+<section class="wrapper_card">
+    <section class="search">
+        <input class="wd" name="word" placeholder="商品名称或关键字" type="text" value="{tp#$Think.get.keyword}">
+        <a class="sub" value="搜索" type="button" id="btn_search">搜索</a>
+        <script type="text/javascript">
+            $("#btn_search").click(function()
+            {
+                var keyword=$.trim($(".wd").val());
+                if(keyword==''){
+                    //show_tips('请输入商品名称');
+					location.href="{tp#:U('product_list')}";
+                }else{
+                    location.href="{tp#:U('product_list')}&keyword="+keyword;
+                }
+                
+            })
+        </script>
+    </section>
+</section>
+
+<style type="text/css">
+.qrcode_box{
+	position: fixed;
+	top:0px;
+	bottom:0px;
+	left:0px;
+	right:0px;
+	color:#FFFFFF;
+	z-index: 1000000000;
+	background-color: rgba(0,0,0,0.8);
+}
+.qrcode_box #qrcode_close{
+	position: absolute;
+	right:5px;
+	top:5px;
+	font-size: 20px;
+}
+.qrcode_box  .qrcode{
+	margin-top:120px;
+	text-align: center;
+	font-size: 16px;
+	line-height: 30px;
+}
+.qrcode_box  .qrcode img{
+	width:200px;
+	height:120px;
+}
+</style>
+
+<script type="text/javascript">
+$("#aouth_login_btn_close").click(function()
+{
+	$("#fix_aouth_login").fadeOut();
+});
+$('#show-qrcode').click(function()
+{
+	$('#qrcode_box').show();
+	$('#qrcode_box #qrcode_close').click(function()
+	{
+		$('#qrcode_box').hide();
+	});
+});
+</script><script type="text/javascript">
+
+var previous = function()
+{
+	if (typeof (navigator.app) !== "undefined")
+	{
+		navigator.app.backHistory();
+	}
+	else
+	{
+		window.history.back();
+	}
+}
+$(function()
+{
+	$('.topnav[entry=dropdown]').click(function()
+	{
+		$('#nav-dropdown').slideToggle();
+	});
+	document.onclick=function(e)
+	{
+		var e=e?e:window.event;
+		var tar = e.srcElement||e.target;
+		if($(tar).attr('id') != "nav-dropdown" && $(tar).parents('#nav-dropdown').size() == 0 && (!$(tar).hasClass('topnav') || $(tar).attr('entry') != "dropdown") && $(tar).parents('.topnav[entry=dropdown]').size() == 0)
+		{
+			$('#nav-dropdown').slideUp();
+		}
+	}
+	$("input[type='checkbox'],input[type='radio']").live('click', function()
+	{
+		setbg()
+	});
+	setbg();
+	//设置label背景
+	function setbg()
+	{
+		$(":checkbox").parent("label").removeClass('on');
+		$(":checkbox[checked]").parent("label").addClass('on');
+		$(":radio").parent("label").removeClass('on');
+		$(":radio[checked]").parent("label").addClass('on');
+	}
+});
+</script>
+<script type="text/javascript" src="__PUBLIC__/js/countdown.js"></script>
+<div id="nav-bar" class="nav-bar" style="position: relative; top: 0px; left: 0px; width: 100%;">
+   <!-- <ul class="nav">
+        <li data-flag="fid" class="dropdown">旗袍/礼服/民族风</li>
+         <li data-flag="zone" class="dropdown">全城</li> 
+        <li data-flag="sort" class="dropdown">默认排序</li>
+    </ul>-->
+
+</div>
+<!--<div class="search-new">
+    <i class="icon-search" id="icon-search"></i><input type="text" id="search-btn">
+</div>-->
+<div class="wrapper-search wrapper-search-new" id="wrapper-search">
+	<div id="index_search_head" class="index_search_head">
+		<div id="icon-close" class="index_search_bar_cancel">
+			<img src="__PUBLIC__/images/close.png" alt="">
+		</div>
+        <form action="#" method="GET" id="form_word" class="index_searchForm">
+        	<div class="header-search-box">
+        		<div class="header-search-input">
+        			<input class="wd hilight2" name="word" id="word" placeholder="商品名称或关键字" type="text" autocomplete="off">
+        		</div><a class="header-icon-search" value="搜索" type="submit" id="a_search"><img src="__PUBLIC__/images/search.png" alt=""></a>
+        	</div>
+            <script type="text/javascript">
+                $("#a_search").click(function()
+                {
+                    $("#form_word").submit();
+                })
+            </script>
+        </form>
+	</div>
+
+</div>
+<script type="text/javascript">
+$(function()
+{
+	// if($(".header .icon-arrow-left2").size() == 1)
+	// {
+	// 	$("#icon-close").css('display','none');
+	// }
+	temp_previous = previous;
+	$("#search-btn").focus(function()
+	{
+		$(".topnav-left").attr('id','icon-close');
+		previous = function()
+		{
+
+		};
+		$("#wrapper-search").css('right','0');
+		$(document).scrollTop(0);
+		$("#word").focus();
+
+		window.setTimeout(function()
+		{
+			$('#data-list').css('display','none');
+		},200);
+
+	});
+	$("#icon-close").live('click', function()
+	{
+		$('#data-list').css('display','block');
+		$("#wrapper-search").css('right','-100%');
+		$(".topnav-left").removeAttr('id');
+		$("#landing-tags,#hot-search-bar").removeClass('none');
+		previous = temp_previous;
+	});
+	$("#word").keyup(function() {
+		setTimeout(function()
+		{
+			word = $("#word").val();
+			$.ajax(
+			{
+				url: 'http://www.jiudingvip.com/3g/ajax.php?act=get_search_result',
+				data:
+				{
+					keyword : word,
+					type:'key'
+				},
+				type:'POST',
+				dataType: 'html',
+				beforeSend:function()
+				{
+					if(word == '')
+					{
+						$("#search_res").addClass('none');
+						$("#search_res").empty();
+						return false;
+					}
+				},
+				success:function(html)
+				{
+					if(html.length > 10)
+					{
+						$("#search_res").html(html);
+						$("#search_res").removeClass('none');
+						$("#landing-tags,#hot-search-bar").addClass('none');
+					}
+					else
+					{
+						$("#landing-tags,#hot-search-bar").removeClass('none');
+						$("#search_res").addClass('none');
+					}
+				}
+			});
+		},600)
+	});
+})
+</script><section id="data-list" class="section_box new_section_box">
+    <ul class="qianggou_box goods-grid">
+    
+    	<volist name="list" id="item">
+        <php>
+        $thumb=get_thumb($item['spic']);
+        if(is_file('.'.$thumb)){
+            $item['spic']=$thumb;
+        }	
+        </php>
+		<li class="qianggou goods-item">
+			<a href="{tp#:U('Index/product',array('id'=>$item['id']))}">
+				<div class="goods-img">
+					<img src="{tp#$item['spic']}" alt="{tp#$item['name']}" onerror="this.src='__PUBLIC__/images/no-pic.png'" style="height:120px;">
+				</div>
+				<div class="goods-info">
+					<p class="name">{tp#$item['name']}</p>
+                    <p>
+                       	<span class="price"><b>{tp#$item['price']}</b>元</span>
+                		<span class="r label-F60">佣金{tp#$item['yongjin']/4}</span>
+					</p>
+				</div>
+			</a>
+		</li>
+        </volist>
+
+		
+		
+    </ul>
+    <div class="clear"></div>
+<!--    <div class="no-data none loading-img" id="loading-data"><img src="__PUBLIC__/images/loading.gif" alt="加载中..."></div>-->
+	<p id="page">{tp#$page}</p>
+</section>
+<a href="javascript:void(0);" class="fix_cart_btn " onclick='location.href="{tp#:U('Index/cart')}"'><span></span></a>
+<div id="dropdown-mash" class="none"></div>
+<script type="text/javascript" src="__PUBLIC__/js/mobile.js"></script>
+<script type="text/javascript">
+$(function()
+{
+    if($("#data-list ul li").size() == 0)
+    {
+        nohtml = $("#tip-box").html();
+        $("#data-list").html(nohtml);
+    }
+    page = 2;
+    flag = true;
+    $(window).scroll(function()
+    {
+        //选择分类浮动
+        scrollx = $(document).scrollTop();
+        navx = $("#nav-bar").position().top;
+        if(scrollx >= 45)
+        {
+            $("#nav-bar").css(
+                {
+                    'position':'fixed',
+                    'top':'0px',
+                    'left':'0px',
+                    'width':'100%'
+                })
+        }
+        else
+        {
+            $("#nav-bar").css(
+            {
+                'position':'relative',
+            })
+        }
+        if($(document).scrollTop() + $(window).height() >= $(document).height())
+        {
+            $("#loading-data").removeClass('none');
+            ajax_page();
+        }
+    });
+    sy = [];
+    ey = [];
+    my = [];
+    $('.dropdown-scroller,.dropdown-sub-scroller ul').each(function(k)
+    {
+        var el = this;
+        $(el).css({'transform':'translateY(0px)'});
+        ey[k] = 0;
+        sy[k] = 0;
+        my[k] = 0;
+        TE(el,'tb',function(i)
+        {
+            ey[k] = Math.round(my[k]/40) * 40;
+            ey[k] = Math.min(Math.max($('#dropdown-wrapper').height() - $(el).height(),ey[k]),0);
+            $(el).css('transform','translateY('+(ey[k])+'px)');
+        },
+        function(y)
+        {
+            my[k] = y - sy[k] + ey[k];
+            $(el).css('transform','translateY('+(my[k])+'px)');
+        },
+        function(x,y)
+        {
+            sy[k] = y;
+        });
+    });
+    var sort = 'default';
+    $('#nav-bar .dropdown').each(function()
+    {
+        var obj = $(this);
+        var div = $(this).attr('data-flag');
+        var text = $(this).text();
+        obj.text(function()
+        {
+            var len = $('#filter_'+div + ' li.current').size();
+            if(len > 0)
+            {
+                var value = $('#filter_'+div + ' .dropdown-scroller li.current>a').attr('data-value');
+                if(len > 1 && $('#'+div+value+' li.current>a').text() != '全部')
+                {
+                    text = $('#'+div+value+' li.current>a').text();
+                }
+                else
+                {
+                    text = $('#filter_'+div + ' .dropdown-scroller li.current>a').text();
+                }
+            }
+            obj.text(text);
+        })
+    });
+    $('#dropdown-mash').click(function()
+    {
+        $('#nav-bar .dropdown.active').removeClass('active');
+        $('#dropdown-wrapper>div').addClass('none');
+        $('#dropdown-mash').addClass('none');
+    });
+    $('#nav-bar .dropdown').click(function()
+    {
+        var div = $(this).attr('data-flag');
+        if($(this).hasClass('active'))
+        {
+            $('#filter_'+div).addClass('none');
+            $(this).removeClass('active');
+            $('#dropdown-mash').addClass('none');
+        }
+        else
+        {
+            $('#dropdown-wrapper>div').addClass('none');
+            $('#filter_'+div).removeClass('none');
+            $(this).addClass('active').siblings().removeClass('active');
+            $('#dropdown-mash').removeClass('none');
+            $('#filter_' + div + ' li a').click(function()
+            {
+                var sub = $(this).attr('has-sub');
+                var value = $(this).attr('data-value');
+                $('#filter_'+ div + ' li').removeClass('current');
+                $(this).parent().addClass('current');
+                if(sub == '-1')
+                {
+                    var p_value = $(this).parents('.dropdown-sub-scroller').attr('id').replace(div,'');
+                    $('#filter_'+ div + ' .dropdown-scroller li>a[data-value='+p_value+']').parent().addClass('current');
+                }
+                if(sub != '-1')
+                {
+                    $('#filter_' + div + ' .dropdown-sub-scroller').addClass('none');
+                }
+                if(sub == '1')
+                {
+                    $('#'+div+value).removeClass('none');
+                }
+                else
+                {
+                    params = [];
+                    $('#dropdown-wrapper li.current>a').each(function()
+                    {
+                        var param = $(this).attr('data-param');
+                        params[param] = $(this).attr('data-value');
+                    });
+                    if($(this).attr('data-param') == 'sort' && $(this).attr('data-value') == 'distance')
+                    {
+                        $('#filter_sort').addClass('none');
+                        $('#nav-bar [data-flag=sort]').removeClass('active');
+                        $('#dropdown-mash').addClass('none');
+                        set_cookie('lng','',0);
+                        set_cookie('lat','',0);
+                        Geo.init(null,null,{},set_distance);
+                    }
+                    else
+                    {
+                        var link = site_url + '/groupbuy.php';
+                        var param_str = '';
+                        var uid = '';
+                        if(uid != '')
+                        {
+                            params['uid'] = uid;
+                        }
+                        for(var k in params)
+                        {
+                            param_str += param_str ? '&' + k + '=' + params[k] : '?'  + k + '=' + params[k];
+                        }
+                        link += param_str;
+                        // console.log(link);
+                        window.location.href = link;
+                    }
+                }
+            });
+            $(document).scrollTop($('#nav-bar').position().top);
+        }
+    });
+    if(sort == 'distance')
+    {
+        var address = get_cookie('address');
+        if(address)
+        {
+            $('#data-list').before('<div id="gps_address" style="padding:10px;background-color:#F5F5F5;border:1px solid #CCCCCC;margin:10px auto;">'+address+'</div>');
+        }
+    }
+    load_count();
+});
+function ajax_page()
+{
+    $.ajax(
+    {
+        url: 'http://www.jiudingvip.com/3g/groupbuy.php',
+        data:
+        {
+            is_ajax:1,
+            page:page,
+            fid:'132',
+            sort:'',
+        },
+        type:'GET',
+        dataType: 'html',
+        beforeSend:function()
+        {
+            if(page > 50 || flag == false)
+            {
+                $("#loading-data").addClass('none');
+                return false;
+            }
+            page++;
+            return true;
+        },
+        success:function(html)
+        {
+            $("#loading-data").addClass('none');
+            if(html.length > 10)
+            {
+                len = $("#data-list").find('[entry="countdown"]').size();
+                $("#data-list .qianggou_box").append(html);
+                load_count(len);
+            }
+            else
+            {
+                if($("#data-list").find('#no-data').size() == 0)
+                {
+                    $("#data-list").append('<div class="no-data" id="no-data">亲,加载完了哦！</div>');
+                }
+                flag = false;
+            }
+        }
+    });
+}
+function set_distance(geo)
+{
+    set_cookie('address',geo.address,600);
+    params.choose_cityID = geo.city_id;
+    var link = site_url + '/{page_active}.php';
+    var param_str = '';
+    for(var k in params)
+    {
+        param_str += param_str ? '&' + k + '=' + params[k] : '?'  + k + '=' + params[k];
+    }
+    link += param_str;
+    // console.log(link);
+    window.location.href = link;
+}
+//加载计数器
+function load_count(len)
+{
+    if(len > 0)
+    {
+        sel = '[entry=countdown]:gt('+len+')';
+    }
+    else
+    {
+        sel = '[entry=countdown]';
+    }
+    $(sel).each(function()
+    {
+        var starttime = $(this).attr('data-start') - Math.round(new Date().getTime()/1000);
+        var time = $(this).attr('data-time') - Math.round(new Date().getTime()/1000);
+        if(time > 8640000)
+        {
+            $(this).text('长期有效');
+        }
+        else
+        {
+            if(starttime > 0)
+            {
+                time = starttime;
+            }
+            $(this).countdown(
+            {
+                format:'HMS',
+                until:time,
+                expiryText: '活动已过期',
+                alwaysExpire: true,
+                layout: '<span>{hn}</span>时<span>{mn}</span>分<span>{sn}</span>秒'
+            });
+        }
+    });
+}
+</script>
+</body>
+</html>

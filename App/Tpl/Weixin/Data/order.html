@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-touch-fullscreen" content="yes">
+<link rel="stylesheet" href="__PUBLIC__/bootstrap/css/bootstrap.css">
+<title>代理订单列表</title>
+</head>
+
+<body>
+
+<table class="table">
+<tr>
+   <th>订单ID</th>
+   <th>订单编号</th>
+   <th>收货人</th>
+   <th>联系电话</th>
+   <th>订单金额</th>
+   <th>订单佣金</th>
+   <th>云金币支付</th>
+   <th>订单状态</th>
+   <th>支付状态</th>
+   <th>下单时间</th>
+   <th>操作</th>
+</tr>
+	
+    <volist name="list" id="v">
+                <tr <eq name="v['errcode']" value='1'>style="background:#FADEDB"</eq>>
+                  <!--<td><input type="checkbox" /></td>-->
+                  <td>【{tp#$v.id}】</td>
+                  <td width='120'><a title="点击查看" href="{tp#:U('edit',array('id'=>$v['id']))}">{tp#$v.out_trade_no}</a>
+                  </td>
+                  <td>
+                  <a title="点击查看下单人" target="_blank" href="{tp#:U('Wxusers/edit',array('id'=>$v['uid']))}">
+                  {tp#$v.consignee}
+                  </a>
+                  </td>
+                  <td>{tp#$v.mobile}</td>
+                  <td style="color:red"><b>&yen; </b>{tp#$v.total_fee}</td>
+                  <td style="color:red"><b>&yen; </b>{tp#$v.yongjin}</td>
+                  
+                  <td>
+                  {tp#$v['money_cloud']|default='0'} 元
+                  </td>
+                  
+                  <td><a class="">{tp#$v.order_status|order_status}</a></td>
+                  <td>
+                  <a class="btn" title="修改订单支付状态" href="{tp#:U('update_pay_status',array('order_id'=>$v['id'],'p'=>I('get.p','1')))}">
+                  
+                    <switch name="v.pay_status">
+                    <case value="0"><font color='red'>未支付</font></case>
+                    <case value="1"><b><font color="green">已支付</font></b></case>
+                    <case value="2"><b><font color='red'>已退款</font></b></case>
+                    </switch>
+                    </a>
+                  </td>
+                  <td>{tp#$v.order_time|date='y/m/d H:i:s',###}</td>
+                  <td>
+                  	<if condition="$v['pay_status'] eq 1">
+                    <a class="btn btn-danger btn-refund" href="javascript:" order_id="{tp#$v.id}">退款</a>
+                    </if>
+                  	
+                    <!--<a class="btn btn-success" href="{tp#:U('edit',array('id'=>$v['id']))}">详情</a>-->
+                    <a class="btn btn-danger" onclick="return confirm('确定删除？')" href="{tp#:U('del',array('id'=>$v['id']))}">删除</a>
+                  </td>
+                </tr>
+                </volist>
+
+</table>
+
+</body>
+</html>

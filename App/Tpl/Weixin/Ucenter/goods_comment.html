@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{tp#$webinfo.web_name}</title>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/dist/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/dist/css/bootstrap-theme.css">
+	<link rel="stylesheet" href="__PUBLIC__/dist/css/font-awesome.css">
+    <!--[if IE 7]>
+    <link rel="stylesheet" href="__PUBLIC__/dist/css/font-awesome-ie7.css">
+    <![endif]-->
+	<link type="text/css" rel="stylesheet" href="__PUBLIC__/star/demo/css/demo.css">
+	<script type="text/javascript" src="__PUBLIC__/star/demo/js/jquery.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/star/lib/jquery.raty.min.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+</head>
+
+<body class="page bg">
+    <header class="navbar po-re">
+        <div class="navbar-icon">
+            <a href="javascript:history.go(-1);" class="left-back">
+                <span class="glyphicon glyphicon-chevron-left">返回</span>
+			</a>
+		</div>
+        <span class="nav-title">评价宝贝</span>
+   </header>
+
+	   <div class="media cj-list order-checkbox order-radio"  data-toggle="buttons">
+			<a class="pull-left thumbnail" href="#">
+				<img class="media-object" src="{tp#$info.goods_spic}">
+			</a>
+			<div class="media-body">
+				<a href="">
+					<h4 class="media-heading">{tp#$info.goods_name}</h4>
+					<!--<p class="f999999 mb5">颜色：金色 功率：1.5匹</p>-->
+					<p class="f999999 mb5">数量：X{tp#$info.goods_nums}</p>
+					<div class="comm-text-pricce f999999" style="width:100%;" >
+<!--						运费：<em class="fcff0000">0.00</em>-->
+                        <span  class="pull-right f14 fcff0000"><i><em>&yen;{tp#$info.goods_price}</em></i></span>
+					</div> 
+				</a>
+			</div>
+	   </div>
+
+	   <div class="media cj-list">
+		   <p class="f14 pull-right">小计：<b class="fcff0000">&yen;{tp#$info['goods_price']*$info['goods_nums']}元</b></p>
+		   <div class="edit-comment mt15">
+				给商品评分
+				<div id="function-demo" class="target-star pull-right"></div>
+				<div id="function-hint" class="hint"></div>
+		   </div>
+		   <textarea id="content" style="width:100%; min-height:60px; margin-top:15px;" placeholder="写点什么吧！您的意见对其他买家有很大帮助"></textarea>
+	   </div>
+	  <!-- <div class="media cj-list">
+		   <h4>给我们平分</h4>
+		   <div class="edit-comment">
+				给商品评分
+				<div id="function-demo1" class="target-star pull-right"></div>
+				<div id="function-hint" class="hint"></div>
+		   </div>
+			<div class="edit-comment">
+				给商品评分
+				<div id="function-demo2" class="target-star pull-right"></div>
+				<div id="function-hint" class="hint"></div>
+		   </div>
+		</div>-->
+		<div class="text-center"><a id="btn-sub" class="btn btn-warning mb5 mt15">提交</a></div>
+		   
+	   
+<script type="text/javascript">
+	var star=5;
+    $(function() {
+      $.fn.raty.defaults.path = 'lib/img';
+      $('#function-demo').raty({
+	  	number: 5,//多少个星星设置
+		score: 5,//初始值是设置
+		targetType: 'hint',//类型选择，number是数字值，hint，是设置的数组值
+        path      : "__PUBLIC__/"+'star/demo/img',
+		hints     : ['差','','一般','','好'],
+        cancelOff : 'cancel-off-big.png',
+        cancelOn  : 'cancel-on-big.png',
+        size      : 24,
+        starHalf  : 'star-half-big.png',
+        starOff   : 'star-off-big.png',
+        starOn    : 'star-on-big.png',
+        target    : '#function-hint',
+        cancel    : false,
+        targetKeep: true,
+		targetText: '请选择评分',
+
+        click: function(score, evt) {
+          	//alert('' +  "\nscore: " + score + "\nevent: " + evt.type);
+			star=score;
+        }
+      });
+	  
+	  //提交评论
+	  $("#btn-sub").click(function(){
+			var post_data={};
+			post_data.id="{tp#:I('get.id')}";			//id
+			post_data.star=star;
+			post_data.content=$("#content").val();
+			if(post_data.content==''){
+				alert('请填写评论内容');
+				return false;
+			}
+			//console.log(post_data);
+			//return false;
+			$.post("{tp#:U('Ajax/goods_comment')}",post_data,function(json){
+				alert(json.msg);
+				location.href="{tp#:U('Ucenter/order_detail')}&id="+json.order_id;
+			},'json');
+			 
+	  });
+
+	  $('#function-demo1').raty({
+	  	number: 5,//多少个星星设置
+		score: 0,//初始值是设置
+		targetType: 'hint',//类型选择，number是数字值，hint，是设置的数组值
+        path      : "__PUBLIC__/"+'star/demo/img',
+		hints     : ['差','','一般','','好'],
+        cancelOff : 'cancel-off-big.png',
+        cancelOn  : 'cancel-on-big.png',
+        size      : 24,
+        starHalf  : 'star-half-big.png',
+        starOff   : 'star-off-big.png',
+        starOn    : 'star-on-big.png',
+        target    : '#function-hint',
+        cancel    : false,
+        targetKeep: true,
+		targetText: '请选择评分',
+
+        click: function(score, evt) {
+          alert('' +  "\nscore: " + score + "\nevent: " + evt.type);
+        }
+      });
+	  $('#function-demo2').raty({
+	  	number: 5,//多少个星星设置
+		score: 0,//初始值是设置
+		targetType: 'hint',//类型选择，number是数字值，hint，是设置的数组值
+        path      : "__PUBLIC__/"+'star/demo/img',
+		hints     : ['差','','一般','','好'],
+        cancelOff : 'cancel-off-big.png',
+        cancelOn  : 'cancel-on-big.png',
+        size      : 24,
+        starHalf  : 'star-half-big.png',
+        starOff   : 'star-off-big.png',
+        starOn    : 'star-on-big.png',
+        target    : '#function-hint',
+        cancel    : false,
+        targetKeep: true,
+		targetText: '请选择评分',
+
+        click: function(score, evt) {
+          alert('' +  "\nscore: " + score + "\nevent: " + evt.type);
+        }
+      });
+
+    });
+  </script>
+</body>
+
+</html>
